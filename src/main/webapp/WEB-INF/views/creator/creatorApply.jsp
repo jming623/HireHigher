@@ -56,56 +56,56 @@
   
   let careerBox = document.getElementById("careerBox");
   let plusBtn = document.getElementById("plusBtn");
-  let count = 0;
+  let count = 0; // input 태그 개수 체크 변수
 
   plusBtn.addEventListener("click", function() {
 	  
-    if(count >= 2) return;
+    if(count >= 2) return; // input 태그 추가 개수가 2개가 넘어가면 함수 종료
 
-    ++count;
+    ++count; // input 태그가 추가될 때마다 카운트
     
-    let div = document.createElement("div");
-    div.setAttribute("id", "careerGroup");
+    let div = document.createElement("div"); // div 태그 생성
+    div.setAttribute("id", "careerGroup"); // id명이 careerGroup인 id 속성 추가
 
-    let input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.setAttribute("class", "form-control");
-    input.setAttribute("name", "userCareer"+count);
-    input.setAttribute("id", "userCareer");
+    let input = document.createElement("input"); // input 태그 생성
+    input.setAttribute("type", "text"); // text type 속성 추가
+    input.setAttribute("class", "form-control"); // form-control class 속성 추가
+    input.setAttribute("name", "userCareer"+count); // userCareer + 카운트숫자 name 속성 추가
+    input.setAttribute("id", "userCareer"); // userCareer id 속성 추가
 
 
     
-    div.appendChild(input);
+    div.appendChild(input); // div 태그 밑에 자식태그로 input 태그 추가
     
 
-    careerBox.appendChild(div);      
+    careerBox.appendChild(div); // id가 careerBox인 태그 밑에 자식태그로 div 태그 추가 
   
   });
   
   let awardsBox = document.getElementById("awardsBox");
   let plusBtn2 = document.getElementById("plusBtn2");
-  let count2 = 0;
+  let count2 = 0; // input 태그 개수 체크 변수
 
   plusBtn2.onclick = function() {
-    if(count2 >= 2) return;
+    if(count2 >= 2) return; // input 태그 추가 개수가 2개가 넘어가면 함수 종료
 
-    ++count2;
+    ++count2; // input 태그가 추가될 때마다 카운트
 
-    let div = document.createElement("div");
-    div.setAttribute("id", "awardsGroup");
+    let div = document.createElement("div"); // div 태그 생성
+    div.setAttribute("id", "awardsGroup"); // id명이 awardsGroup인 id 속성 추가 
 
-    let input = document.createElement("input");
-    input.setAttribute("type", "text");
-    input.setAttribute("class", "form-control");
-    input.setAttribute("name", "userAwards"+count);
-    input.setAttribute("id", "userAwards");
+    let input = document.createElement("input"); // input 태그 생성
+    input.setAttribute("type", "text"); // text type 속성 추가
+    input.setAttribute("class", "form-control"); // form-control class 속성 추가
+    input.setAttribute("name", "userAwards"+count); // userAwards + 카운트숫자 name 속성 추가
+    input.setAttribute("id", "userAwards"); // userAwrads id 속성 추가
 
 
     
-    div.appendChild(input);
+    div.appendChild(input); // div 태그 밑에 자식태그로 input 태그 추가
     
 
-    awardsBox.appendChild(div);  
+    awardsBox.appendChild(div); // id가 awardsBox인 태그 밑에 자식태그로 div 태그 추가
   }
   
   </script>
