@@ -25,5 +25,13 @@ public class CounterService {
 	public int visitsPerDay() {
 		return cm.visitsPerDay();
 	}
+	//총 게시글 수
+	public int totalPosts() {
+		return cm.totalPosts();
+	}
+	//총 유저 수
+	public int totalUsers() {
+		return cm.totalUsers();
+	}
 	
 }

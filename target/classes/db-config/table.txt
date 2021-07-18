@@ -35,3 +35,4 @@ CREATE TABLE JOBBOARD(
     regDate date default sysdate, --작성일
     updateDate date default sysdate --수정일
 );
+create sequence jobboard_seq start with 1 increment by 1 nocache;

@@ -25,9 +25,16 @@
   		where to_date(visitDate, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD')
   	</select>
   	
-  	<!-- 총 게시글 수 -->
+  	<!-- 총 게시글 수  -->
+  	<select id="totalPosts" resultType="int">
+  		select count(*) as total from WORKBOARD
+  	</select>
+
   	
   	<!-- 총 유저 수 -->
+    <select id="totalUsers" resultType="int">
+  		select count(*) as total from USERS
+  	</select>
   	
   </mapper>
   

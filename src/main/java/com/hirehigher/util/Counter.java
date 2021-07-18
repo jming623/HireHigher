@@ -93,17 +93,17 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 			//일일 방문자 수
 			int visitsPerDay = cs.visitsPerDay();
 			//총 게시글 수
-			// int totalPosts = cs.totalPosts();
+			int totalPosts = cs.totalPosts();
 			//총 유저 수
-			// int totalUsers = cs.totalUsers();
+			int totalUsers = cs.totalUsers();
 			
 			HttpSession session = sessionEvent.getSession();
 
 			//메인 페이지에 사용할 (비즈니스 로직에서 처리한) 데이터 세션에 저장 (main.jsp 에서 sessionScope 으로 받기)
 			session.setAttribute("totalVisits", totalVisits);
 			session.setAttribute("visitsPerDay", visitsPerDay);
-			//session.setAttriute("totalPosts", totalPosts);
-			//session.setAttriute("totalUsers", totalUsers);
+			session.setAttribute("totalPosts", totalPosts);
+			session.setAttribute("totalUsers", totalUsers);
 			
 		} catch (Exception e) {
 			System.out.println("VisitorCounter 작동 실패");
