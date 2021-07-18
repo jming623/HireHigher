@@ -21,6 +21,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select userId from users where USERNAME = #{userName} and USERCELLNUM = #{userCellNum}
 	</select>
 	
+	<select id="findPw" resultType="String">		
+		select userPw from users where USERID = #{userId} and USERNAME = #{userName} and USEREMAIL = #{userEmail}
+	</select>
+	
 	<resultMap type="UserVO" id="idList">
 		<result property="userId" column="USERID"/>
 	</resultMap>

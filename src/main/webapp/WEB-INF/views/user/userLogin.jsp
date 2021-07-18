@@ -24,7 +24,7 @@
 					</div>
 
 					<ul class="userLogin-find">
-						<li><a href="#" onclick=""><small>비밀번호찾기</small></a></li>
+						<li><a href="#" onclick="findPw()"><small>비밀번호찾기</small></a></li>
 						<li><a href="#" onclick="findId()" style="margin: 0 5px;"><small>아이디찾기</small></a></li>
 					</ul>
 
@@ -64,5 +64,9 @@
 		}
 	}
 	
+	function findPw(){
+		event.preventDefault();
+		window.open("../resources/find/findPw.jsp","findId","width=750,height=500,left=550,top=180,location=no,scrollbars=no");
+	}
 	
 </script>

@@ -72,6 +72,12 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserInfo(userId);
 	}
 
+	@Override
+	public String findPw(String userId, String userName, String userEmail) {
+		
+		return userMapper.findPw(userId, userName, userEmail);
+	}
+
 	
 
 	

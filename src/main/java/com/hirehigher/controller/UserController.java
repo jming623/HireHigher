@@ -89,6 +89,47 @@ public class UserController {
 		return idList;
 	}
 	
+	//이메일로 비밀번호 발송
+	@ResponseBody
+	@PostMapping(value="/sendEmailPw", produces="application/json")
+	public int sendEmailPw(@RequestBody UserVO vo) {
+		
+		String userId = vo.getUserId();
+		String userName = vo.getUserName();
+		String userEmail = vo.getUserEmail();
+		
+		System.out.println("userId:"+userId+"userName:"+userName+"userEmail:"+userEmail);
+		
+		String findedPw = userService.findPw(userId, userName, userEmail);
+		
+		if(findedPw == null) { //입력한정보에 일치하는 회원이없음
+			return 0;
+		}else {//findedPw가 null이 아니라면 실행
+			String setfrom = "jming95623@gmail.com"; //보내는 사람 이메일
+	        String tomail = userEmail; // 받는 사람 이메일
+	        String title = userName+"회원님께서  요청하신 정보입니다_from:HireHigher"; // 제목
+	        String content ="\r\n\r\n"+"회원님께서 요청하신 정보입니다."+"\r\n\r\n"+ "비밀번호는 " +findedPw+ " 입니다. "+"\r\n\r\n"+ "감사합니다.";
+			
+	        try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+//	        	SimpleMailMessage message = new SimpleMailMessage();
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(content);
+				
+				mailSender.send(message);
+							
+			} catch (Exception e) {
+				e.printStackTrace();			
+			}
+	        
+	        return 1;
+		}
+	
+	}
+	
 	
 	//회원가입화면
 	@RequestMapping("/userJoin")
@@ -157,8 +198,8 @@ public class UserController {
         String title = "회원가입 인증 이메일 입니다."; // 제목
         String content ="\r\n\r\n"+"저희 홈페이지를 찾아주셔서 감사합니다"+"\r\n\r\n"+ "인증번호는 " +keyCode+ " 입니다. "+"\r\n\r\n"+ "인증번호를 홈페이지에 입력해주세요";
 		
-        System.out.println(userEmail);
-        System.out.println(content);
+//        System.out.println(userEmail);
+//        System.out.println(content);
        
         
         try {
