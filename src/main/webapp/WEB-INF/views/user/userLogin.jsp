@@ -14,13 +14,13 @@
 				<form action="loginForm" method="post">
 
 					<div class="form-group">
-						<label for="id">아이디</label> <input type="text"
-							class="form-control" name="userId" id="userId">
+						<label for="id">아이디</label> 
+						<input type="text" class="form-control" name="userId" id="userId">
 					</div>
 
 					<div class="form-group">
-						<label for="pw">비밀번호</label> <input type="password"
-							class="form-control" name="userPw" id="userPw">
+						<label for="pw">비밀번호</label>
+						<input type="password" class="form-control" name="userPw" id="userPw">
 					</div>
 
 					<ul class="userLogin-find">
@@ -55,6 +55,13 @@
 	function findId(){
 		event.preventDefault();
 		window.open("../resources/find/findId.jsp","findId","width=750,height=500,left=550,top=180,location=no,scrollbars=no");
+	}
+	
+	function findedId(checkedId){ //자식페이지에서 넘어온 checkedId값을 검증하고 폼안에 아이디값에 넣어줌
+		
+		if( checkedId != null){			
+			$("#userId").val(checkedId);
+		}
 	}
 	
 	

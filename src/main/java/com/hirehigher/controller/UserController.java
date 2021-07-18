@@ -26,6 +26,7 @@ import com.hirehigher.command.EmailAuthVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.user.service.UserService;
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -68,14 +69,26 @@ public class UserController {
 	public ArrayList<UserVO> findIdA(@RequestBody UserVO VO) {
 		
 		String userName = VO.getUserName();
-		String birthDay = VO.getBirthDay();
-		
-		System.out.println(userName + ", " + birthDay);
+		String birthDay = VO.getBirthDay();		
 		
 		ArrayList<UserVO> idList = userService.findIdA(userName ,birthDay );
 		
 		return idList;
 	}
+	
+	//전화번호로 아이디찾기
+	@ResponseBody
+	@PostMapping(value="/findIdB", produces="application/json")
+	public ArrayList<UserVO> findIdB(@RequestBody UserVO VO){
+		
+		String userName = VO.getUserName();
+		String userCellNum = VO.getUserCellNum();
+			
+		ArrayList<UserVO> idList = userService.findIdB(userName, userCellNum);
+		
+		return idList;
+	}
+	
 	
 	//회원가입화면
 	@RequestMapping("/userJoin")

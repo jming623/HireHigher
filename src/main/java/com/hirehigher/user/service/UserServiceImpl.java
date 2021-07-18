@@ -22,14 +22,21 @@ public class UserServiceImpl implements UserService {
 		return userMapper.login(vo);
 	}
 	
+	//생년월일로 아이디찾기
 	@Override
 	public ArrayList<UserVO> findIdA(String userName, String birthDay) {
 		
-		System.out.println("서비스영역에서 실행됨:"+ userName + ", " + birthDay);
+		System.out.println("서비스"+userName+ ", "+birthDay);
 		
 		return userMapper.findIdA(userName, birthDay);
 	}
-
+	
+	//전화번호로 아이디찾기
+	@Override
+	public ArrayList<UserVO> findIdB(String userName, String userCellNum) {
+		
+		return userMapper.findIdB(userName, userCellNum);
+	}
 
 	@Override
 	public int idCheck(String userId) {
@@ -65,6 +72,7 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserInfo(userId);
 	}
 
+	
 
 	
 
