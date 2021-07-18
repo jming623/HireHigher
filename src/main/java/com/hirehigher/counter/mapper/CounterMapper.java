@@ -5,10 +5,13 @@ public interface CounterMapper {
 	public void countVisits();
 	//총 방문자 수
 	public int totalVisits();
-	//일일 방문자 수
-	public int visitsPerDay();
 	//총 게시글 수
 	public int totalPosts();
 	//총 유저 수
 	public int totalUsers();
+
+	//일일 방문자 수
+	public int visitsPerDay7();
+	//일일 게시글 수
+	public int postsPerDay7();
 }
