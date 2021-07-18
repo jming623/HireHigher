@@ -48,8 +48,15 @@ public class MainController {
 		
 		//-----------------------Counter 리스너 클래스에서 CHART DATA 가져오는 처리----------------
 		
-		model.addAttribute("visitsPerDay", counter.chartDataCounter().get(0).get(7));
-		model.addAttribute("postsPerDay", counter.chartDataCounter().get(1).get(7));
+		//방문자수 가져오기 
+		for (int i = 1; i <= 7; i++) {
+			model.addAttribute("visitsPerDay" + i, counter.chartDataCounter().get(0).get(i-1));
+		}
+		
+		//게시글 수 가져오기
+		for (int i = 1; i <= 7; i++) {
+			model.addAttribute("postsPerDay" + i, counter.chartDataCounter().get(1).get(i-1));
+		}
 		
 		//-----------------------Counter 리스너 클래스에서 CHART DATA 가져오는 처리----------------
 

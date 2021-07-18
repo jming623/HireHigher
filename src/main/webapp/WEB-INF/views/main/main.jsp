@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 
 <!-- main -->
@@ -24,8 +24,7 @@
 						TOTAL VISITS
 						<!--data 동적처리-->
 						<div class="main-stats-container-inner2">
-							${sessionScope.totalVisits}
-						</div>
+							${sessionScope.totalVisits}</div>
 					</div>
 				</div>
 				<div class="main-stats-container">
@@ -33,8 +32,7 @@
 						TOTAL POSTS
 						<!--data 동적처리-->
 						<div class="main-stats-container-inner2">
-							${sessionScope.totalPosts}
-						</div>
+							${sessionScope.totalPosts}</div>
 					</div>
 				</div>
 				<div class="main-stats-container">
@@ -42,8 +40,7 @@
 						TOTAL USERS
 						<!--data 동적처리-->
 						<div class="main-stats-container-inner2">
-							${sessionScope.totalUsers}
-						</div>
+							${sessionScope.totalUsers}</div>
 					</div>
 				</div>
 			</div>
@@ -130,24 +127,28 @@ var myChart = new Chart(ctx, {
             {
                 label: 'visit',
                 borderColor: 'rgb(204, 51, 0)',
-                data: ['${visitsPerDay}', '2', '3']
+                data: ['${visitsPerDay1}', '${visitsPerDay2}', '${visitsPerDay3}', '${visitsPerDay4}', '${visitsPerDay5}', '${visitsPerDay6}', '${visitsPerDay7}']
             },
             {
                 label: 'post',
                 borderColor: 'rgb(0, 0, 255)',
-                data: ['${postsPerDay}']
+                data: ['${postsPerDay1}', '${postsPerDay2}', '${postsPerDay3}', '${postsPerDay4}', '${postsPerDay5}', '${postsPerDay6}', '${postsPerDay7}']
             }
         ]
     },
-    options: { //추가설정 (필요시, 라이브러리 참고)
-    //     scales: {
-    //         x: {
-    //             type: 'time',
-    //             time: {
-    //                 unit: 'day'
-    //             }
-    //         }
-    //     }
+    options: {
+    	responsive: 'true',
+    	scales: {
+            yAxes: [{
+                    display: 'true',
+                    ticks: {
+                        beginAtZero: 'true',
+                        steps: '2',
+                        stepValue: '5',
+                    }
+                }]
+        },
+    	
     }
 });
 	

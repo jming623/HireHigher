@@ -2,44 +2,124 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="com.hirehigher.counter.mapper.CounterMapper">
-  	
-  	<!-- 방문자 카운트 -->
-  	<insert id="countVisits">
-  		insert into VISITORCOUNTER (visitDate) values (sysdate)
-  	</insert>
-  	
-  	<!-- 총 방문자 수 -->
-    <select id="totalVisits" resultType="int">
-  		select count(*) as total from VISITORCOUNTER
-  	</select>
-  	
-  	<!-- 일일 방문자 수 -->
-  	<!-- 
-  	to_date(visitDate, 'YYYY-MM-DD') 는 테이블 visitDate에 입력된 모든 날짜 포맷을 YYYY-MM-DD 꼴로 바꾸고
-  	to_date(sysdate, 'YYYY-MM-DD') 오늘 날짜 포맷을 YYYY-MM-DD로 바꿈 두개가 일치하면 오늘 방문 일자만 select 결과!
-  	 -->
-    <select id="visitsPerDay" resultType="int">
-  		select count(*) as total from VISITORCOUNTER
-  		where to_date(visitDate, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD')
-  	</select>
-  	
-  	<!-- 총 게시글 수  -->
-  	<select id="totalPosts" resultType="int">
-  		select count(*) as total from WORKBOARD
-  	</select>
-  	
-  	<!-- 일일 게시글 수 -->
-	 <select id="postsPerDay" resultType="int">
-  		select count(*) as total from WORKBOARD
-  		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD')
-  	</select>
-  	
-  	<!-- 총 유저 수 -->
-    <select id="totalUsers" resultType="int">
-  		select count(*) as total from USERS
-  	</select>
-  	
-  </mapper>
+
+<mapper namespace="com.hirehigher.counter.mapper.CounterMapper">
+
+	<!-- 방문자 카운트 -->
+	<insert id="countVisits">
+		insert into VISITORCOUNTER (visitDate) values
+		(sysdate)
+	</insert>
+
+	<!-- 총 방문자 수 -->
+	<select id="totalVisits" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+	</select>
+
+	<!-- 총 게시글 수 -->
+	<select id="totalPosts" resultType="int">
+		select count(*) as total from
+		WORKBOARD
+	</select>
+
+	<!-- 총 유저 수 -->
+	<select id="totalUsers" resultType="int">
+		select count(*) as total from
+		USERS
+	</select>
+
+
+	<!-- 일일 방문자 수 -->
+	<!-- to_date(visitDate, 'YYYY-MM-DD') 는 테이블 visitDate에 입력된 모든 날짜 포맷을 YYYY-MM-DD 
+		꼴로 바꾸고 to_date(sysdate, 'YYYY-MM-DD') 오늘 날짜 포맷을 YYYY-MM-DD로 바꿈 두개가 일치하면 오늘 
+		방문 일자만 select 결과! -->
+	<select id="visitsPerDay7" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate, 'YYYY-MM-DD')
+	</select>
+	<select id="visitsPerDay6" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate-1, 'YYYY-MM-DD')
+	</select>
+	<select id="visitsPerDay5" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate-2, 'YYYY-MM-DD')
+	</select>
+	<select id="visitsPerDay4" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate-3, 'YYYY-MM-DD')
+	</select>
+	<select id="visitsPerDay3" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate-4, 'YYYY-MM-DD')
+	</select>
+	<select id="visitsPerDay2" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate-5, 'YYYY-MM-DD')
+	</select>
+	<select id="visitsPerDay1" resultType="int">
+		select count(*) as total
+		from VISITORCOUNTER
+		where to_date(visitDate, 'YYYY-MM-DD') =
+		to_date(sysdate-6, 'YYYY-MM-DD')
+	</select>
+
+	<!-- 일일 게시글 수 -->
+	<select id="postsPerDay7" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate,
+		'YYYY-MM-DD')
+	</select>
+	<select id="postsPerDay6" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate-1,
+		'YYYY-MM-DD')
+	</select>
+	<select id="postsPerDay5" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate-2,
+		'YYYY-MM-DD')
+	</select>
+	<select id="postsPerDay4" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate-3,
+		'YYYY-MM-DD')
+	</select>
+	<select id="postsPerDay3" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate-4,
+		'YYYY-MM-DD')
+	</select>
+	<select id="postsPerDay2" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate-5,
+		'YYYY-MM-DD')
+	</select>
+	<select id="postsPerDay1" resultType="int">
+		select count(*) as total
+		from WORKBOARD
+		where to_date(regDate, 'YYYY-MM-DD') = to_date(sysdate-6,
+		'YYYY-MM-DD')
+	</select>
+
+</mapper>
   

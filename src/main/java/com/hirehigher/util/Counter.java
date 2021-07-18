@@ -83,23 +83,23 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 		
 			//일일 방문자 수
 			//7번 = 오늘, 1번  = 6일 전 
-			int visitsPerDay7 = cs.visitsPerDay();
-			int visitsPerDay6;
-			int visitsPerDay5;
-			int visitsPerDay4;
-			int visitsPerDay3;
-			int visitsPerDay2;
-			int visitsPerDay1;	
+			int visitsPerDay7 = cs.visitsPerDay7();
+			int visitsPerDay6 = cs.visitsPerDay6();
+			int visitsPerDay5 = cs.visitsPerDay5();
+			int visitsPerDay4 = cs.visitsPerDay4();
+			int visitsPerDay3 = cs.visitsPerDay3();
+			int visitsPerDay2 = cs.visitsPerDay2();
+			int visitsPerDay1 = cs.visitsPerDay1();
 					
 			//일일 게시글 수
 			//7번 = 오늘, 1번  = 6일 전
-			int postsPerDay7 = cs.postsPerDay();
-			int postsPerDay6;
-			int postsPerDay5;
-			int postsPerDay4;
-			int postsPerDay3;
-			int postsPerDay2;
-			int postsPerDay1;
+			int postsPerDay7 = cs.postsPerDay7();
+			int postsPerDay6 = cs.postsPerDay6();
+			int postsPerDay5 = cs.postsPerDay5();
+			int postsPerDay4 = cs.postsPerDay4();
+			int postsPerDay3 = cs.postsPerDay3();
+			int postsPerDay2 = cs.postsPerDay2();
+			int postsPerDay1 = cs.postsPerDay1();
 			
 			//일일 방문자수 리스트
 			ArrayList<Integer> visitsPerDayList = new ArrayList<Integer>();
