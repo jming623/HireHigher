@@ -1,0 +1,72 @@
+.findPw {
+	padding: 20px 0px;
+	margin: 0 auto;
+}
+
+.findPw-title {
+	text-align: center;
+}
+
+.findPw-title h2 {
+	width: 260px;
+	display: inline-block;
+	border-top: 2px solid #4d4d4d;
+	border-bottom: 2px solid #4d4d4d;
+	padding: 10px 0px;
+	margin: 0px;
+	font-weight: 700;
+}
+
+.findPw-content {
+	margin: 0 auto;
+	width: 72%;
+	min-height: 210px;
+	border: 1px solid #e5e5e8;
+}
+
+.findPw-wrap p {
+	width: 72%;
+	margin: 0 auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.findPw-content-wrap {
+	padding: 30px 40px 20px;
+}
+
+.findPw-content-table {
+	border-collapse: separate;
+	border-spacing: 0px 1px;
+}
+
+.findPw-content-table tr th {
+	display: inline-block;
+	width: 80px;
+}
+
+.findPw-content-table tr td {
+	display: inline-block;
+	width: 266px;
+}
+
+.findPw-content-table tr td input {
+	width: 100%;
+}
+
+.findPw-content-btn {
+	overflow: hidden;
+	width: 346px;
+}
+
+.findPw-right {
+	float: right;
+}
+
+.findPw-result {
+	margin-top: 20px;
+}
+
+.findedPw-btn {
+	margin-top: 10px;
+}

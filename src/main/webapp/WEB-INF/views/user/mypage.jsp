@@ -62,7 +62,7 @@
                             </table>
                             
                             <div>
-                                <button type="button" class="btn btn-primary btn-block" onclick="location.href=''">수정하기</button>    
+                                <button type="button" class="btn btn-primary btn-block" onclick="location.href='mypageModify'">수정하기</button>    
                             </div>                           
 
                         </form>

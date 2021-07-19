@@ -20,6 +20,8 @@
 
 .userLogin-find{
 	overflow:hidden;
+	margin-top: -9px;
+	margin-bottom: 6px;
 }
 
 .userLogin-find li{

@@ -26,6 +26,7 @@ import com.hirehigher.command.EmailAuthVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.user.service.UserService;
 
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -68,14 +69,67 @@ public class UserController {
 	public ArrayList<UserVO> findIdA(@RequestBody UserVO VO) {
 		
 		String userName = VO.getUserName();
-		String birthDay = VO.getBirthDay();
-		
-		System.out.println(userName + ", " + birthDay);
+		String birthDay = VO.getBirthDay();		
 		
 		ArrayList<UserVO> idList = userService.findIdA(userName ,birthDay );
 		
 		return idList;
 	}
+	
+	//전화번호로 아이디찾기
+	@ResponseBody
+	@PostMapping(value="/findIdB", produces="application/json")
+	public ArrayList<UserVO> findIdB(@RequestBody UserVO VO){
+		
+		String userName = VO.getUserName();
+		String userCellNum = VO.getUserCellNum();
+			
+		ArrayList<UserVO> idList = userService.findIdB(userName, userCellNum);
+		
+		return idList;
+	}
+	
+	//이메일로 비밀번호 발송
+	@ResponseBody
+	@PostMapping(value="/sendEmailPw", produces="application/json")
+	public int sendEmailPw(@RequestBody UserVO vo) {
+		
+		String userId = vo.getUserId();
+		String userName = vo.getUserName();
+		String userEmail = vo.getUserEmail();
+		
+		System.out.println("userId:"+userId+"userName:"+userName+"userEmail:"+userEmail);
+		
+		String findedPw = userService.findPw(userId, userName, userEmail);
+		
+		if(findedPw == null) { //입력한정보에 일치하는 회원이없음
+			return 0;
+		}else {//findedPw가 null이 아니라면 실행
+			String setfrom = "jming95623@gmail.com"; //보내는 사람 이메일
+	        String tomail = userEmail; // 받는 사람 이메일
+	        String title = userName+"회원님께서  요청하신 정보입니다_from:HireHigher"; // 제목
+	        String content ="\r\n\r\n"+"회원님께서 요청하신 정보입니다."+"\r\n\r\n"+ "비밀번호는 " +findedPw+ " 입니다. "+"\r\n\r\n"+ "감사합니다.";
+			
+	        try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+//	        	SimpleMailMessage message = new SimpleMailMessage();
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(content);
+				
+				mailSender.send(message);
+							
+			} catch (Exception e) {
+				e.printStackTrace();			
+			}
+	        
+	        return 1;
+		}
+	
+	}
+	
 	
 	//회원가입화면
 	@RequestMapping("/userJoin")
@@ -144,8 +198,8 @@ public class UserController {
         String title = "회원가입 인증 이메일 입니다."; // 제목
         String content ="\r\n\r\n"+"저희 홈페이지를 찾아주셔서 감사합니다"+"\r\n\r\n"+ "인증번호는 " +keyCode+ " 입니다. "+"\r\n\r\n"+ "인증번호를 홈페이지에 입력해주세요";
 		
-        System.out.println(userEmail);
-        System.out.println(content);
+//        System.out.println(userEmail);
+//        System.out.println(content);
        
         
         try {
@@ -198,8 +252,57 @@ public class UserController {
 	
 	//마이수정페이지
 	@RequestMapping("/mypageModify")
-	public void mypageModify() {
+	public void mypageModify(HttpSession session, Model model) {
 		
+		UserVO userVO = (UserVO)session.getAttribute("userVO");
+		
+		System.out.println("mypageModify:"+userVO.toString());
+		
+		model.addAttribute("userInfo", userVO);		
+	}
+	
+	//수정페이지 이메일인증
+	@ResponseBody
+	@PostMapping(value="/sendEmailModify", produces="application/json")
+	public EmailAuthVO sendEmailModify(@RequestBody UserVO vo) {
+		
+		String userEmail = vo.getUserEmail();
+		
+		//인증키 생성
+			UUID uuid = UUID.randomUUID(); //16진수 랜덤값	
+			String keyCode = uuid.toString().replaceAll("-", "").substring(0, 6);
+				
+			String setfrom = "jming95623@gmail.com"; //보내는 사람 이메일
+		    String tomail = userEmail; // 받는 사람 이메일
+		    String title = "회원정보수정 인증 이메일 입니다."; // 제목
+		    String content ="\r\n\r\n"+"저희 홈페이지를 찾아주셔서 감사합니다"+"\r\n\r\n"+ "인증번호는 " +keyCode+ " 입니다. "+"\r\n\r\n"+ "인증번호를 홈페이지에 입력해주세요";
+		    
+		    try {
+				MimeMessage message = mailSender.createMimeMessage();
+				MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+				messageHelper.setFrom(setfrom);
+				messageHelper.setTo(tomail);
+				messageHelper.setSubject(title);
+				messageHelper.setText(content);
+				
+				mailSender.send(message);
+											
+			} catch (Exception e) {
+				e.printStackTrace();		
+			}
+	        
+		return new EmailAuthVO(keyCode);
+	}
+	
+	//회원정보수정요청
+	@RequestMapping("/modifyForm")
+	public String modifyForm(UserVO vo, RedirectAttributes RA) {
+		
+		System.out.println(vo.toString());
+		
+				
+		
+		return "redirect:/user/userLogin";
 	}
 	
 	//접근실패 처리 (로그인을 하지않고 비정상적인 접근을 한 경우)
