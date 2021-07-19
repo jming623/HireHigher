@@ -22,19 +22,20 @@ import com.hirehigher.util.Counter;
  * Handles requests for the application home page.
  */
 @Controller
+@RequestMapping("/main")
 public class MainController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 	
-	/**
+	/*
 	 * Simply selects the home view to render by returning its name.
 	 */
-	
+
 	//차트데이터 뽑기 위한 인젝션
 	@Inject
 	private Counter counter;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		

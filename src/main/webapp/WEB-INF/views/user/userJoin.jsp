@@ -14,7 +14,7 @@
           </div>
           <form action="joinForm" method="POST" name="#" id="joinForm">
 
-            <div class="joinForm-wrap form-	group">
+            <div class="joinForm-wrap form-group">
               <label for="id">아이디</label>
               <div class="input-group">
                 <input type="text" class="joinForm-inner form-control" name="userId" id="userId" placeholder="영문숫자 포함 6~15자">

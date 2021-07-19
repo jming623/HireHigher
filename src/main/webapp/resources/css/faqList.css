@@ -1,18 +1,3 @@
-/* 전체 영역에 적용될 내용 시작 */
-
-* {
-    margin : 0;
-    padding : 0;
-    box-sizing: border-box;
-    border-style:initial;
-}
-
-ul, li {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-/* 전체 영역 끝 */
 
 /* --------최상단 고객센터 글 box---------- */
 .FAQ-user-center{
@@ -156,7 +141,8 @@ margin-bottom: 50px;
 }
 .FAQ-question-icon-box{
     text-align: center;
-    width: 10%; 
+    width: 7%; 
+    padding-left: 10px;
 }
 .FAQ-question-icon-box button{
     width: 30px;
@@ -167,8 +153,16 @@ margin-bottom: 50px;
     color: #494949;
     border: 2px solid #858585;
 }
+.FAQ-question-number-box{
+    width: 5%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 550;
+}
 .FAQ-question-title{
-    width: 70%;
+    width: 60%;
     font-size: 20px;
     font-weight: 600;
 }
@@ -208,12 +202,13 @@ margin-bottom: 50px;
     float: left;
 }
 /* 답변 구역 */
-.FAQ-answer-box{
+.FAQ-answer-box > div{
     display: none;
     overflow: hidden;
     margin-top: 25px;
+    margin-left: 50px;
 }
-.FAQ-answer-box div{
+.FAQ-answer-box div div{
     float: left;
 }
 .FAQ-answer-icon-box{
@@ -232,6 +227,5 @@ margin-bottom: 50px;
 .FAQ-answer-content{
     overflow: auto;
     width: 70%;
-    padding-left: 30px;
     margin-bottom: 30px;
 }

@@ -11,7 +11,7 @@
 		<div class="home-container">
 			<!--[3-1]-->
 			<div class="home">
-				<a href="${pageContext.request.contextPath }">HireHigher</a>
+				<a href="${pageContext.request.contextPath}">HireHigher</a>
 			</div>
 			<div class="main-search-bar-container">
 				<input type="text" placeholder="" class="main-search-bar"> <a

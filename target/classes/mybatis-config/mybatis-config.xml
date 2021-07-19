@@ -10,5 +10,8 @@
 			<typeAlias type="com.hirehigher.command.JobBoardVO" alias="JobBoardVO"/>
 			<typeAlias type="com.hirehigher.command.JobBoardDetailVO" alias="JobBoardDetailVO"/>
 			<typeAlias type="com.hirehigher.util.VisitorCounterVO" alias="VisitorCounterVO"/>
+			<typeAlias type="com.hirehigher.command.FaqListPageVO" alias="FaqListPageVO"/>
+			<typeAlias type="com.hirehigher.command.InsertQuestionPageVO" alias="InsertQuestionPageVO"/>
+			<typeAlias type="com.hirehigher.command.QuestionDetailVO" alias="QuestionDetailVO"/>
 		</typeAliases>
 	</configuration>
