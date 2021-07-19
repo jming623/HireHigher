@@ -98,6 +98,8 @@
             }else if( ! emailRegex.test(userEmail) ){
                 alert("잘못된 이메일 형식입니다.");
                 return;
+            }else if($("#findPwResult_ok").css("display") == "block"){ //이미 이메일을 전송했다면 return
+            	return;
             }
             
             //아이디 정보 유무 확인
