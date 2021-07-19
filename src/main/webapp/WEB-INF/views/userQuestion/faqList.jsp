@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <section>
     <div class="container">
@@ -69,6 +70,9 @@
             </div>
 
             <!------------------FAQ 해당 질문 및 답변--(결제 관련)--------------->
+            <c:forEach var="payment" items="${faqlist}" varStatus="index">
+            <c:if test="${payment.faqNum eq 1}">
+           
             <div class="FAQ-question-answer-payment" id="FAQ-payment">
                 <div class="FAQ-question-box" id="FAQ-question-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -76,7 +80,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>결제 후 유료회원 전환이 되지 않는 경우</button>
+                        <button>${payment.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -84,25 +88,27 @@
                     </div>
                 </div>
 
-                <div class="FAQ-answer-box"> <!-- FAQ 답변 box-->
+				<div class="FAQ-answer-box">
+                <div class="FAQ-answer-box-payment${payment}"> <!-- FAQ 답변 box-->
                     <div class="FAQ-answer-icon-box"> <!-- A 답변 아이콘 -->
                         <button>A</button>
                     </div>
 
-                    <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
+                    <div class="FAQ-answer-content	"> <!-- FAQ 답변 -->
                         <p>
-                        결제 후 새로고침을 해주시기 바랍니다.
-                        (‘무통장 입금’으로 결제하신 경우 유료회원 전환에 약간의 시간(최대 5~10분)이 소요될 수 있으니, 
-                        입금 이후에 새로고침을 해주시기 바랍니다.)
-                        재로그인을 시도하셨지만, 그래도 전환이 안되신다면 브라우저의 쿠키로 인해 발생하는 문제로
-                        아래의 이미지를 참고하셔서 브라우저의 캐시를 지우고 다시 로그인을 해보시기 바랍니다.
+                       		${payment.paymentFaq}
                         </p>
                     </div>
                 </div>
+                </div>
             </div>
             <!-- 질문 답변 -->
-
+            </c:if>
+		</c:forEach>
             <!------------------FAQ 해당 질문 및 답변--(로그인관련 관련)--------------->
+            
+            <c:forEach var="payment" items="${faqlist}" varStatus="index">
+            <c:if test="${payment.faqNum eq 2}">
             <div class="FAQ-question-answer-login" id="FAQ-login">
                 <div class="FAQ-question-box FAQ-login-QnA" id="FAQ-question-login-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -110,7 +116,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>로그인 문제</button>
+                        <button>${payment.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -118,21 +124,28 @@
                     </div>
                 </div>
 
-                <div class="FAQ-answer-box"> <!-- FAQ 답변 box-->
+				<div class="FAQ-answer-box">
+                <div class="FAQ-answer-box-login"> <!-- FAQ 답변 box-->
                     <div class="FAQ-answer-icon-box"> <!-- A 답변 아이콘 -->
                         <button>A</button>
                     </div>
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                        로그인이 잘못됨
+                       ${payment.paymentFaq}
                         </p>
                     </div>
                 </div>
+                </div>
             </div>
             <!-- 질문 답변 -->
-
+		</c:if>
+		</c:forEach>
+		
             <!------------------FAQ 해당 질문 및 답변--(홈페이지 사용법 관련)--------------->
+            
+            <c:forEach var="payment" items="${faqlist}" varStatus="index">
+            <c:if test="${payment.faqNum eq 3}">
             <div class="FAQ-question-answer-home" id="FAQ-home">
                 <div class="FAQ-question-box" id="FAQ-question-home-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -140,7 +153,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>홈페이지 사용법 안내</button>
+                        <button>${payment.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -148,21 +161,27 @@
                     </div>
                 </div>
 
-                <div class="FAQ-answer-box"> <!-- FAQ 답변 box-->
+				<div class="FAQ-answer-box">
+                <div class="FAQ-answer-box-home"> <!-- FAQ 답변 box-->
                     <div class="FAQ-answer-icon-box"> <!-- A 답변 아이콘 -->
                         <button>A</button>
                     </div>
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                        눌러보세요 하나하나
+                        ${payment.paymentFaq}
                         </p>
                     </div>
                 </div>
+                </div>
             </div>
             <!-- 질문 답변 -->
+			</c:if>
+			</c:forEach>
 
              <!------------------FAQ 해당 질문 및 답변--(제품 등록 관련)--------------->
+             <c:forEach var="payment" items="${faqlist}" varStatus="index">
+            <c:if test="${payment.faqNum eq 4}">
              <div class="FAQ-question-answer-item" id="FAQ-item">
                 <div class="FAQ-question-box" id="FAQ-question-item-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -170,74 +189,80 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>제품 등록 안내</button>
+                        <button>${payment.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
                         <button id="FAQ-answer-item-btn">+</button>
                     </div>
                 </div>
-
-                <div class="FAQ-answer-box"> <!-- FAQ 답변 box-->
+                
+                
+				<div class="FAQ-answer-box">
+                <div class="FAQ-answer-box-item"> <!-- FAQ 답변 box-->
                     <div class="FAQ-answer-icon-box"> <!-- A 답변 아이콘 -->
                         <button>A</button>
                     </div>
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                        제품 안내
+                        	 ${payment.paymentFaq}
                         </p>
                     </div>
                 </div>
+                </div>
             </div>
             <!-- 질문 답변 -->
-
+			</c:if>
+			</c:forEach>
         </div>
+    </div>
     </div>
 </section>
 
    <!-- FAQ 질문 답변 script -->
-   <script>
-    window.onload = function(){
-        var toggle = document.getElementById("FAQ-question-id");
-        var content = document.querySelector(".FAQ-answer-box");
-        var btn = document.getElementById("FAQ-answer-btn")
-       
-        toggle.onclick = function(){
-            if(toggle.className == "FAQ-question-box"){
-                content.style.display = 'inline-block';
-                toggle.className = "ct";
-                btn.innerHTML = "-";
-                btn.style.color = "#494949";
-                btn.style.fontSize = "40px"
-                btn.style.marginLeft = "10px";
-                btn.style.height = "20px";
-                btn.style.lineHeight = "20px";
-
-            }else{
-                content.style.display = 'none';
-                toggle.className = "FAQ-question-box";
-                btn.style.color = "#bfbfbf";
-                btn.style.marginLeft = "0px";
-                btn.style.height = "30px";
-                btn.style.lineHeight = "30px";
-                btn.style.fontSize = "30px"
-                btn.innerHTML = "+";
-            }
-        }
-    }
-</script>
-
 <script>
         $(function(){
-            $('#FAQ-login').click(function(){
-                if($('.FAQ-answer-box').css("display") == "none"){
-                    $('.FAQ-answer-box').show();
-                    $('.FAQ-answer-box').attr('class','FAQ-hide');
+            $('#FAQ-payment').click(function(){
+                if($('.FAQ-answer-box-payment').css("display") == "none"){
+                    $('.FAQ-answer-box-payment').show();
+                    $('.FAQ-answer-box-payment').attr('class','FAQ-hide');
                     
                 }else{
-                    $('.FAQ-hide').attr('class','FAQ-answer-box');
-                    $('.FAQ-answer-box').hide();
+                    $('.FAQ-hide').attr('class','FAQ-answer-box-payment');
+                    $('.FAQ-answer-box-payment').hide();
+                }
+            });
+
+            $('#FAQ-login').click(function(){
+                if($('.FAQ-answer-box-login').css("display") == "none"){
+                    $('.FAQ-answer-box-login').show();
+                    $('.FAQ-answer-box-login').attr('class','FAQ-hide');
+                    
+                }else{
+                    $('.FAQ-hide').attr('class','FAQ-answer-box-login');
+                    $('.FAQ-answer-box-login').hide();
+                }
+            });
+            $('#FAQ-home').click(function(){
+                if($('.FAQ-answer-box-home').css("display") == "none"){
+                    $('.FAQ-answer-box-home').show();
+                    $('.FAQ-answer-box-home').attr('class','FAQ-hide');
+                    
+                }else{
+                    $('.FAQ-hide').attr('class','FAQ-answer-box-home');
+                    $('.FAQ-answer-box-home').hide();
+                }
+            });
+
+            $('#FAQ-item').click(function(){
+                if($('.FAQ-answer-box-item').css("display") == "none"){
+                    $('.FAQ-answer-box-item').show();
+                    $('.FAQ-answer-box-item').attr('class','FAQ-hide');
+                    
+                }else{
+                    $('.FAQ-hide').attr('class','FAQ-answer-box-item');
+                    $('.FAQ-answer-box-item').hide();
                 }
             });
         });

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- mapper.xml설정코드 -->
+
+<mapper namespace="com.hirehigher.userquestion.mapper.UserQuestionMapper">
+	
+	<!-- FAQ 고객센터 list 가져오기 sql -->
+	<select id="getFaqList" resultType="FaqListPageVO">
+  		select * from faqListPage order by faqBno desc
+  	</select>
+
+	<!-- 문의 등록하기 페이지 sql -->
+	
+	<!-- 문의 수정하기 페이지 sql -->
+	<!-- 문의 상세페이지 가져오기 sql -->
+	<!-- 문의 삭제 sql -->
+</mapper>

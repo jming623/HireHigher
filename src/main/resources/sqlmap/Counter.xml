@@ -22,7 +22,7 @@
   	 -->
     <select id="visitsPerDay" resultType="int">
   		select count(*) as total from VISITORCOUNTER
-  		where to_date(visitDate, 'YYYY-MM-DD') = to_date(sysdate, 'YYYY-MM-DD')
+  		where to_date(visitDate,'YYYY-MM-DD') = to_date(sysdate,'YYYY-MM-DD')
   	</select>
   	
   	<!-- 총 게시글 수 -->
