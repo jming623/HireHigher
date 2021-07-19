@@ -46,14 +46,20 @@ public class MainController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		
-		//-----------------------Counter 리스너 클래스에서 CHART DATA 가져오는 처리----------------
+		//-----------------------Counter 리스너 클래스에서 차트 데이터 처리 결과 가져오는 처리----------------
 		
-		//방문자수 가져오기 
+		/*
+		 * Counter 클래스의 chartDataCounter함수 리턴 값 ArrayList<ArrayList<Integer>> 자료형 이고 0번 인덱스에는 
+		 * 일일 방문자 수 리스트가 담겨있고, 1번 인덱스에는 일일 게시글 수 리스트가 각 7일치씩 담겨있음, 이렇게 꺼낸 ArrayList<Integer>
+		 * 에서 다시 안에 담긴 Integer 랩퍼 객체(내부에 일일 데이터) 꺼낸 후 모델에 담고, 스크립트 태그 내부 차트 datasets에 넣어서 
+		 * 동적으로 데이터 처리함
+		 */
+		//일일 방문자 수 가져오기 
 		for (int i = 1; i <= 7; i++) {
 			model.addAttribute("visitsPerDay" + i, counter.chartDataCounter().get(0).get(i-1));
 		}
 		
-		//게시글 수 가져오기
+		//일일 게시글 수 가져오기
 		for (int i = 1; i <= 7; i++) {
 			model.addAttribute("postsPerDay" + i, counter.chartDataCounter().get(1).get(i-1));
 		}

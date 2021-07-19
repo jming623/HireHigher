@@ -77,8 +77,7 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 	}  
 	//--------------------리스너에서 Spring Container에서 관리되는 bean들을 주입 가능하게 하기 위한 작업--------------------
 
-	//[1-1]. 차트데이터 (MianController에서 Counter클래스 @Inject해서 뽑아서 모델에 담기위한 함수)
-	//sessionScope으로는 js 적용 x!?
+	//[1-1]. 차트데이터 (MianController 확인할 것, Counter클래스를 MainController에 @Inject한 뒤 꺼내서 이 메서드를 쓰고, 그 리턴값을 모델에 넣고 컨트롤러 태움)
 	public ArrayList<ArrayList<Integer>> chartDataCounter() {
 		
 			//일일 방문자 수
