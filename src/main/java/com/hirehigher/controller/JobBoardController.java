@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hirehigher.command.JobBoardDetailVO;
 import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.jobboard.service.JobBoardService;
 import com.hirehigher.util.JobCriteria;
@@ -41,9 +43,20 @@ public class JobBoardController {
 		return "jobBoard/jobList";
 	}
 	
+	
 	//상세 화면
+	@RequestMapping("/jobDetail")
+	public String jobDetail(@RequestParam("bno") int bno, Model model) {
+
+		//System.out.println(bno);
+		//System.outprintln(jobBoardDetailVO.toString());
+		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
+		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
+		
+		return "jobBoard/jobDetail";
+	}
 	
-	
+
 	//등록 화면
 	//수정 화면
 	//--------------------------------화면 처리-------------------------------

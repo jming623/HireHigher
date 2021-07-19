@@ -1,5 +1,7 @@
 package com.hirehigher.util;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
@@ -10,12 +12,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.hirehigher.counter.service.CounterService;
 
 @Component
 public class Counter implements HttpSessionListener, ApplicationContextAware{
+
+	//-----------------------------SERVICE 연결-----------------------------
+	@Autowired
+	@Qualifier("CounterService")
+	private CounterService cs;
+	//-----------------------------SERVICE 연결-----------------------------
 
 	/* 기본 짚고 가기:
 	 * WAS와 브라우저의 통신 방식은 HTTP 프로토콜인데 이 방식은 비접속형 프로토콜로 WAS와 브라우저의 연결은 지속되지 않는다(HTTP = 접속시마다 새로운 네트워크 연결 생성)
@@ -41,6 +50,7 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 	 * ApplicationContextAware 인터페이스  상속받고 setApplicationContext메서드 오버라이딩해서 설정해주면 된다(상세 설명 아래 추가 설명)
 	 */
 	 
+	
 	//아래 작업 context에 대한 이해 필요
 	//--------------------리스너에서 Spring Container에서 관리되는 bean들을 주입 가능하게 하기 위한 작업--------------------
 	@Override
@@ -50,14 +60,16 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 			/* 
 			 * addListner() 메서드 인자로 넣을 리스너를 넣는다(임의로 만든 리스너는 6가지 리스너중 하나를 반드시 구현 - 메서드 설명 참고),
 			 * 그러면 리스너는 ServletContext에 추가되고(리스너는 보통 ServletContext, 즉 WAS단에서 실행되는게 보통), 
-			 * getServletContext()를 메서드를 통해 리스너가 담긴 SevletCotnext를 반환하고,
+			 * getServletContext()를 메서드를 통해 리스너가 담긴 SevletCotnext를 반환하고
 			 * applicationContext객체에 넣어준 뒤 WebApplicationContext로 형변환 하면, 이제 ApplicationContext에서 내가 만든
 			 * 리스너  bean을 찾을수 있다! 내가 만든 리스너가 @Component 어노테이션을 통해서 bean으로 생성됨!
-			 * 신기하게 ServletContext와 ApplicationContext는 어떻게 연결이 되어있구나...정확히는 더 찾아보기
+			 * 신기하게 ServletContext와 ApplicationContext는 결국 연결이 되어있는데 ApplicationContext를 확장(상속)한 인터페이스인 WebApplicationContext의
+			 * getServletContext()메서드를 통해서 SevletContext를 가져올수 있기 때문!
 			 * 
 			 * ServletContext는 톰캣 서블렛 컨테이너 실행시 각 웹 애플리케이션마다 한 개씩 생성 (톰캣 종료시 소멸)
 			 * ApplicationContext(스프링 최상위 context)는 스프링에 의해서 초기화, WebApplicationContext는 자식 context이다 
-			 * ServletContext는 스프링단 context의 bean들에 접근 X
+			 * ServletContext가 ApplicationContext(root(spring)과 servlet(spring))를 감싸고 있다
+			 * DispatcherServlet은 WebApplicationContxet를 이용해서 자신을 설정
 			 */
 		} else {
 			throw new RuntimeException("Web Application Context 내부에 위치시키세요");
@@ -65,15 +77,58 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 	}  
 	//--------------------리스너에서 Spring Container에서 관리되는 bean들을 주입 가능하게 하기 위한 작업--------------------
 
-
-	//-----------------------------SERVICE 연결-----------------------------
-	@Autowired
-	@Qualifier("CounterService")
-	private CounterService cs;
-	//-----------------------------SERVICE 연결-----------------------------
-
-
-	//[1-1]. 세션이 생성되면 리스너가 감지하고 sessionCreated() 실행
+	//[1-1]. 차트데이터 (MianController 확인할 것, Counter클래스를 MainController에 @Inject한 뒤 꺼내서 이 메서드를 쓰고, 그 리턴값을 모델에 넣고 컨트롤러 태움)
+	public ArrayList<ArrayList<Integer>> chartDataCounter() {
+		
+			//일일 방문자 수
+			//7번 = 오늘, 1번  = 6일 전 
+			int visitsPerDay7 = cs.visitsPerDay7();
+			int visitsPerDay6 = cs.visitsPerDay6();
+			int visitsPerDay5 = cs.visitsPerDay5();
+			int visitsPerDay4 = cs.visitsPerDay4();
+			int visitsPerDay3 = cs.visitsPerDay3();
+			int visitsPerDay2 = cs.visitsPerDay2();
+			int visitsPerDay1 = cs.visitsPerDay1();
+					
+			//일일 게시글 수
+			//7번 = 오늘, 1번  = 6일 전
+			int postsPerDay7 = cs.postsPerDay7();
+			int postsPerDay6 = cs.postsPerDay6();
+			int postsPerDay5 = cs.postsPerDay5();
+			int postsPerDay4 = cs.postsPerDay4();
+			int postsPerDay3 = cs.postsPerDay3();
+			int postsPerDay2 = cs.postsPerDay2();
+			int postsPerDay1 = cs.postsPerDay1();
+			
+			//일일 방문자수 리스트
+			ArrayList<Integer> visitsPerDayList = new ArrayList<Integer>();
+			visitsPerDayList.add(visitsPerDay1);
+			visitsPerDayList.add(visitsPerDay2);
+			visitsPerDayList.add(visitsPerDay3);
+			visitsPerDayList.add(visitsPerDay4);
+			visitsPerDayList.add(visitsPerDay5);
+			visitsPerDayList.add(visitsPerDay6);
+			visitsPerDayList.add(visitsPerDay7);
+			
+			//일일 게시글 수 리스트
+			ArrayList<Integer> postsPerDayList = new ArrayList<Integer>();
+			postsPerDayList.add(postsPerDay1);
+			postsPerDayList.add(postsPerDay2);
+			postsPerDayList.add(postsPerDay3);
+			postsPerDayList.add(postsPerDay4);
+			postsPerDayList.add(postsPerDay5);
+			postsPerDayList.add(postsPerDay6);
+			postsPerDayList.add(postsPerDay7);
+			
+			//일일 데이터 리스트(일일 방문자 수 리스트 + 일일 게시글 수 리스트)
+			ArrayList<ArrayList<Integer>> chartDataList = new ArrayList<ArrayList<Integer>>();
+			chartDataList.add(visitsPerDayList);
+			chartDataList.add(postsPerDayList);
+			
+		return chartDataList;		
+	}
+	
+	//[1-2]. 세션이 생성되면 리스너가 감지하고 sessionCreated() 실행
 	@Override
 	public void sessionCreated(HttpSessionEvent sessionEvent) {
 
@@ -82,28 +137,25 @@ public class Counter implements HttpSessionListener, ApplicationContextAware{
 			counter(sessionEvent);
 		}
 	}
-	//[1-2]. 방문자 카운트 작업 메서드, 클래스 내부에서만 사용할 것이기 때문에 접근제한자 private 설정
-	private void counter(HttpSessionEvent sessionEvent) {
+	//[1-3]. 누적데이터 작업 메서드
+	public void counter(HttpSessionEvent sessionEvent) {
 
 		try {
 			//방문자 카운트
 			cs.countVisits();
 			//총 방문자 수
 			int totalVisits	= cs.totalVisits();
-			//일일 방문자 수
-			int visitsPerDay = cs.visitsPerDay();
 			//총 게시글 수
-			// int totalPosts = cs.totalPosts();
+			int totalPosts = cs.totalPosts();
 			//총 유저 수
-			// int totalUsers = cs.totalUsers();
+			int totalUsers = cs.totalUsers();
 			
 			HttpSession session = sessionEvent.getSession();
 
 			//메인 페이지에 사용할 (비즈니스 로직에서 처리한) 데이터 세션에 저장 (main.jsp 에서 sessionScope 으로 받기)
 			session.setAttribute("totalVisits", totalVisits);
-			session.setAttribute("visitsPerDay", visitsPerDay);
-			//session.setAttriute("totalPosts", totalPosts);
-			//session.setAttriute("totalUsers", totalUsers);
+			session.setAttribute("totalPosts", totalPosts);
+			session.setAttribute("totalUsers", totalUsers);
 			
 		} catch (Exception e) {
 			System.out.println("VisitorCounter 작동 실패");

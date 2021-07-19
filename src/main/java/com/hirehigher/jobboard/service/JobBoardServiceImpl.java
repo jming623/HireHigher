@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hirehigher.command.JobBoardDetailVO;
 import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.jobboard.mapper.JobBoardMapper;
 import com.hirehigher.util.JobCriteria;
@@ -31,8 +32,12 @@ public class JobBoardServiceImpl implements JobBoardService {
 	public ArrayList<JobBoardVO> getList(JobCriteria cri) {
 		return jobBoardMapper.getList(cri);
 	}
-	
-	//public JobBoardVO getDetail(int bno); //상세
+
+	@Override
+	public JobBoardDetailVO getDetail(int bno) {
+		return jobBoardMapper.getDetail(bno);
+	}
+
 	//public int delete(int bno); //삭제
 	
 

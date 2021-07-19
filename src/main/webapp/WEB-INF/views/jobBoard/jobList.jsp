@@ -70,7 +70,7 @@
 								<td>${jvo.bno}</td>
 								<td>${jvo.companyName}</td>
 								<!-- 제목 누르면 a태그타고 jobDetail.jsp로 이동 -->
-								<td><a href="#">${jvo.title}</a></td>
+								<td><a href="jobDetail?bno=${jvo.bno}">${jvo.title}</a></td>
 								<td>${jvo.userName}</td>
 								<td><fmt:formatDate value="${jvo.regDate }"
 										pattern="yyyy-MM-dd" /></td>
