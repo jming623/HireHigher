@@ -1,5 +1,4 @@
 
-
 /* --------최상단 고객센터 글 box---------- */
 .FAQ-user-center{
     margin-top: 50px;
@@ -201,16 +200,15 @@ margin-bottom: 50px;
 }
 .FAQ-hide div{
     float: left;
-    margin-left: 45px;
 }
 /* 답변 구역 */
-.FAQ-answer-box{
+.FAQ-answer-box > div{
     display: none;
     overflow: hidden;
     margin-top: 25px;
     margin-left: 50px;
 }
-.FAQ-answer-box div{
+.FAQ-answer-box div div{
     float: left;
 }
 .FAQ-answer-icon-box{
@@ -229,6 +227,5 @@ margin-bottom: 50px;
 .FAQ-answer-content{
     overflow: auto;
     width: 70%;
-    padding-left: 30px;
     margin-bottom: 30px;
 }

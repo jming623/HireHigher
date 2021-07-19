@@ -29,9 +29,7 @@ public class userQuestionController {
 		ArrayList<FaqListPageVO> faqlist = userQuestionService.getFaqList();
 		model.addAttribute("faqlist",faqlist);
 		
-		System.out.println(faqlist.get(0).getPaymentFaqTitle());
 		return "userQuestion/faqList";
-		
 	}
 	
 	//문의 등록 페이지 ---------------------------------

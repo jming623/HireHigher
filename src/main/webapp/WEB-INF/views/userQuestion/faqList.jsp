@@ -89,7 +89,7 @@
                 </div>
 
 				<div class="FAQ-answer-box">
-                <div class="FAQ-answer-box-payment${payment}"> <!-- FAQ 답변 box-->
+                <div class="FAQ-answer-box-payment"> <!-- FAQ 답변 box-->
                     <div class="FAQ-answer-icon-box"> <!-- A 답변 아이콘 -->
                         <button>A</button>
                     </div>
@@ -98,6 +98,8 @@
                         <p>
                        		${payment.paymentFaq}
                         </p>
+                        
+                         <c:out value="${index.index}"></c:out>
                     </div>
                 </div>
                 </div>
@@ -208,6 +210,7 @@
                         <p>
                         	 ${payment.paymentFaq}
                         </p>
+                    
                     </div>
                 </div>
                 </div>
@@ -222,6 +225,8 @@
 
    <!-- FAQ 질문 답변 script -->
 <script>
+	var num = ${index.index}
+	
         $(function(){
             $('#FAQ-payment').click(function(){
                 if($('.FAQ-answer-box-payment').css("display") == "none"){
