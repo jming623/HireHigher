@@ -97,9 +97,9 @@
                     <div class="FAQ-answer-content	"> <!-- FAQ 답변 -->
                         <p>
                        		${payment.paymentFaq}
+                       		 <c:out value="${index.index}"></c:out>
                         </p>
-                        
-                         <c:out value="${index.index}"></c:out>
+                      
                     </div>
                 </div>
                 </div>
@@ -109,8 +109,8 @@
 		</c:forEach>
             <!------------------FAQ 해당 질문 및 답변--(로그인관련 관련)--------------->
             
-            <c:forEach var="payment" items="${faqlist}" varStatus="index">
-            <c:if test="${payment.faqNum eq 2}">
+            <c:forEach var="login" items="${faqlist}" varStatus="index">
+            <c:if test="${login.faqNum eq 2}">
             <div class="FAQ-question-answer-login" id="FAQ-login">
                 <div class="FAQ-question-box FAQ-login-QnA" id="FAQ-question-login-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -118,7 +118,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>${payment.paymentFaqTitle}</button>
+                        <button>${login.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -134,7 +134,7 @@
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                       ${payment.paymentFaq}
+                       ${login.paymentFaq}
                         </p>
                     </div>
                 </div>
@@ -146,8 +146,8 @@
 		
             <!------------------FAQ 해당 질문 및 답변--(홈페이지 사용법 관련)--------------->
             
-            <c:forEach var="payment" items="${faqlist}" varStatus="index">
-            <c:if test="${payment.faqNum eq 3}">
+            <c:forEach var="home" items="${faqlist}" varStatus="index">
+            <c:if test="${home.faqNum eq 3}">
             <div class="FAQ-question-answer-home" id="FAQ-home">
                 <div class="FAQ-question-box" id="FAQ-question-home-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -155,7 +155,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>${payment.paymentFaqTitle}</button>
+                        <button>${home.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -171,7 +171,7 @@
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                        ${payment.paymentFaq}
+                        ${home.paymentFaq}
                         </p>
                     </div>
                 </div>
@@ -182,8 +182,8 @@
 			</c:forEach>
 
              <!------------------FAQ 해당 질문 및 답변--(제품 등록 관련)--------------->
-             <c:forEach var="payment" items="${faqlist}" varStatus="index">
-            <c:if test="${payment.faqNum eq 4}">
+             <c:forEach var="item" items="${faqlist}" varStatus="index">
+            <c:if test="${item.faqNum eq 4}">
              <div class="FAQ-question-answer-item" id="FAQ-item">
                 <div class="FAQ-question-box" id="FAQ-question-item-id"> <!-- FAQ 질문 box-->
                     <div class="FAQ-question-icon-box"> <!-- Q 질문 아이콘 -->
@@ -191,7 +191,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>${payment.paymentFaqTitle}</button>
+                        <button>${item.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -208,7 +208,7 @@
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                        	 ${payment.paymentFaq}
+                        	 ${item.paymentFaq}
                         </p>
                     
                     </div>
@@ -225,16 +225,14 @@
 
    <!-- FAQ 질문 답변 script -->
 <script>
-	var num = ${index.index}
-	
+
         $(function(){
             $('#FAQ-payment').click(function(){
                 if($('.FAQ-answer-box-payment').css("display") == "none"){
                     $('.FAQ-answer-box-payment').show();
-                    $('.FAQ-answer-box-payment').attr('class','FAQ-hide');
-                    
+                    $('.FAQ-answer-box-payment').attr('class','FAQ-hide-p');
                 }else{
-                    $('.FAQ-hide').attr('class','FAQ-answer-box-payment');
+                    $('.FAQ-hide-p').attr('class','FAQ-answer-box-payment');
                     $('.FAQ-answer-box-payment').hide();
                 }
             });
@@ -242,20 +240,20 @@
             $('#FAQ-login').click(function(){
                 if($('.FAQ-answer-box-login').css("display") == "none"){
                     $('.FAQ-answer-box-login').show();
-                    $('.FAQ-answer-box-login').attr('class','FAQ-hide');
+                    $('.FAQ-answer-box-login').attr('class','FAQ-hide-l');
                     
                 }else{
-                    $('.FAQ-hide').attr('class','FAQ-answer-box-login');
+                    $('.FAQ-hide-l').attr('class','FAQ-answer-box-login');
                     $('.FAQ-answer-box-login').hide();
                 }
             });
             $('#FAQ-home').click(function(){
                 if($('.FAQ-answer-box-home').css("display") == "none"){
                     $('.FAQ-answer-box-home').show();
-                    $('.FAQ-answer-box-home').attr('class','FAQ-hide');
+                    $('.FAQ-answer-box-home').attr('class','FAQ-hide-h');
                     
                 }else{
-                    $('.FAQ-hide').attr('class','FAQ-answer-box-home');
+                    $('.FAQ-hide-h').attr('class','FAQ-answer-box-home');
                     $('.FAQ-answer-box-home').hide();
                 }
             });
@@ -263,10 +261,10 @@
             $('#FAQ-item').click(function(){
                 if($('.FAQ-answer-box-item').css("display") == "none"){
                     $('.FAQ-answer-box-item').show();
-                    $('.FAQ-answer-box-item').attr('class','FAQ-hide');
+                    $('.FAQ-answer-box-item').attr('class','FAQ-hide-i');
                     
                 }else{
-                    $('.FAQ-hide').attr('class','FAQ-answer-box-item');
+                    $('.FAQ-hide-i').attr('class','FAQ-answer-box-item');
                     $('.FAQ-answer-box-item').hide();
                 }
             });
