@@ -63,3 +63,24 @@ create table JOBBOARDDETAIL(
     constraint fk_bno foreign key(bno) references JOBBOARD(bno)
 ); 
 create sequence jobboarddetail_seq start with 1 increment by 1 nocache;
+
+
+============================================ FAQ 고객센터 테이블 ============================================
+create table FAQListPage(
+    faqBno number primary key, --FAQ번호
+    faqNum number(1) not null, --문의 종류 번호 (문의 종류 번호 1~4)
+    paymentFaqTitle varchar2(300), -- 결제 관련 질문 1
+    paymentFaq varchar2(1000), -- 결제 관련 답변 1 
+    
+        loginFaqTitle varchar2(300), -- 로그인 관련 질문 2
+    loginFaq varchar2(1000),  -- 로그인 관련 답변 2
+    
+    homPageFaqTitle varchar2(300), -- 홈페이지 관련 질문 3 
+    homePageFaq varchar2(1000), -- 홈페이지 관련 답변 3
+    
+    insertItemFaqTitle varchar2(300), -- 제품등록 질문 4 
+    insertItemFaq varchar2(1000) -- 제품등록 답변 4
+);
+
+create SEQUENCE FAQListPage_SEQ INCREMENT by 1 start with 1 NOCACHE;
+
