@@ -7,12 +7,13 @@
 			<div class="row">
 				<div class="detail_content">
 					<div class="detail_title">
-						<h2>(주)홍길동 웹 디자이너 채용</h2>
+						<h2>${jobBoardDetailVO.title}</h2>
 					</div>
 					<div class="detail_condition">
 						<div class="detail_condition_table">
 							<div class="detail_left">
 								<div class="detail_recruit">
+										<input type="hidden" name="bno" value="${jobBoardDetailVO.bno }">
 										<h3>모집조건</h3>
 										<dl>
 											<dt>성별</dt>

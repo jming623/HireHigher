@@ -116,9 +116,10 @@
 							</c:if>
 
 						</ul>
-
-						<button type="button" class="btn btn-info write-btn">글쓰기</button>
 						
+						<c:if test="${sessionScope.userVO != null }">
+							<button type="button" class="btn btn-info write-btn">글쓰기</button>
+						</c:if>
 					</div>
 				</form>
 				

@@ -44,18 +44,16 @@ public class JobBoardController {
 	}
 	
 	
-	//상세 화면
-	@RequestMapping("/jobDetail")
-	public String jobDetail(@RequestParam("bno") int bno, Model model) {
+	//상세 화면, 수정 화면
+	@RequestMapping({"/jobDetail", "/jobModify"})
+	public void jobDetail(@RequestParam("bno") int bno, Model model) {
 
 		//System.out.println(bno);
 		//System.outprintln(jobBoardDetailVO.toString());
 		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
 		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
 		
-		return "jobBoard/jobDetail";
-	}
-	
+	}	
 
 	//등록 화면
 	//수정 화면

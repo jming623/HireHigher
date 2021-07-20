@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class JobBoardDetailVO {
-
+	private String userId; //아이디
+	private String title; //제목
 	private String gender; //성별
 	private String age; //연령
 	private String edu; //학력

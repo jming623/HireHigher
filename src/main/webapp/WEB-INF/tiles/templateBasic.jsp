@@ -49,6 +49,8 @@
     <link href="${pageContext.request.contextPath }/resources/css/creatorApply.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobBoard.css?1" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobDetail.css?1" rel="stylesheet">
+    <!-- 우현이형 >> jobModify 지혁 추가 수정 본 -->
+    <link href="${pageContext.request.contextPath }/resources/css/jobModify.css?12" rel="stylesheet">
     <!-- 우진 -->
     <!-- 4d5cac4ade929922b4a884e5a7d924d0 = 카카오톡 js키 -->
     <link href="${pageContext.request.contextPath }/resources/css/kakao.css?1" rel="stylesheet">
