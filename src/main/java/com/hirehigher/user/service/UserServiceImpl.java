@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.user.mapper.UserMapper;
+import com.hirehigher.util.JobCriteria;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -37,45 +39,68 @@ public class UserServiceImpl implements UserService {
 		
 		return userMapper.findIdB(userName, userCellNum);
 	}
-
+	
+	//아이디 중복체크
 	@Override
 	public int idCheck(String userId) {
 		
 		return userMapper.idCheck(userId);
 	}
 
-
+	//닉네임 중복체크
 	@Override
 	public int nickNameCheck(String nickName) {
 		
 		return userMapper.nickNameCheck(nickName);
 	}
 
-
+	//이메일 중복체크
 	@Override
 	public int emailCheck(String userEmail) {
 	
 		return userMapper.emailCheck(userEmail);
 	}
 
-
+	//회원가입
 	@Override
 	public int join(UserVO vo) {
 		
 		return userMapper.join(vo);
 	}
 
-
+	//마이페이지 유저정보 불러오기
 	@Override
 	public UserVO getUserInfo(String userId) {
 		
 		return userMapper.getUserInfo(userId);
 	}
-
+	
+	//비밀번호 찾기
 	@Override
 	public String findPw(String userId, String userName, String userEmail) {
 		
 		return userMapper.findPw(userId, userName, userEmail);
+	}
+	
+	//회원정보 수정
+	@Override
+	public int modify(UserVO vo) {
+		
+		return userMapper.modify(vo);
+	}
+	
+	//마이페이지 채용공고 게시글 불러오기
+	@Override
+	public ArrayList<JobBoardVO> getJobBoardList(int pageNum, int amount, String userId) {
+		
+		return userMapper.getJobBoardList(pageNum, amount, userId);
+	}
+	
+	//마이페이지 채용공고 총게시글 수 불러오기
+	@Override
+	public int getJobBoardTotal(String userId) {
+		
+		return userMapper.getJobBoardTotal(userId);
 	}
 
 	

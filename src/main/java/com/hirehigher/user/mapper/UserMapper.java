@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.UserVO;
+
 
 
 public interface UserMapper {
@@ -18,4 +20,7 @@ public interface UserMapper {
 	public int emailCheck(String userEmail);//이메일 중복확인
 	public int join(UserVO vo);//회원가입
 	public UserVO getUserInfo(String userId);//유저정보+글정보
+	public int modify(UserVO vo);//회원정보 수정
+	public ArrayList<JobBoardVO> getJobBoardList(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("userId") String userId); //마이페이지 채용공고 게시글 불러오기
+	public int getJobBoardTotal(String userId); //마이페이지 채용공고 총게시글 수 불러오기
 }

@@ -1,6 +1,7 @@
 package com.hirehigher.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.UUID;
 
 import javax.mail.internet.MimeMessage;
@@ -23,20 +24,29 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.EmailAuthVO;
+import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.UserVO;
+import com.hirehigher.jobboard.service.JobBoardService;
 import com.hirehigher.user.service.UserService;
+import com.hirehigher.util.JobCriteria;
+import com.hirehigher.util.JobPageVO;
+import com.hirehigher.util.UserCriteria;
+import com.hirehigher.util.UserPageVO;
 
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 	
+	//userServie와 연결
 	@Autowired
 	@Qualifier("userService")
 	private UserService userService;	
 	
+	//JavaMailSender와연결
 	@Autowired
 	JavaMailSender mailSender;
+	
 	
 	//로그인화면
 	@RequestMapping("/userLogin")
@@ -53,7 +63,7 @@ public class UserController {
 		UserVO userVO = userService.login(vo);
 
 		if(userVO != null) { //로그인 성공
-			System.out.println(userVO.toString());
+//			System.out.println(userVO.toString());
 			mv.addObject("login", userVO);
 		}else { //로그인 실패
 			mv.addObject("msg", "아이디 비밀번호를 확인하세요");
@@ -240,6 +250,7 @@ public class UserController {
 	@RequestMapping("/mypage")
 	public void mypage(HttpSession session, Model model) {
 		
+		//마이페이지 회원정보 불러오기
 		UserVO userVO = (UserVO)session.getAttribute("userVO");//userVO는 LoginSuccessHandler에서 만들어 집니다.
 		
 		String userId = userVO.getUserId();
@@ -247,9 +258,45 @@ public class UserController {
 		UserVO userInfo = userService.getUserInfo(userId);
 		
 		model.addAttribute("userInfo", userInfo);
-		
+			
 	}
 	
+	//마이페이지 채용공고 불러오기
+	@ResponseBody
+	@PostMapping(value="/mypageJobBoardList", produces="application/json")
+	public HashMap<String, Object> mypageJobBoardList(@RequestBody UserCriteria cri){ //cri값이 mypage로부터 들어오지 않으면 기본생성자로 startPage1, amount가 10으로 초기화됨
+				
+		String userId = cri.getUserId();//마이페이지에서 넘어온 userId
+		int pageNum = cri.getPageNum();//마이페이지에서 넘어온 pageNum
+		int amount = cri.getAmount(); //마이페이지에서 넘어온 amount	
+		
+		System.out.println("마이페이지 채용공고 불러오기_ userId="+userId+" pageNum="+ pageNum + " amount="+ amount);
+		
+		HashMap<String, Object> map = new HashMap<>();		
+		
+		ArrayList<JobBoardVO> jobBoardList = userService.getJobBoardList(cri.getPageNum(),cri.getAmount(), userId);
+		
+//		System.out.println(jobBoardList.toString());
+		
+		map.put("list",jobBoardList);//화면단에 JobBoardVO 리스트를 담은 arrayList를 반환 
+		
+		int total = userService.getJobBoardTotal(userId);
+		
+		UserPageVO pageVO = new UserPageVO(cri,total);
+		
+		System.out.println(pageVO.toString());
+		
+		map.put("pageVO",pageVO); //화면단에 pageVO 반환 
+		
+		return map;
+	}
+		
+	
+	//마이페이지 문의내역 불러오기 
+	
+	
+	
+
 	//마이수정페이지
 	@RequestMapping("/mypageModify")
 	public void mypageModify(HttpSession session, Model model) {
@@ -296,11 +343,18 @@ public class UserController {
 	
 	//회원정보수정요청
 	@RequestMapping("/modifyForm")
-	public String modifyForm(UserVO vo, RedirectAttributes RA) {
+	public String modifyForm(UserVO vo, HttpSession session, RedirectAttributes RA) {
 		
 		System.out.println(vo.toString());
 		
-				
+		int result = userService.modify(vo);
+		
+		if(result == 1) { //업데이트 성공
+			RA.addFlashAttribute("msg", "회원정보가 수정되었습니다. 원활한 이용을 위해 다시 로그인해주시기 바랍니다.");			
+			session.invalidate();//세션에 저장된 로그인 정보 삭제
+		}else {
+			RA.addFlashAttribute("msg", "회원정보 수정에 실패하였습니다. 관리자에게 문의해주세요");
+		}
 		
 		return "redirect:/user/userLogin";
 	}
@@ -312,6 +366,15 @@ public class UserController {
 		RA.addFlashAttribute("msg", "비정상적인 접근입니다. 로그인 이후 다시 시도해주세요");
 		
 		return "redirect:/user/userLogin";
+	}
+	
+	//로그아웃
+	@RequestMapping("/userLogout")
+	public String userLogout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/"; //홈화면 이동
 	}
 	
 	

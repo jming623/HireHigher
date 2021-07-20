@@ -127,5 +127,35 @@
 }
 
 .mypage-content-wrap > tbody > tr > td{
-    padding: 9px 0px;
+    padding: 9px 8px;
+}
+
+#userPw.aaa:focus, #userEmail.aaa:focus, #emailAuth.aaa:focus, #userCellNum.aaa:focus{
+		border-color:red;
+}
+	
+#userPw.bbb:focus, #userEmail.bbb:focus, #emailAuth.bbb:focus, #userCellNum.bbb:focus{
+		border-color:#66afe9;			
+}
+			
+.bbb{
+		background-color:rgb(232, 240, 254);
+}
+
+.mypage-noContent{
+	min-height: 180px;
+    text-align: center;
+    line-height: 160px;
+}
+
+.mypage-noContent p {
+	font-size: 18px;
+}
+
+.mypage-content-page .active a{
+	z-index: 2 !important;
+    color: black !important;
+    cursor: default !important;
+    background-color: #fff !important;
+    border-color: #fff !important;
 }

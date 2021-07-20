@@ -72,4 +72,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	-->
 	
+	<update id="modify">
+		update users set userPw = #{userPw}, userEmail = #{userEmail}, userCellNum = #{userCellNum},
+		addrZipNum = #{addrZipNum}, addrBasic = #{addrBasic}, addrDetail = #{addrDetail} where userId = #{userId}
+	</update>
+	
+	<select id="getJobBoardList" resultType="JobBoardVO">
+		<![CDATA[
+		select *
+		from(select rownum as rn,
+            		a.*
+     		 from(select *
+          		  from JOBBOARD 
+          		  where userId = #{userId}
+          		  order by bno desc) a )
+		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getJobBoardTotal" resultType="int">
+		select count(*) from jobboard where userId = #{userId}
+	</select>
+	
 </mapper>
