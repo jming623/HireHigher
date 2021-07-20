@@ -8,8 +8,8 @@ import com.hirehigher.util.JobCriteria;
 
 public interface JobBoardService {
 		//public int regist(JobBoardVO jvo); //등록
-		//public int update(jobBoardVO jvo); //수정
 		
+		public int update(JobBoardDetailVO jobBoardDetailVO); //수정
 		public int getTotal(JobCriteria cri); //총 게시글 수
 		public ArrayList<JobBoardVO> getList(JobCriteria cri); //조회	
 		public JobBoardDetailVO getDetail(int bno); //상세

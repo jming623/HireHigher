@@ -23,10 +23,10 @@
 										<dt>성별</dt>
 										<dd>
 											<select class="jobmodify-select-mini" name='gender'>
-												<option value="male"
-													<c:if test="${jobBoardDetailVO.gender eq 'male'}">selected</c:if>>남자</option>
-												<option value="female"
-													<c:if test="${jobBoardDetailVO.gender eq 'female'}">selected</c:if>>여자</option>
+												<option value="남자"
+													<c:if test="${jobBoardDetailVO.gender eq '남자'}">selected</c:if>>남자</option>
+												<option value="여자"
+													<c:if test="${jobBoardDetailVO.gender eq '여자'}">selected</c:if>>여자</option>
 											</select>
 										</dd>
 									</dl>
@@ -41,18 +41,18 @@
 										<dt>학력</dt>
 										<dd>
 											<select class="jobmodify-select-mini" name='edu'>
-												<option value="juniorhigh"
-													<c:if test="${jobBoardDetailVO.edu eq 'juniorhigh'}">selected</c:if>>중졸</option>
-												<option value="high"
-													<c:if test="${jobBoardDetailVO.edu eq 'high'}">selected</c:if>>고졸</option>
-												<option value="ba"
-													<c:if test="${jobBoardDetailVO.edu eq 'ba'}">selected</c:if>>학사</option>
-												<option value="ma"
-													<c:if test="${jobBoardDetailVO.edu eq 'ma'}">selected</c:if>>석사</option>
-												<option value="phd"
-													<c:if test="${jobBoardDetailVO.edu eq 'phd'}">selected</c:if>>박사</option>
-												<option value="unknown"
-													<c:if test="${jobBoardDetailVO.edu eq 'unknown'}">selected</c:if>>비공개</option>
+												<option value="중졸"
+													<c:if test="${jobBoardDetailVO.edu eq '중졸'}">selected</c:if>>중졸</option>
+												<option value="고졸"
+													<c:if test="${jobBoardDetailVO.edu eq '고졸'}">selected</c:if>>고졸</option>
+												<option value="학사"
+													<c:if test="${jobBoardDetailVO.edu eq '학사'}">selected</c:if>>학사</option>
+												<option value="석사"
+													<c:if test="${jobBoardDetailVO.edu eq '석사'}">selected</c:if>>석사</option>
+												<option value="박사"
+													<c:if test="${jobBoardDetailVO.edu eq '박사'}">selected</c:if>>박사</option>
+												<option value="비공개"
+													<c:if test="${jobBoardDetailVO.edu eq '비공개'}">selected</c:if>>비공개</option>
 											</select>
 										</dd>
 									</dl>

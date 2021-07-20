@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.JobBoardDetailVO;
 import com.hirehigher.command.JobBoardVO;
@@ -53,12 +54,28 @@ public class JobBoardController {
 		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
 		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
 		
-	}	
+	}
 
 	//등록 화면
 	//수정 화면
 	//--------------------------------화면 처리-------------------------------
 	
 	//--------------------------------기능 처리-------------------------------
+	//업데이트 처리
+	@RequestMapping("/jobUpdate")
+	public String jobUpdate(JobBoardDetailVO jobBoardDetailVO,
+							 RedirectAttributes RA) {
+		
+		int result = jobBoardService.update(jobBoardDetailVO);
+		
+		if(result == 1) {
+			RA.addFlashAttribute("msg", "수정을 완료했습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다.");
+		}
+		
+		
+		return "redirect:/jobBoard/jobList";
+	}
 	//--------------------------------기능 처리-------------------------------
 }

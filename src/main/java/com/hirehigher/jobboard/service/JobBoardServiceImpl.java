@@ -19,7 +19,12 @@ public class JobBoardServiceImpl implements JobBoardService {
 	//----------------------------MAPPER 연결----------------------------
 
 	//public int regist(JobBoardVO jvo); //등록
-	//public int update(jobBoardVO jvo); //수정
+	
+	
+	//업데이트
+	public int update(JobBoardDetailVO jobBoardDetailVO) {
+		return jobBoardMapper.update(jobBoardDetailVO);
+	}
 	
 	//총 게시글 수
 	@Override
@@ -33,6 +38,7 @@ public class JobBoardServiceImpl implements JobBoardService {
 		return jobBoardMapper.getList(cri);
 	}
 
+	//상세화면
 	@Override
 	public JobBoardDetailVO getDetail(int bno) {
 		return jobBoardMapper.getDetail(bno);

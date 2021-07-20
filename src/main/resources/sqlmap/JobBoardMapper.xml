@@ -48,5 +48,39 @@
 		from JOBBOARD a inner join JOBBOARDDETAIL b on a.bno = b.bno
 		where b.bno = #{bno}
 	</select>
+	
+	<update id="update" parameterType="JobBoardDetailVO">
+	{call
+		declare
+		begin
+   			update JOBBOARDDETAIL
+   				set
+   				gender = #{gender},
+   				age = #{age},
+   				edu = #{edu},
+   				empType = #{empType},
+   				recNum = #{recNum},
+   				preference = #{preference},
+   				requiredDocs = #{requiredDocs},
+   				salary = #{salary},
+   				contract = #{contract},
+   				workDays = #{workDays},
+   				workTime = #{workTime},
+   				welfare = #{welfare},
+   				deadline = #{deadline},
+   				HRManager = #{HRManager},
+				HRContact = #{HRContact},
+				companyAddr = #{companyAddr},
+				position = #{position},
+				wayToApply =#{wayToApply},
+				recPlan = #{recPlan}
+				where bno = #{bno};   			
+   			update JOBBOARD
+   				set
+   				title = #{title}
+   				where bno = #{bno};   			
+		end
+	}
+   </update>
 
 </mapper>
