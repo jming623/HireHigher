@@ -13,7 +13,63 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users where userId = #{userId} and userPw = #{userPw}
 	</select>
 	
+	<select id="findIdA" resultMap="idList">
+		select userId from users where userName = #{userName} and birthDay = #{birthDay}	
+	</select>
+	
+	<select id="findIdB" resultMap="idList">
+		select userId from users where USERNAME = #{userName} and USERCELLNUM = #{userCellNum}
+	</select>
+	
+	<select id="findPw" resultType="String">		
+		select userPw from users where USERID = #{userId} and USERNAME = #{userName} and USEREMAIL = #{userEmail}
+	</select>
+	
+	<resultMap type="UserVO" id="idList">
+		<result property="userId" column="USERID"/>
+	</resultMap>
+		
+	
 	<select id="idCheck" resultType="int">
 		select count(*) from users where userId = #{userId}
 	</select>
+	
+	<select id="nickNameCheck" resultType="int">
+		select count(*) from users where nickName = #{nickName}
+	</select>
+	
+	<select id="emailCheck" resultType="int">
+		select count(*) from users where userEmail = #{userEmail}
+	</select>
+	
+	<insert id="join">
+		insert into users(userId,userPw,userName,nickName,birthDay,userEmail,userCellNum,addrZipNum,addrBasic,addrDetail)
+		values(#{userId}, #{userPw}, #{userName}, #{nickName}, #{birthDay}, #{userEmail}, #{userCellNum}, #{addrZipNum}, #{addrBasic}, #{addrDetail})
+	</insert>
+	
+	<select id="getUserInfo" resultType="UserVO"> <!-- 이후 jobBoard와 join해서 사용, resultType은 resultMap으로 변경 -->
+		select userId,
+       		   userName,
+       		   nickName,
+       		   birthDay,
+       		   userEmail,
+       		   userCellNum,
+       		   addrZipNum,
+       		   addrBasic,
+       		   addrDetail
+		from users u
+		where userId = #{userId}
+	</select>
+	
+	<!-- 
+	<resultMap type="UserVO" id="userInfo">type에는 결과를 반환받을 vo의 전체경로(현재는 mybatis-cinfig에서 엘이어스 지정을 해두어서 그냥 이름으로 사용가능), id는 위에서 지정한 resultMap의 이름
+		<result property="userId" column="USERID"/> property는 VO객체의 setter, column에는 DB에 컬럼명이 들어갑니다.
+		<collection property="userBoardList" resultMap="boardList"/>
+	</resultMap>
+	 
+	<resultMap type="FreeBoardVO" id="boardList">
+		<result property="bno" column="BNO"/>
+	</resultMap>
+	-->
+	
 </mapper>

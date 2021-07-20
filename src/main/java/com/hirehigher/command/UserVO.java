@@ -2,6 +2,8 @@ package com.hirehigher.command;
 
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -23,5 +25,8 @@ public class UserVO {
 	private String addrDetail;//상세주소
 	private Timestamp regdate;//가입일
 	private int userType;//고객유형 <0 = 비제작자, 1 = 제작자>
+	
+	//마이페이지에서 users와 jobBoard를 조인해서 글정보를 불어올때 사용할 ArrayList
+	/* private ArrayList<JobBoardVO> jobBoardList; */
 
 }

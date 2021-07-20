@@ -187,7 +187,7 @@
                                     <li><i class="glyphicon glyphicon-star"></i></li>
                                     <li><i class="glyphicon glyphicon-star"></i></li>
                                     <li><i class="glyphicon glyphicon-star-empty"></i></li>
-                                </ul>
+                   7             </ul>
                             </div>
                         </div>
                     </div>

@@ -32,13 +32,6 @@ ul,li,dl,ol{
 }
 
 /* ===================== 헤더 ==========================*/
-
-/*menu font*/
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-/*HireHigher font*/
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
-
 /*[1]: .header 박스 (최상위 박스) 설정*/
 .header {
     height: 80px;
@@ -135,8 +128,8 @@ ul,li,dl,ol{
     right: 10px;
     display: flex; /*.nav-links 자식인 li box들 인라인 정렬*/
     line-height: 80px; /*[2] 기준 수직 정렬(상위 box와 동일한 높이값)*/
-    font-family: 'Staatliches', cursive;
-    font-size: 25px;
+	font-family: 'Bebas Neue', cursive;
+    font-size: 23px;
 }
 
 /*메뉴 li 박스 설정*/
@@ -209,7 +202,6 @@ ul,li,dl,ol{
     width: 100%;
     height: 70px;
     color: white; /*footer 텍스트 색상*/
-    font-family: 'Staatliches', cursive;
 }
 
 /*[2]: .footer-container 박스 (footer 박스의 자식 박스) 설정*/
@@ -240,14 +232,15 @@ ul,li,dl,ol{
     line-height: 70px;
 }
 
+
 /*[3-2] #copyright 박스 (.footer-container 박스의 자식 박스) 설정*/
 #copyright {
     position: absolute; /*[2] 기준으로 포지셔닝*/
     top: 30%; /*텍스트 수직 정렬*/
     right: 20px;
-    font-size: 18px;
+	font-family: 'Bebas Neue', cursive;
+    font-size: 23px;
 }
-
 
 
 

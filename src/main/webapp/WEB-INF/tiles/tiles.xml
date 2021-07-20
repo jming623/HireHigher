@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC
-  "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
-  "http://tiles.apache.org/dtds/tiles-config_2_1.dtd"> <!-- 타일즈xml설정 -->
+  "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+  "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
   
-	<tiles-definitions>
-	
+<tiles-definitions>
 	<definition name="templateMain" template="/WEB-INF/tiles/templateMain.jsp">
 		<put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
 		<put-attribute name="body" value=""/>
@@ -38,6 +37,8 @@
 	<definition name="*/*/*" extends="templateBasic">
 		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
 	</definition>
+	
+	
 	
 	<!-- 공통화면과 별도로 지정할 레이아웃형식이 있는경우 참고(공통화면 정의보다 위에 위치해야 함)
 	<definition name="templateAAA" template="/WEB-INF/tiles/templateAAA.jsp">

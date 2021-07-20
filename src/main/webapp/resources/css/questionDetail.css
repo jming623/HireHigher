@@ -1,0 +1,146 @@
+
+.QD-all{
+    overflow: hidden;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+/* -----------왼쪽 섹터------------------------ */
+.QD-left-sector{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 10%;
+    float: left;
+}
+.QD-left-sector li{
+    margin-bottom: 20px;
+}
+.QD-left-sector li a{
+    text-decoration: none;
+    color: #929292;
+    font-size: 18px;
+    font-weight: 550;
+}
+.QD-left-sector li a:hover{
+    color: #454545;
+    font-weight: 700;
+    border-bottom: 2px solid #454545;
+    transition: cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.QD-right-sector{
+    width: 80%;
+    margin-left: 20px;
+    float: left;
+}
+/* ----------질문자 질문날짜 조회수 구역---------- */
+.QD-question-user-box{
+    border-bottom: 2px solid #eee;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 30px;
+    border-radius: 1px;
+    color: #454545;
+    font-size: 16px;
+    font-weight: 550;
+}
+
+.QD-question-user-box-ul{
+    width: 100%;
+   overflow: hidden;
+}
+.QD-question-user-box-ul li{
+    float: left;
+ 
+}
+.QD-question-user-li-id{
+    width: 7%;
+}
+.QD-question-user-li-date{
+    width: 20%;
+    padding-left: 20px;
+    
+}
+.QD-question-user-li-look{
+    width: 13%;
+}
+/* ----------질문 답변내역 구역----------- */
+
+.QD-question-title{
+    border-bottom: 2px solid #eee;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 70px;
+    background-color: #f5f5f5;
+    overflow: hidden;
+}
+.QD-question-title p{
+    color: #454545;
+    padding-right: 320px;
+    font-size: 20px;
+    font-weight: 600;
+    float: left;
+}
+.QD-question-btn{
+    margin-top: 11px;
+    width: 70px;
+    height: 30px;
+    font-size: 11px;
+    margin-right: 100px;
+    float: right;
+}
+.QD-question-content{
+    overflow: auto;
+    width: 80%;
+    height: auto;
+    margin-top: 40px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eee;
+    margin-left: 70px;
+    margin-right: 320px;
+}
+/* 답변구역 */
+.QD-answer-sector-box{
+    margin-left: 70px;
+    margin-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.QD-answer-title-content {
+    overflow: hidden;
+}
+.QD-answer-title-content p {
+    float: left;
+}
+.QD-answer-title-content div:not(.QD-answer-date){
+    float: left;
+}
+.QD-answer-date{
+    padding-left: 45px;
+
+}
+.QD-answer-date p{
+    font-size: 12px;
+    margin-right: 300px;
+}
+.QD-answer-mark-s{
+    margin-right: 10px;
+    padding-top: 2px;
+    padding-left: 20px;
+    padding-bottom: 15px;
+    border-left: 3px solid #d8d8d8;
+    border-bottom: 3px solid #d8d8d8;
+}
+.QD-answer-title{
+    font-size: 17px;
+    font-weight: 600;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+.QD-answer-content{
+    padding-top: 30px;
+    font-size: 15px;
+    padding-left: 32px;
+    margin-left: 10px;
+    min-height: 150px;
+}

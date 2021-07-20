@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Krona+One&family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Playfair+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 /* ================================================================= 기본설정 =====================================================================*/
 
@@ -12,7 +9,6 @@
   }
 
 body, html{
-    /* font-family: 'Noto Sans KR', sans-serif;웹폰트적용 */
     width:100%;
     min-width: 320px; 
 }
@@ -36,11 +32,6 @@ ul,li,dl,ol{
 }
 
 /* ================================================================= 헤더 =====================================================================*/
-/*menu font*/
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-/*HireHigher font*/
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-
 /*[1]: .header 박스 (최상위 박스) 설정*/
 .header {
     height: 80px;
@@ -133,8 +124,8 @@ ul,li,dl,ol{
     right: 10px;
     display: flex; /*.nav-links 자식인 li box들 인라인 정렬*/
     line-height: 80px; /*[2] 기준 수직 정렬(상위 box와 동일한 높이값)*/
-    font-family: 'Staatliches', cursive;
-    font-size: 25px;
+	font-family: 'Bebas Neue', cursive;
+    font-size: 23px;
 }
 
 /*메뉴 li 박스 설정*/
@@ -241,9 +232,9 @@ ul,li,dl,ol{
     left: 14%;
     height:200px;
     width:500px;
-    font-size: 13px;
     color: white;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 /*누적 데이터 텍스트 폰트 설정*/
@@ -260,14 +251,14 @@ ul,li,dl,ol{
     height: 130px;
     width: 120px;
     border-radius: 25%;
-    position: relative; /*내부 h3 박스 포지셔닝 기준*/
+    position: relative;
 }
 
 
 /*누적 데이터 div박스 애니메이션*/
 .main-stats-container:hover {
     transition: 1s;
-    width: 160px;
+    width: 170px;
     color: yellow;
     background-color: #27a041;
     box-shadow: 0 0 10px #27a041, 0 0 40px #27a041, 0 0 80px #27a041;
@@ -276,18 +267,17 @@ ul,li,dl,ol{
 }
 
 /*누적 데이터 텍스트 설정*/
-.main-stats-container h2 {
-    position: relative;
-    font-size: 45px;
-    top: 8%
+.main-stats-container-inner1 {
+    position: aboslute;
+    font-size: 13px;
+    margin-top: 5px;
 }
 
 /*누적 데이터 카테고리 텍스트 설정*/
-.main-stats-container h3 {
-	font-size: 15px;
-    position: relative;
-    top: 7%;
-    margin-top: 8px;
+.main-stats-container-inner2 {
+	font-size: 45px;
+    position: aboslute;
+    margin-top: 15px;
 }
 
 /* ================================================================= 푸터 =====================================================================*/
@@ -300,7 +290,6 @@ ul,li,dl,ol{
     width: 100%;
     height: 70px;
     color: white; /*footer 텍스트 색상*/
-    font-family: 'Staatliches', cursive;
 }
 
 /*[2]: .footer-container 박스 (footer 박스의 자식 박스) 설정*/
@@ -336,7 +325,13 @@ ul,li,dl,ol{
     position: absolute; /*[2] 기준으로 포지셔닝*/
     top: 30%; /*텍스트 수직 정렬*/
     right: 20px;
-    font-size: 18px;
+	font-family: 'Bebas Neue', cursive;
+    font-size: 23px;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Krona+One&family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&family=Playfair+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 

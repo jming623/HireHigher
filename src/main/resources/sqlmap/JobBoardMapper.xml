@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hirehigher.jobboard.mapper.JobBoardMapper">
+
+	<select id="getList" resultType="JobBoardVO">
+  		<![CDATA[
+   		select *
+		from (select rownum rn,
+		             a.*     
+		      from (select *
+		            from JOBBOARD
+		            where
+		]]>
+
+		<if test="searchType == 'title' ">title like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'company' ">companyName like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'content' ">content like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'writer' ">writer like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'titcont' ">content like '%'||#{searchName}||'%' or title like
+			'%'||#{searchName}||'%'</if>
+		<if test="searchType == null or searchType == '' ">1 = 1</if>
+				
+		<![CDATA[            
+		            order by bno desc) a
+		)
+		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+
+	<select id="getTotal" resultType="int">
+		select count(*) as total
+		from JOBBOARD
+		where
+		<if test="searchType == 'title' ">title like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'company' ">companyName like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'content' ">content like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'writer' ">writer like '%'||#{searchName}||'%'</if>
+		<if test="searchType == 'titcont' ">content like '%'||#{searchName}||'%' or title like
+			'%'||#{searchName}||'%'</if>
+		<if test="searchType == null or searchType == '' ">1 = 1</if>
+	</select>
+
+	<select id="getDetail" resultType="JobBoardDetailVO">
+		select b.*
+		from JOBBOARD a inner join JOBBOARDDETAIL b on a.bno = b.bno
+		where b.bno = #{bno}
+	</select>
+
+</mapper>

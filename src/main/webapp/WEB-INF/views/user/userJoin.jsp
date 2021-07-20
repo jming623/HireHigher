@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-	
-	<style>
-		#userPw.aaa:focus{
-			border: 1px solid red;
-		}
-		#userPw.bbb:focus{
-			border: 1px solid #66afe9;
-		}
-	</style>
-	
+		
     <section>
 
     <div class="container">
@@ -21,7 +12,7 @@
           <div class="joinTitle">
             <h2>회원가입</h2>
           </div>
-          <form action="#" method="POST" name="#">
+          <form action="joinForm" method="POST" name="#" id="joinForm">
 
             <div class="joinForm-wrap form-group">
               <label for="id">아이디</label>
@@ -33,42 +24,63 @@
               </div>
               <span id="msgId"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="password">비밀번호</label>  
               <input type="password" class="joinForm-inner form-control" name="userPw" id="userPw" placeholder="영문 숫자 기호 포함 8~16자"> 
               <span id="msgPw"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="passwordCheck">비밀번호확인</label>
               <input type="password" class="joinForm-inner form-control" id="pwCheck">
+              <span id="msgPwCheck"></span>
             </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="name">이름</label>
               <input type="text" class="joinForm-inner form-control" name="userName" id="userName">
             </div>
+            
             <div class="joinForm-wrap form-group">
-              <label for="nicName">닉네임</label>
-              <input type="text" class="joinForm-inner form-control" name="nickName" id="nickName">
-            </div>
-            <div class="joinForm-wrap form-group">
-              <label for="nicName">생년월일</label>
-              <input type="text" class="joinForm-inner form-control" name="birthDay" id="birthDay" placeholder="ex:19950623">
-            </div>
-            <div class="joinForm-wrap form-group">
-              <label for="email">이메일</label>
-              <input type="email" class="joinForm-inner form-control" name="userEmail" id="userEmail">
-              <span class="msgEmail"></span>
-            </div>
-            <div class="joinForm-wrap form-group">
-              <label for="phoneNum">전화번호</label>
+              <label for="userNickName">닉네임</label>
               <div class="input-group">
-                <input type="text" class="joinForm-inner form-control" name="userCellNum" id="userCellNum" placeholder="-없이 입력해주세요">
+                <input type="text" class="joinForm-inner form-control" name="nickName" id="nickName" placeholder="">
                 <div class="joinForm-btn input-group-btn">
-                  <button type="button" id="" class="btn btn-info">본인확인</button>
+                  <button type="button" id="nickNameCheck" class="btn btn-info">닉네임중복체크</button>
                 </div>
               </div>
-              
+              <span id="msgNickName"></span>
             </div>
+            
+            <div class="joinForm-wrap form-group">
+              <label for="userBirth">생년월일</label>
+              <input type="text" class="joinForm-inner form-control" name="birthDay" id="birthDay" placeholder="ex:19950623">
+              <span id="msgBirthDay"></span>
+            </div>
+            
+            <div class="joinForm-wrap form-group">
+              <label for="email">이메일</label>
+              <div class="input-group">
+                <input type="text" class="joinForm-inner form-control" name="userEmail" id="userEmail" placeholder="">
+                <div class="joinForm-btn input-group-btn">
+                  <button type="button" id="userEmailCheck" class="btn btn-info">이메일인증</button>
+                </div>
+              </div>
+              	<span id="msgUserEmail"></span>
+              	
+              <div class="emailAuthWrap" id="emailAuthWrap" style="display:none;">
+              	<input type="text" class="joinForm-inner form-control" name="emailAuth" id="emailAuth" placeholder="인증번호를 입력해주세요.">
+              	<span id="msgEmailAuth"></span>
+              </div>             
+            </div>
+      
+            <div class="joinForm-wrap form-group">
+              <label for="phoneNum">전화번호</label>             
+              <input type="text" class="joinForm-inner form-control" name="userCellNum" id="userCellNum" placeholder="-포함 번호를 입력해주세요">
+              <span id="msgUserCellNum"></span>
+            </div>
+            
             <div class="joinForm-wrap form-group">
               <label for="address">주소</label>
               <div class="input-group">
@@ -86,7 +98,7 @@
             </div>
 
             <div class="joinForm-wrap form-group">
-              <button type="submit" class="btn btn-lg btn-info btn-block" id="joinBtn">회원가입</button>
+              <button type="button" class="btn btn-lg btn-info btn-block" id="joinBtn">회원가입</button>
             </div>
             
             <div class="joinForm-wrap form-group">
@@ -104,79 +116,4 @@
 
   </section>
   
-	<script>
-  		
-		//아이디  중복체크
-		$("#idCheck").click(function(){
-		
-			var userId = $("#userId").val();
-			
-			if(userId == '' || userId.length < 6 || userId.length > 15){//아이디 형식검사
-				alert("아이디는 영문숫자 포함 6~15글자입니다.");
-				$("#userId").focus();
-			}
-			
-			$.getJSON("idCheck/"+userId, function(data){ //$.getJSON(요청주소, 콜백함수) 데이터조회는 주로 get방식을 사용한다고함.
-				if(data == 1){//중복된 아이디가 있는 경우
-					$("#msgId").html("중복된 아이디가 있습니다.");
-				}else{ //중복된 아이디가 없는 경우
-					$("#msgId").html("사용가능한 아이디입니다.");
-					$("#userId").attr("readonly",true);
-				}
-			})
-			
-		})
-		
-		var pwRegex = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
-		
-		//비밀번호 형식검사
-		$("#userPw").keyup(function(){
-			
-			if( $("#userPw").val().length != 0 && ($("#userPw").val().length < 8 || $("#userPw").val().length > 16) ){
-				
-				if(! $("#userPw").hasClass("aaa") ){
-					$("#userPw").addClass("aaa");
-				}
-				if( $("#userPw").hasClass("bbb") ){
-					$("#userPw").removeClass("bbb");
-				}
-				
-				$("#msgPw").html("비밀번호는 8~16자로 입력하셔야 합니다.");
-				
-			}else if( $("#userPw").val().length != 0 && !pwRegex.test( $("#userPw").val() )){
-				
-				if(! $("#userPw").hasClass("aaa") ){
-					$("#userPw").addClass("aaa");
-				}if( $("#userPw").hasClass("bbb") ){
-					$("#userPw").removeClass("bbb");
-				}
-				
-				$("#msgPw").html("비밀번호는 영문,숫자,특수문자를 반드시 포함해야합니다.");
-				
-			}else if($("#userPw").val().length == 0){
-				
-				if( $("#userPw").hasClass("aaa") ){
-					$("#userPw").removeClass("aaa");
-				}
-				if(!$("#userPw").hasClass("bbb") ){
-					$("#userPw").addClass("bbb");
-				}
-				
-				$("#msgPw").html("");
-				
-			}else{
-				
-				if( $("#userPw").hasClass("aaa") ){
-					$("#userPw").removeClass("aaa");
-				}
-				if( !$("#userPw").hasClass("bbb") ){
-					$("#userPw").addClass("bbb");
-				}
-				$("#msgPw").html("사용가능한 비밀번호 입니다.");
-			}
-			
-		})
-		
-		
-		
-	</script>
+	<script src="${pageContext.request.contextPath }/resources/js/userJoin.js?1"></script>

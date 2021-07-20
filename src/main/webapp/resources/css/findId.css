@@ -1,0 +1,69 @@
+.findId{
+            padding:20px 0px;
+            margin: 0 auto;    
+        }
+
+        .findId-title{
+            text-align: center;            
+        }
+
+        .findId-title h2{
+            width: 260px;
+            display: inline-block;
+            border-top:2px solid #4d4d4d ;
+            border-bottom: 2px solid #4d4d4d;
+            padding:10px 0px;
+            margin:0px;
+            font-weight:700;
+        }
+
+        .findId-content{           
+            margin: 0 auto;
+            width: 72%;
+            min-height: 210px;
+            border: 1px solid #e5e5e8;
+                     
+        }
+
+        .findId-wrap p{
+            width:72%;      
+            margin: 0 auto;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .findId-content-wrap{
+            padding: 30px 40px 20px;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .findId-content-table tr th{
+            display: inline-block;
+            width: 80px;
+        }
+
+        .findId-content-table tr td{
+            display: inline-block;
+            width: 266px;
+        }
+
+        .findId-content-table tr td input{
+            width:100%;
+        }
+
+        .findId-content-btn{
+            overflow: hidden;
+            width:346px;
+        }
+
+        .findId-right{
+            float: right;
+        }
+
+        .findId-result-birth{
+            margin-top: 20px;
+        }
+
+        .findedId-btn{
+            margin-top: 10px;
+        }

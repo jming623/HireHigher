@@ -15,11 +15,19 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.esm.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.esm.min.js"></script>
-	<script src="${ pageContext.request.contextPath }/resources/js/main-chart.js"/></script> <!-- 바디영역이 실행되기전에 id값을 받아올 수 없음, window.onload선언 필요 -->
-	<script type="module" src="${ pageContext.request.contextPath }/resources/js/main.js"/></script>
+	<script type="module" src="${pageContext.request.contextPath }/resources/js/main.js"/></script>
 	
 	<!-- 메인페이지 스타일시트 -->
-	<link href="${pageContext.request.contextPath }/resources/css/main.css?1" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/main.css?11" rel="stylesheet">
+	<!-- 홈버튼 폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+	<!-- 메뉴 폰트 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
 <body>
 	<!-- 헤더영역 -->
 	<tiles:insertAttribute name="header"/>

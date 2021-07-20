@@ -7,7 +7,7 @@ grant resource, connect to teamproject04;
 alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
 
 
-========================================= 유  저 테 이 블 =============================================
+========================================= USER TABLE =============================================
 create table users(
     userId varchar2(50) primary key,
     userPw varchar2(50) not null,
@@ -22,3 +22,44 @@ create table users(
     regdate date default sysdate,
     userType number(1) default 0
 ); 
+
+========================================= JOBBOARD TABLE =============================================
+CREATE TABLE JOBBOARD(
+    bno NUMBER(10) PRIMARY KEY, --글 번호
+    viewCount NUMBER(10), --조회수
+    userId varchar2(50), --아이디
+    userName varchar2(50) NOT NULL, --작성자
+    companyName varchar2(50) NOT NULL, --회사 이름
+    title varchar2(200) NOT NULL, --제목
+    regDate date default sysdate, --작성일
+    updateDate date default sysdate --수정일
+);
+create sequence jobboard_seq start with 1 increment by 1 nocache;
+
+========================================= JOBBOARDDETAIL TABLE ======================================== 
+
+
+create table JOBBOARDDETAIL(
+    gender varchar(50) not null, --성별
+    age varchar(50), --연령
+    edu varchar(50), --학력
+    empType varchar(200) not null, --고용형태
+    recNum varchar(100) not null, --모집인원
+    preference varchar(300), --우대사항
+    requiredDocs varchar(200), --제출서류
+    salary varchar(100), --급여
+    contract varchar(100), --근무기간
+    workDays varchar(100), --근무요일
+    workTime varchar(100), --근무시간
+    welfare varchar(300), --복리후생
+    companyAddr varchar(300) not null, --근무지주소
+    position varchar(300) not null, --담당업무
+    wayToApply varchar(300), --지원방법
+    recPlan varchar(300), --채용일정
+    deadline varchar(50), --모집마감일
+    HRManager varchar(20), --채용담당자명
+    HRContact varchar(200), --채용담당자연락처
+    bno number(10), --글번호 (fk, 조인용)
+    constraint fk_bno foreign key(bno) references JOBBOARD(bno)
+); 
+create sequence jobboarddetail_seq start with 1 increment by 1 nocache;

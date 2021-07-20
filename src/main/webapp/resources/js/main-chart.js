@@ -75,12 +75,12 @@ var myChart = new Chart(ctx, {
             {
                 label: 'visit',
                 borderColor: 'rgb(204, 51, 0)',
-                data: [234, 840, 700, 632, 553, 775, 810] //임시데이터 => 데이터 동적 처리
+                data: ['${visitsPerDay}']
             },
             {
                 label: 'post',
                 borderColor: 'rgb(0, 0, 255)',
-                data: [100, 320, 55 ,60, 310, 530, 40] //임시데이터 => 데이터 동적 처리
+                data: ['${postsPerDay}']
             }
         ]
     },

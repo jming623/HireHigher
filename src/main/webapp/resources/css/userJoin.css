@@ -36,3 +36,14 @@
 #addrBasic {
   margin-top: 15px;
 }
+
+#userPw.aaa:focus, #birthDay.aaa:focus, #userEmail.aaa:focus, #emailAuth.aaa:focus, #userCellNum.aaa:focus{
+	border-color:red;
+}
+#userPw.bbb:focus, #birthDay.bbb:focus, #userEmail.bbb:focus, #emailAuth.bbb:focus, #userCellNum.bbb:focus{
+	border-color:#66afe9;			
+}
+		
+.bbb{
+	background-color:rgb(232, 240, 254);
+}

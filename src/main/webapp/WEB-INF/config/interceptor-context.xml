@@ -9,8 +9,16 @@
 	<!-- 스프링설정 파일로 web.xml에 추가 -->
 	<!-- 인터셉터 클래스 -->
 	<bean id="loginSuccessHandler" class="com.hirehigher.interceptor.LoginSuccessHandler"/>
+	<bean id="UserAuthHandler" class="com.hirehigher.interceptor.UserAuthHandler"/>
 	
 	<mvc:interceptors>
+		
+		<!-- 유저권한이 있어야 접근할 수 있는 페이지를 관리하는 핸들러 -->		
+		<mvc:interceptor>
+			<mvc:mapping path="/user/mypage"/>
+			<mvc:mapping path="/user/mypageModify"/>
+			<ref bean="UserAuthHandler"/>
+		</mvc:interceptor>
 		
 		<!-- 로그인요청시 실행되는 핸들러 -->
 		<mvc:interceptor>
