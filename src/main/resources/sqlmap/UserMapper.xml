@@ -94,4 +94,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from jobboard where userId = #{userId}
 	</select>
 	
+	<select id="getFaqBoardList" resultType="InsertQuestionPageVO">
+		<![CDATA[
+		select *
+		from(select rownum as rn,
+            		a.*
+     		 from(select *
+          		  from insertQuestionPage 
+          		  where INSERTID = #{userId}
+          		  order by INSERTBNO desc) a )
+		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getFaqBoardTotal" resultType="int">
+		select count(*) from insertQuestionPage where INSERTID = #{userId}
+	</select>
+	
 </mapper>

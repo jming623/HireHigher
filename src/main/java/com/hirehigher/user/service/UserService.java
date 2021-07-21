@@ -2,6 +2,7 @@ package com.hirehigher.user.service;
 
 import java.util.ArrayList;
 
+import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.UserVO;
 
@@ -20,4 +21,6 @@ public interface UserService {
 	public int modify(UserVO vo);//회원정보 수정
 	public ArrayList<JobBoardVO> getJobBoardList(int pageNum, int amount , String userId); //마이페이지 채용공고 게시글 불러오기
 	public int getJobBoardTotal(String userId); //마이페이지 채용공고 총게시글 수 불러오기
+	public ArrayList<InsertQuestionPageVO> getFaqBoardList(int pageNum, int amount , String userId); //마이페이지 문의내역 게시글 불러오기
+	public int getFaqBoardTotal(String userId); //마이페이지 문의내역 총게시글 수 불러오기
 }

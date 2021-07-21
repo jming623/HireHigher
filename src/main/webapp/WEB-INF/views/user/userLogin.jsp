@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<section>
+<section class="userLogin-section">
 
-	<div class="container">
+	<div class="userLogin-container container">
 		<div class="userLogin row">
 			<div class="login-form">
 

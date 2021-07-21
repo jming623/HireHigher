@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.user.mapper.UserMapper;
@@ -101,6 +102,18 @@ public class UserServiceImpl implements UserService {
 	public int getJobBoardTotal(String userId) {
 		
 		return userMapper.getJobBoardTotal(userId);
+	}
+
+	@Override
+	public ArrayList<InsertQuestionPageVO> getFaqBoardList(int pageNum, int amount, String userId) {
+		
+		return userMapper.getFaqBoardList(pageNum, amount, userId);
+	}
+
+	@Override
+	public int getFaqBoardTotal(String userId) {
+		
+		return userMapper.getFaqBoardTotal(userId);
 	}
 
 	

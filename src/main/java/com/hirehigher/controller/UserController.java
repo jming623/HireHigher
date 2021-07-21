@@ -24,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.EmailAuthVO;
+import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.jobboard.service.JobBoardService;
@@ -269,10 +270,8 @@ public class UserController {
 		String userId = cri.getUserId();//마이페이지에서 넘어온 userId
 		int pageNum = cri.getPageNum();//마이페이지에서 넘어온 pageNum
 		int amount = cri.getAmount(); //마이페이지에서 넘어온 amount	
-		
-		System.out.println("마이페이지 채용공고 불러오기_ userId="+userId+" pageNum="+ pageNum + " amount="+ amount);
-		
-		HashMap<String, Object> map = new HashMap<>();		
+				
+		HashMap<String, Object> map = new HashMap<>();	
 		
 		ArrayList<JobBoardVO> jobBoardList = userService.getJobBoardList(cri.getPageNum(),cri.getAmount(), userId);
 		
@@ -284,8 +283,6 @@ public class UserController {
 		
 		UserPageVO pageVO = new UserPageVO(cri,total);
 		
-		System.out.println(pageVO.toString());
-		
 		map.put("pageVO",pageVO); //화면단에 pageVO 반환 
 		
 		return map;
@@ -293,8 +290,28 @@ public class UserController {
 		
 	
 	//마이페이지 문의내역 불러오기 
-	
-	
+	@ResponseBody
+	@PostMapping(value="/mypageFAQBoardList", produces="application/json")
+	public HashMap<String,Object> mypageFAQBoardList(@RequestBody UserCriteria cri){
+		
+		String userId = cri.getUserId();
+		int pageNum = cri.getPageNum();
+		int amount = cri.getAmount();
+		
+		HashMap<String, Object> map = new HashMap<>();
+		
+		ArrayList<InsertQuestionPageVO> faqBoardList = userService.getFaqBoardList(pageNum, amount, userId);
+		
+		map.put("list",faqBoardList);
+		
+		int total = userService.getFaqBoardTotal(userId);
+		
+		UserPageVO pageVO = new UserPageVO(cri,total);
+		
+		map.put("pageVO",pageVO);
+		
+		return map;
+	}
 	
 
 	//마이수정페이지

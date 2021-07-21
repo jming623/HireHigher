@@ -45,7 +45,7 @@
     <link href="${pageContext.request.contextPath }/resources/css/mypage.css?1" rel="stylesheet">
     <!-- 우현이형 -->
     <link href="${pageContext.request.contextPath }/resources/css/userJoin.css?2" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/userLogin.css?1" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/userLogin.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creatorApply.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobBoard.css?1" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobDetail.css?1" rel="stylesheet">
