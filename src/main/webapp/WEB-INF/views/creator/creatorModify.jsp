@@ -42,6 +42,10 @@
                         <textarea name="" id="" cols="36" rows="14">Crypto.com is the best place to buy, sell, and pay with crypto. Crypto.com serves over 10 million customers today, with the world’s fastest growing crypto app, along with the Crypto.com Visa Card — the world’s most widely available crypto card, the Crypto.com Exchange and Crypto.com DeFi Wallet.Crypto.com NFT is the premier platform for collecting and trading NFTs, carefully curated from the worlds of art, design, entertainment and sport.FAQs: help.crypto.com</textarea>
                     </div>
                     
+                    <div class="creator-description-input" id="creator-description-input" style="display: none;">
+                    	<input type="text" id="instarId" name="instarId" placeholder="인스타그램 주소를 입력하세요.">
+                    </div>
+                    
                     <div id="creator-descrption-btn-wrap">
                         <div id="creator-descrption-btn-inner1">
                             <button type="button" id="creator-descrption-btn1" class=" btn btn-default btn-xs">
@@ -49,16 +53,16 @@
                             </button>
                         </div>
                         <div id="creator-descrption-btn-inner2" style="display: none;">
-                            <button type="button" id="creator-descrption-btn2" class="btn btn-default btn-xs" onclick="location.reload()">수정</button>
+                            <button type="submit" id="creator-descrption-btn2" class="btn btn-default btn-xs" onclick="location.reload()">수정</button>
                             <button type="button" id="creator-descrption-btn3" class="btn btn-default btn-xs" onclick="location.reload()">취소</button>
                         </div>
                     </div>
                     </form>
                 </div>
 
-                <div class="creator-social">
+                <%-- <div class="creator-social">
                     <a href="https://www.instagram.com/"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
-                </div>
+                </div> --%>
                  
             </div>
             
@@ -80,29 +84,37 @@
                                             <small style="min-height: 50px;">디자인설계</small>
                                         </div>
 
-                                        <div class="creator-content-info-textarea" style="display: none;">
-                                            <textarea name="" id="">디자인설계</textarea>
+                                        <div class="creator-content-info-input" style="display: none;">
+                                            <input type="text" id="major" name="major" value="디자인설계">
                                         </div>
 
                                         <p>경력사항:</p>
 
                                         <div class="creator-content-info-detail">
                                             <small>바른미술학원 2년근무</small>
+                                            <small>바른미술학원 2년근무</small>
+                                            <small>바른미술학원 2년근무</small>
                                         </div>
 
-                                        <div class="creator-content-info-textarea" style="display: none;">
-                                            <textarea name="" id="" >바른미술학원 2년근무</textarea>
+                                        <div class="creator-content-info-input" style="display: none;">
+                                            <input type="text" id="career" name="career" value="바른미술학원 2년근무">
+                                            <input type="text" id="career1" name="career1" value="바른미술학원 2년근무">
+                                            <input type="text" id="career2" name="career2" value="바른미술학원 2년근무">
                                         </div>
 
                                         <p>수상경력:</p>
 
                                         <div class="creator-content-info-detail">
                                             <small>미술경시대회 우승</small>
+                                            <small>미술경시대회 우승</small>
+                                            <small>미술경시대회 우승</small>
                                         </div>
 
-                                        <div class="creator-content-info-textarea" style="display: none;">
-                                            <textarea name="" id="">미술경시대회 우승</textarea>
-                                        </div>    
+                                        <div class="creator-content-info-input" style="display: none;">
+                                            <input type="text" id="awards" name="awards" value="미술경시대회 우승">
+                                            <input type="text" id="awards1" name="awards1" value="미술경시대회 우승">
+                                            <input type="text" id="awards2" name="awards2" value="미술경시대회 우승">
+                                        </div>
                                            
                                         <div class="creator-content-info-edit1">
                                             <button type="button" id="creator-content-info-editBtn">
@@ -183,7 +195,8 @@
        console.log("1");
 
        $("#creator-description-content").css("display","none");
-       $("#creator-description-textarea").css("display","inline-block");
+       $("#creator-description-textarea").css("display","block");
+       $("#creator-description-input").css("display","block");
 
         //버튼 교체
         
@@ -196,7 +209,7 @@
 
         //텍스트 교체
         $(".creator-content-info-detail").css("display","none");
-        $(".creator-content-info-textarea").css("display","block");
+        $(".creator-content-info-input").css("display","block");
 
         //버튼교체
         $(".creator-content-info-edit2").css("display","block");

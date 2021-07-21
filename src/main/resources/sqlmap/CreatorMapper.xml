@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hirehigher.creator.mapper.CreatorMapper">
+  
+  	<insert id="apply">
+  	
+  		insert into CREATOR(CREATORBNO,CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1, CREATORCAREER2, CREATORAWARDS, CREATORAWARDS1, CREATORAWARDS2)
+  		values(CREATOR1_SEQ.nextval, #{creatorId}, #{creatorMajor}, #{creatorCareer}, #{creatorCareer1, jdbcType=VARCHAR}, #{creatorCareer2, jdbcType=VARCHAR}, #{creatorAwards}, #{creatorAwards1, jdbcType=VARCHAR}, #{creatorAwards2, jdbcType=VARCHAR})
+  		
+  	</insert>
+  	
+  	<update id="apply1">
+  	
+  		update users
+  		set usertype = #{userType}
+  		where userid = #{userId}
+  		
+  	</update>
+  	
+  </mapper>

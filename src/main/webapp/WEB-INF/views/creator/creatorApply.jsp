@@ -12,16 +12,16 @@
           <div class="sellerTitle">
             <h2>판매자 신청하기</h2>
           </div>
-          <form action="#" method="POST">
+          <form action="applyForm" method="post">
 
             <div class="form-group">
               <label for="major">전공분야</label>
-              <input type="text" class="seller-form-inner form-control" name="userMajor" id="userMajor">
+              <input type="text" class="seller-form-inner form-control" name="creatorMajor" id="creatorMajor" required>
             </div>
             <div class="form-group" id="careerBox">
               <label for="career">경력사항</label>
               <div class="input-group" id="careerGroup">
-                <input type="text" class="seller-form-inner form-control" name="userCareer" id="userCareer" placeholder="최대 3개">
+                <input type="text" class="seller-form-inner form-control" name="creatorCareer" id="creatorCareer" placeholder="최대 3개" required>
                 <div class="seller-btn input-group-btn" >
                   <button type="button" class="btn btn-info" id="plusBtn"><i class="far fa-plus"></i></button>
                 </div>
@@ -30,17 +30,16 @@
             <div class="form-group" id="awardsBox">
               <label for="awards">수상경력</label>
               <div class="input-group" id="awardsGroup">
-                <input type="text" class="seller-form-inner form-control" name="userAwards" id="userAwards" placeholder="최대 3개">
+                <input type="text" class="seller-form-inner form-control" name="creatorAwards" id="creatorAwards" placeholder="최대 3개" required>
                 <div class="seller-btn input-group-btn" >
                   <button type="button" class="btn btn-info" id="plusBtn2"><i class="far fa-plus"></i></button>
                 </div>
               </div>
             </div>
-
+			<div class="form-group">
+           	 <button type="submit" class="btn btn-lg btn-info btn-block" id="loginBtn">신청하기</button>
+          	</div>
           </form>
-          <div class="form-group">
-            <button type="submit" class="btn btn-lg btn-info btn-block" id="loginBtn">신청하기</button>
-          </div>
           
             
           
@@ -70,8 +69,8 @@
     let input = document.createElement("input"); // input 태그 생성
     input.setAttribute("type", "text"); // text type 속성 추가
     input.setAttribute("class", "form-control"); // form-control class 속성 추가
-    input.setAttribute("name", "userCareer"+count); // userCareer + 카운트숫자 name 속성 추가
-    input.setAttribute("id", "userCareer"); // userCareer id 속성 추가
+    input.setAttribute("name", "creatorCareer"+count); // userCareer + 카운트숫자 name 속성 추가
+    input.setAttribute("id", "creatorCareer"); // userCareer id 속성 추가
 
 
     
@@ -79,6 +78,8 @@
     
 
     careerBox.appendChild(div); // id가 careerBox인 태그 밑에 자식태그로 div 태그 추가 
+    
+    console.log(careerBox);
   
   });
   
@@ -97,8 +98,8 @@
     let input = document.createElement("input"); // input 태그 생성
     input.setAttribute("type", "text"); // text type 속성 추가
     input.setAttribute("class", "form-control"); // form-control class 속성 추가
-    input.setAttribute("name", "userAwards"+count); // userAwards + 카운트숫자 name 속성 추가
-    input.setAttribute("id", "userAwards"); // userAwrads id 속성 추가
+    input.setAttribute("name", "creatorAwards"+count2); // userAwards + 카운트숫자 name 속성 추가
+    input.setAttribute("id", "creatorAwards"); // userAwrads id 속성 추가
 
 
     

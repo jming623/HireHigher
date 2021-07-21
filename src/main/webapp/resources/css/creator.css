@@ -81,6 +81,14 @@
   .creator-social > a > img { 
     width: 33px;
   }
+  
+ .profile-modifyBtn > button {
+  background-color: #131212;
+  border: 1px solid #d2d2d2;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+}
 
   .creator-content{
     margin-top: 80px;
@@ -120,9 +128,9 @@
 
   .creator-content-info-detail small{
     display: inline-block;
-    width:100%;
-    min-height: 150px;
     margin:0px;
+    width: 100%;
+    min-height: 50px;
     font-size: 15px;
   }
 
@@ -213,8 +221,21 @@
 .creator-description-textarea > textarea{
   background-color: #1c1c1c;
   border:none;
+  width: 100%;
   resize: vertical;
   
+}
+
+.creator-description-input > input {
+  background-color: #1c1c1c;
+  border: none;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.creator-description-input > input::placeholder {
+  color: #fff;
 }
 
 .creator-profile-img-input{
@@ -251,14 +272,14 @@
   font-weight: bold;
 }
 
-.creator-content-info-textarea > textarea{
-  margin-left: 1.5px;
+.creator-content-info-input > input {
   background-color: #272626;
-  border:none;
-  resize: vertical;
-  padding:5px 10px;
-  width:99%;
-  height: 110px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #424141;
+  height: 30px;
+  border-radius: 4px;
+  padding-left: 5px;
 }
 
 .creator-content-info-edit2 button{
