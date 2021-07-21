@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class JobBoardDetailVO {
 	private String userId; //아이디
+	private String userName; //유저 이름
 	private String title; //제목
 	private String gender; //성별
 	private String age; //연령
@@ -23,6 +24,7 @@ public class JobBoardDetailVO {
 	private String workTime; //근무시간
 	private String welfare; //복리후생
 	private String companyAddr; //근무지주소
+	private String companyName; //회사이름
 	private String position; //담당업무
 	private String wayToApply; //지원방법
 	private String recPlan; //채용일정

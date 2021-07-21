@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <section>
 	<form action="jobModify" method="post">
@@ -13,36 +14,37 @@
 						<div class="detail_condition_table">
 							<div class="detail_left">
 								<div class="detail_recruit">
-										<input type="hidden" name="bno" value="${jobBoardDetailVO.bno }">
-										<h3>모집조건</h3>
-										<dl>
-											<dt>성별</dt>
-											<dd>${jobBoardDetailVO.gender}</dd>
-										</dl>
-										<dl>
-											<dt>연령</dt>
-											<dd>${jobBoardDetailVO.age}</dd>
-										</dl>
-										<dl>
-											<dt>학력</dt>
-											<dd>${jobBoardDetailVO.edu}</dd>
-										</dl>
-										<dl>
-											<dt>고용형태</dt>
-											<dd>${jobBoardDetailVO.empType}</dd>
-										</dl>
-										<dl>
-											<dt>모집인원</dt>
-											<dd>${jobBoardDetailVO.recNum}</dd>
-										</dl>
-										<dl>
-											<dt>우대사항</dt>
-											<dd>${jobBoardDetailVO.preference}</dd>
-										</dl>
-										<dl>
-											<dt>제출서류</dt>
-											<dd>${jobBoardDetailVO.requiredDocs}</dd>
-										</dl>
+									<input type="hidden" name="bno"
+										value="${jobBoardDetailVO.bno }">
+									<h3>모집조건</h3>
+									<dl>
+										<dt>성별</dt>
+										<dd>${jobBoardDetailVO.gender}</dd>
+									</dl>
+									<dl>
+										<dt>연령</dt>
+										<dd>${jobBoardDetailVO.age}</dd>
+									</dl>
+									<dl>
+										<dt>학력</dt>
+										<dd>${jobBoardDetailVO.edu}</dd>
+									</dl>
+									<dl>
+										<dt>고용형태</dt>
+										<dd>${jobBoardDetailVO.empType}</dd>
+									</dl>
+									<dl>
+										<dt>모집인원</dt>
+										<dd>${jobBoardDetailVO.recNum}</dd>
+									</dl>
+									<dl>
+										<dt>우대사항</dt>
+										<dd>${jobBoardDetailVO.preference}</dd>
+									</dl>
+									<dl>
+										<dt>제출서류</dt>
+										<dd>${jobBoardDetailVO.requiredDocs}</dd>
+									</dl>
 								</div>
 								<div class="detail_work">
 									<h3>근무조건</h3>
@@ -91,14 +93,22 @@
 					</div>
 					<div class="placeInfo">
 						<div class="placeInfo_list">
-							<h3>근무지정보</h3>
+							<h3>근무지 정보</h3>
 							<dl>
-								<dt>근무지주소</dt>
+								<dt>회사 이름</dt>
+								<dd>${jobBoardDetailVO.companyName }</dd>
+							</dl>
+							<dl>
+								<dt>근무지 주소</dt>
 								<dd>${jobBoardDetailVO.companyAddr}</dd>
 							</dl>
 							<dl>
-								<dt>위치정보</dt>
-								<dd>카카오지도</dd>
+								<dt>위치 정보</dt>
+								<dd>
+									<div id="jobboard-map" style="width: 1000px; height: 400px;">
+
+									</div>
+								</dd>
 							</dl>
 						</div>
 					</div>
@@ -122,7 +132,10 @@
 						</div>
 					</div>
 					<div class="detailBtn">
-						<button type="submit" class="btn btn-info">수정</button>
+						<c:if
+							test="${sessionScope.userVO.userId == jobBoardDetailVO.userId }">
+							<button type="submit" class="btn btn-info">수정</button>
+						</c:if>
 						<button type="button" class="btn btn-default"
 							onclick="location.href='jobList'">목록</button>
 					</div>
@@ -131,3 +144,18 @@
 		</div>
 	</form>
 </section>
+
+<script type="text/javascript"
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2f86f9996be91838c5a2643e82902a25"></script>
+<script>
+	var container = document.getElementById('jobboard-map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center : new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level : 3
+	//지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+</script>
+
+

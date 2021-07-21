@@ -12,4 +12,5 @@ public interface JobBoardMapper {
 	public ArrayList<JobBoardVO> getList(JobCriteria cri); //조회
 	public JobBoardDetailVO getDetail(int bno); //상세
 	public int update(JobBoardDetailVO jobBoardDetailVO); //업데이트
+	public int regist(JobBoardDetailVO jobBoardDetailVO); //등록
 }

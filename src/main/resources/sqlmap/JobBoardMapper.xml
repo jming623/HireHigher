@@ -44,12 +44,12 @@
 	</select>
 
 	<select id="getDetail" resultType="JobBoardDetailVO">
-		select b.*, a.title, a.userId
+		select b.*, a.title, a.userId, a. companyName
 		from JOBBOARD a inner join JOBBOARDDETAIL b on a.bno = b.bno
 		where b.bno = #{bno}
 	</select>
 	
-	<update id="update" parameterType="JobBoardDetailVO">
+	<update id="update">
 	{call
 		declare
 		begin
@@ -82,5 +82,52 @@
 		end
 	}
    </update>
+   
+   <insert id="regist">
+	{call
+		declare
+		begin
+   			insert into JOBBOARD
+   			(bno, userId, userName, companyName, title, regDate)
+   				values
+   				(
+   				jobboard_seq.nextval,
+   				#{userId},
+   				#{userName},
+   				#{companyName},
+   				#{title},
+   				sysdate
+   				);
+   			insert into JOBBOARDDETAIL 
+   			(gender, age, edu, empType, recNum, preference, requiredDocs,
+   			salary, contract, workDays, workTime, welfare, companyAddr, position,
+   			wayToApply, recPlan, deadline, HRManager, HRContact, bno)
+   				values
+   				(
+   				#{gender},
+   				#{age},
+   				#{edu},
+   				#{empType},
+   				#{recNum},
+   				#{preference},
+   				#{requiredDocs},
+   				#{salary},
+   				#{contract},
+   				#{workDays},
+   				#{workTime},
+   				#{welfare},
+   				#{companyAddr},
+   				#{position},
+   				#{wayToApply},
+   				#{recPlan},
+   				#{deadline},
+   				#{HRManager},
+				#{HRContact},
+				jobboarddetail_seq.nextval   			
+   				);			
+		end
+	}
+   </insert>
+   
 
 </mapper>

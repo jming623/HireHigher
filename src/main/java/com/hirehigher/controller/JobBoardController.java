@@ -21,13 +21,20 @@ import com.hirehigher.util.JobPageVO;
 public class JobBoardController {
 	
 	//-----------------------------SERVICE 연결-----------------------------
+	
 	@Autowired
 	@Qualifier("jobBoardService")
 	private JobBoardService jobBoardService;
+	
 	//-----------------------------SERVICE 연결-----------------------------
 	
 	
 	//--------------------------------화면 처리-------------------------------
+	//등록 화면
+	@RequestMapping("/jobRegist")
+	public String jobRegist() {
+		return "jobBoard/jobRegist";
+	}
 	
 	//리스트 화면
 	@RequestMapping("/jobList")
@@ -44,7 +51,6 @@ public class JobBoardController {
 		return "jobBoard/jobList";
 	}
 	
-	
 	//상세 화면, 수정 화면
 	@RequestMapping({"/jobDetail", "/jobModify"})
 	public void jobDetail(@RequestParam("bno") int bno, Model model) {
@@ -52,15 +58,30 @@ public class JobBoardController {
 		//System.out.println(bno);
 		//System.outprintln(jobBoardDetailVO.toString());
 		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
-		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
-		
+		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);	
 	}
 
-	//등록 화면
-	//수정 화면
 	//--------------------------------화면 처리-------------------------------
 	
 	//--------------------------------기능 처리-------------------------------
+	
+	//등록요청
+	@RequestMapping("/registRequest")
+	public String registRequest(JobBoardDetailVO jobBoardDetailVO,
+							 RedirectAttributes RA) {
+		
+		int result = jobBoardService.regist(jobBoardDetailVO);
+		
+		if(result == 1) {
+			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
+		} else {
+			RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도하세요");
+		}
+		
+		
+		return "redirect:/jobBoard/jobList"; //다시컨트롤러를 태움
+	}
+	
 	//업데이트 처리
 	@RequestMapping("/jobUpdate")
 	public String jobUpdate(JobBoardDetailVO jobBoardDetailVO,
@@ -77,5 +98,6 @@ public class JobBoardController {
 		
 		return "redirect:/jobBoard/jobList";
 	}
+	
 	//--------------------------------기능 처리-------------------------------
 }

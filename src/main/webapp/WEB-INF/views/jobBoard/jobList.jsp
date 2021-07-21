@@ -118,7 +118,7 @@
 						</ul>
 						
 						<c:if test="${sessionScope.userVO != null }">
-							<button type="button" class="btn btn-info write-btn">글쓰기</button>
+							<button type="button" class="btn btn-info write-btn" onclick="location.href='jobRegist'">글쓰기</button>
 						</c:if>
 					</div>
 				</form>

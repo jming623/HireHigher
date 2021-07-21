@@ -156,6 +156,13 @@
 						<div class="placeInfo_list">
 							<h3>근무지정보</h3>
 							<dl>
+								<dt>회사 이름</dt>
+								<dd>
+									<input class="jobmodify-input-regular" name="companyName"
+										value="${jobBoardDetailVO.companyName}">
+								</dd>
+							</dl>
+							<dl>
 								<dt>근무지주소</dt>
 								<dd>
 									<input class="jobmodify-input-xl" name="companyAddr"
