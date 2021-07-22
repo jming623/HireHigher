@@ -71,7 +71,6 @@
                                     
                         <ul class="creator-content-nav nav nav-tabs ">
                             <li class='active'><a data-toggle="tab" href="#menu1">제작자정보</a></li>
-                            <li><a data-toggle="tab" href="#menu2">작성글</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -130,53 +129,7 @@
                                 </form>
                             </div>
 
-                            <div id="menu2" class="tab-pane fade">
-                                
-                                <div class="creator-content-writing">
-                                    <table class="creator-content-writing-table table">
-                                        <thead>
-                                            <tr>
-                                                <td>번호</td>
-                                                <td>제목</td>
-                                                <td>내용</td>
-                                                <td>작성일</td>
-                                            </tr>
-                                        </thead> 
-                                        <tbody class="creator-content-writing-tbody">
-                                            <tr>
-                                                <td>1</td>
-                                                <td><a href="">첫글</a></td>
-                                                <td><a href="">첫글은이렇게 작성하였습니다.</a></td>
-                                                <td>2021/07/05</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><a href="">두번째글</a></td>
-                                                <td><a href="">두번째글은이렇게 작성하였습니다.</a></td>
-                                                <td>2021/07/05</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><a href="">세번째글</a></td>
-                                                <td><a href="">세번째글은이렇게 작성하였습니다.</a></td>
-                                                <td>2021/07/05</td>
-                                            </tr>
-                                            
-                                        </tbody>   
-                                    </table>
-                                    
-                                    <div class="text-center">
-                                        <ul class="creator-content-writing-page pagination">
-                                            <li><a href="#menu2">이전</a></li>
-                                            <li><a href="#menu2">1</a></li>
-                                            <li><a href="#menu2">2</a></li>
-                                            <li><a href="#menu2">3</a></li>
-                                            <li><a href="#menu2">다음</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
+                            
                         </div>
                 </div>                 
             </div>
