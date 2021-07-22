@@ -26,6 +26,8 @@
   	<script src="${ pageContext.request.contextPath }/resources/js/star.js"/></script>
   	<!-- 메인화면 차트 -->
   	<script src="${ pageContext.request.contextPath }/resources/js/main-chart.js"/></script>
+  	<!-- 카카오 로그인 -->
+  	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   	
     <!-- 스타일시트(개인 css)는 아래에 추가해주세요 (src/webapp/resources/css에 필요한 css파일 추가하고 이곳에 선언해줍니다.)-->
     <!-- 기본선언 css,사이드바 -->

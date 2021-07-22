@@ -71,7 +71,7 @@ public class UserController {
 			
 		}
 		
-		return mv; //LoginSuccessHandler로 반환
+		return mv; //디스패쳐 서블릿 으로 반환
 	}
 	
 	//생년월일로 아이디찾기
@@ -394,7 +394,57 @@ public class UserController {
 		return "redirect:/"; //홈화면 이동
 	}
 	
+	//카카오로 로그인 처리
+	@RequestMapping("/kakaoLogin")
+	public ModelAndView kakaoLogin(UserVO vo) {
+		
+		//userLogin에서 location.href="kakaoLogin?userId="+userId 로 넘어온 userID
+		String userId = vo.getUserId();
+		
+		ModelAndView mv = new ModelAndView();
+		
+		UserVO userVO = userService.kakaoLogin(userId);
+		
+		mv.addObject("login", userVO);
+		
+		return mv;
+	}
 	
+	//카카오 회원가입 처리
+	@PostMapping("/kakaoJoin")
+	public ModelAndView kakaoJoin(@RequestBody UserVO vo) {		
+				
+		ModelAndView mv = new ModelAndView();
+		
+		String userId = vo.getUserId(); //필수로 넘어오는값
+		String userEmail = vo.getUserEmail(); //선택적으로 넘어오는 값
+		String nickName = vo.getNickName(); //필수로 넘어오는 값
+		
+		if(userEmail == null) { //이메일제공을 선택하지 않은경우
+			int result = userService.kakaoJoin2(vo);
+			
+			if(result == 0) {// 회원정보 저장 실패(거의 발생할 일이없음)
+				System.out.println("카카오 회원정보2를 저장과정중 오류발생");
+				return null;
+			}
+		}else {// 이메일 제공을 선택한 경우
+			int result = userService.kakaoJoin1(vo);
+			
+			if(result == 0) {// 회원정보 저장 실패(거의 발생할 일이없음)
+				System.out.println("카카오 회원정보1를 저장과정중 오류발생");
+				return null;
+			}
+		}
+		
+		UserVO userVO = userService.getUserInfo(userId);
+		
+		System.out.println(userVO.toString());
+		
+		mv.addObject("login", userVO);
+		
+		
+		return mv;
+	}
 	
 	
 }

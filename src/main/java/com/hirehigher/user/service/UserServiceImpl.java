@@ -25,6 +25,13 @@ public class UserServiceImpl implements UserService {
 		return userMapper.login(vo);
 	}
 	
+	//카카오 로그인
+	@Override
+	public UserVO kakaoLogin(String userId) {
+		
+		return userMapper.kakaoLogin(userId);
+	}
+		
 	//생년월일로 아이디찾기
 	@Override
 	public ArrayList<UserVO> findIdA(String userName, String birthDay) {
@@ -115,6 +122,23 @@ public class UserServiceImpl implements UserService {
 		
 		return userMapper.getFaqBoardTotal(userId);
 	}
+	
+	//이메일 정보가 포함된 카카오회원가입
+	@Override
+	public int kakaoJoin1(UserVO vo) {
+		
+		return userMapper.kakaoJoin1(vo);
+	}
+	
+	//이메일 정보가 포함되지 않은 카카오회원가입
+	@Override
+	public int kakaoJoin2(UserVO vo) {
+		
+		return userMapper.kakaoJoin2(vo);
+	}
+
+
+
 
 	
 

@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users where userId = #{userId} and userPw = #{userPw}
 	</select>
 	
+	<select id="kakaoLogin" resultType="UserVO">
+		select * from users where userId = #{userId}
+	</select>
+	
 	<select id="findIdA" resultMap="idList">
 		select userId from users where userName = #{userName} and birthDay = #{birthDay}	
 	</select>
@@ -110,5 +114,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getFaqBoardTotal" resultType="int">
 		select count(*) from insertQuestionPage where INSERTID = #{userId}
 	</select>
+	
+	<insert id="kakaoJoin1">
+		insert into users (USERID,USERPW,USEREMAIL,NICKNAME) values(#{userId},#{userId},#{userEmail},#{nickName})
+	</insert>
+	
+	<insert id="kakaoJoin2">
+		insert into users (USERID,USERPW,NICKNAME) values(#{userId},#{userId},#{nickName})
+	</insert>
 	
 </mapper>

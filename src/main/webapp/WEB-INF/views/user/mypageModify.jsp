@@ -110,5 +110,75 @@
 
     </section>
 
-    <script src="${pageContext.request.contextPath }/resources/js/mypageModify.js?1"></script>
-    
+    <script src="${pageContext.request.contextPath }/resources/js/mypageModify.js?2"></script>
+
+	<script>
+	//폼검증 및 서브밋작업
+	$("#requestModify").click(
+			function() {
+
+				var userPw = $("#userPw").val();
+				var pwCheck = $("#pwCheck").val();
+				var userEmail = $("#userEmail").val();
+				var emailAuth = $("#emailAuth").val();
+				var userCellNum = $("#userCellNum").val();
+				var addrZipNum = $("#addrZipNum").val();
+				var addrBasic = $("#addrBasic").val();
+				var addrDetail = $("#addrDetail").val();
+
+				console.log("${userInfo.userPw}");
+
+				//비밀번호 검증
+				if (userPw != "${userInfo.userPw}") { //로그인 할때 세션값으로 받아온 비밀번호와 userPw가 다를경우 (비밀번호를 변경하는 경우)	
+
+					if (!$("#userPw").hasClass("bbb")) {//bbb클래스를 가지고있지않다면 return
+						alert("비밀번호를 확인하세요.");
+						$("#userPw").focus();
+						return;
+					}
+				}
+				//비밀번호 확인 검증
+				if (!$("#pwCheck").hasClass("bbb")) {
+					alert("비밀번호 확인칸을 확인하세요");
+					$("#pwCheck").focus();
+					return;
+				}
+
+				//이메일검증
+				if (userEmail != "${userInfo.userEmail}") { //세션으로 받아온 이메일과 userEmail이 다를경우 (이메일변경)			
+					if ($("#userEmail").attr("readonly") != "readonly") {//이메일인증을 하지않았다면 return
+						alert("이메일 인증은 필수입니다.");
+						$("#userEmail").focus();
+						return;
+					}
+					if (!$("#emailAuth").hasClass("bbb")) {
+						alert("이메일 인증번호를 확인하세요");
+						$("#emailAuth").focus();
+						return;
+					}
+				}
+
+				//전화번호 검증
+				if (userCellNum != "${userInfo.userCellNum}") { //세션으로 받아온 전화번호과 userCellNum이 다를경우 (전화번호변경)
+
+					if (!$("#userCellNum").hasClass("bbb")) { //bbb클래스를 가지고있지 않다면 return
+						alert("전화번호를 확인하세요.");
+						$("#userCellNum").focus();
+						return;
+					}
+
+				}
+				//주소검증
+				if ($("#addrZipNum").val() == '' || $("#addrBasic").val() == ''
+						|| $("#addrDetail").val() == '') {
+					alert("주소를 입력해주세요");
+					$("#addrBasic").focus();
+					return;
+				}
+
+				//위 과정을 모두 통과하였다면 submit
+
+				$("#modifyForm").submit();
+
+			});
+	</script>

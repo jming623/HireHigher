@@ -61,12 +61,66 @@
 		
 		if( checkedId != null){			
 			$("#userId").val(checkedId);
-		}
+		} 
 	}
 	
 	function findPw(){
 		event.preventDefault();
 		window.open("../resources/find/findPw.jsp","findId","width=750,height=500,left=550,top=180,location=no,scrollbars=no");
 	}
+	
+	//카카오 로그인
+	
+	Kakao.init('45d71813cd530ea06436f00a05679428'); //KaKao에서 발급받은 JavaScript키를 초기화시킴
+	Kakao.isInitialized(); //SDK가 초기화되었는지 확인하는 함수 //초기화가 되면 콘솔창에 true를 반환
+		
+	function loginWithKakao(){
+		
+		Kakao.Auth.login({
+			scope : 'profile_nickname, account_email',
+			success : function(authObj){
+				console.log(authObj);	
+				
+				Kakao.API.request({
+					url:'/v2/user/me',
+					success: function(response){
+						console.dir(response);
+						console.log(response.id);
+						console.log(response.kakao_account);
+						console.log(response.kakao_account.email);
+						console.log(response.kakao_account.profile.nickname);
+						
+						var userId = response.id;
+						var userEmail = response.kakao_account.email;
+						var nickName = response.kakao_account.profile.nickname;
+						
+						//id가 회원정보에 있는지 검사
+						$.getJSON("idCheck/"+userId, function(data){
+							if(data == 1){//회원정보에 id가 존재 => 바로로그인 처리																
+								location.href="kakaoLogin?userId="+userId;
+							}else{ //회원정보에 id가 존재하지않음 => 회원정보를 추가한뒤 로그인처리
+								$.ajax({
+									type: "post",
+									url: "kakaoJoin",
+									dataType: "json",
+									contentType: "application/json",
+									data: JSON.stringify({"userId":userId, "userEmail": userEmail, "nickName": nickName}),
+									success : function(data){
+										
+									},
+									error: function(status,error){
+										
+									}
+								})
+							}
+						})
+												
+						
+					}
+				})
+				
+			}
+		});
+	} 
 	
 </script>
