@@ -123,4 +123,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into users (USERID,USERPW,NICKNAME) values(#{userId},#{userId},#{nickName})
 	</insert>
 	
+	<insert id="registLoginCount">
+		insert into logincount (userId) values(#{userId})
+	</insert>
+	
+	<select id="getloginLimitTime" resultType="LoginCountVO">
+		select loginLimitTime from logincount where userId = #{userId}
+	</select>
+	
 </mapper>

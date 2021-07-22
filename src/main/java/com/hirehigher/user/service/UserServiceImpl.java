@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
+import com.hirehigher.command.LoginCountVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.user.mapper.UserMapper;
 import com.hirehigher.util.JobCriteria;
@@ -135,6 +136,19 @@ public class UserServiceImpl implements UserService {
 	public int kakaoJoin2(UserVO vo) {
 		
 		return userMapper.kakaoJoin2(vo);
+	}
+	
+	//회원가입 성공시 loginCount테이블에 유저정보 등록
+	@Override
+	public void registLoginCount(String userId) {
+		
+		userMapper.registLoginCount(userId);
+	}
+
+	@Override
+	public LoginCountVO getloginLimitTime(String userId) {
+
+		return userMapper.getloginLimitTime(userId);
 	}
 
 

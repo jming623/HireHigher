@@ -1,5 +1,6 @@
 package com.hirehigher.controller;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hirehigher.command.EmailAuthVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
+import com.hirehigher.command.LoginCountVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.jobboard.service.JobBoardService;
 import com.hirehigher.user.service.UserService;
@@ -55,6 +57,17 @@ public class UserController {
 		
 	}
 	
+	/*
+	 * 0. 일반 회원가입성공시 LoginCount 테이블에 유저정보를 등록한다. v
+	 * 1. 로그인처리에서 아이디 비밀번호를 검사한뒤 맞으면, (먼저 로그인제한시간을 불러와 10분이 지났다면 로그인제한여부를 무조건 N으로
+	 * 바꿔주고), LoginCount 테이블에 로그인제한여부를 검사해 Y가 아니라면 로그인 시도횟수를 0으로 리셋하고 로그인, N이라면
+	 * "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다."경고창 출력 
+	 * 2. 로그인처리에서 아이디 비밀번호를 검사해 틀린다면 ,(먼저
+	 * 로그인시도 실패시간을 불러와서 10분이 지났다면 로그인 시도횟수를 0으로 리셋하고), 현재 로그인 시도횟수를 불러와 +1을 해준뒤 로그인
+	 * 실패시간을 현재시간으로 리셋 만약 LoginCount 테이블에 현재 로그인 시도횟수를 불러왔는데 시도횟수가 4회였다면(현재 실패까지 5회)
+	 * 로그인 시도횟수를 0으로 리셋하고 , 로그인제한여부를 N에서 Y로 바꿔준뒤 로그인제한시간을 현재시간으로 설정
+	 */
+	
 	//로그인 처리
 	@RequestMapping(value="loginForm", method=RequestMethod.POST)
 	public ModelAndView loginForm(UserVO vo) {
@@ -65,13 +78,27 @@ public class UserController {
 
 		if(userVO != null) { //로그인 성공
 //			System.out.println(userVO.toString());
-			mv.addObject("login", userVO);
-		}else { //로그인 실패
-			mv.addObject("msg", "아이디 비밀번호를 확인하세요");
+			String userId = userVO.getUserId();
 			
+			LoginCountVO loginCountVO = userService.getloginLimitTime(userId);
+		
+				Timestamp loginLimitTime = loginCountVO.getLoginLimitTime();
+				long limitTime = loginLimitTime.getTime();//밀리초로 반환된 로그인제한 시간(기본값은 회원가입 날짜 - 1년)
+				
+				Timestamp currentT = new Timestamp(System.currentTimeMillis());
+				long currnetTime = currentT.getTime();
+				
+				//만약 limitTime에 10분(600000밀리초)을 더한 밀리초가 현재시간 밀리초보다 작다면 로그인제한시간이 지났음으로 로그인제한여부를 N으로 바꿔줌
+				if ( (limitTime + 600000) < currnetTime ) {
+					
+				}
+			
+				mv.addObject("login", userVO);
+		}else { //로그인 실패
+			mv.addObject("msg", "아이디 비밀번호를 확인하세요");			
 		}
 		
-		return mv; //디스패쳐 서블릿 으로 반환
+		return mv; //디스패쳐  서블릿 으로 반환
 	}
 	
 	//생년월일로 아이디찾기
@@ -236,9 +263,11 @@ public class UserController {
 	@RequestMapping(value="/joinForm", method=RequestMethod.POST)
 	public String joinForm(UserVO vo, RedirectAttributes RA){
 		
+		String userId = vo.getUserId();
 		int result = userService.join(vo);
 		
 		if(result ==1) {
+			userService.registLoginCount(userId);
 			RA.addFlashAttribute("msg", "가입을 축하합니다");
 		}else {
 			RA.addFlashAttribute("msg", "회원가입에 실패했습니다. 관리자에게 문의하세요");
@@ -418,7 +447,7 @@ public class UserController {
 		
 		String userId = vo.getUserId(); //필수로 넘어오는값
 		String userEmail = vo.getUserEmail(); //선택적으로 넘어오는 값
-		String nickName = vo.getNickName(); //필수로 넘어오는 값
+		String nickName = vo.getNickName(); //필수로 넘어오는 값 	
 		
 		if(userEmail == null) { //이메일제공을 선택하지 않은경우
 			int result = userService.kakaoJoin2(vo);

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
+import com.hirehigher.command.LoginCountVO;
 import com.hirehigher.command.UserVO;
 
 
@@ -29,4 +30,6 @@ public interface UserMapper {
 	public int getJobBoardTotal(String userId); //마이페이지 채용공고 총게시글 수 불러오기
 	public ArrayList<InsertQuestionPageVO> getFaqBoardList(@Param("pageNum") int pageNum, @Param("amount") int amount, @Param("userId") String userId); //마이페이지 문의내역 게시글 불러오기
 	public int getFaqBoardTotal(String userId); //마이페이지 문의내역 총게시글 수 불러오기
+	public void registLoginCount(String userId);//회원가입 성공시 loginCount테이블에 유저정보 등록
+	public LoginCountVO getloginLimitTime(@Param("userId") String userId);//로그인이 제한된 시간불러오기
 }
