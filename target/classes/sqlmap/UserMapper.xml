@@ -131,4 +131,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select loginLimitTime from logincount where userId = #{userId}
 	</select>
 	
+	<update id="setLoginLimitN">
+		update logincount set loginlimitstatus = 'N' where userId = #{userId} 
+	</update>
+	
+	<select id="getLoginLimitStatus" resultType="LoginCountVO">
+		select loginlimitstatus from logincount where userId = #{userId}
+	</select>
+	
+	<update id="resetLoginTryNum">
+		update logincount set LOGINTRYNUM = 0 where userId = #{userId}
+	</update>
+	
+	<select id="getloginFailTime" resultType="LoginCountVO">
+		select LOGINFAILTIME from logincount where userId = #{userId}
+	</select>
+	
+	<select id="getLoginTryNum" resultType="LoginCountVO">
+		select LOGINTRYNUM from logincount where userId = #{userId}
+	</select>
+	
+	<update id="plusLoginTryNum">
+		update logincount set LOGINTRYNUM = #{addLoginTryNum} where userId = #{userId}
+	</update>
+	
+	<update id="resetLoginFailTime">
+		update logincount set LOGINFAILTIME = sysdate where userId = #{userId}
+	</update>
+	
+	<update id="setLoginLimitY">
+		update logincount set loginlimitstatus = 'Y' where userId = #{userId} 
+	</update>
+	
+	<update id="resetLoginLimitTime">
+		update logincount set LOGINLIMITTIME = sysdate where userId = #{userId}
+	</update>
+	
+	
 </mapper>

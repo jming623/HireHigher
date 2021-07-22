@@ -29,4 +29,14 @@ public interface UserService {
 	public int getFaqBoardTotal(String userId); //마이페이지 문의내역 총게시글 수 불러오기
 	public void registLoginCount(String userId);//회원가입 성공시 loginCount테이블에 유저정보 등록
 	public LoginCountVO getloginLimitTime(String userId);//로그인이 제한된 시간불러오기
+	public void setLoginLimitN(String userId);//로그인 제한여부 'N'으로 변경
+	public LoginCountVO getLoginLimitStatus(String userId);//로그인 제한여부 불러오기
+	public void resetLoginTryNum(String userId);//로그인 시도횟수를 0으로 리셋
+	public LoginCountVO getloginFailTime(String userId);//로그인을 실패한 마지막 시간 불러오기
+	public LoginCountVO getLoginTryNum(String userId);//로그인 시도 횟수 불러오기
+	public void plusLoginTryNum(String userId, int addLoginTryNum);//로그인 시도횟수 +1
+	public void resetLoginFailTime(String userId);//로그인 실패한 마지막시간 리셋
+	public void setLoginLimitY(String userId);//로그인 제한여부 'Y'으로 변경
+	public void resetLoginLimitTime(String userId);//로그인을 제한한시간 리셋
+	
 }

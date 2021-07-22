@@ -144,11 +144,75 @@ public class UserServiceImpl implements UserService {
 		
 		userMapper.registLoginCount(userId);
 	}
-
+	
+	//로그인이 제한된 시간불러오기
 	@Override
 	public LoginCountVO getloginLimitTime(String userId) {
 
 		return userMapper.getloginLimitTime(userId);
+	}
+
+	//로그인 제한여부를 'N'으로 바꿔주는 메서드
+	@Override
+	public void setLoginLimitN(String userId) {
+		
+		userMapper.setLoginLimitN(userId);
+	}
+	
+	//로그인 제한여부 불러오기
+	@Override
+	public LoginCountVO getLoginLimitStatus(String userId) {
+		
+		return userMapper.getLoginLimitStatus(userId);
+	}
+
+	//로그인 시도횟수를 0으로 리셋
+	@Override
+	public void resetLoginTryNum(String userId) {
+		
+		userMapper.resetLoginTryNum(userId);
+	}
+	
+	//로그인을 실패한 마지막 시간 불러오기
+	@Override
+	public LoginCountVO getloginFailTime(String userId) {
+		
+		return userMapper.getloginFailTime(userId);
+	}
+	
+	//로그인 시도 횟수 불러오기
+	@Override
+	public LoginCountVO getLoginTryNum(String userId) {
+		
+		return userMapper.getLoginTryNum(userId);
+	}
+
+	//로그인 시도횟수 +1
+	@Override
+	public void plusLoginTryNum(String userId, int addLoginTryNum) {
+		
+		userMapper.plusLoginTryNum(userId, addLoginTryNum);
+	}
+
+	//로그인 실패한 마지막시간 리셋
+	@Override
+	public void resetLoginFailTime(String userId) {
+		
+		userMapper.resetLoginFailTime(userId);
+	}
+
+	//로그인 제한여부 'Y'으로 변경
+	@Override
+	public void setLoginLimitY(String userId) {
+		
+		userMapper.setLoginLimitY(userId);
+	}
+
+	//로그인을 제한한시간 리셋
+	@Override
+	public void resetLoginLimitTime(String userId) {
+		
+		userMapper.resetLoginLimitTime(userId);
 	}
 
 

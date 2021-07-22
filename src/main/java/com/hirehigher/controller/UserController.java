@@ -60,7 +60,7 @@ public class UserController {
 	/*
 	 * 0. 일반 회원가입성공시 LoginCount 테이블에 유저정보를 등록한다. v
 	 * 1. 로그인처리에서 아이디 비밀번호를 검사한뒤 맞으면, (먼저 로그인제한시간을 불러와 10분이 지났다면 로그인제한여부를 무조건 N으로
-	 * 바꿔주고), LoginCount 테이블에 로그인제한여부를 검사해 Y가 아니라면 로그인 시도횟수를 0으로 리셋하고 로그인, N이라면
+	 * 바꿔주고), LoginCount 테이블에 로그인제한여부를 검사해 Y가 아니라면 로그인 시도횟수를 0으로 리셋하고 로그인, Y라면
 	 * "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다."경고창 출력 
 	 * 2. 로그인처리에서 아이디 비밀번호를 검사해 틀린다면 ,(먼저
 	 * 로그인시도 실패시간을 불러와서 10분이 지났다면 로그인 시도횟수를 0으로 리셋하고), 현재 로그인 시도횟수를 불러와 +1을 해준뒤 로그인
@@ -80,9 +80,9 @@ public class UserController {
 //			System.out.println(userVO.toString());
 			String userId = userVO.getUserId();
 			
-			LoginCountVO loginCountVO = userService.getloginLimitTime(userId);
+			LoginCountVO loginCountVO_limitTime = userService.getloginLimitTime(userId);
 		
-				Timestamp loginLimitTime = loginCountVO.getLoginLimitTime();
+				Timestamp loginLimitTime = loginCountVO_limitTime.getLoginLimitTime();
 				long limitTime = loginLimitTime.getTime();//밀리초로 반환된 로그인제한 시간(기본값은 회원가입 날짜 - 1년)
 				
 				Timestamp currentT = new Timestamp(System.currentTimeMillis());
@@ -90,12 +90,60 @@ public class UserController {
 				
 				//만약 limitTime에 10분(600000밀리초)을 더한 밀리초가 현재시간 밀리초보다 작다면 로그인제한시간이 지났음으로 로그인제한여부를 N으로 바꿔줌
 				if ( (limitTime + 600000) < currnetTime ) {
-					
+					userService.setLoginLimitN(userId);
 				}
-			
-				mv.addObject("login", userVO);
+				
+				//LoginCount 테이블에 로그인제한여부를 검사해 Y가 아니라면 로그인 시도횟수를 0으로 리셋하고 로그인,
+				LoginCountVO loginCountVO_status = userService.getLoginLimitStatus(userId);
+				
+				String loginStatus = loginCountVO_status.getLoginLimitStatus();
+				
+				if(loginStatus == "N") {
+					userService.resetLoginTryNum(userId);
+					
+					mv.addObject("login", userVO);
+				}else {//Y라면 "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다."경고창 출력 
+					
+					mv.addObject("msg", "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다.");
+				}
+		
 		}else { //로그인 실패
-			mv.addObject("msg", "아이디 비밀번호를 확인하세요");			
+			
+			String userId = userVO.getUserId();
+			
+			//로그인시도 실패시간을 불러와서 10분이 지났다면 로그인 시도횟수를 0으로 리셋
+			LoginCountVO loginCountVO_failTime = userService.getloginFailTime(userId);
+			Timestamp loginFailTime = loginCountVO_failTime.getLoginFailTime();
+			long failTime = loginFailTime.getTime();//밀리초로 반환된 마지막 로그인실패 시간(기본값은 회원가입 날짜 - 1년)
+			
+			Timestamp currentT = new Timestamp(System.currentTimeMillis());
+			long currnetTime = currentT.getTime();
+			
+			if ( (failTime + 600000) < currnetTime ) { //만약 로그인에 마지막으로  실패 한시간에 10분(밀리초600000)을 더해준값이 현재시간보다 작다면 로그인시도 횟수를 0으로 리셋
+				userService.resetLoginTryNum(userId);
+			}
+			
+			//현재 로그인 시도횟수를 불러와 +1을 해준뒤 로그인 실패시간을 현재시간으로 리셋
+			//시도횟수를 불러왔는데 시도횟수가 4회였다면(현재 실패까지 5회) 로그인 시도횟수를 0으로 리셋하고 , 로그인제한여부를 N에서 Y로 바꿔준뒤 로그인제한시간을 현재시간으로 설정
+			LoginCountVO loginCountVO_tryNum= userService.getLoginTryNum(userId);
+			int loginTryNum = loginCountVO_tryNum.getLoginTryNum();
+			
+			if(loginTryNum < 4) {
+				int addLoginTryNum = loginTryNum + 1;
+				
+				userService.plusLoginTryNum(userId, addLoginTryNum);
+				userService.resetLoginFailTime(userId);
+				
+				mv.addObject("msg", "아이디 비밀번호를 확인하세요(시도횟수:"+ addLoginTryNum +")");	
+			}else {
+				
+				userService.resetLoginTryNum(userId);
+				userService.setLoginLimitY(userId);
+				userService.resetLoginLimitTime(userId);			
+				
+				mv.addObject("msg", "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다." );
+			}
+						
 		}
 		
 		return mv; //디스패쳐  서블릿 으로 반환
