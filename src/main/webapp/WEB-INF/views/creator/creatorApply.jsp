@@ -109,4 +109,19 @@
     awardsBox.appendChild(div); // id가 awardsBox인 태그 밑에 자식태그로 div 태그 추가
   }
   
+  window.onload = function() {
+		
+		if(history.state == '') return; //메시지를 출력했다면 함수 종료
+	
+		var msg = '${msg }';
+	
+		if(msg != '') {
+			alert(msg);
+			//기존 기록을 삭제하고 새로운 기록 추가 (이렇게 변경된 값은 history.state로 데이터 확인 가능)
+			history.replaceState('', null, null); // 브라우저 기록컨트롤(추가할 데이터, 제목, url주소)
+	}
+	
+	
+}
+  
   </script>
