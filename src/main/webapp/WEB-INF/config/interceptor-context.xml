@@ -23,6 +23,8 @@
 		<!-- 로그인요청시 실행되는 핸들러 -->
 		<mvc:interceptor>
 			<mvc:mapping path="/user/loginForm"/> <!-- path에 해당하는 요청이 들어오면 실행한다. -->
+			<mvc:mapping path="/user/kakaoLogin"/>
+			<mvc:mapping path="/user/kakaoJoin"/>
 			<ref bean="loginSuccessHandler"/> <!-- 인터셉터 클래스로 선언해둔 id값 -->
 		</mvc:interceptor>
 	

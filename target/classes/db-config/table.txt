@@ -11,7 +11,7 @@ alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
 create table users(
     userId varchar2(50) primary key,
     userPw varchar2(50) not null,
-    userName varchar2(50) not null,
+    userName varchar2(50),
     nickName varchar2(50) unique,
     birthDay varchar2(10),
     userEmail varchar2(50),
@@ -63,3 +63,13 @@ create table JOBBOARDDETAIL(
     constraint fk_bno foreign key(bno) references JOBBOARD(bno)
 ); 
 create sequence jobboarddetail_seq start with 1 increment by 1 nocache;
+
+
+========================================= LOGINCOUNT TABLE ======================================== 
+create table LOGINCOUNT(
+    USERID varchar2(50) primary key,
+    LOGINTRYNUM number(2) default 0,
+    LOGINFAILTIME date default SYSDATE - 365,
+    LOGINLIMITSTATUS varchar2(1) default 'N',
+    LOGINLIMITTIME date default SYSDATE - 365  
+);

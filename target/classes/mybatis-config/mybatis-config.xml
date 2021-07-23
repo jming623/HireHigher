@@ -13,5 +13,6 @@
 			<typeAlias type="com.hirehigher.command.FaqListPageVO" alias="FaqListPageVO"/>
 			<typeAlias type="com.hirehigher.command.InsertQuestionPageVO" alias="InsertQuestionPageVO"/>
 			<typeAlias type="com.hirehigher.command.QuestionDetailVO" alias="QuestionDetailVO"/>
+			<typeAlias type="com.hirehigher.command.LoginCountVO" alias="LoginCountVO"/>
 		</typeAliases>
 	</configuration>
