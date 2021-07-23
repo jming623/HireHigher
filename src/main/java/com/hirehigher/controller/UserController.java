@@ -77,7 +77,8 @@ public class UserController {
 		UserVO userVO = userService.login(vo);
 
 		if(userVO != null) { //로그인 성공
-//			System.out.println(userVO.toString());
+			System.out.println("로그인 성공");
+			//System.out.println(userVO.toString());
 			String userId = userVO.getUserId();
 			
 			LoginCountVO loginCountVO_limitTime = userService.getloginLimitTime(userId);
@@ -98,19 +99,29 @@ public class UserController {
 				
 				String loginStatus = loginCountVO_status.getLoginLimitStatus();
 				
-				if(loginStatus == "N") {
+				System.out.println(loginStatus);
+				
+				if(loginStatus.equals("N")) {
 					userService.resetLoginTryNum(userId);
 					
 					mv.addObject("login", userVO);
 				}else {//Y라면 "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다."경고창 출력 
 					
-					mv.addObject("msg", "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다.");
+					mv.addObject("msg", "비밀번호 5회 오류로 10분간 로그인이 제한됩니다.");
 				}
 		
-		}else { //로그인 실패
+		}else { //로그인 실패			
 			
-			String userId = userVO.getUserId();
+			String userId = vo.getUserId();
 			
+			//로그인 실패시 가입된 회원이 아닌지 체크
+			int result = userService.idCheck(userId);
+			
+			if(result != 1) { //1이 아니라면 가입된 회원이 아님
+				mv.addObject("msg", "존재하지 않는 아이디입니다.");
+				return mv;
+			}
+						
 			//로그인시도 실패시간을 불러와서 10분이 지났다면 로그인 시도횟수를 0으로 리셋
 			LoginCountVO loginCountVO_failTime = userService.getloginFailTime(userId);
 			Timestamp loginFailTime = loginCountVO_failTime.getLoginFailTime();
@@ -134,14 +145,14 @@ public class UserController {
 				userService.plusLoginTryNum(userId, addLoginTryNum);
 				userService.resetLoginFailTime(userId);
 				
-				mv.addObject("msg", "아이디 비밀번호를 확인하세요(시도횟수:"+ addLoginTryNum +")");	
+				mv.addObject("msg", "비밀번호를 확인하세요(로그인시도횟수:"+ addLoginTryNum +"회)");	
 			}else {
 				
 				userService.resetLoginTryNum(userId);
 				userService.setLoginLimitY(userId);
 				userService.resetLoginLimitTime(userId);			
 				
-				mv.addObject("msg", "아이디및 비밀번호 5회 오류로 10분간 로그인이 제한됩니다." );
+				mv.addObject("msg", "비밀번호 5회 오류로 10분간 로그인이 제한됩니다." );
 			}
 						
 		}
@@ -491,11 +502,14 @@ public class UserController {
 	@PostMapping("/kakaoJoin")
 	public ModelAndView kakaoJoin(@RequestBody UserVO vo) {		
 				
+		
 		ModelAndView mv = new ModelAndView();
 		
 		String userId = vo.getUserId(); //필수로 넘어오는값
 		String userEmail = vo.getUserEmail(); //선택적으로 넘어오는 값
 		String nickName = vo.getNickName(); //필수로 넘어오는 값 	
+		
+		System.out.println(userId+userEmail+nickName);
 		
 		if(userEmail == null) { //이메일제공을 선택하지 않은경우
 			int result = userService.kakaoJoin2(vo);

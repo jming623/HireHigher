@@ -15,12 +15,12 @@
 
 					<div class="form-group">
 						<label for="id">아이디</label> 
-						<input type="text" class="form-control" name="userId" id="userId">
+						<input type="text" class="form-control" name="userId" id="userId" required>
 					</div>
 
 					<div class="form-group">
 						<label for="pw">비밀번호</label>
-						<input type="password" class="form-control" name="userPw" id="userPw">
+						<input type="password" class="form-control" name="userPw" id="userPw" required>
 					</div>
 
 					<ul class="userLogin-find">
