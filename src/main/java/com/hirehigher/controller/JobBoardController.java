@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.JobBoardDetailVO;
@@ -49,6 +50,7 @@ public class JobBoardController {
 		model.addAttribute("jobVOList", jobVOList); //게시글 리스트 전달
 		
 		return "jobBoard/jobList";
+		//return type void로 주고 return 없애면 자동으로 jobList로 가짐
 	}
 	
 	//상세 화면, 수정 화면
@@ -58,9 +60,11 @@ public class JobBoardController {
 		//System.out.println(bno);
 		//System.outprintln(jobBoardDetailVO.toString());
 		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
-		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);	
+		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
+		
+		//return 타입 없어서 각각 자동으로 상세 요청이면 상세화면으로, 변경 요청이면 변경화면으로 이동
 	}
-
+	
 	//--------------------------------화면 처리-------------------------------
 	
 	//--------------------------------기능 처리-------------------------------
@@ -80,6 +84,7 @@ public class JobBoardController {
 		
 		
 		return "redirect:/jobBoard/jobList"; //다시컨트롤러를 태움
+		//return "redirect:/" 하면 메인페이지로! (원하는대로 설정)
 	}
 	
 	//업데이트 처리

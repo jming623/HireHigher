@@ -43,3 +43,15 @@ width:480px;
 height:90px;
 text-indent: 10px;
 }
+
+#jobboard-addr-container {
+display:inline;
+}
+
+#jobboard-addr-button {
+border:1px solid green;
+width:80px; height:30px;
+border-radius: 20px; 
+margin-bottom: 25px;
+margin-left: 10px;
+}
