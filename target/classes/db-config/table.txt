@@ -73,3 +73,17 @@ create table LOGINCOUNT(
     LOGINLIMITSTATUS varchar2(1) default 'N',
     LOGINLIMITTIME date default SYSDATE - 365  
 );
+
+
+========================================= WORKBOARD TABLE ======================================== 
+
+create table WORKBOARD (
+    listBno number(10) PRIMARY KEY,
+    creatorName VARCHAR2(50) NOT NULL,
+    productImg VARCHAR2(100) NOT NULL,
+    star number(1) NOT NULL,
+    category VARCHAR2(50) NOT NULL,
+    regDate date default sysdate
+    );
+create SEQUENCE WORKBOARD_SEQ increment by 1 START WITH 1 NOCACHE;
+    
