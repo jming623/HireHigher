@@ -26,9 +26,9 @@
             <div class="FAQ-function-kinds"> <!-- FAQ / 1:1 문의 / 공지사항 BOX-->
                 <ul class="FAQ-function-kinds-ul">
                     <li class="FAQ-function-kinds-boxp"></li>
-                    <li class="FAQ-function-kinds-FAQ"><a href="">FAQ</a></li>
-                    <li class="FAQ-function-kinds-mtom"><a href="">1:1문의</a></li>
-                    <li class="FAQ-function-kinds-notice"><a href="">공지사항</a></li>
+                    <li class="FAQ-function-kinds-FAQ"><a href="faqList">FAQ</a></li>
+                    <li class="FAQ-function-kinds-mtom"><a href="mtomPage">1:1문의</a></li>
+                    <li class="FAQ-function-kinds-notice"><a href="../user/mypage">공지사항</a></li>
                     <li class="FAQ-function-kinds-boxb"></li>
                 </ul>
             </div>
@@ -171,7 +171,7 @@
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                        ${home.paymentFaq}
+                        	${home.paymentFaq}
                         </p>
                     </div>
                 </div>
