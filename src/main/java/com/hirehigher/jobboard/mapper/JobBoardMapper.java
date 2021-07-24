@@ -13,4 +13,5 @@ public interface JobBoardMapper {
 	public JobBoardDetailVO getDetail(int bno); //상세
 	public int update(JobBoardDetailVO jobBoardDetailVO); //업데이트
 	public int regist(JobBoardDetailVO jobBoardDetailVO); //등록
+	public int delete(int bno); //삭제
 }

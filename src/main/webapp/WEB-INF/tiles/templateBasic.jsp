@@ -29,8 +29,11 @@
   	
     <!-- 스타일시트(개인 css)는 아래에 추가해주세요 (src/webapp/resources/css에 필요한 css파일 추가하고 이곳에 선언해줍니다.)-->
     <!-- 기본선언 css,사이드바 -->
-  	<link href="${pageContext.request.contextPath }/resources/css/Basic.css?222" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath }/resources/css/Basic.css?11" rel="stylesheet">
   	<link href="${pageContext.request.contextPath }/resources/css/sideBar.css?2" rel="stylesheet">
+  	<!-- 헤더 검색창 분류 박스-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/headerjquery.js"></script>
   	<!-- 홈버튼 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

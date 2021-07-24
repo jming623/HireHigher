@@ -49,8 +49,11 @@ public class JobBoardServiceImpl implements JobBoardService {
 	public int regist(JobBoardDetailVO jobBoardDetailVO) {
 		return jobBoardMapper.regist(jobBoardDetailVO);
 	}
-
-	//public int delete(int bno); //삭제
+	
+	//삭제
+	public int delete(int bno) {
+		return jobBoardMapper.delete(bno);
+	}
 	
 
 }

@@ -16,9 +16,11 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.esm.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.esm.min.js"></script>
 	<script type="module" src="${pageContext.request.contextPath }/resources/js/main.js"/></script>
-	
+	<!-- 헤더 검색창 분류 박스-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/headerjquery.js"></script>
 	<!-- 메인페이지 스타일시트 -->
-	<link href="${pageContext.request.contextPath }/resources/css/main.css?11" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/main.css?2" rel="stylesheet">
 	<!-- 홈버튼 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

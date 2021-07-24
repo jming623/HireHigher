@@ -36,10 +36,6 @@
 		where
 		<if test="searchType == 'title' ">title like '%'||#{searchName}||'%'</if>
 		<if test="searchType == 'company' ">companyName like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'content' ">content like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'writer' ">writer like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'titcont' ">content like '%'||#{searchName}||'%' or title like
-			'%'||#{searchName}||'%'</if>
 		<if test="searchType == null or searchType == '' ">1 = 1</if>
 	</select>
 
@@ -128,6 +124,18 @@
 		end
 	}
    </insert>
+   
+   <delete id="delete">
+   	{call
+		declare
+		begin
+   			delete from JOBBOARD where bno = #{bno};
+   			delete from JOBBOARDDETAIL where bno = #{bno}; 
+		end
+	}
+   
+   </delete>
+   
    
 
 </mapper>

@@ -53,13 +53,15 @@
 									<dl>
 										<dt>고용형태</dt>
 										<dd>
-											<input class="jobmodify-input-mini" name='empType'>
+											<input id="notnull1" class="jobmodify-input-mini" name='empType'>
+											<span id="emptype-check"></span>
 										</dd>
 									</dl>
 									<dl>
 										<dt>모집인원</dt>
 										<dd>
-											<input class="jobmodify-input-mini" name='recNum'>
+											<input id="notnull2" class="jobmodify-input-mini" name='recNum'>
+											<span id="recnum-check"></span>
 										</dd>
 									</dl>
 									<dl>
@@ -148,6 +150,7 @@
 								<dd>
 									<input id="jobboard-addr" class="jobmodify-input-xl"
 										name="companyAddr">
+									<span id="companyaddr-check"></span>
 								</dd>
 							</dl>
 							<button id="jobboard-addr-button" type="button"
@@ -160,7 +163,8 @@
 							<dl>
 								<dt>담당업무</dt>
 								<dd>
-									<input class="jobmodify-input-regular" name="position">
+									<input id="notnull2" class="jobmodify-input-regular" name="position">
+									<span id="position-check"></span>
 								</dd>
 							</dl>
 							<dl>
@@ -234,5 +238,4 @@
 		});
 	}
 </script>
-
 

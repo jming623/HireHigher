@@ -12,8 +12,8 @@ var renderer = new THREE.WebGLRenderer();
 var controls = new OrbitControls(camera, renderer.domElement);
 
 //카메라 위치
-camera.position.setZ(-10);
-camera.position.setX(-65);
+camera.position.setZ(25);
+camera.position.setX(-55);
 camera.position.setY(10);
 document.body.appendChild(renderer.domElement);
 
