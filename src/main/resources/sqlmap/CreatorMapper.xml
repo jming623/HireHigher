@@ -7,8 +7,8 @@
   
   	<insert id="apply">
   	
-  		insert into CREATOR(CREATORBNO,CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1, CREATORCAREER2, CREATORAWARDS, CREATORAWARDS1, CREATORAWARDS2)
-  		values(CREATOR1_SEQ.nextval, #{creatorId}, #{creatorMajor}, #{creatorCareer}, #{creatorCareer1, jdbcType=VARCHAR}, #{creatorCareer2, jdbcType=VARCHAR}, #{creatorAwards}, #{creatorAwards1, jdbcType=VARCHAR}, #{creatorAwards2, jdbcType=VARCHAR})
+  		insert into CREATOR(CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1, CREATORCAREER2, CREATORAWARDS, CREATORAWARDS1, CREATORAWARDS2)
+  		values(#{creatorId}, #{creatorMajor}, #{creatorCareer}, #{creatorCareer1, jdbcType=VARCHAR}, #{creatorCareer2, jdbcType=VARCHAR}, #{creatorAwards}, #{creatorAwards1, jdbcType=VARCHAR}, #{creatorAwards2, jdbcType=VARCHAR})
   		
   	</insert>
   	

@@ -21,7 +21,7 @@
             <div class="form-group" id="careerBox">
               <label for="career">경력사항</label>
               <div class="input-group" id="careerGroup">
-                <input type="text" class="seller-form-inner form-control" name="creatorCareer" id="creatorCareer" placeholder="최대 3개" required>
+                <input type="text" class="seller-form-inner form-control" name="creatorCareer" id="creatorCareer" placeholder="최대 3개">
                 <div class="seller-btn input-group-btn" >
                   <button type="button" class="btn btn-info" id="plusBtn"><i class="far fa-plus"></i></button>
                 </div>
@@ -30,7 +30,7 @@
             <div class="form-group" id="awardsBox">
               <label for="awards">수상경력</label>
               <div class="input-group" id="awardsGroup">
-                <input type="text" class="seller-form-inner form-control" name="creatorAwards" id="creatorAwards" placeholder="최대 3개" required>
+                <input type="text" class="seller-form-inner form-control" name="creatorAwards" id="creatorAwards" placeholder="최대 3개">
                 <div class="seller-btn input-group-btn" >
                   <button type="button" class="btn btn-info" id="plusBtn2"><i class="far fa-plus"></i></button>
                 </div>

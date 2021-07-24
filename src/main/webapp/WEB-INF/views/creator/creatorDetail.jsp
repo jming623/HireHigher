@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-	<section class="creator-detail-section">
+   <section class="creator-detail-section">
        
         <div class="profile-header">
-            
+            <img src="../resources/img/welcome.jpg" alt="">
         </div>
 
         <div class="profile-content">
@@ -13,7 +13,7 @@
                 
                 <div class="creator-profile-img">
                     <form action="">
-                    <img class="" src="https://d2vi0z68k5oxnr.cloudfront.net/40a3c83c-f048-44af-b9db-a65edbc519b2/original.jpeg?d=lg-logo" style="width: 128px; height: 128px;">
+                    <img class="" src="../resources/img/profile.png" style="width: 128px; height: 128px;">
                     </form>
                 </div>
 
@@ -22,9 +22,7 @@
                 <div class="creator-email">jming623@naver.com</div>
 
                 <div class="creator-description">
-                    Crypto.com is the best place to buy, sell, and pay with crypto. Crypto.com serves over 10 million customers today, with the world’s fastest growing crypto app, along with the Crypto.com Visa Card — the world’s most widely available crypto card, the Crypto.com Exchange and Crypto.com DeFi Wallet. 
-                    Crypto.com NFT is the premier platform for collecting and trading NFTs, carefully curated from the worlds of art, design, entertainment and sport.
-                    FAQs: help.crypto.com
+                    <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요."></textarea>
                 </div>
 
                 <div class="creator-social">
@@ -123,19 +121,19 @@
     
     <script>
     
-    	window.onload = function() {
-		
-			if(history.state == '') return; //메시지를 출력했다면 함수 종료
-		
-			var msg = '${msg }';
-		
-			if(msg != '') {
-				alert(msg);
-				//기존 기록을 삭제하고 새로운 기록 추가 (이렇게 변경된 값은 history.state로 데이터 확인 가능)
-				history.replaceState('', null, null); // 브라우저 기록컨트롤(추가할 데이터, 제목, url주소)
-		}
-		
-		
-	}
+       window.onload = function() {
+      
+         if(history.state == '') return; //메시지를 출력했다면 함수 종료
+      
+         var msg = '${msg }';
+      
+         if(msg != '') {
+            alert(msg);
+            //기존 기록을 삭제하고 새로운 기록 추가 (이렇게 변경된 값은 history.state로 데이터 확인 가능)
+            history.replaceState('', null, null); // 브라우저 기록컨트롤(추가할 데이터, 제목, url주소)
+      }
+      
+      
+   }
     
     </script>

@@ -8,8 +8,15 @@
     color:white;
   }
 
-  .profile-header{
-    z-index: 20;
+.profile-header-row {
+   margin:0;
+}
+
+.profile-header {
+  padding: 0;
+}
+
+  .profile-header > img{
     box-sizing: border-box;
     position:relative;
     margin: 0px;
@@ -18,7 +25,6 @@
     background-position: center;
     width:100%;
     height:400px;
-    background-image: url("http://localhost:8181/HireHigher/resources/img/background.jpg");
   }
 
   .profile-content{
@@ -71,6 +77,16 @@
   .creator-description{
       margin-top:24px;
   }
+  
+  .creator-description > textarea {
+  background-color: #1c1c1c;
+  border: none;
+  resize: none;
+}
+
+.creator-description > textarea::placeholder {
+  color: #fff;
+}
 
   .creator-social{
     margin-top: 15px;  
@@ -168,7 +184,7 @@
 }
 
 .creator-profile-img-modify > a > i {
-  background-image: url("	https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png"); 
+  background-image: url("   https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png"); 
   width: 20px;
   height: 20px;
   background-position: 0 -108px;
@@ -179,7 +195,7 @@
 }
 
 .creator-profile-header-modify > a > i{
-  background-image: url("	https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png");
+  background-image: url("   https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png");
   
   width: 20px;
   height: 18px;
@@ -218,12 +234,24 @@
   margin-top: 8px;
 }
 
-.creator-description-textarea > textarea{
+.creator-description-content > textarea {
   background-color: #1c1c1c;
-  border:none;
-  width: 100%;
-  resize: vertical;
-  
+  border: none;
+  resize: none;
+}
+
+.creator-description-content > textarea::placeholder {
+  color: #fff;
+}
+
+.creator-description-textarea > textarea {
+  background-color: #1c1c1c;
+  border: none;
+  resize: none;
+}
+
+.creator-description-textarea > textarea::placeholder {
+  color: #fff;
 }
 
 .creator-description-input > input {

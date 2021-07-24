@@ -67,16 +67,13 @@ create sequence jobboarddetail_seq start with 1 increment by 1 nocache;
 ========================================= CREATOR TABLE ========================================
 
 create table CREATOR (
-    creatorBno number(10) primary key, -- 제작자 번호
-    creatorId varchar2(50) not null, -- 제작자 아이디
+    creatorId varchar2(50) primary key, -- 제작자 아이디
     creatorMajor varchar2(100) not null, -- 전공분야
-    creatorCareer varchar2(100) not null, -- 경력사항
+    creatorCareer varchar2(100), -- 경력사항
     creatorCareer1 varchar2(100), -- 경력사항 1
     creatorCareer2 varchar2(100), -- 경력사항 2
-    creatorAwards varchar2(100) not null, -- 수상경력
+    creatorAwards varchar2(100), -- 수상경력
     creatorAwards1 varchar2(100), -- 수상경력 1
     creatorAwards2 varchar2(100), -- 수상경력 2
     creatorRegdate date default sysdate -- 제작자 등록일
 );
-
-create SEQUENCE CREATOR_SEQ INCREMENT by 1 start with 1 nocache;
