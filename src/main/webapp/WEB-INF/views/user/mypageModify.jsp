@@ -19,7 +19,7 @@
                         <form id="modifyForm" action="modifyForm">
                             <table class="table mypage-table">
                                 <tbody class="m-control">
-                                    <tr><td class="m-title">아이디</td></tr>
+                                    <tr><td class="m-title">아이디 (*변경불가)</td></tr>
                                     <tr>
                                         <td><input class="form-control mypage-input" type="text" name="userId" id="userId" value="${userInfo.userId }" readonly ></td>
                                     </tr>
@@ -41,20 +41,20 @@
                                     <tr>
                                         <td><input class="form-control mypage-input" type="text" name="userName" id="userName" value="${userInfo.userName }" readonly ></td>
                                     </tr>
-                                    <tr><td class="m-title">닉네임</td></tr>                              
+                                    <tr><td class="m-title">닉네임 (*닉네임 변경은 관리자에게 문의하세요)</td></tr>                              
                                     <tr>
                                         <td><input class="form-control mypage-input" type="text" name="nickName" id="nickName" value="${userInfo.nickName }" readonly ></td>
                                     </tr>
-                                    <tr><td class="m-title">생년월일</td></tr>                              
+                                    <tr><td class="m-title">생년월일 (*변경불가)</td></tr>                              
                                     <tr>
                                         <td><input class="form-control mypage-input" type="text" name="birthDay" id="birthDay" value="${userInfo.birthDay }" readonly ></td>
                                     </tr>
                                     <tr><td class="m-title">이메일</td></tr>                              
                                     <tr>
                                         <td>
-                                        	<input class="mypage-modify-zipcode form-control mypage-input" type="text" name="userEmail" id="userEmail" value="${userInfo.userEmail }" >
+                                        	<input class="mypage-modify-zipcode form-control mypage-input" type="text" name="userEmail" id="userEmail" value="${userInfo.userEmail }" style="margin-bottom:0;">
                                         	<button type="button" id="userEmailCheck" class="btn btn-info mypage-modify-Btn">이메일인증</button>
-                                        	<span id="msgUserEmail"></span>
+                                        	<span id="msgUserEmail" style="display:inline-block;"></span>
                                         </td>
                                     </tr>
                                     
@@ -94,8 +94,8 @@
                             </table>
                             
                             <div>
-                                <button type="button" id="requestModify" class="btn btn-primary btn-block">수정하기</button>
-                                <button type="button" class="btn btn-danger btn-block" onclick="location.href='mypage'">돌아가기</button>    
+                                <button type="button" id="requestModify" class="btn btn-primary btn-block mypage-modify-btnheight">수정하기</button>
+                                <button type="button" class="btn btn-danger btn-block mypage-modify-btnheight" onclick="location.href='mypage'">돌아가기</button>    
                             </div>                           
 
                         </form>
@@ -110,7 +110,11 @@
 
     </section>
 
-    <script src="${pageContext.request.contextPath }/resources/js/mypageModify.js?2"></script>
+    <script>   	
+    	var original_email= "${userInfo.userEmail}";
+    </script>
+    
+    <script src="${pageContext.request.contextPath }/resources/js/mypageModify.js?1"></script>
 
 	<script>
 	//폼검증 및 서브밋작업

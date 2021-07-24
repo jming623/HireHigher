@@ -19,9 +19,9 @@
     
                 <div class="tab-content mypage-wrap">
                     <div id="menu1" class="tab-pane fade in active mypage-info">
-                        <form action="">
+                        <form id="mypage-form" action="">
                             <table class="table mypage-table">
-                                <tbody class="m-control">
+                                <tbody class="m-control mypage-table-body">
                                     <tr><td class="m-title">아이디</td></tr>
                                     <tr>
                                         <td><input class="form-control mypage-input" type="text" value="${userInfo.userId }" readonly ></td>
@@ -63,7 +63,7 @@
                             </table>
                             
                             <div>
-                                <button type="button" class="btn btn-primary btn-block" onclick="location.href='mypageModify'">수정하기</button>    
+                                <button type="button" id="mypage-modify-btn" class="btn btn-info btn-block" onclick="location.href='mypageModify'">수정하기</button>    
                             </div>                           
 
                         </form>
