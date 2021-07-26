@@ -11,8 +11,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
 
 	<!-- 문의 등록하기 페이지 sql -->
-	
+	<insert id="insertRegist">
+		insert into insertQuestionPage(insertBno,insertKind,insertId,insertTitle,insertContent,answerStatus,insertImg)
+		values (insertQuestionPage_SEQ.nextval,#{insertKind},#{insertId},#{insertTitle},#{insertContent},#{answerStatus},#{insertImg})
+	</insert>
 	<!-- 문의 수정하기 페이지 sql -->
-	<!-- 문의 상세페이지 가져오기 sql -->
+	<select id="getUpdateInfo" resultType="InsertQuestionPageVO">
+		select * from insertQuestionPage where insertBno = #{insertBno}
+	</select>
+	
+	<update id="updateData">
+		update insertQuestionPage set 
+		insertKind = #{insertKind},
+		insertId = #{insertId},
+		insertTitle = #{insertTitle},
+		insertContent = #{insertContent},
+		insertImg = #{insertImg}
+		where insertBno = #{insertBno}
+	</update>
+		
+	<!-- 문의 / 상세페이지 가져오기 sql -->
+	<select id="getMtomList" resultType="InsertQuestionPageVO">
+  		select * from insertQuestionPage order by insertBno desc
+  	</select>
+  	
+  	<!-- 상세페이지 답변 등록 sql -->
+  	<update id="answerData">
+		update insertQuestionPage set 
+		answerTitle = #{answerTitle},
+		answerContent = #{answerContent},
+		answerStatus = #{answerStatus}
+		where insertBno = #{insertBno}
+	</update>
 	<!-- 문의 삭제 sql -->
+	<delete id="updatedelete">
+		delete from insertQuestionPage where insertBno = #{inserBno}
+	</delete>
+	
 </mapper>
