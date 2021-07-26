@@ -42,20 +42,20 @@
       z-index: 20;
   }
 
-  .creator-profile-img{
+  .creator-profile-wrap{
       background-color: white;
       width:140px;
       height:140px;
       border-radius: 50%;
+      text-align: center;
   }
 
-  .creator-profile-img > form img{
+  .creator-profile-img{
     width: 128px;
     height: 128px;
     border-radius: 50%;
     object-fit: cover;
     margin-top: 6px;
-    margin-left: 6px;
   }
 
   .creator-name{

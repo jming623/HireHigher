@@ -3,7 +3,10 @@ package com.hirehigher.creator.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hirehigher.command.BackgroundImgVO;
+import com.hirehigher.command.CreatorPageVO;
 import com.hirehigher.command.CreatorVO;
+import com.hirehigher.command.ProfileImgVO;
 import com.hirehigher.command.UserVO;
 import com.hirehigher.creator.mapper.CreatorMapper;
 
@@ -14,15 +17,57 @@ public class CreatorServiceImpl implements CreatorService {
 	private CreatorMapper creatorMapper;
 	
 	@Override
-	public int apply(CreatorVO creatorvo) {
+	public int apply(CreatorVO creatorVO) {
 		
-		return creatorMapper.apply(creatorvo);
+		return creatorMapper.apply(creatorVO);
 	}
 
 	@Override
 	public int apply1(UserVO userVO) {
 		
 		return creatorMapper.apply1(userVO);
+	}
+
+	@Override
+	public int pageRegist(CreatorPageVO pageVO) {
+		
+		return creatorMapper.pageRegist(pageVO);
+	}
+
+	@Override
+	public int profileRegist(ProfileImgVO profileVO) {
+		
+		return creatorMapper.profileRegist(profileVO);
+	}
+
+	@Override
+	public int backgroundRegist(BackgroundImgVO backgroundVO) {
+		
+		return creatorMapper.backgroundRegist(backgroundVO);
+	}
+
+	@Override
+	public CreatorPageVO pageDetail(String pageId) {
+		
+		return creatorMapper.pageDetail(pageId);
+	}
+
+	@Override
+	public CreatorVO creatorDetail(String creatorId) {
+		
+		return creatorMapper.creatorDetail(creatorId);
+	}
+
+	@Override
+	public ProfileImgVO profileGet(String profileId) {
+		
+		return creatorMapper.profileGet(profileId);
+	}
+
+	@Override
+	public BackgroundImgVO backgroundGet(String backgroundId) {
+		
+		return creatorMapper.backgroundGet(backgroundId);
 	}
 
 }

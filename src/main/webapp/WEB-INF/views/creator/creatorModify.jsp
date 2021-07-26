@@ -4,7 +4,7 @@
    <section class="creator-detail-section">
         <div class="row profile-header-row">
         <div class="profile-header col-lg-12">
-           <img id="creator-background-img-target" src="../resources/img/welcome.jpg" alt="">
+           <img id="creator-background-img-target" src="../resources/img/creatorBackground/welcome.jpg" alt="">
             <div class="profile-header-inner">
                 <div class="creator-profile-header-modify">
                     <a href=""><i><input type="file" class="creator-profile-img-input" name="background-file" id="background-file"></i></a>
@@ -16,14 +16,16 @@
                            
             <div class="creator-profile">
                 
-                <div class="creator-profile-img">
-                    <form action="">
-                        <img class="" id="creator-profile-img-target" src="../resources/img/profile.png" style="width: 128px; height: 128px;">
+                <div class="creator-profile-wrap">
+                    
+
+                        <img class="creator-profile-img" id="creator-profile-img-target" src="../resources/img/creatorProfile/profile.png">
 
                         <div class="creator-profile-img-modify">
                            <a href=""><i><input type="file" class="creator-profile-img-input" name="profile-file" id="profile-file"></i></a>
                         </div>
-                    </form>
+
+                    
                 </div>
 
                 <div class="creator-name">jming623</div>
@@ -36,11 +38,11 @@
                     <form action="" >
                         
                     <div class="creator-description-content" id="creator-description-content">
-                        <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요."></textarea>
+                        <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly></textarea>
                     </div>
 
                     <div class="creator-description-textarea" id="creator-description-textarea" style="display: none;"> 
-                        <textarea name="" id="" cols="36" rows="14">Crypto.com is the best place to buy, sell, and pay with crypto. Crypto.com serves over 10 million customers today, with the world’s fastest growing crypto app, along with the Crypto.com Visa Card — the world’s most widely available crypto card, the Crypto.com Exchange and Crypto.com DeFi Wallet.Crypto.com NFT is the premier platform for collecting and trading NFTs, carefully curated from the worlds of art, design, entertainment and sport.FAQs: help.crypto.com</textarea>
+                        <textarea name="" id="" cols="36" rows="14"></textarea>
                     </div>
                     
                     <div class="creator-description-input" id="creator-description-input" style="display: none;">

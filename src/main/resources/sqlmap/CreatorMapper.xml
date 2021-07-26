@@ -20,4 +20,49 @@
   		
   	</update>
   	
+  	<insert id="pageRegist">
+  	
+  		insert into CREATORPAGE(PAGEID, CREATOREMAIL, CREATORNICK, ABOUTME, INSTAPATH)
+  		values(#{pageId}, #{creatorEmail}, #{creatorNick}, #{aboutMe}, #{instaPath})
+  	
+  	</insert>
+  	
+  	<insert id="profileRegist">
+  	
+  		insert into PROFILEIMG(PROFILEID, PROFILEPATH, PROFILELOCA, PROFILENAME, PROFILEREAL)
+  		values(#{profileId}, #{profilePath}, #{profileLoca}, #{profileName}, #{profileReal})
+  	
+  	</insert>
+  	
+  	<insert id="backgroundRegist">
+  	
+  		insert into BACKGROUNDIMG(BACKGROUNDID, BACKGROUNDPATH, BACKGROUNDLOCA, BACKGROUNDNAME, BACKGROUNDREAL)
+  		values(#{backgroundId}, #{backgroundPath}, #{backgroundLoca}, #{backgroundName}, #{backgroundReal})
+  	
+  	</insert>
+  	
+  	<select id="pageDetail" resultType="CreatorPageVO">
+  	
+  		select * from CREATORPAGE where pageid = #{pageId}
+  	
+  	</select>
+  	
+   	<select id="creatorDetail" resultType="CreatorVO">
+   	
+   		select * from CREATOR where creatorid = #{creatorId}
+   	
+   	</select>
+   	
+   	<select id="profileGet" resultType="ProfileVO">
+   	
+   		select * from PROFILEIMG where profileid = #{profileId}
+   	
+   	</select>
+  	
+  	<select id="backgroundGet" resultType="BackgroundVO">
+  	
+  		select * from BACKGROUNDIMG where backgroundid = #{backgroundId}
+  	
+  	</select>
+  	
   </mapper>

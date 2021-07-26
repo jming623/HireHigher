@@ -13,5 +13,9 @@
 			<typeAlias type="com.hirehigher.command.FaqListPageVO" alias="FaqListPageVO"/>
 			<typeAlias type="com.hirehigher.command.InsertQuestionPageVO" alias="InsertQuestionPageVO"/>
 			<typeAlias type="com.hirehigher.command.QuestionDetailVO" alias="QuestionDetailVO"/>
+			<typeAlias type="com.hirehigher.command.CreatorPageVO" alias="CreatorPageVO"/>
+			<typeAlias type="com.hirehigher.command.CreatorVO" alias="CreatorVO"/>
+			<typeAlias type="com.hirehigher.command.ProfileImgVO" alias="ProfileVO"/>
+			<typeAlias type="com.hirehigher.command.BackgroundImgVO" alias="BackgroundVO"/>
 		</typeAliases>
 	</configuration>

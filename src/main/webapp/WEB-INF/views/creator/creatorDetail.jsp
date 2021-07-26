@@ -1,32 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
    <section class="creator-detail-section">
        
         <div class="profile-header">
-            <img src="../resources/img/welcome.jpg" alt="">
+            <!-- <img src="../resources/img/creatorBackground/welcome.jpg"> -->
         </div>
 
         <div class="profile-content">
                            
             <div class="creator-profile">
                 
-                <div class="creator-profile-img">
-                    <form action="">
-                    <img class="" src="../resources/img/profile.png" style="width: 128px; height: 128px;">
-                    </form>
+                <div class="creator-profile-wrap">
+                    <!-- <img class="creator-profile-img" src="../resources/img/creatorProfile/profile.png" style="width: 128px; height: 128px;"> -->
                 </div>
 
-                <div class="creator-name">jming623</div>
+                <div class="creator-name">${pageVO.creatorNick}</div>
 
-                <div class="creator-email">jming623@naver.com</div>
+                <div class="creator-email">${pageVO.creatorEmail}</div>
 
                 <div class="creator-description">
-                    <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요."></textarea>
+                    <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly>${pageVO.aboutMe}</textarea>
                 </div>
 
                 <div class="creator-social">
-                    <a href="https://www.instagram.com/"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
+                    <a href="${pageVO.instaPath }"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
                 </div>
                 
                 <div class="profile-modifyBtn">
@@ -49,15 +48,19 @@
                                 <div class="creator-content-info">
                                     <div class="creator-content-info-detail">
                                         <p>전공분야:</p>
-                                        <small style="min-height: 50px;">디자인설계</small>
+                                        <small style="min-height: 50px;">${creatorVO.creatorMajor }</small>
                                     </div>
                                     <div class="creator-content-info-detail">
                                         <p>경력사항:</p>
-                                        <small>바른미술학원 2년근무</small>
+                                        <small>${creatorVO.creatorCareer }</small>
+                                        <small>${creatorVO.creatorCareer1 }</small>
+                                        <small>${creatorVO.creatorCareer2 }</small>
                                     </div>
                                     <div class="creator-content-info-detail">
                                         <p>수상경력:</p>
-                                        <small>미술경시대회 우승</small>
+                                        <small>${creatorVO.creatorAwards }</small>
+                                        <small>${creatorVO.creatorAwards1 }</small>
+                                        <small>${creatorVO.creatorAwards2 }</small>
                                     </div>
                                 </div>
 
@@ -120,6 +123,45 @@
     </section>
     
     <script>
+    
+    	$(document).ready(function() {
+    		
+    		function profileGet() {
+    				
+    			
+    			var strAdd = "";
+    			
+    			$.getJSON("profileGet", function(data) {
+    				
+    				strAdd += '<img class="creator-profile-img" src="' + "view/"+ data.profileLoca+"/"+data.profileName + '">';
+    				
+    				$(".creator-profile-wrap").html(strAdd);
+    			});
+    		}
+    		
+			function backgroundGet() {
+    				
+    			
+    			var strAdd = "";
+    			
+    			$.getJSON("backgroundGet", function(data) {
+    				
+    				strAdd += '<img src="' + "view1/" + data.backgroundLoca + "/" + data.backgroundName + '">';
+    				
+    				$(".profile-header").html(strAdd);
+    			});
+    		}
+    		
+    		(function() {
+				profileGet();
+			})();
+    		
+    		(function() {
+    			backgroundGet();
+			})();
+    		
+    		
+    	}); // ready(function) 끝
     
        window.onload = function() {
       
