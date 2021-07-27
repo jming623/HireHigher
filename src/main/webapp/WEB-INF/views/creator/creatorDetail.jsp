@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="creator-social">
-                    <a href="${pageVO.instaPath }"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
+                    <a href="${pageVO.instaPath }" id="instalink"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
                 </div>
                 
                 <div class="profile-modifyBtn">
@@ -124,31 +124,40 @@
     
     <script>
     
+    
+    	$("#instalink").click(function() { // a 태그 클릭시 인스타 주소가 없다면 alert창
+    		if($("#instalink").attr("href") == "") {
+        		alert("등록된 인스타그램 주소가 없습니다.");
+        	}
+    	})
+    
     	$(document).ready(function() {
     		
-    		function profileGet() {
+    		function profileGet() { // 프로필 이미지를 얻어오는 함수
     				
     			
     			var strAdd = "";
     			
     			$.getJSON("profileGet", function(data) {
     				
+    				// view를 타고 컨트롤러에 이미지 반환 요청으로 보내준다
     				strAdd += '<img class="creator-profile-img" src="' + "view/"+ data.profileLoca+"/"+data.profileName + '">';
     				
-    				$(".creator-profile-wrap").html(strAdd);
+    				$(".creator-profile-wrap").html(strAdd); // 클래스명 밑에 strAdd의 태그를 추가
     			});
     		}
     		
-			function backgroundGet() {
+			function backgroundGet() { // 백그라운드 이미지를 얻어오는 함수
     				
     			
     			var strAdd = "";
     			
     			$.getJSON("backgroundGet", function(data) {
     				
+    				// view를 타고 컨트롤러에 이미지 반환 요청으로 보내준다
     				strAdd += '<img src="' + "view1/" + data.backgroundLoca + "/" + data.backgroundName + '">';
     				
-    				$(".profile-header").html(strAdd);
+    				$(".profile-header").html(strAdd); // 클래스명 밑에 strAdd의 태그를 추가
     			});
     		}
     		
