@@ -3,9 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
-
-
-   <section>
+  <section>
 	<div class="container">
 		<div class="row">
 				<div class="MtoM-all">
@@ -33,16 +31,22 @@
 								<button class="btn btn-default" id="selectAllDelete">선택삭제</button>
 							</div>
 						</div>
-
+						
+						 <form action="mtom-optionForm">
 						<div class="MtoM-top-select-right">
-							<select name="" id="">
+							<select name="mtomSelect" id="">
 								<!-- 선택박스 오른쪽 영역-->
-								<option value="">5개 보기</option>
-								<option value="">10개 보기</option>
-								<option value="">30개 보기</option>
+								<option value="5">5개 보기</option>
+								<option value="10">10개 보기</option>
+								<option value="30">30개 보기</option>
 							</select>
+							
+							<div>
+								<button type="submit">go</button>
+							</div>
+							
 						</div>
-
+					 </form> 
 
 					</div>
 					<!------------ 하단 문의내역 박스 영역 ----------->
@@ -62,6 +66,7 @@
 					</div>
 
 					<!-- 문의 내역---------------------- -->
+					<form action="mtomPageList" name="mtomPageForm">
 					<c:forEach var="mtom" items="${mtomList}" varStatus="index">
 
 						<div class="MtoM-answer-box">
@@ -95,8 +100,42 @@
 						</div>
 						<!-- 문의 내역 종료 -->
 					</c:forEach>
+					
+					<div class="mtomListpage-num">
+								
+						<c:if test="${mtomPageVO.mtomprev}">			
+						<button class="mtom-btn-before btn btn-default" 
+							onclick="location.href='mtomPage?currentPage=${mtomPageVO.beginPage-1}&displayRow=${mtomPageVO.displayRow}'">이전</button>
+						</c:if>
+												
+						<!-- 페이지 버튼 숫자 -->
+						<c:forEach var="num" begin="${mtomPageVO.beginPage}" end="${mtomPageVO.endPage}">			
+							<button class="${mtomPageVO.currentPage eq num ? 'active' : ''} mtom-btn btn btn-default"
+							onclick="location.href='mtomPage?currentPage=${num}&displayRow=${mtomPageVO.displayRow}'">${num}</button>
+						</c:forEach>
+				
+						<c:if test="${mtomPageVO.mtomnext}">
+						<button class="mtom-btn-next btn btn-default"
+							onclick="location.href='mtomPage?currentPage=${mtomPageVO.endPage + 1}&displayRow=${mtomPageVO.displayRow}'">다음</button>
+						</c:if>
+							
+					</div>
+					</form>
 				</div>	
 		</div>
 	</div>
 </section>
 
+
+<script>
+	
+	var pagination = document.querySelector(".mtomListpage-num");
+	pagination.onclick = function() {
+		event.preventDefault(); //고유이벤트 속성 중지
+		if(event.target.tagName != 'BUTTON') return;
+	
+		document.mtomPageForm.currentPage.value = event.target.dataset.currentPage;
+		document.mtomPageForm.submit();
+	}
+	
+</script>

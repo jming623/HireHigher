@@ -9,12 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getFaqList" resultType="FaqListPageVO">
   		select * from faqListPage order by faqBno desc
   	</select>
-
-	<!-- 문의 등록하기 페이지 sql -->
+	
+	<!-- 문의 업데이트 페이지 sql -->
 	<insert id="insertRegist">
 		insert into insertQuestionPage(insertBno,insertKind,insertId,insertTitle,insertContent,answerStatus,insertImg)
 		values (insertQuestionPage_SEQ.nextval,#{insertKind},#{insertId},#{insertTitle},#{insertContent},#{answerStatus},#{insertImg})
 	</insert>
+	
 	<!-- 문의 수정하기 페이지 sql -->
 	<select id="getUpdateInfo" resultType="InsertQuestionPageVO">
 		select * from insertQuestionPage where insertBno = #{insertBno}
@@ -35,6 +36,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from insertQuestionPage order by insertBno desc
   	</select>
   	
+  	<!-- 문의 리스트 페이지네이션 -->
+	<select id="mtomgetList" resultType="InsertQuestionPageVO">
+  		<![CDATA[
+   		select *
+		from (select rownum rn,
+		             a.*     
+		      from (select *
+		            from insertQuestionPage         
+		            order by insertBno desc) a
+		)
+		where rn > (#{currentPage}-1) * #{displayRow} and rn <= #{currentPage} * #{displayRow}
+		]]>
+	</select>
+
+	<select id="mtomgetTotal" resultType="int">
+		select count(*) as total
+		from insertQuestionPage
+	</select>
+
+  	
   	<!-- 상세페이지 답변 등록 sql -->
   	<update id="answerData">
 		update insertQuestionPage set 
@@ -43,6 +64,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		answerStatus = #{answerStatus}
 		where insertBno = #{insertBno}
 	</update>
+	
 	<!-- 문의 삭제 sql -->
 	<delete id="updatedelete">
 		delete from insertQuestionPage where insertBno = #{inserBno}

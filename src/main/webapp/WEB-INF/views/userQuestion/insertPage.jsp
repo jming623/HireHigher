@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+
  <section>
     <div class="container">
         <div class="row">
@@ -16,7 +17,7 @@
                 </div>
                 
                 <!-- 오른쪽 영역------------------------------ -->
-                <form action="insertQ" method="post">
+                <form action="insertQ" method="post" enctype="multipart/form-data">
                 <div class="insert-right-box">
                     <div class="insert-question-sector"><!-- 문의 등록 영역 -->
                         <div class="insert-question-title-box"> <!-- 문의 데이터 제목 -->
@@ -84,7 +85,7 @@
                                 <button type="button" title="파일선택">
                                 <span>파일 선택</span>  
                                 </button>
-                                <input type="file" class="input_file" title="파일선택">
+                                <input type="file" name="insertInputFile" class="input_file" title="파일선택"  multiple="multiple">
                                 </div>
                             </div>
                             <div class="insert-file-funtion-warning"><!-- 파일첨부 경고문-->
@@ -105,9 +106,27 @@
         </div>
     </div>
     </section>
-    
+<script>
+	function uploadFile() {
+		var form = $('#insertQ')[0];
+		var formData = new FormData(form);
+		formData.append("fileObj", $("#insertInputFile")[0].files[0]);
 
-    <!-- 파일추가 js -->
+		$.ajax({
+			url : '',
+			processData : false,
+			contentType : false,
+			data : formData,
+			type : 'POST',
+			success : function(result) {
+				alert("업로드 성공!!");
+			}
+		});
+	}
+</script>
+
+
+<!-- 파일추가 js -->
     <script>
         	$(function(){
                 $('.upload_text').val('파일경로표시');

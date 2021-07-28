@@ -1,6 +1,7 @@
 package com.hirehigher.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,17 +10,27 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
+import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.command.QuestionDetailVO;
 import com.hirehigher.user.service.UserService;
 import com.hirehigher.userquestion.service.UserQuestionService;
+import com.hirehigher.util.JobCriteria;
+import com.hirehigher.util.JobPageVO;
+import com.hirehigher.util.UserCriteria;
+import com.hirehigher.util.UserPageVO;
+import com.hirehigher.util.mtomCriteria;
+import com.hirehigher.util.mtomListCountVO;
 
 
 @Controller
@@ -111,21 +122,32 @@ public class userQuestionController {
 	
 	
 	//문의 내역 리스트 페이지 ---------------------------------
-//	@RequestMapping("/mtomPage")
-//	public void mtomPage() {
-//		
-//		
-//	}
+
+	//리스트 화면
 	@RequestMapping("/mtomPage")
-	public String mtomPage(Model model) {
+	public String mtomPageList(Model model, mtomCriteria cri) { //Model은 스프링에서 자동 주입, 댓글 form 태그에서 값 받음
 		
-		ArrayList<InsertQuestionPageVO> mtomList = userQuestionService.getMtomList();
-		model.addAttribute("mtomList",mtomList);
+		ArrayList<InsertQuestionPageVO> mtomList = userQuestionService.mtomgetList(cri);
+		int total = userQuestionService.mtomgetTotal(cri);
+		mtomListCountVO mtomPageVO = new mtomListCountVO(cri, total); //(기준 페이지, 총 페이지 수)
+		
+		System.out.println(total);
+		System.out.println(mtomList.toString());
+		System.out.println(mtomPageVO.toString());
+		
+		//model에 담아서 화면으로
+		model.addAttribute("mtomPageVO", mtomPageVO); //페이지 네이션 전달
+		model.addAttribute("mtomList", mtomList); //게시글 리스트 전달
 		
 		return "userQuestion/mtomPage";
 	}
 	
-	
+//	@RequestMapping("/mtom-optionForm")
+//	public String mtomSelect(Model model) {
+//		
+//		model.addAttribute("mtomSelect", userQuestionService.get);
+//
+//		}
 	
 	//문의 내역 답변 및 상세 페이지 ---------------------------------
 	@RequestMapping("/questionDetail")
