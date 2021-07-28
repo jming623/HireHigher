@@ -82,5 +82,7 @@
 	<tiles:insertAttribute name="body"/>
 	<!-- 푸터영역 -->
 	<tiles:insertAttribute name="footer"/>
+	<!-- 반응형 메뉴 -->
+	<script src="${ pageContext.request.contextPath }/resources/js/responsivemenu.js"/></script>
 </body>
 </html>

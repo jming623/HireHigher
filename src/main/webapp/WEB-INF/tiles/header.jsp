@@ -11,26 +11,30 @@
 		<div class="home-container">
 			<!--[3-1]-->
 			<div class="home">
-				<a href="${pageContext.request.contextPath}">HireHigher</a>
+				<a href="${pageContext.request.contextPath}">HireHigher</a> <img
+					id="header-menuholder"
+					src="${pageContext.request.contextPath }/resources/img/menu-holder-logo.png">
 			</div>
 
-				<div class="main-search-bar-container">
-					<div class="main-search-select">
-						<div class="main-search-default" name="searchType">SELECT</div>
-						<ul class="main-search-menu">
-							<li>WORKS</li>
-							<li>JOBS<li>
-							<li>ALL<li>
-						</ul>
-					</div>
-					<form action="/HireHigher/jobBoard/jobList">
-						<input type="text" placeholder="" class="main-search-bar" name="searchName">
-						<a href="#" class="main-search-button"> <img
-							src="${pageContext.request.contextPath }/resources/img/search-logo.png">
-						</a>
-						<input type="hidden" name="searchType" value="title">
-					</form>
+			<div class="main-search-bar-container">
+				<div class="main-search-select">
+					<div class="main-search-default" name="searchType">SELECT</div>
+					<ul class="main-search-menu">
+						<li>WORKS</li>
+						<li>JOBS
+						<li>
+						<li>ALL
+						<li>
+					</ul>
 				</div>
+				<form action="/HireHigher/jobBoard/jobList">
+					<input type="text" placeholder="" class="main-search-bar"
+						name="searchName"> <a href="#" class="main-search-button">
+						<img
+						src="${pageContext.request.contextPath }/resources/img/search-logo.png">
+					</a> <input type="hidden" name="searchType" value="title">
+				</form>
+			</div>
 
 		</div>
 
@@ -64,7 +68,13 @@
 				</c:when>
 				<c:otherwise>
 					<li><a
-						href="${pageContext.request.contextPath }/jobBoard/jobList">RECRUITMENT
+						href="${pageContext.request.contextPath }/user/mypage">MYPAGE
+							<img
+							src="${ pageContext.request.contextPath }/resources/img/mypage-logo.png">
+					</a></li>
+
+					<li><a
+						href="${pageContext.request.contextPath }/jobBoard/jobList">JOBS
 							<img
 							src="${ pageContext.request.contextPath }/resources/img/recruitment-logo.png">
 					</a></li>

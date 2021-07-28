@@ -1,32 +1,63 @@
+#header-menuholder {
+    width: 35px;
+    height: 25px;
+    position: absolute;
+    top: 47px;
+    right: 25px;
+    cursor: pointer;
+    -webkit-filter: opacity(.9) drop-shadow(0 0 0 gray);
+    filter: opacity(.9) drop-shadow(0 0 0 gray) brightness(20);
+    display: none;
+}
 
-@media screen and (max-width: 1300px) {
+#header-menuholder:hover {
+    -webkit-filter: opacity(.4) drop-shadow(0 0 0 rgb(255, 255, 0));
+    filter: opacity(.3) drop-shadow(1 1 1 yellow);
+}
+
+@media screen and (max-width: 1350px) {
+    .home:hover a:before {
+        width: 0;
+    }
+   
+    #header-menuholder{
+       display:block;
+   }
+
     .footer-container {
         background-color: #07252d;
     }
    
-    .home:hover a:before {
-        width:0%;
+    .header-nav {
+        flex-direction:column;
     }
+
     .nav-links {
-         width: 100vw;
+        flex-direction: column;
+        width: 100vw;
         background-color: #07252d;
         right: 0;
         display: flex;
         align-items: center;
-        justify-content: center;
+        letter-spacing: 10px;
         z-index: 9999;
-        top: 10vh;
+        top: 8vh;
         flex-wrap: nowrap;
-        font-size: 20px;
-        height: 3vh;
+        display:none;
     }
 
-    .nav-links li {
-        margin-bottom:20px;
-    }
-
-    .main-section {
-        display: none;
+    .nav-links.active {
+        flex-direction: column;
+        width: 100vw;
+        background-color: #07252d;
+        right: 0;
+        display: flex;
+        align-items: center;
+        letter-spacing: 10px;
+        z-index: 9999;
+        top: 8vh;
+        flex-wrap: nowrap;
+        display:flex;
     }
 
     .main-search-bar-container {
@@ -34,8 +65,8 @@
     }
 
     .header {
-        height:10vh;
         background-color: #07252d;
+        height: 80px;
     }
     .home-container {
         position: relative;
@@ -52,7 +83,7 @@
     }
 
     .header-nav .home a {
-        top: 13px;
+        top: 20px;
         color: #0e3742;
         letter-spacing: 1px;
         font-size: 2em;
@@ -76,20 +107,16 @@
     }
 }
 
-@media screen and (max-width: 681px) {
-    .nav-links {
-        font-size: 18px;
-    }
+
+
+@media screen and (max-width: 900px) {
     .nav-links li a img {
         display: none;
     }
+
 }
 
 @media screen and (max-width: 420px) {
-    .nav-links {
-        font-size: 14px;
-    }
-   
     .header-nav .home a {
         font-size: 1.5em;
     }
@@ -98,4 +125,18 @@
         top:-30px;
     }
 
+    .header {
+        height: 60px;
+    }
+
 }
+@media screen and (max-width: 360px) {
+    
+#header-menuholder {
+    width: 23px;
+    height: 18px;
+    top: 50px;
+    right: 13px;
+}
+
+}}
