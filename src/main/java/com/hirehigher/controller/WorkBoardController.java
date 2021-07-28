@@ -23,7 +23,7 @@ public class WorkBoardController {
 	@Qualifier("workBoardSerivce")
 	private WorkBoardService workBoardService;
 
-	@RequestMapping("/workBoard")
+	@RequestMapping("/workBoard?Category=2D_ART")
 	public String workBoard(WorkBoardCriteria cri , Model model) {
 		
 		ArrayList<WorkBoardVO> workBoardList = workBoardService.getWorkBoardList(cri);
@@ -33,6 +33,10 @@ public class WorkBoardController {
 		} 
 		
 		String Category = cri.getCategory();
+		
+		if(Category == null) {
+			return "main/main";
+		}
 		
 		int Total = workBoardService.getTotal(Category);
 		
