@@ -17,5 +17,6 @@
 			<typeAlias type="com.hirehigher.command.CreatorVO" alias="CreatorVO"/>
 			<typeAlias type="com.hirehigher.command.ProfileImgVO" alias="ProfileVO"/>
 			<typeAlias type="com.hirehigher.command.BackgroundImgVO" alias="BackgroundVO"/>
+			<typeAlias type="com.hirehigher.command.WorkBoardVO" alias="WorkBoardVO"/>
 		</typeAliases>
 	</configuration>

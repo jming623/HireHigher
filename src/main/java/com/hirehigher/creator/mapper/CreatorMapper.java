@@ -1,10 +1,16 @@
 package com.hirehigher.creator.mapper;
 
+import java.util.ArrayList;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.hirehigher.command.BackgroundImgVO;
 import com.hirehigher.command.CreatorPageVO;
 import com.hirehigher.command.CreatorVO;
 import com.hirehigher.command.ProfileImgVO;
 import com.hirehigher.command.UserVO;
+import com.hirehigher.command.WorkBoardVO;
+
 
 public interface CreatorMapper {
 
@@ -17,6 +23,8 @@ public interface CreatorMapper {
 	public CreatorVO creatorDetail(String creatorId); // creator 상세
 	public ProfileImgVO profileGet(String profileId); // 프로필 이미지 조회
 	public BackgroundImgVO backgroundGet(String backgroundId); // 백그라운드 이미지 조회
+	public int getTotal(String userName); // 총 게시글 수
+	public ArrayList<WorkBoardVO> getList(@Param("pageNum") int pageNum,@Param("amount") int amount,@Param("userName") String userName); // 게시글 리스트
 	
 	
 }

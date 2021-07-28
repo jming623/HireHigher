@@ -65,4 +65,28 @@
   	
   	</select>
   	
+  	<select id="getTotal" resultType="int">
+  	
+  		select count(*) as total from workboard where username = #{userName}
+  	
+  	</select>
+  	
+   	<select id="getList" resultType="WorkBoardVO">
+ 
+  		select *
+		from (
+    		select rownum rn,
+       			   a.*
+    		from (
+        		   select *
+        		   from workboard
+        		   where username = #{userName}
+        		   order by bno desc
+    		) a
+		)
+		<![CDATA[
+		where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
+  		]]>
+  	</select>
+  	
   </mapper>

@@ -9,7 +9,7 @@ public class CreatorCriteria {
 	private int amount;
 	
 	public CreatorCriteria() {
-		this(1, 10);
+		this(1, 7);
 	}
 	
 	public CreatorCriteria(int pageNum, int amount) {

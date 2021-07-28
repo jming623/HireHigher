@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
    <section class="creator-detail-section">
@@ -79,25 +80,18 @@
                                             </tr>
                                         </thead> 
                                         <tbody class="creator-content-writing-tbody">
+                                        	<c:forEach var="vo" items="${list }">
+                                        	<c:set var="i" value="${i+1}" />
                                             <tr>
-                                                <td>1</td>
-                                                <td><a href="">첫글</a></td>
-                                                <td><a href="">첫글은이렇게 작성하였습니다.</a></td>
-                                                <td>2021/07/05</td>
+                                                <td>${i}</td>
+                                                <td><a href="">${vo.title }</a></td>
+                                                <td><a href="">${vo.content }</a></td>
+                                                <td>
+                                                 <fmt:formatDate value="${vo.regDate }" pattern="yyyy-MM-dd"/>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td><a href="">두번째글</a></td>
-                                                <td><a href="">두번째글은이렇게 작성하였습니다.</a></td>
-                                                <td>2021/07/05</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td><a href="">세번째글</a></td>
-                                                <td><a href="">세번째글은이렇게 작성하였습니다.</a></td>
-                                                <td>2021/07/05</td>
-                                            </tr>
-                                            
+                                             </c:forEach>
+                                             
                                         </tbody>   
                                     </table>
                                     

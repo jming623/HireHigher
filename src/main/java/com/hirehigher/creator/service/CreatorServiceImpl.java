@@ -1,5 +1,7 @@
 package com.hirehigher.creator.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +10,9 @@ import com.hirehigher.command.CreatorPageVO;
 import com.hirehigher.command.CreatorVO;
 import com.hirehigher.command.ProfileImgVO;
 import com.hirehigher.command.UserVO;
+import com.hirehigher.command.WorkBoardVO;
 import com.hirehigher.creator.mapper.CreatorMapper;
+
 
 @Service("creatorService")
 public class CreatorServiceImpl implements CreatorService {
@@ -68,6 +72,18 @@ public class CreatorServiceImpl implements CreatorService {
 	public BackgroundImgVO backgroundGet(String backgroundId) {
 		
 		return creatorMapper.backgroundGet(backgroundId);
+	}
+
+	@Override
+	public int getTotal(String userName) {
+		
+		return creatorMapper.getTotal(userName);
+	}
+
+	@Override
+	public ArrayList<WorkBoardVO> getList(int pageNum, int amount, String userName) {
+		
+		return creatorMapper.getList(pageNum, amount, userName);
 	}
 
 }

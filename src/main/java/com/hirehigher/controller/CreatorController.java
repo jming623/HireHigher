@@ -1,15 +1,12 @@
 package com.hirehigher.controller;
 
 import java.io.File;
-import java.nio.file.Files;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -24,7 +21,10 @@ import com.hirehigher.command.CreatorPageVO;
 import com.hirehigher.command.CreatorVO;
 import com.hirehigher.command.ProfileImgVO;
 import com.hirehigher.command.UserVO;
+import com.hirehigher.command.WorkBoardVO;
 import com.hirehigher.creator.service.CreatorService;
+import com.hirehigher.util.CreatorCriteria;
+import com.hirehigher.util.CreatorPagingVO;
 
 
 @Controller
@@ -49,9 +49,6 @@ public class CreatorController {
 	// 제작자 신청 요청
 	@RequestMapping("applyForm")
 	public String applyForm(CreatorVO creatorVO,
-//							CreatorPageVO pageVO,
-//							ProfileImgVO profileVO,
-//							BackgroundImgVO backgroundVO, 
 							HttpSession session,
 							RedirectAttributes RA) {
 		
@@ -149,7 +146,9 @@ public class CreatorController {
 	// 제작자 페이지 화면
 	@RequestMapping("/creatorDetail")
 	public String creatorDetail(HttpSession session,
-								Model model) {
+								Model model,
+								WorkBoardVO boardVO,
+								CreatorCriteria cri) {
 		
 		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
 		
@@ -166,6 +165,19 @@ public class CreatorController {
 		CreatorPageVO pageVO = creatorService.pageDetail(pageId); // DB 결과를 CreatorPageVO 객체에 저장
 		model.addAttribute("pageVO", pageVO); // 제작자 자기소개 정보 전달
 		
+		/*------------------------제작자 게시판 페이징--------------------------------*/
+		boardVO.setUserName(userVO.getUserId()); // boardVO에 userVO의 userId를 저장
+		String userName = boardVO.getUserName(); // userName 변수에 boardVO의 userName을 저장
+		int pageNum = cri.getPageNum(); // pageNum 변수에 cri의 pageNum을 저장 
+		int amount = cri.getAmount(); // amount 변수에 cri의 pageNum을 저장
+		
+		ArrayList<WorkBoardVO> list = creatorService.getList(pageNum, amount, userName); // DB 결과를 ArrayList 객체에 저장
+		int total = creatorService.getTotal(userName); // DB 결과를 total 변수에 저장
+		
+		CreatorPagingVO pagingVO = new CreatorPagingVO(cri, total);
+		
+		model.addAttribute("pagingVO", pagingVO); // 페이징 정보 전달
+		model.addAttribute("list", list); // 게시글 리스트 전달
 		
 		return "/creator/creatorDetail";
 	}
