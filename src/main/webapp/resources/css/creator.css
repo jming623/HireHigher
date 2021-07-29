@@ -157,6 +157,10 @@
   background-color: #1c1c1c;
 }
 
+.creator-content-writing-page li{
+	display: inline;
+}
+
 .creator-content-writing-page li a{
   background-color: #1c1c1c;
   color: #ddd;

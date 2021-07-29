@@ -2,6 +2,7 @@ package com.hirehigher.controller;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -146,9 +148,7 @@ public class CreatorController {
 	// 제작자 페이지 화면
 	@RequestMapping("/creatorDetail")
 	public String creatorDetail(HttpSession session,
-								Model model,
-								WorkBoardVO boardVO,
-								CreatorCriteria cri) {
+								Model model) {
 		
 		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
 		
@@ -164,20 +164,6 @@ public class CreatorController {
 		
 		CreatorPageVO pageVO = creatorService.pageDetail(pageId); // DB 결과를 CreatorPageVO 객체에 저장
 		model.addAttribute("pageVO", pageVO); // 제작자 자기소개 정보 전달
-		
-		/*------------------------제작자 게시판 페이징--------------------------------*/
-		boardVO.setUserName(userVO.getUserId()); // boardVO에 userVO의 userId를 저장
-		String userName = boardVO.getUserName(); // userName 변수에 boardVO의 userName을 저장
-		int pageNum = cri.getPageNum(); // pageNum 변수에 cri의 pageNum을 저장 
-		int amount = cri.getAmount(); // amount 변수에 cri의 pageNum을 저장
-		
-		ArrayList<WorkBoardVO> list = creatorService.getList(pageNum, amount, userName); // DB 결과를 ArrayList 객체에 저장
-		int total = creatorService.getTotal(userName); // DB 결과를 total 변수에 저장
-		
-		CreatorPagingVO pagingVO = new CreatorPagingVO(cri, total);
-		
-		model.addAttribute("pagingVO", pagingVO); // 페이징 정보 전달
-		model.addAttribute("list", list); // 게시글 리스트 전달
 		
 		return "/creator/creatorDetail";
 	}
@@ -253,6 +239,30 @@ public class CreatorController {
 		}
 		
 		return result;
+	}
+	
+	// 제작자 페이지 게시판 페이징
+	@ResponseBody
+	@RequestMapping(value="creatorPageBoardList", produces="application/json")
+	public HashMap<String, Object> creatorPageBoardList(@RequestBody CreatorCriteria cri) { // cri값이 들어오지 않으면 기본생성자로 startPage는 1, amount는 7로 초기화 
+		
+		String userName = cri.getUserName(); // 제작자 페이지에서 넘어온 userName
+		int pageNum = cri.getPageNum(); //  제작자 페이지에서 넘어온 pageNum
+		int amount = cri.getAmount(); //  제작자 페이지에서 넘어온 amount
+		
+		HashMap<String, Object> map = new HashMap<>();
+		
+		ArrayList<WorkBoardVO> list = creatorService.getList(pageNum, amount, userName); // DB 결과를 ArrayList 객체에 저장
+		
+		map.put("list", list); // 화면단에 workBoardVO를 답은 ArrayList를 반환
+		
+		int total = creatorService.getTotal(userName); // DB 결과를 total 변수에 저장
+		
+		CreatorPagingVO pagingVO = new CreatorPagingVO(cri, total);
+		
+		map.put("pagingVO", pagingVO); // 화면단에 pagingVO를 반환
+		
+		return map;
 	}
 
 	// 제작자 페이지 수정 화면

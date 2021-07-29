@@ -24,7 +24,7 @@ public interface CreatorMapper {
 	public ProfileImgVO profileGet(String profileId); // 프로필 이미지 조회
 	public BackgroundImgVO backgroundGet(String backgroundId); // 백그라운드 이미지 조회
 	public int getTotal(String userName); // 총 게시글 수
-	public ArrayList<WorkBoardVO> getList(@Param("pageNum") int pageNum,@Param("amount") int amount,@Param("userName") String userName); // 게시글 리스트
+	public ArrayList<WorkBoardVO> getList(@Param("pageNum") int pageNum,@Param("amount") int amount, @Param("userName") String userName); // 게시글 리스트
 	
 	
 }

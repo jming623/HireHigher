@@ -40,7 +40,7 @@
                                     
                         <ul class="creator-content-nav nav nav-tabs ">
                             <li class='active'><a data-toggle="tab" href="#menu1">제작자정보</a></li>
-                            <li><a data-toggle="tab" href="#menu2">작성글</a></li>
+                            <li id="creator-BoardList"><a data-toggle="tab" href="#menu2">작성글</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -80,30 +80,27 @@
                                             </tr>
                                         </thead> 
                                         <tbody class="creator-content-writing-tbody">
-                                        	<c:forEach var="vo" items="${list }">
-                                        	<c:set var="i" value="${i+1}" />
-                                            <tr>
-                                                <td>${i}</td>
-                                                <td><a href="">${vo.title }</a></td>
-                                                <td><a href="">${vo.content }</a></td>
-                                                <td>
-                                                 <fmt:formatDate value="${vo.regDate }" pattern="yyyy-MM-dd"/>
-                                                </td>
-                                            </tr>
-                                             </c:forEach>
-                                             
+                                           <!--  <tr>
+                                                <td>1</td>
+                                                <td><a href="">디자인 작품</a></td>
+                                                <td><a href="">디자인 작품</a></td>
+                                                <td>2021-07-03</td>
+                                            </tr> -->
                                         </tbody>   
                                     </table>
                                     
-                                    <div class="text-center">
-                                        <ul class="creator-content-writing-page pagination">
-                                            <li><a href="#menu2">이전</a></li>
-                                            <li><a href="#menu2">1</a></li>
-                                            <li><a href="#menu2">2</a></li>
-                                            <li><a href="#menu2">3</a></li>
-                                            <li><a href="#menu2">다음</a></li>
-                                        </ul>
-                                    </div>
+                                    
+	                                    <div class="text-center">
+	                                        <ul class="creator-content-writing-page pagination">
+	                                            <!-- <li><a href="#menu2">이전</a></li>
+	                                            <li><a href="#menu2">1</a></li>
+	                                            <li><a href="#menu2">2</a></li>
+	                                            <li><a href="#menu2">3</a></li>
+	                                            <li><a href="#menu2">다음</a></li> -->
+	                                        </ul>
+	                                        
+	                                    </div>
+                                    
                                 </div>
 
                             </div>
@@ -117,6 +114,96 @@
     </section>
     
     <script>
+    
+    	
+    
+ 		// 작성글 탭 클릭시 화면에 뿌려질 리스트
+		$("#creator-BoardList").click(function(){
+			creatorBoardList(1,7);			
+		});
+	
+ 		// 작성글 게시판 리스트를 불러오는 함수
+		function creatorBoardList(pageNum,amount) {
+		
+			if(event.target.tagName == "A"){	
+				event.preventDefault();
+			}   
+		
+			var userName = "${pageVO.pageId}"; // session에 저장되어 있는 아이디를 얻음
+			
+			$.ajax({
+				type: "post",
+				url: "creatorPageBoardList",
+				dataType: "json",
+				contentType : "application/json",
+				data : JSON.stringify({"userName":userName, "pageNum":pageNum, "amount":amount }),
+				success: function(data){
+					
+					console.log(1);
+					
+					var strAdd = ''; // list를 저장해줄 변수
+					var strAdd2 = ''; // pagingVO를 저장해줄 변수
+					
+					if(data.list.length == 0){ // 만약 해당유저가 채용공고 게시판에 작성한 글이 없다면 페이지네이션 삭제
+						
+						$(".pagination").css("display","none");
+						return;
+						
+					} else {
+						
+						$.each(data.list, function(index, list){
+							
+							var date = new Date(list.regDate); //밀리초로 들어오는 형식을 YYYY/MM/DD형식으로 바꿔줌
+							var year = date.getFullYear();
+							var month = date.getMonth()+1;
+							var day = date.getDate();
+							
+							var regDate = year + "/" + (month < 10 ? "0"+month : month) + "/" + (day < 10 ? "0"+day : day );
+                            
+                            strAdd += '<tr>';
+                            strAdd += '<td>' + list.bno + '</td>';
+                            strAdd += '<td><a href="">' + list.title + '</a></td>';
+                            strAdd += '<td><a href="">' + list.content + '</a></td>';
+                            strAdd += '<td>' + regDate + '</td>';
+                            strAdd += '</tr>';
+                         
+						})
+						
+						$(".creator-content-writing-tbody").html(strAdd);
+						
+					}
+					
+					//페이지네이션
+					
+					//이전버튼  추가
+					if(data.pagingVO.prev){
+						strAdd2 += '<li><a href="#" onclick=creatorBoardList('+ (data.pagingVO.startPage-1) +',7)>이전</a></li> ';
+					}
+					
+					for(var i = data.pagingVO.startPage; i <= data.pagingVO.endPage; i++){
+						
+						if(i == data.pagingVO.pageNum){
+							strAdd2 += '<li class="active"><a href="#">'+ i +'</a></li>';
+						}else{
+							strAdd2 += '<li><a href="#" onclick="creatorBoardList('+i+',7)">'+ i +'</a></li>';
+						}
+												
+					}
+					
+					//다음버튼 추가
+					if(data.pagingVO.next){
+						strAdd2 += '<li><a href="#" onclick=creatorBoardList('+ (data.pagingVO.endPage+1) +',7)>다음</a></li> ';
+					}
+					
+					$(".pagination").html(strAdd2);
+					
+				},
+				error: function(status, error) {
+					alert("서버에 문제가 발생했습니다. 관리자에게 문의하세요.")
+				}
+			}) // ajax 끝
+		
+		};
     
     
     	$("#instalink").click(function() { // a 태그 클릭시 인스타 주소가 없다면 alert창
@@ -165,20 +252,21 @@
     		
     		
     	}); // ready(function) 끝
+    	
+       	window.onload = function() {
+
+			if (history.state == '')
+				return; //메시지를 출력했다면 함수 종료
+
+			var msg = '${msg }';
+
+			if (msg != '') {
+				alert(msg);
+				//기존 기록을 삭제하고 새로운 기록 추가 (이렇게 변경된 값은 history.state로 데이터 확인 가능)
+				history.replaceState('', null, null); // 브라우저 기록컨트롤(추가할 데이터, 제목, url주소)
+			}
+
+		}
     
-       window.onload = function() {
-      
-         if(history.state == '') return; //메시지를 출력했다면 함수 종료
-      
-         var msg = '${msg }';
-      
-         if(msg != '') {
-            alert(msg);
-            //기존 기록을 삭제하고 새로운 기록 추가 (이렇게 변경된 값은 history.state로 데이터 확인 가능)
-            history.replaceState('', null, null); // 브라우저 기록컨트롤(추가할 데이터, 제목, url주소)
-      }
-      
-      
-   }
-    
+    	
     </script>
