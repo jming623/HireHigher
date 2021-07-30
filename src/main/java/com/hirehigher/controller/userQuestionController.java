@@ -1,5 +1,8 @@
 package com.hirehigher.controller;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,13 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
-import com.hirehigher.command.QuestionDetailVO;
 import com.hirehigher.user.service.UserService;
 import com.hirehigher.userquestion.service.UserQuestionService;
 import com.hirehigher.util.JobCriteria;
@@ -31,6 +34,7 @@ import com.hirehigher.util.UserCriteria;
 import com.hirehigher.util.UserPageVO;
 import com.hirehigher.util.mtomCriteria;
 import com.hirehigher.util.mtomListCountVO;
+import com.hirehigher.controller.APP_CONSTANT;
 
 
 @Controller
@@ -63,8 +67,9 @@ public class userQuestionController {
 	public String insertQ(InsertQuestionPageVO vo, 
 							RedirectAttributes RA) {
 		
-		
 		int result = userQuestionService.insertRegist(vo); //성공시 1반환, 실패시 0
+		
+		System.out.println(result);
 		
 		if(result == 1) {
 			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
@@ -72,9 +77,43 @@ public class userQuestionController {
 			RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도하세요");
 		}
 		
+		
 		return "redirect:/userQuestion/mtomPage";
 	}
 	
+	@RequestMapping(value="/insertQImg",method=RequestMethod.POST)
+	@ResponseBody
+	public String insertQImg(@RequestParam("file") MultipartFile file) {
+		
+		try {
+
+			String fileRealName = file.getOriginalFilename(); // 실제 파일명
+			Long size = file.getSize(); // 파일 사이즈
+			String fileExtention = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length()); // 확장자
+
+			System.out.println("파일명:" + fileRealName);
+			System.out.println("파일크기:" + size);
+			System.out.println("파일확장자:" + fileExtention);
+
+			File saveFile = new File(APP_CONSTANT.UPLOAD_PATH + "\\" + fileRealName); // 업로드 경로
+			file.transferTo(saveFile); // 실제 파일을 로컬환경으로 저장
+			System.out.println("파일경로:"+saveFile); //업로드 파일경로
+		
+			//파일경로 문자열로 추출
+			String Path = saveFile.getParentFile().toString();
+			String filename = saveFile.getName(); //파일이름
+			String filePath = Path+"\\"+ filename;
+			System.out.println(filePath);
+			return filePath;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		return "redirect:/userQuestion/mtomPage";
+	}
+	
+		
 	
 	
 	

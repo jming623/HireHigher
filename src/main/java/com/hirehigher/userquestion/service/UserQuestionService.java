@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
-import com.hirehigher.command.QuestionDetailVO;
 import com.hirehigher.util.JobCriteria;
 import com.hirehigher.util.mtomCriteria;
 

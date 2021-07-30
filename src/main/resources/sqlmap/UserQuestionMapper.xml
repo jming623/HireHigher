@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		select * from faqListPage order by faqBno desc
   	</select>
 	
-	<!-- 문의 업데이트 페이지 sql -->
+	<!-- 문의 등록 페이지 sql -->
 	<insert id="insertRegist">
 		insert into insertQuestionPage(insertBno,insertKind,insertId,insertTitle,insertContent,answerStatus,insertImg)
 		values (insertQuestionPage_SEQ.nextval,#{insertKind},#{insertId},#{insertTitle},#{insertContent},#{answerStatus},#{insertImg})

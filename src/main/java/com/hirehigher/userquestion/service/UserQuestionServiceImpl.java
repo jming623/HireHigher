@@ -9,7 +9,6 @@ import org.springframework.transaction.jta.UserTransactionAdapter;
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
-import com.hirehigher.command.QuestionDetailVO;
 import com.hirehigher.user.mapper.UserMapper;
 import com.hirehigher.userquestion.mapper.UserQuestionMapper;
 import com.hirehigher.util.mtomCriteria;
@@ -75,5 +74,4 @@ public class UserQuestionServiceImpl implements UserQuestionService{
 		
 		return userQuestionMapper.mtomgetList(cri);
 	}
-
 }
