@@ -4,12 +4,12 @@
    <section class="creator-detail-section">
         <div class="row profile-header-row">
         <div class="profile-header col-lg-12">
-           <img id="creator-background-img-target" src="../resources/img/creatorBackground/welcome.jpg" alt="">
-            <div class="profile-header-inner">
-                <div class="creator-profile-header-modify">
-                    <a href=""><i><input type="file" class="creator-profile-img-input" name="background-file" id="background-file"></i></a>
-                </div>
-            </div>
+           <!-- <img id="creator-background-img-target" src="../resources/img/creatorBackground/welcome.jpg" alt=""> -->
+        </div>
+        <div class="profile-header-inner">
+            <div class="creator-profile-header-modify">
+                <a href="" class="backgroundBtn"><i><input type="file" class="creator-profile-img-input" name="background-file" id="background-file"></i></a>
+        	</div>
         </div>
         </div>
         <div class="profile-content">
@@ -18,31 +18,28 @@
                 
                 <div class="creator-profile-wrap">
                     
-
-                        <img class="creator-profile-img" id="creator-profile-img-target" src="../resources/img/creatorProfile/profile.png">
-
-                        <div class="creator-profile-img-modify">
-                           <a href=""><i><input type="file" class="creator-profile-img-input" name="profile-file" id="profile-file"></i></a>
-                        </div>
-
+                        <!-- <img class="creator-profile-img" id="creator-profile-img-target" src="../resources/img/creatorProfile/profile.png"> -->
                     
                 </div>
+                <div class="creator-profile-img-modify">
+                	<a href="" class="profileBtn"><i><input type="file" class="creator-profile-img-input" name="profile-file" id="profile-file"></i></a>
+                </div>
 
-                <div class="creator-name">jming623</div>
+                <div class="creator-name">${pageVO.creatorNick}</div>
 
                 <div class="creator-email">
-                    jming623@naver.com
+                    ${pageVO.creatorEmail}
                 </div>
 
                 <div class="creator-description">
                     <form action="" >
                         
                     <div class="creator-description-content" id="creator-description-content">
-                        <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly></textarea>
+                        <textarea cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly>${pageVO.aboutMe}</textarea>
                     </div>
 
                     <div class="creator-description-textarea" id="creator-description-textarea" style="display: none;"> 
-                        <textarea name="" id="" cols="36" rows="14"></textarea>
+                        <textarea name="aboutMe" id="aboutMe" cols="36" rows="14" placeholder="프로필을 작성해주세요.">${pageVO.aboutMe}</textarea>
                     </div>
                     
                     <div class="creator-description-input" id="creator-description-input" style="display: none;">
@@ -83,39 +80,39 @@
                                         <p>전공분야:</p>
                                         
                                         <div class="creator-content-info-detail">
-                                            <small style="min-height: 50px;">디자인설계</small>
+                                            <small style="min-height: 50px;">${creatorVO.creatorMajor }</small>
                                         </div>
 
                                         <div class="creator-content-info-input" style="display: none;">
-                                            <input type="text" id="major" name="major" value="디자인설계">
+                                            <input type="text" id="major" name="major" value="${creatorVO.creatorMajor }">
                                         </div>
 
                                         <p>경력사항:</p>
 
                                         <div class="creator-content-info-detail">
-                                            <small>바른미술학원 2년근무</small>
-                                            <small>바른미술학원 2년근무</small>
-                                            <small>바른미술학원 2년근무</small>
+                                            <small>${creatorVO.creatorCareer }</small>
+                                            <small>${creatorVO.creatorCareer1 }</small>
+                                            <small>${creatorVO.creatorCareer2 }</small>
                                         </div>
 
                                         <div class="creator-content-info-input" style="display: none;">
-                                            <input type="text" id="career" name="career" value="바른미술학원 2년근무">
-                                            <input type="text" id="career1" name="career1" value="바른미술학원 2년근무">
-                                            <input type="text" id="career2" name="career2" value="바른미술학원 2년근무">
+                                            <input type="text" id="career" name="career" value="${creatorVO.creatorCareer }">
+                                            <input type="text" id="career1" name="career1" value="${creatorVO.creatorCareer1 }">
+                                            <input type="text" id="career2" name="career2" value="${creatorVO.creatorCareer2 }">
                                         </div>
 
                                         <p>수상경력:</p>
 
                                         <div class="creator-content-info-detail">
-                                            <small>미술경시대회 우승</small>
-                                            <small>미술경시대회 우승</small>
-                                            <small>미술경시대회 우승</small>
+                                            <small>${creatorVO.creatorAwards }</small>
+                                            <small>${creatorVO.creatorAwards1 }</small>
+                                            <small>${creatorVO.creatorAwards2 }</small>
                                         </div>
 
                                         <div class="creator-content-info-input" style="display: none;">
-                                            <input type="text" id="awards" name="awards" value="미술경시대회 우승">
-                                            <input type="text" id="awards1" name="awards1" value="미술경시대회 우승">
-                                            <input type="text" id="awards2" name="awards2" value="미술경시대회 우승">
+                                            <input type="text" id="awards" name="awards" value="${creatorVO.creatorAwards }">
+                                            <input type="text" id="awards1" name="awards1" value="${creatorVO.creatorAwards1 }">
+                                            <input type="text" id="awards2" name="awards2" value="${creatorVO.creatorAwards2 }">
                                         </div>
                                            
                                         <div class="creator-content-info-edit1">
@@ -148,7 +145,6 @@
     $("#creator-descrption-btn1").click(function(){
         
         //텍스트 교체
-       console.log("1");
 
        $("#creator-description-content").css("display","none");
        $("#creator-description-textarea").css("display","block");
@@ -175,10 +171,9 @@
     
        
      //자바 스크립트 파일 미리보기 기능
+     // background 이미지 미리보기
       function readURL1(input) {
-          
-          console.log( input.value );
-          
+    	
            if (input.files && input.files[0]) {
               
                var reader = new FileReader(); //비동기처리를 위한 파읽을 읽는 자바스크립트 객체
@@ -186,16 +181,19 @@
               reader.readAsDataURL(input.files[0]); 
                
                reader.onload = function(event) { //읽기 동작이 성공적으로 완료 되었을 때 실행되는 익명함수
-                   $('#creator-background-img-target').attr("src", event.target.result); 
+                   $('creator-background-img-target').attr("src", event.target.result); 
                    console.log(event.target)//event.target은 이벤트로 선택된 요소를 의미
               }
            }
        }
+    
+    
       $("#background-file").change(function() {
+    	  
            readURL1(this); //this는 #file자신 태그를 의미
-           console.log(1);
        });
       
+      // profile 이미지 미리보기
       function readURL2(input) {
            if (input.files && input.files[0]) {
               
@@ -211,9 +209,64 @@
        }
       $("#profile-file").change(function() {
            readURL2(this); //this는 #file자신 태그를 의미
-           console.log(1);
        });
+      
+      // 이미지 업로드 및 불러오기
+      $(document).ready(function() {
+    	
+    	// 프로필 이미지 업로드
+		$(".profileBtn").click(function(){
+    		
+    		var profileId = '${sessionScope.userVO.userId}';
+    		
+    		
+    		
+    	});
+  		
+    	
+		// 프로필 이미지 불러오기
+  		function profileGet() { 
+  			
+  			var strAdd = "";
+  			
+  			$.getJSON("profileGet", function(data) {
+  				
+  				// view를 타고 컨트롤러에 이미지 반환 요청으로 보내준다
+  				strAdd += '<img class="creator-profile-img" src="' + "view/"+ data.profileLoca+"/"+data.profileName + '">';
+  				
+  				$(".creator-profile-wrap").html(strAdd); // 클래스명 밑에 strAdd의 태그를 추가
+  				
+  				
+  			});
+  			
+  			
+  		}
+  		
+  		// 백그라운드 이미지 불러오기
+		function backgroundGet() { 
+  			
+  			var strAdd = "";
+  			
+  			$.getJSON("backgroundGet", function(data) {
+  				
+  				// view를 타고 컨트롤러에 이미지 반환 요청으로 보내준다
+  				strAdd += '<img id="creator-background-img-target" src="' + "view1/" + data.backgroundLoca + "/" + data.backgroundName + '">';
+  				
+  				$(".profile-header").html(strAdd); // 클래스명 밑에 strAdd의 태그를 추가
+  				
+  			});
+  			
+  		}
+  		
+  		(function() {
+			profileGet();
+		})();
+  		
+  		(function() {
+  			backgroundGet();
+		})();
+  		
+  		}); // ready(function) 끝
        
-    
 
    </script>

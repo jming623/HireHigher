@@ -145,9 +145,9 @@ public class CreatorController {
 		
 	}
 	
-	// 제작자 페이지 화면
-	@RequestMapping("/creatorDetail")
-	public String creatorDetail(HttpSession session,
+	// 제작자 페이지 , 수정 페이지 화면
+	@RequestMapping({"/creatorDetail", "/creatorModify"})
+	public void creatorDetail(HttpSession session,
 								Model model) {
 		
 		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
@@ -165,7 +165,7 @@ public class CreatorController {
 		CreatorPageVO pageVO = creatorService.pageDetail(pageId); // DB 결과를 CreatorPageVO 객체에 저장
 		model.addAttribute("pageVO", pageVO); // 제작자 자기소개 정보 전달
 		
-		return "/creator/creatorDetail";
+//		return "/creator/creatorDetail";
 	}
 	
 	// 제작자 페이지 프로필 이미지 조회 요청
@@ -265,14 +265,14 @@ public class CreatorController {
 		return map;
 	}
 
-	// 제작자 페이지 수정 화면
-	@RequestMapping("/creatorModify")
-	public String creatorModify() {
-		
-		
-		
-		return "/creator/creatorModify";
-	}
+//	// 제작자 페이지 수정 화면
+//	@RequestMapping("/creatorModify")
+//	public String creatorModify() {
+//		
+//		
+//		
+//		return "/creator/creatorModify";
+//	}
 }
 
 

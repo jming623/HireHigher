@@ -129,7 +129,7 @@
 				event.preventDefault();
 			}   
 		
-			var userName = "${pageVO.pageId}"; // session에 저장되어 있는 아이디를 얻음
+			var userName = '${sessionScope.userVO.userId}'; // session에 저장되어 있는 아이디를 얻음
 			
 			$.ajax({
 				type: "post",
@@ -206,15 +206,18 @@
 		};
     
     
+		// 인스타 주소
     	$("#instalink").click(function() { // a 태그 클릭시 인스타 주소가 없다면 alert창
     		if($("#instalink").attr("href") == "") {
         		alert("등록된 인스타그램 주소가 없습니다.");
         	}
     	})
     
+    	// 이미지 불러오기
     	$(document).ready(function() {
     		
-    		function profileGet() { // 프로필 이미지를 얻어오는 함수
+    		// 프로필 이미지 불러오기
+    		function profileGet() {
     				
     			
     			var strAdd = "";
@@ -228,7 +231,8 @@
     			});
     		}
     		
-			function backgroundGet() { // 백그라운드 이미지를 얻어오는 함수
+    		// 백그라운드 이미지 불러오기
+			function backgroundGet() {
     				
     			
     			var strAdd = "";
