@@ -5,11 +5,17 @@
         <div class="container createBoard-container">           
             
             <div class="creation-list-btn" id="creation-list-btn">
-                <button type="button" class="creation-list-active">2D Art</button>
+            <button type="button" class="creation-list-active">2D Art</button>
                 <button type="button" class="">3D Art</button>
                 <button type="button" class="">Video/Firm</button>
                 <button type="button" class="">Interior</button>
                 <button type="button" class="">Architecture</button>
+                
+               <%--  <button type="button" class="creation-list-active" ${pageVO.cri.Category eq '2D_ART' ? 'selected' : '' }>2D Art</button>
+                <button type="button" class=""  				   ${pageVO.cri.Category eq '3D_ART' ? 'selected' : '' }>3D Art</button>
+                <button type="button" class="" 					   ${pageVO.cri.Category eq 'Video/Firm' ? 'selected' : '' }>Video/Firm</button>
+                <button type="button" class="" 				       ${pageVO.cri.Category eq 'Interior' ? 'selected' : '' }>Interior</button>
+                <button type="button" class="" 					   ${pageVO.cri.Category eq 'Architecture' ? 'selected' : '' }>Architecture</button> 이거 버튼인데 selected머얌 ㅜㅜ --%>
             </div>
 
             <div class="row">
@@ -187,7 +193,7 @@
                                     <li><i class="glyphicon glyphicon-star"></i></li>
                                     <li><i class="glyphicon glyphicon-star"></i></li>
                                     <li><i class="glyphicon glyphicon-star-empty"></i></li>
-                   7             </ul>
+                                </ul>
                             </div>
                         </div>
                     </div>

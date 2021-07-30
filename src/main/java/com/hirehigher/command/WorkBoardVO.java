@@ -7,15 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class WorkBoardVO {
 
-	private int bno; // 게시글 번호
-	private String userName; // 아이디
-	private String title; // 게시글 제목
-	private String content; // 게시글 내용
-	private Timestamp regDate; // 게시글 작성일
-	private Timestamp updateDate; // 게시글 수정일
+	private String listBno;
+	private String creatorName;
+	private String productImg;
+	private int star;
+	private String category;
+	private Timestamp regDate;
+
 	
 }

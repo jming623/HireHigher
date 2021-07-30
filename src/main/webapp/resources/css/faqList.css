@@ -184,7 +184,8 @@ margin-bottom: 50px;
     color:#bfbfbf;
 }
 /* ct */
-.ct{
+
+/*.ct{
     overflow: hidden;
     height: 50px;
     margin-top: 15px;
@@ -194,13 +195,40 @@ margin-bottom: 50px;
 .ct div{
     float: left;
 }
-.FAQ-hide{
+*/
+/* 결제*/
+.FAQ-hide-p{
     overflow: hidden;
     margin-top: 25px;
 }
-.FAQ-hide div{
+.FAQ-hide-p div{
     float: left;
 }
+/*로그인*/
+.FAQ-hide-l{
+    overflow: hidden;
+    margin-top: 25px;
+}
+.FAQ-hide-l div{
+    float: left;
+}
+/*홈페이지*/
+.FAQ-hide-h{
+    overflow: hidden;
+    margin-top: 25px;
+}
+.FAQ-hide-h div{
+    float: left;
+}
+/*아이템*/
+.FAQ-hide-i{
+    overflow: hidden;
+    margin-top: 25px;
+}
+.FAQ-hide-i div{
+    float: left;
+}
+
 /* 답변 구역 */
 .FAQ-answer-box > div{
     display: none;

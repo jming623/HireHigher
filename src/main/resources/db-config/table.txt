@@ -11,7 +11,7 @@ alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
 create table users(
     userId varchar2(50) primary key,
     userPw varchar2(50) not null,
-    userName varchar2(50) not null,
+    userName varchar2(50),
     nickName varchar2(50) unique,
     birthDay varchar2(10),
     userEmail varchar2(50),
@@ -64,6 +64,27 @@ create table JOBBOARDDETAIL(
 ); 
 create sequence jobboarddetail_seq start with 1 increment by 1 nocache;
 
+
+
+============================================ FAQ 고객센터 테이블 ============================================
+create table FAQListPage(
+    faqBno number primary key, --FAQ번호
+    faqNum number(1) not null, --문의 종류 번호 (문의 종류 번호 1~4)
+    paymentFaqTitle varchar2(300), -- 결제 관련 질문 1
+    paymentFaq varchar2(1000), -- 결제 관련 답변 1 
+    
+        loginFaqTitle varchar2(300), -- 로그인 관련 질문 2
+    loginFaq varchar2(1000),  -- 로그인 관련 답변 2
+    
+    homPageFaqTitle varchar2(300), -- 홈페이지 관련 질문 3 
+    homePageFaq varchar2(1000), -- 홈페이지 관련 답변 3
+    
+    insertItemFaqTitle varchar2(300), -- 제품등록 질문 4 
+    insertItemFaq varchar2(1000) -- 제품등록 답변 4
+);
+
+create SEQUENCE FAQListPage_SEQ INCREMENT by 1 start with 1 NOCACHE;
+
 ========================================= CREATOR TABLE ========================================
 
 create table CREATOR (
@@ -76,4 +97,50 @@ create table CREATOR (
     creatorAwards1 varchar2(100), -- 수상경력 1
     creatorAwards2 varchar2(100), -- 수상경력 2
     creatorRegdate date default sysdate -- 제작자 등록일
+
+
+========================================= LOGINCOUNT TABLE ======================================== 
+create table LOGINCOUNT(
+    USERID varchar2(50) primary key,
+    LOGINTRYNUM number(2) default 0,
+    LOGINFAILTIME date default SYSDATE - 365,
+    LOGINLIMITSTATUS varchar2(1) default 'N',
+    LOGINLIMITTIME date default SYSDATE - 365  
+
 );
+
+
+========================================= WORKBOARD TABLE ======================================== 
+
+create table WORKBOARD (
+    listBno number(10) PRIMARY KEY,
+    creatorName VARCHAR2(50) NOT NULL,
+    productImg VARCHAR2(100) NOT NULL,
+    star number(1) NOT NULL,
+    category VARCHAR2(50) NOT NULL,
+    regDate date default sysdate
+    );
+    
+create SEQUENCE WORKBOARD_SEQ increment by 1 START WITH 1 NOCACHE;
+    
+
+);
+
+========================================= WORKREPLY TABLE ======================================== 
+
+CREATE TABLE WORKREPLY(
+    RNO NUMBER(10) PRIMARY KEY, -- 댓글번호
+    BNO NUMBER(10) NOT NULL, --글번호 
+    REPLY VARCHAR2(1000) NOT NULL, --댓글내용
+    REPLYID VARCHAR2(50) NOT NULL, --작성자
+    REPLYDATE DATE DEFAULT SYSDATE, -- 댓글 등록일
+    REPLYUPDATEDATE DATE DEFAULT SYSDATE --댓글 수정일
+);
+
+create SEQUENCE WORKREPLY_SEQ increment by 1 START WITH 1 NOCACHE;
+
+========================================= VISITORCOUNTER TABLE ======================================== 
+CREATE TABLE VISITORCOUNTER(
+    visitDate date default sysdate
+);
+

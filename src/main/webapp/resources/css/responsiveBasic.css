@@ -1,0 +1,142 @@
+#header-menuholder {
+    width: 35px;
+    height: 25px;
+    position: absolute;
+    top: 47px;
+    right: 25px;
+    cursor: pointer;
+    -webkit-filter: opacity(.9) drop-shadow(0 0 0 gray);
+    filter: opacity(.9) drop-shadow(0 0 0 gray) brightness(20);
+    display: none;
+}
+
+#header-menuholder:hover {
+    -webkit-filter: opacity(.4) drop-shadow(0 0 0 rgb(255, 255, 0));
+    filter: opacity(.3) drop-shadow(1 1 1 yellow);
+}
+
+@media screen and (max-width: 1350px) {
+    .home:hover a:before {
+        width: 0;
+    }
+   
+    #header-menuholder{
+       display:block;
+   }
+
+    .footer-container {
+        background-color: #07252d;
+    }
+   
+    .header-nav {
+        flex-direction:column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100vw;
+        background-color: #07252d;
+        right: 0;
+        display: flex;
+        align-items: center;
+        letter-spacing: 10px;
+        z-index: 9999;
+        top: 8vh;
+        flex-wrap: nowrap;
+        display:none;
+    }
+
+    .nav-links.active {
+        flex-direction: column;
+        width: 100vw;
+        background-color: #07252d;
+        right: 0;
+        display: flex;
+        align-items: center;
+        letter-spacing: 10px;
+        z-index: 9999;
+        top: 8vh;
+        flex-wrap: nowrap;
+        display:flex;
+    }
+
+    .main-search-bar-container {
+        display:none;
+    }
+
+    .header {
+        background-color: #07252d;
+        height: 80px;
+    }
+    .home-container {
+        position: relative;
+        background-color: #07252d;
+        left: 0px;
+        width: 100vw;
+        top:-20px;
+    }
+ 
+    .home-container .home {
+        width: 100vw;
+        display: flex;
+        justify-content:center;
+    }
+
+    .header-nav .home a {
+        top: 20px;
+        color: #0e3742;
+        letter-spacing: 1px;
+        font-size: 2em;
+        animation: textanimated 5s linear infinite;
+    }
+
+    @keyframes textanimated {
+        0%, 15%, 30%, 45%, 60%, 75%, 90% {
+            color: #0e3742;
+            text-shadow: none;
+        }        
+        15.1%, 30.1%, 45.1%, 60.1%, 75.1%, 90.1%, 100% {
+            color:yellow;
+            text-shadow: 
+            0 0 10px #03bcf4,
+            0 0 40px #03bcf4,
+            0 0 80px #03bcf4,
+            0 0 160px #03bcf4,
+
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .nav-links li a img {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 420px) {
+    .header-nav .home a {
+        font-size: 1.5em;
+    }
+
+    .home-container {
+        top:-30px;
+    }
+
+    .header {
+        height: 60px;
+    }
+
+}
+@media screen and (max-width: 360px) {
+    
+#header-menuholder {
+    width: 23px;
+    height: 18px;
+    top: 50px;
+    right: 13px;
+}
+
+}}

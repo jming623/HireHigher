@@ -36,17 +36,106 @@
 		where
 		<if test="searchType == 'title' ">title like '%'||#{searchName}||'%'</if>
 		<if test="searchType == 'company' ">companyName like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'content' ">content like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'writer' ">writer like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'titcont' ">content like '%'||#{searchName}||'%' or title like
-			'%'||#{searchName}||'%'</if>
 		<if test="searchType == null or searchType == '' ">1 = 1</if>
 	</select>
 
 	<select id="getDetail" resultType="JobBoardDetailVO">
-		select b.*
+		select b.*, a.title, a.userId, a. companyName
 		from JOBBOARD a inner join JOBBOARDDETAIL b on a.bno = b.bno
 		where b.bno = #{bno}
 	</select>
+	
+	<update id="update">
+	{call
+		declare
+		begin
+   			update JOBBOARDDETAIL
+   				set
+   				gender = #{gender},
+   				age = #{age},
+   				edu = #{edu},
+   				empType = #{empType},
+   				recNum = #{recNum},
+   				preference = #{preference},
+   				requiredDocs = #{requiredDocs},
+   				salary = #{salary},
+   				contract = #{contract},
+   				workDays = #{workDays},
+   				workTime = #{workTime},
+   				welfare = #{welfare},
+   				deadline = #{deadline},
+   				HRManager = #{HRManager},
+				HRContact = #{HRContact},
+				companyAddr = #{companyAddr},
+				position = #{position},
+				wayToApply =#{wayToApply},
+				recPlan = #{recPlan}
+				where bno = #{bno};   			
+   			update JOBBOARD
+   				set
+   				title = #{title}
+   				where bno = #{bno};   			
+		end
+	}
+   </update>
+   
+   <insert id="regist">
+	{call
+		declare
+		begin
+   			insert into JOBBOARD
+   			(bno, userId, userName, companyName, title, regDate)
+   				values
+   				(
+   				jobboard_seq.nextval,
+   				#{userId},
+   				#{userName},
+   				#{companyName},
+   				#{title},
+   				sysdate
+   				);
+   			insert into JOBBOARDDETAIL 
+   			(gender, age, edu, empType, recNum, preference, requiredDocs,
+   			salary, contract, workDays, workTime, welfare, companyAddr, position,
+   			wayToApply, recPlan, deadline, HRManager, HRContact, bno)
+   				values
+   				(
+   				#{gender},
+   				#{age},
+   				#{edu},
+   				#{empType},
+   				#{recNum},
+   				#{preference},
+   				#{requiredDocs},
+   				#{salary},
+   				#{contract},
+   				#{workDays},
+   				#{workTime},
+   				#{welfare},
+   				#{companyAddr},
+   				#{position},
+   				#{wayToApply},
+   				#{recPlan},
+   				#{deadline},
+   				#{HRManager},
+				#{HRContact},
+				jobboarddetail_seq.nextval   			
+   				);			
+		end
+	}
+   </insert>
+   
+   <delete id="delete">
+   	{call
+		declare
+		begin
+   			delete from JOBBOARD where bno = #{bno};
+   			delete from JOBBOARDDETAIL where bno = #{bno}; 
+		end
+	}
+   
+   </delete>
+   
+   
 
 </mapper>

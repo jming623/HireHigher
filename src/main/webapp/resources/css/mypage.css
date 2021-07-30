@@ -1,9 +1,7 @@
 .mypage{
-    padding: 40px 0px;	
+    padding: 4vh 0px;	
 /*     min-height: 1200px; */
-    background-color:#2d2d2d;
-    background-color: rgb(19, 18, 18);
-    color:white;
+    min-height: calc(100vh - 150px);
 }
 
 .mypage-container{
@@ -18,13 +16,18 @@
     }
 }
 
+.mypage-table{
+	margin-bottom:10px !important;
+}
+
 .mypage-title{
     text-align: center;   
     margin-bottom: 15px; 
 }
 
 .mypage-title > span{
-    font-size: large;
+    font-size: 23px;
+    font-weight: 700;
     border-top: 1px solid #777;
     border-bottom: 1px solid #777;
     padding:10px;
@@ -36,24 +39,39 @@
 .mypage-nav{
     border-bottom: 0;
     width:100%;
+    margin-top: 37px;
+    border-bottom: 1px solid #777;
 }
 
 .mypage-nav li{
     float:right;
 }
 
+.m-title{
+	font-weight:bold;
+}
+
 .mypage-nav li a{
-    color: white;
+    color:black;
     margin:0px;
+}
+
+#mypage-form{
+	padding: 0px 10px;
+	margin-top: 30px;
+}
+
+.mypage-table-body{
+	margin-top: 47px
 }
 
 
 .mypage-nav > li.active > a, .mypage-nav > li.active > a:hover, .mypage-nav > li.active > a:focus {
     color: black;
     cursor: default;
-    background-color: #d2d2d2;
+    background-color: #eee;
     border: 1px solid #777;
-    /* border-bottom-color: transparent; */
+    border-bottom: 1px solid #fff !important;
 }
 
 .mypage-wrap{
@@ -62,10 +80,15 @@
     
 }
 
+#mypageNav {
+    margin-top: 37px;
+}
 
 
 .mypage-input{
+	margin-bottom: 5px;
     padding: 0;
+    text-indent: 6px;	
 }
 
 
@@ -76,7 +99,7 @@
 
 
 .mypage-table > thead > tr > th, .mypage-table > tbody > tr > th, .mypage-table > tfoot > tr > th, .mypage-table > thead > tr > td, .mypage-table > tbody > tr > td, .mypage-table > tfoot > tr > td {
-    padding: 5px 0px !important;
+    padding: 2px 0px !important;
     line-height: 1.42857143 !important;
     vertical-align: top !important;
     border-top: 0 !important;
@@ -95,10 +118,8 @@
 }
 
 .mypage-content{
-    background-color: #1c1c1c;
     padding-top: 10px;
-    padding-left: 10px;
-    border-top: 1px solid #fff;
+    padding-left: 10px;	
     text-align: left;
     box-sizing: border-box;    
 }
@@ -109,17 +130,21 @@
 }
 
 .mypage-content-body tr td{
-    color:#fff;
+    color:black;
 }
 
 .mypage-content-body tr td a{
-    color:#fff;
+    color:black;
 }
 
 .mypage-content-page li a{
-    background-color: #1c1c1c;
-    color: #ddd;
+    color: black;
     
+}
+
+.mypage-content-wrap{
+	border-collapse: separate;
+	border-spacing: 0 2px;
 }
 
 .mypage-content-page{
@@ -127,5 +152,54 @@
 }
 
 .mypage-content-wrap > tbody > tr > td{
-    padding: 9px 0px;
+    padding: 9px 8px;
+}
+
+#userPw.aaa:focus, #userEmail.aaa:focus, #emailAuth.aaa:focus, #userCellNum.aaa:focus{
+		border-color:red;
+}
+	
+#userPw.bbb:focus, #userEmail.bbb:focus, #emailAuth.bbb:focus, #userCellNum.bbb:focus{
+		border-color:#66afe9;			
+}
+			
+.bbb{
+		background-color:rgb(232, 240, 254);
+}
+
+.mypage-noContent{
+	min-height: 180px;
+    text-align: center;
+    line-height: 160px;
+}
+
+.mypage-noContent p {
+	font-size: 18px;
+}
+
+.mypage-content-page .active a{
+	z-index: 2 !important;
+    color: black !important;
+    cursor: default !important;
+    background-color: #fff !important;
+}
+
+#mypage-modify-btn{
+	height:40px;
+}
+
+.tab-content.mypage-wrap {
+    margin-top: 12px;
+}
+
+input#addrBasic {
+    margin-top: 0;
+}
+
+.mypage-modify-btnheight{
+	height: 40px;
+}
+
+.mypage-content-wrap > thead > tr > td{
+	font-weight: bold;
 }

@@ -16,6 +16,7 @@ public class LoginSuccessHandler extends HandlerInterceptorAdapter{
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception { //Controller가 실행된뒤 실행되는 postHandle메서드 매개변수 modelAndView에는 컨트롤러에서 넘어온 값이 담겨있습니다.
 		
+		System.out.println("로그인 핸들러");
 		
 		ModelMap mv = modelAndView.getModelMap(); //컨트롤러로 부터 받아온 ModelAndView값을 꺼내는 매서드 반환타입=ModelMap
 		

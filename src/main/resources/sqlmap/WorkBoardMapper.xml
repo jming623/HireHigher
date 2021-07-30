@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- mapper.xml설정코드 -->
+
+<mapper namespace="com.hirehigher.workboard.mapper.WorkBoardMapper">
+	
+	
+	<select id="getWorkBoardList" resultType="WorkBoardVO"> 	
+		<![CDATA[
+				select *
+				from(select ROWNUM AS RN , a.*
+		    	 	from(select *
+		          	  	from WORKBOARD
+		         	  	where category = #{Category}
+		          	 	ORDER BY LISTBNO DESC) a)
+				where RN > (#{pageNum}-1) * #{amount} and RN <= #{pageNum} * #{amount}
+		]]>
+	</select>
+
+
+	<select id="getTotal" resultType="int">
+		select count(*) from WORKBOARD
+		where CATEGORY = #{Category}
+	</select>
+</mapper>
+

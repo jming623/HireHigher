@@ -13,9 +13,15 @@ import lombok.NoArgsConstructor;
 public class InsertQuestionPageVO {
 	
 	private int insertBno;
+	private String insertKind;
 	private String insertId;
 	private String insertTitle;
 	private String insertContent;
 	private Timestamp insertDate;
+	private String answerTitle;
+	private String answerContent;
+	private Timestamp answerDate;
+	private String answerStatus;
 	private String insertImg;
+	private int[] noList;
 }

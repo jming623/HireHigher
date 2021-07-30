@@ -1,5 +1,13 @@
 /* section */
 
+.userLogin-section{	
+	height:calc(100vh - 150px);
+}
+
+.userLogin-container{
+	height: 100%;	
+}
+
 .loginTitle > h2 {
   text-align: center;
   margin: 20px auto;
@@ -10,12 +18,11 @@
 .login-form {
   width: 485px;
   margin: 0 auto;
+  margin-top: calc(15vh);
 }
 
 .userLogin{
-	margin-bottom: 28px !important;
-    margin-top: 48px;
-    min-height: 711px;
+    height: 100%;
 }
 
 .userLogin-find{
