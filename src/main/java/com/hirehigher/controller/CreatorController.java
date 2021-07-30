@@ -61,8 +61,8 @@ public class CreatorController {
 			
 			/*------------------------제작자 신청--------------------------------*/
 			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
-			creatorVO.setCreatorId(userVO.getUserId());
-			String creatorId = creatorVO.getCreatorId(); // creatorId 변수에 creatorVO의 creatorId를 저장
+			creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
+			
 			
 			int result = creatorService.apply(creatorVO); // apply함수 결과를 result 변수에 저장
 			
@@ -265,14 +265,47 @@ public class CreatorController {
 		return map;
 	}
 
-//	// 제작자 페이지 수정 화면
-//	@RequestMapping("/creatorModify")
-//	public String creatorModify() {
-//		
-//		
-//		
-//		return "/creator/creatorModify";
-//	}
+	// 제작자 페이지 프로필 수정
+	@RequestMapping("/profileUpdate")
+	public String profileUpdate(CreatorPageVO pageVO,
+								HttpSession session,
+								RedirectAttributes RA) {
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+		pageVO.setPageId(userVO.getUserId()); // pageVO의 pageId에 userVO의 userId를 저장
+		
+		int result = creatorService.profileUpdate(pageVO);
+		
+		if(result == 1) {
+			RA.addFlashAttribute("msg", "정상적으로 수정되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다. 다시 시도해주세요");
+		}
+		
+		return "redirect:/creator/creatorDetail";
+	}
+	
+	// 제작자 정보 수정
+	@RequestMapping("/infoUpdate")
+	public String infoUpdate(CreatorVO creatorVO,
+							 HttpSession session,
+							 RedirectAttributes RA) {
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+		creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
+				
+		int result = creatorService.infoUpdate(creatorVO);
+		
+		if(result == 1) {
+			RA.addFlashAttribute("msg", "정상적으로 수정되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다. 다시 시도해주세요");
+		}
+		
+		return "redirect:/creator/creatorDetail";
+	}
+	
+	
 }
 
 

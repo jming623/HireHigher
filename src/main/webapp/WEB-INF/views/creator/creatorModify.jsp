@@ -32,18 +32,18 @@
                 </div>
 
                 <div class="creator-description">
-                    <form action="" >
+                    <form action="profileUpdate" method="post">
                         
                     <div class="creator-description-content" id="creator-description-content">
-                        <textarea cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly>${pageVO.aboutMe}</textarea>
+                        <textarea cols="33" rows="14" placeholder="프로필을 작성해주세요." readonly>${pageVO.aboutMe}</textarea>
                     </div>
 
                     <div class="creator-description-textarea" id="creator-description-textarea" style="display: none;"> 
-                        <textarea name="aboutMe" id="aboutMe" cols="36" rows="14" placeholder="프로필을 작성해주세요.">${pageVO.aboutMe}</textarea>
+                        <textarea cols="33" name="aboutMe" rows="14" placeholder="프로필을 작성해주세요.">${pageVO.aboutMe}</textarea>
                     </div>
                     
                     <div class="creator-description-input" id="creator-description-input" style="display: none;">
-                       <input type="text" id="instarId" name="instarId" placeholder="인스타그램 주소를 입력하세요.">
+                       <input type="text" name="instaPath" placeholder="인스타그램 주소를 입력하세요." value="${pageVO.instaPath }">
                     </div>
                     
                     <div id="creator-descrption-btn-wrap">
@@ -75,7 +75,7 @@
 
                         <div class="tab-content">
                             <div id="menu1" class="tab-pane fade in active">
-                                <form action="">
+                                <form action="infoUpdate">
                                     <div class="creator-content-info">
                                         <p>전공분야:</p>
                                         
@@ -84,7 +84,7 @@
                                         </div>
 
                                         <div class="creator-content-info-input" style="display: none;">
-                                            <input type="text" id="major" name="major" value="${creatorVO.creatorMajor }">
+                                            <input type="text" name="creatorMajor" value="${creatorVO.creatorMajor }">
                                         </div>
 
                                         <p>경력사항:</p>
@@ -96,9 +96,9 @@
                                         </div>
 
                                         <div class="creator-content-info-input" style="display: none;">
-                                            <input type="text" id="career" name="career" value="${creatorVO.creatorCareer }">
-                                            <input type="text" id="career1" name="career1" value="${creatorVO.creatorCareer1 }">
-                                            <input type="text" id="career2" name="career2" value="${creatorVO.creatorCareer2 }">
+                                            <input type="text" name="creatorCareer" value="${creatorVO.creatorCareer }">
+                                            <input type="text" name="creatorCareer1" value="${creatorVO.creatorCareer1 }">
+                                            <input type="text" name="creatorCareer2" value="${creatorVO.creatorCareer2 }">
                                         </div>
 
                                         <p>수상경력:</p>
@@ -110,9 +110,9 @@
                                         </div>
 
                                         <div class="creator-content-info-input" style="display: none;">
-                                            <input type="text" id="awards" name="awards" value="${creatorVO.creatorAwards }">
-                                            <input type="text" id="awards1" name="awards1" value="${creatorVO.creatorAwards1 }">
-                                            <input type="text" id="awards2" name="awards2" value="${creatorVO.creatorAwards2 }">
+                                            <input type="text" name="creatorAwards" value="${creatorVO.creatorAwards }">
+                                            <input type="text" name="creatorAwards1" value="${creatorVO.creatorAwards1 }">
+                                            <input type="text" name="creatorAwards2" value="${creatorVO.creatorAwards2 }">
                                         </div>
                                            
                                         <div class="creator-content-info-edit1">
@@ -122,7 +122,7 @@
                                         </div>
                                             
                                         <div class="creator-content-info-edit2" style="display: none;">
-                                            <button type="button" class="btn btn-default" onclick="location.reload()">수정</button>
+                                            <button type="submit" class="btn btn-default" onclick="location.reload()">수정</button>
                                             <button type="button" class="btn btn-default" onclick="location.reload()">취소</button>
                                         </div>
                                     </div>

@@ -89,4 +89,27 @@
   		]]>
   	</select>
   	
+  	<update id="profileUpdate">
+  	
+  		update CREATORPAGE
+  		set instaPath = #{instaPath},
+  			aboutme = #{aboutMe}
+  		where pageid = #{pageId}
+  	
+  	</update>
+  	
+  	<update id="infoUpdate">
+  	
+  		update creator
+  		set creatormajor = #{creatorMajor},
+  			creatorcareer = #{creatorCareer},
+  			creatorcareer1 = #{creatorCareer1},
+  			creatorcareer2 = #{creatorCareer2},
+  			creatorawards = #{creatorAwards},
+  			creatorawards1 = #{creatorAwards1},
+  			creatorawards2 = #{creatorAwards2}
+  		where creatorId = #{creatorId}
+  		
+  	</update>
+  	
   </mapper>
