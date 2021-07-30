@@ -43,7 +43,7 @@
 				<c:when test="${sessionScope.userVO eq null}">
 					<!--[3-2]-->
 					<li><a
-						href="${pageContext.request.contextPath }/jobBoard/jobList">RECRUITMENT
+						href="${pageContext.request.contextPath }/jobBoard/jobList">JOBS
 							<img
 							src="${ pageContext.request.contextPath }/resources/img/recruitment-logo.png">
 					</a></li>
