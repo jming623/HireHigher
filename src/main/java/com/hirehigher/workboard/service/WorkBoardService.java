@@ -2,12 +2,10 @@ package com.hirehigher.workboard.service;
 
 import java.util.ArrayList;
 
-import org.springframework.stereotype.Service;
 
 import com.hirehigher.command.WorkBoardVO;
 import com.hirehigher.util.WorkBoardCriteria;
 
-@Service("/workBoardService")
 public interface WorkBoardService {
 
 	public ArrayList<WorkBoardVO> getWorkBoardList(WorkBoardCriteria cri); // 제작자게시판 리스트 불러오기 
