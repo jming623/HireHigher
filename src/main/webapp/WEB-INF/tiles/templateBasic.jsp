@@ -43,6 +43,8 @@
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!-- 준명 -->
     <link href="${pageContext.request.contextPath }/resources/css/workBoard.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/creator.css?1" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/mypage.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creator.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/mypage.css?1" rel="stylesheet">
     <!-- 우현이형 -->
