@@ -8,9 +8,10 @@ import org.springframework.transaction.jta.UserTransactionAdapter;
 
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
-import com.hirehigher.command.QuestionDetailVO;
+import com.hirehigher.command.JobBoardVO;
 import com.hirehigher.user.mapper.UserMapper;
 import com.hirehigher.userquestion.mapper.UserQuestionMapper;
+import com.hirehigher.util.mtomCriteria;
 
 @Service("userQuestion")
 public class UserQuestionServiceImpl implements UserQuestionService{
@@ -61,6 +62,16 @@ public class UserQuestionServiceImpl implements UserQuestionService{
 		return userQuestionMapper.updatedelete(bno);
 	}
 
-	
+	//총게시글수
+	@Override
+	public int mtomgetTotal(mtomCriteria cri) {
+		
+		return userQuestionMapper.mtomgetTotal(cri);
+	}
 
+	@Override
+	public ArrayList<InsertQuestionPageVO> mtomgetList(mtomCriteria cri) {
+		
+		return userQuestionMapper.mtomgetList(cri);
+	}
 }

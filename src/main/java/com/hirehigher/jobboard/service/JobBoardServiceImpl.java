@@ -14,12 +14,17 @@ import com.hirehigher.util.JobCriteria;
 public class JobBoardServiceImpl implements JobBoardService {
 	
 	//----------------------------MAPPER 연결----------------------------
+	
 	@Autowired
 	private JobBoardMapper jobBoardMapper;
+	
 	//----------------------------MAPPER 연결----------------------------
-
-	//public int regist(JobBoardVO jvo); //등록
-	//public int update(jobBoardVO jvo); //수정
+	
+	
+	//업데이트
+	public int update(JobBoardDetailVO jobBoardDetailVO) {
+		return jobBoardMapper.update(jobBoardDetailVO);
+	}
 	
 	//총 게시글 수
 	@Override
@@ -33,12 +38,22 @@ public class JobBoardServiceImpl implements JobBoardService {
 		return jobBoardMapper.getList(cri);
 	}
 
+	//상세화면
 	@Override
 	public JobBoardDetailVO getDetail(int bno) {
 		return jobBoardMapper.getDetail(bno);
 	}
-
-	//public int delete(int bno); //삭제
+	
+	//등록
+	@Override
+	public int regist(JobBoardDetailVO jobBoardDetailVO) {
+		return jobBoardMapper.regist(jobBoardDetailVO);
+	}
+	
+	//삭제
+	public int delete(int bno) {
+		return jobBoardMapper.delete(bno);
+	}
 	
 
 }
