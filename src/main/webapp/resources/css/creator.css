@@ -8,8 +8,15 @@
     color:white;
   }
 
-  .profile-header{
-    z-index: 20;
+.profile-header-row {
+   margin:0;
+}
+
+.profile-header {
+  padding: 0;
+}
+
+  .profile-header > img{
     box-sizing: border-box;
     position:relative;
     margin: 0px;
@@ -18,7 +25,6 @@
     background-position: center;
     width:100%;
     height:400px;
-    background-image: url("http://localhost:8181/HireHigher/resources/img/background.jpg");
   }
 
   .profile-content{
@@ -36,20 +42,20 @@
       z-index: 20;
   }
 
-  .creator-profile-img{
+  .creator-profile-wrap{
       background-color: white;
       width:140px;
       height:140px;
       border-radius: 50%;
+      text-align: center;
   }
 
-  .creator-profile-img > form img{
+  .creator-profile-img{
     width: 128px;
     height: 128px;
     border-radius: 50%;
     object-fit: cover;
     margin-top: 6px;
-    margin-left: 6px;
   }
 
   .creator-name{
@@ -71,6 +77,16 @@
   .creator-description{
       margin-top:24px;
   }
+  
+  .creator-description > textarea {
+  background-color: #1c1c1c;
+  border: none;
+  resize: none;
+}
+
+.creator-description > textarea::placeholder {
+  color: #fff;
+}
 
   .creator-social{
     margin-top: 15px;  
@@ -81,6 +97,14 @@
   .creator-social > a > img { 
     width: 33px;
   }
+  
+ .profile-modifyBtn > button {
+  background-color: #131212;
+  border: 1px solid #d2d2d2;
+  margin-top: 15px;
+  width: 100%;
+  text-align: center;
+}
 
   .creator-content{
     margin-top: 80px;
@@ -120,9 +144,9 @@
 
   .creator-content-info-detail small{
     display: inline-block;
-    width:100%;
-    min-height: 150px;
     margin:0px;
+    width: 100%;
+    min-height: 50px;
     font-size: 15px;
   }
 
@@ -131,6 +155,10 @@
   padding-left:10px;
   
   background-color: #1c1c1c;
+}
+
+.creator-content-writing-page li{
+	display: inline;
 }
 
 .creator-content-writing-page li a{
@@ -160,7 +188,7 @@
 }
 
 .creator-profile-img-modify > a > i {
-  background-image: url("	https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png"); 
+  background-image: url("   https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png"); 
   width: 20px;
   height: 20px;
   background-position: 0 -108px;
@@ -171,7 +199,7 @@
 }
 
 .creator-profile-header-modify > a > i{
-  background-image: url("	https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png");
+  background-image: url("   https://static.xx.fbcdn.net/rsrc.php/v3/yY/r/xav6oWZUykI.png");
   
   width: 20px;
   height: 18px;
@@ -184,7 +212,7 @@
 
 .profile-header-inner{
   position: absolute;
-  top: 348px;
+  top: 430px;
   right: 10px;
   overflow: hidden;
   width:100%;
@@ -210,11 +238,36 @@
   margin-top: 8px;
 }
 
-.creator-description-textarea > textarea{
+.creator-description-content > textarea {
   background-color: #1c1c1c;
-  border:none;
-  resize: vertical;
-  
+  border: none;
+  resize: none;
+}
+
+.creator-description-content > textarea::placeholder {
+  color: #fff;
+}
+
+.creator-description-textarea > textarea {
+  background-color: #1c1c1c;
+  border: none;
+  resize: none;
+}
+
+.creator-description-textarea > textarea::placeholder {
+  color: #fff;
+}
+
+.creator-description-input > input {
+  background-color: #1c1c1c;
+  border: none;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.creator-description-input > input::placeholder {
+  color: #fff;
 }
 
 .creator-profile-img-input{
@@ -251,14 +304,14 @@
   font-weight: bold;
 }
 
-.creator-content-info-textarea > textarea{
-  margin-left: 1.5px;
+.creator-content-info-input > input {
   background-color: #272626;
-  border:none;
-  resize: vertical;
-  padding:5px 10px;
-  width:99%;
-  height: 110px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid #424141;
+  height: 30px;
+  border-radius: 4px;
+  padding-left: 5px;
 }
 
 .creator-content-info-edit2 button{
