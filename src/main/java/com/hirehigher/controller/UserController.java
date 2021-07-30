@@ -170,6 +170,8 @@ public class UserController {
 		
 		ArrayList<UserVO> idList = userService.findIdA(userName ,birthDay );
 		
+		System.out.println(idList.toString());
+		
 		return idList;
 	}
 	
@@ -182,6 +184,8 @@ public class UserController {
 		String userCellNum = VO.getUserCellNum();
 			
 		ArrayList<UserVO> idList = userService.findIdB(userName, userCellNum);
+		
+		System.out.println(idList.toString());
 		
 		return idList;
 	}

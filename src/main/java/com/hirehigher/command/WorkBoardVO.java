@@ -17,5 +17,6 @@ public class WorkBoardVO {
 	private int star;
 	private String category;
 	private Timestamp regDate;
+
 	
 }

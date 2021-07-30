@@ -153,5 +153,15 @@ var myChart = new Chart(ctx, {
 });
 	
 }
-
 </script>
+
+
+<script>
+        var menuHolder = document.querySelector("#header-menuholder");
+        var menu = document.querySelector(".nav-links");
+
+        menuHolder.addEventListener('click', () => {
+             menu.classList.toggle('active')
+        });
+</script>
+

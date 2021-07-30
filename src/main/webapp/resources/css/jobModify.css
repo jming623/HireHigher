@@ -1,0 +1,57 @@
+/*지혁 수정 추가*/
+.jobmodify-input-xl {
+border:2px solid green; 
+width:680px; 
+height:30px;
+text-align:center;
+}
+
+.jobmodify-input-mini {
+border:2px solid green; 
+width:80px; 
+height:30px; 
+text-align:center;
+}
+
+.jobmodify-input-regular {
+border:2px solid green; 
+width:240px; 
+height:30px;
+text-align:center; 
+}
+
+.jobmodify-input-large {
+border:2px solid green; 
+width:480px; 
+height:30px; 
+text-align:center;	
+}
+
+.jobmodify-select-mini {
+border:2px solid green; 
+width:80px; height:30px; 
+text-align-last:center;"	
+}
+
+.jobmodify-select-mini option {
+text-align:center;
+}
+
+.jobmodify-textarea {
+border:2px solid green; 
+width:480px; 
+height:90px;
+text-indent: 10px;
+}
+
+#jobboard-addr-container {
+display:inline;
+}
+
+#jobboard-addr-button {
+border:1px solid green;
+width:80px; height:30px;
+border-radius: 20px; 
+margin-bottom: 25px;
+margin-left: 10px;
+}

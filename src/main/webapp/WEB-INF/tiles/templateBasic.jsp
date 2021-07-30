@@ -31,8 +31,12 @@
   	
     <!-- 스타일시트(개인 css)는 아래에 추가해주세요 (src/webapp/resources/css에 필요한 css파일 추가하고 이곳에 선언해줍니다.)-->
     <!-- 기본선언 css,사이드바 -->
-  	<link href="${pageContext.request.contextPath }/resources/css/Basic.css?222" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath }/resources/css/Basic.css?113" rel="stylesheet">
   	<link href="${pageContext.request.contextPath }/resources/css/sideBar.css?2" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath }/resources/css/responsiveBasic.css" rel="stylesheet">
+  	<!-- 헤더 검색창 분류 박스-->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/headerjquery.js"></script>
   	<!-- 홈버튼 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,14 +47,18 @@
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!-- 준명 -->
     <link href="${pageContext.request.contextPath }/resources/css/workBoard.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/creator.css?1" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/mypage.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creator.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/mypage.css?1" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/mypage.css?5" rel="stylesheet">
     <!-- 우현이형 -->
     <link href="${pageContext.request.contextPath }/resources/css/userJoin.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/userLogin.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creatorApply.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobBoard.css?1" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobDetail.css?1" rel="stylesheet">
+    <!-- 우현이형 >> jobModify 지혁 추가 수정 본 -->
+    <link href="${pageContext.request.contextPath }/resources/css/jobModify.css?11" rel="stylesheet">
     <!-- 우진 -->
     <!-- 4d5cac4ade929922b4a884e5a7d924d0 = 카카오톡 js키 -->
     <link href="${pageContext.request.contextPath }/resources/css/kakao.css?1" rel="stylesheet">
@@ -62,12 +70,13 @@
 	<!-- 문의 등록 페이지 -->
 	<link href="${pageContext.request.contextPath }/resources/css/insertPage.css?2" rel="stylesheet">
 	<!--  1:1 문의 내역 페이지 -->
-	<link href="${pageContext.request.contextPath }/resources/css/mtomPage.css?2" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/mtomPage.css?1" rel="stylesheet">
 	<!-- 1:1 문의 내역 상세페이지 -->
-	<link href="${pageContext.request.contextPath }/resources/css/questionDetail.css?2" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/questionDetail.css?1" rel="stylesheet">
 	<!-- 1:1 문의 수정 페이지 -->
 	<link href="${pageContext.request.contextPath }/resources/css/updatePage.css?2" rel="stylesheet">
-
+	<!-- 모달 -->
+	<link href="${pageContext.request.contextPath }/resources/css/questionModal.css?2" rel="stylesheet">
 </head>
 <body>
 	<!-- 헤더영역 -->
@@ -78,5 +87,7 @@
 	<tiles:insertAttribute name="body"/>
 	<!-- 푸터영역 -->
 	<tiles:insertAttribute name="footer"/>
+	<!-- 반응형 메뉴 -->
+	<script src="${ pageContext.request.contextPath }/resources/js/responsivemenu.js"/></script>
 </body>
 </html>

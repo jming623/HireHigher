@@ -55,13 +55,13 @@
                             <div class="findPw-result" id="findPwResult_ok" style="display: none;">
                                 <strong style=>결과:</strong> <br>
                                 <strong style=>입력하신 이메일로 비밀번호가 발송되었습니다.</strong> <br>
-                                <a href="location.href=''">로그인화면으로 돌아가기</a>
+                                <a href="location.href='${pageContext.request.contextPath }/user/userLogin'">로그인화면으로 돌아가기</a>
                             </div>
                             
                             <div class="findPw-result" id="findPwResult_fail" style="display: none;">
                                 <strong style=>결과:</strong> <br>
                                 <strong style=>입력하신 정보로 가입된 회원이없습니다.</strong> <br>
-                                <a href="location.href=''">회원가입 화면으로 이동</a>
+                                <a href="location.href='${pageContext.request.contextPath }/user/userJoin'">회원가입 화면으로 이동</a>
                             </div>
                              
                         </div>
@@ -107,26 +107,26 @@
 				if(data == 0) {//아이디가 없는경우
 					alert("존재하지 않는 아이디입니다.");
 					return;
+				}else{
+					//이메일 정보 유무 확인
+					$.ajax({
+					type: "post",
+					url: "../../user/emailCheck", //현재경로 http://localhost:8181/HireHigher/resources/find/findPw.jsp
+					dataType: "json",
+					contentType: "application/json; charset=UTF-8",
+					data: JSON.stringify({"userEmail":userEmail}),
+					success: function(data){
+						if(data == 0) {//이메일정보가 존재하지 않는경우
+							alert("존재하지 않는 이메일입니다.");
+							return;
+						}
+					},
+					error: function(status,error){
+						console.log(status,error);
+					}			
+					})
 				}
-			})
-			
-			//이메일 정보 유무 확인
-			$.ajax({
-			type: "post",
-			url: "../../user/emailCheck", //현재경로 http://localhost:8181/HireHigher/resources/find/findPw.jsp
-			dataType: "json",
-			contentType: "application/json; charset=UTF-8",
-			data: JSON.stringify({"userEmail":userEmail}),
-			success: function(data){
-				if(data == 0) {//이메일정보가 존재하지 않는경우
-					alert("존재하지 않는 이메일입니다.");
-					return;
-				}
-			},
-			error: function(status,error){
-				console.log(status,error);
-			}			
-			})
+			})			
 			
 			//위에 과정들을 모두 통과하였다면 이메일 전송 
             $.ajax({

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hirehigher.creator.mapper.CreatorMapper">
+  
+  	<insert id="apply">
+  	
+  		insert into CREATOR(CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1, CREATORCAREER2, CREATORAWARDS, CREATORAWARDS1, CREATORAWARDS2)
+  		values(#{creatorId}, #{creatorMajor}, #{creatorCareer}, #{creatorCareer1, jdbcType=VARCHAR}, #{creatorCareer2, jdbcType=VARCHAR}, #{creatorAwards}, #{creatorAwards1, jdbcType=VARCHAR}, #{creatorAwards2, jdbcType=VARCHAR})
+  		
+  	</insert>
+  	
+  	<update id="apply1">
+  	
+  		update users
+  		set usertype = #{userType}
+  		where userid = #{userId}
+  		
+  	</update>
+  	
+  	<insert id="pageRegist">
+  	
+  		insert into CREATORPAGE(PAGEID, CREATOREMAIL, CREATORNICK, ABOUTME, INSTAPATH)
+  		values(#{pageId}, #{creatorEmail}, #{creatorNick}, #{aboutMe}, #{instaPath})
+  	
+  	</insert>
+  	
+  	<insert id="profileRegist">
+  	
+  		insert into PROFILEIMG(PROFILEID, PROFILEPATH, PROFILELOCA, PROFILENAME, PROFILEREAL)
+  		values(#{profileId}, #{profilePath}, #{profileLoca}, #{profileName}, #{profileReal})
+  	
+  	</insert>
+  	
+  	<insert id="backgroundRegist">
+  	
+  		insert into BACKGROUNDIMG(BACKGROUNDID, BACKGROUNDPATH, BACKGROUNDLOCA, BACKGROUNDNAME, BACKGROUNDREAL)
+  		values(#{backgroundId}, #{backgroundPath}, #{backgroundLoca}, #{backgroundName}, #{backgroundReal})
+  	
+  	</insert>
+  	
+  	<select id="pageDetail" resultType="CreatorPageVO">
+  	
+  		select * from CREATORPAGE where pageid = #{pageId}
+  	
+  	</select>
+  	
+   	<select id="creatorDetail" resultType="CreatorVO">
+   	
+   		select * from CREATOR where creatorid = #{creatorId}
+   	
+   	</select>
+   	
+   	<select id="profileGet" resultType="ProfileVO">
+   	
+   		select * from PROFILEIMG where profileid = #{profileId}
+   	
+   	</select>
+  	
+  	<select id="backgroundGet" resultType="BackgroundVO">
+  	
+  		select * from BACKGROUNDIMG where backgroundid = #{backgroundId}
+  	
+  	</select>
+  	
+  	<select id="getTotal" resultType="int">
+  	
+  		select count(*) as total from workboard where username = #{userName}
+  	
+  	</select>
+  	
+   	<select id="getList" resultType="WorkBoardVO">
+ 
+  		select *
+		from (
+    		select rownum rn,
+       			   a.*
+    		from (
+        		   select *
+        		   from workboard
+        		   where username = #{userName}
+        		   order by bno desc
+    		) a
+		)
+		<![CDATA[
+		where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
+  		]]>
+  	</select>
+  	
+  </mapper>

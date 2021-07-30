@@ -228,8 +228,8 @@
     		<artifactId>spring-context-support</artifactId>
     		<version>${org.springframework-version}</version>
 		</dependency>
+		
 	</dependencies><!-- EndDependencies -->
-
 	<build>
 		<plugins>
 			<plugin>

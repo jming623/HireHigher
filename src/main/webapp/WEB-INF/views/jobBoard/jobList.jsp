@@ -26,7 +26,7 @@
           		-->
 				<form action="jobList">
 					<div class="search-wrap">
-						<button type="submit" class="btn btn-info search-btn">검색</button>
+						<button type="submit" class="btn btn-info search-btn" style="background-color:gray; border:none;">검색</button>
 						<input type="text" class="form-control search-input"
 							name="searchName" value="${jobPageVO.cri.searchName }">
 						<!-- jobPageVO는 컨트롤러 타고 화면에 model에 담겨서 와있어서 사용 가능 -->
@@ -36,12 +36,6 @@
 								${jobPageVO.cri.searchType eq 'title' ? 'selected' : '' }>제목</option>
 							<option value="company"
 								${jobPageVO.cri.searchType eq 'company' ? 'selected' : '' }>기업</option>
-							<option value="content"
-								${jobPageVO.cri.searchType eq 'content' ? 'selected' : '' }>내용</option>
-							<option value="writer"
-								${jobPageVO.cri.searchType eq 'writer' ? 'selected' : '' }>작성자</option>
-							<option value="titcont"
-								${jobPageVO.cri.searchType eq 'titcont' ? 'selected' : '' }>제목+내용</option>
 						</select>
 					</div>
 				</form>
@@ -116,9 +110,10 @@
 							</c:if>
 
 						</ul>
-
-						<button type="button" class="btn btn-info write-btn">글쓰기</button>
 						
+						<c:if test="${sessionScope.userVO != null }">
+							<button type="button" class="btn btn-info write-btn" onclick="location.href='jobRegist'" style="background-color:gray; border:none;">글쓰기</button>
+						</c:if>
 					</div>
 				</form>
 				

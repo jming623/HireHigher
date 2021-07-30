@@ -11,9 +11,18 @@ var renderer = new THREE.WebGLRenderer();
 //궤도 객체(마우스로 클릭하고 궤도 이동 가능)
 var controls = new OrbitControls(camera, renderer.domElement);
 
+
+//화면 크기 조정시 캔버스크기 리사이징
+window.addEventListener('resize', function()
+{
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  renderer.setSize(width, height);
+})
+
 //카메라 위치
-camera.position.setZ(-10);
-camera.position.setX(-65);
+camera.position.setZ(25);
+camera.position.setX(-55);
 camera.position.setY(10);
 document.body.appendChild(renderer.domElement);
 

@@ -45,7 +45,6 @@ public class MainController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		
 		//-----------------------Counter 리스너 클래스에서 차트 데이터 처리 결과 가져오는 처리----------------
 		
 		/*

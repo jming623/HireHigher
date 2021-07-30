@@ -108,6 +108,11 @@
 	
 	$("#userEmailCheck").click(function(){//	
 		
+		//이메일을 변경하지 않고 이메일인증 버튼 클릭시 버튼 비활성화
+		if( $("#userEmail").val() == original_email ){
+    		return;
+    	}		
+		
 		if(! $("#userEmail").hasClass("bbb") ){ //bbb클래스를 가지고 있지 않다면 email형식이 올바르지 않다고 판단 메서드를 종료시킨다.
 			alert("이메일 형식을 확인해주세요");
 			return;

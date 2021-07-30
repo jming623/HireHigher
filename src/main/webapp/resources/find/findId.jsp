@@ -138,8 +138,7 @@
         		return;	
         	} */
         	
-        	
-        	
+      	
             $("#findIdResultBirth").css("display","block");
             
         	//생년월일로 아이디찾기
