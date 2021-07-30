@@ -1,0 +1,121 @@
+#question-modal {
+    position:absolute;
+    display: none;
+    width:100%;
+    height:100%;
+    z-index:1;
+    left:30px;
+    bottom:70px;
+  }
+  
+  #question-modal h2 {
+    margin:0;   
+  }
+  
+  #question-modal .modal_content {
+    width:600px;
+    margin:100px auto;
+    padding:30px 30px 30px 30px;
+    background:#fff;
+    border:2px solid #666;
+  }
+  
+  #question-modal .modal_layer {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0, 0, 0, 0.5);
+    z-index:-1;
+  }  
+  /*--------- 문의 내역 번호 ------*/
+  .question-modal-box{
+    overflow: hidden;
+  }
+  .question-modal-box-num{
+    width: 20%;
+    float: left;
+}
+.question-modal-box-title{
+    width: 80%;
+    float: left;
+}
+.question-modal-box-content{
+    border-bottom: 3px solid #eee;
+}
+.question-modal-box-content p{
+    white-space: normal;
+    word-wrap: break-word;
+    width: 100%;
+    height: 100px;
+    overflow: auto;
+}
+.question-modal-box-status{
+    display: none;
+  }
+  /* ------입력 구역------- */
+  .question-title-modal{
+    
+    margin-bottom: 50px;
+  }
+  .question-input-madal-all{
+      margin-top: 20px;
+  }
+  .answer-modal-box > div > div > p{
+      color: #454545;
+      font-weight: 550;
+      font-size: 16px;
+
+  }
+  .question-input-modal{
+    padding-left: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+    border: 1px solid #454545;
+    border-radius: 3px;
+  }
+  .question-textarea-modal{
+    padding: 10px;
+    resize: none;
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #454545;
+    border-radius: 3px;
+  }
+  /* 버튼 */
+  .question-modal-btn{
+    width: 100%;
+    overflow: hidden;
+  }
+  .question-modal-btn > button{
+    width:100px;
+    float: right;
+    margin-left: 10px;
+    text-align: center;
+    height: 30px;
+  }
+.question-modal-box div{
+    color: #454545;
+    font-weight: 550;
+    font-size: 16px;
+}
+.question-modal-box div p{
+    font-size: 13px;
+    font-weight: 545;
+    color: #333333;
+}
+/* .question-modal-btn-right{
+    background-color: #f33838;
+    color: white;
+    font-size: 16px;
+    border: 1px solid red;
+    border-radius: 3px;
+}
+.question-modal-btn-left{
+    background-color: #3861b9;
+    color: white;
+    font-size: 16px;
+    border: 1px solid blue;
+    border-radius: 3px;
+} */

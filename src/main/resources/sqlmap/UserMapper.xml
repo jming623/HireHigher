@@ -13,6 +13,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from users where userId = #{userId} and userPw = #{userPw}
 	</select>
 	
+	<select id="kakaoLogin" resultType="UserVO">
+		select * from users where userId = #{userId}
+	</select>
+	
 	<select id="findIdA" resultMap="idList">
 		select userId from users where userName = #{userName} and birthDay = #{birthDay}	
 	</select>
@@ -71,5 +75,97 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="bno" column="BNO"/>
 	</resultMap>
 	-->
+	
+	<update id="modify">
+		update users set userPw = #{userPw}, userEmail = #{userEmail}, userCellNum = #{userCellNum},
+		addrZipNum = #{addrZipNum}, addrBasic = #{addrBasic}, addrDetail = #{addrDetail} where userId = #{userId}
+	</update>
+	
+	<select id="getJobBoardList" resultType="JobBoardVO">
+		<![CDATA[
+		select *
+		from(select rownum as rn,
+            		a.*
+     		 from(select *
+          		  from JOBBOARD 
+          		  where userId = #{userId}
+          		  order by bno desc) a )
+		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getJobBoardTotal" resultType="int">
+		select count(*) from jobboard where userId = #{userId}
+	</select>
+	
+	<select id="getFaqBoardList" resultType="InsertQuestionPageVO">
+		<![CDATA[
+		select *
+		from(select rownum as rn,
+            		a.*
+     		 from(select *
+          		  from insertQuestionPage 
+          		  where INSERTID = #{userId}
+          		  order by INSERTBNO desc) a )
+		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+		]]>
+	</select>
+	
+	<select id="getFaqBoardTotal" resultType="int">
+		select count(*) from insertQuestionPage where INSERTID = #{userId}
+	</select>
+	
+	<insert id="kakaoJoin1">
+		insert into users (USERID,USERPW,USEREMAIL,NICKNAME) values(#{userId},#{userId},#{userEmail},#{nickName})
+	</insert>
+	
+	<insert id="kakaoJoin2">
+		insert into users (USERID,USERPW,NICKNAME) values(#{userId},#{userId},#{nickName})
+	</insert>
+	
+	<insert id="registLoginCount">
+		insert into logincount (userId) values(#{userId})
+	</insert>
+	
+	<select id="getloginLimitTime" resultType="LoginCountVO">
+		select loginLimitTime from logincount where userId = #{userId}
+	</select>
+	
+	<update id="setLoginLimitN">
+		update logincount set loginlimitstatus = 'N' where userId = #{userId} 
+	</update>
+	
+	<select id="getLoginLimitStatus" resultType="LoginCountVO">
+		select loginlimitstatus from logincount where userId = #{userId}
+	</select>
+	
+	<update id="resetLoginTryNum">
+		update logincount set LOGINTRYNUM = 0 where userId = #{userId}
+	</update>
+	
+	<select id="getloginFailTime" resultType="LoginCountVO">
+		select LOGINFAILTIME from logincount where userId = #{userId}
+	</select>
+	
+	<select id="getLoginTryNum" resultType="LoginCountVO">
+		select LOGINTRYNUM from logincount where userId = #{userId}
+	</select>
+	
+	<update id="plusLoginTryNum">
+		update logincount set LOGINTRYNUM = #{addLoginTryNum} where userId = #{userId}
+	</update>
+	
+	<update id="resetLoginFailTime">
+		update logincount set LOGINFAILTIME = sysdate where userId = #{userId}
+	</update>
+	
+	<update id="setLoginLimitY">
+		update logincount set loginlimitstatus = 'Y' where userId = #{userId} 
+	</update>
+	
+	<update id="resetLoginLimitTime">
+		update logincount set LOGINLIMITTIME = sysdate where userId = #{userId}
+	</update>
+	
 	
 </mapper>

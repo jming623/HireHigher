@@ -3,6 +3,7 @@
 .MtoM-all{
     margin-top: 50px;
     margin-bottom: 50px;
+    
 }
 /* --------상단 선택 박스 영역--------- */
 
@@ -50,12 +51,20 @@
 }
 
 .MtoM-top-select-right{
+    
     width: 50%;
     float: right;
 }
 
 .MtoM-top-select-right select{
+    width: 100px;
+    border: 1px solid #777;
+    appearance: auto;
+    height: 25px;
+    border-radius: 2px;
     float: right;
+}
+.MtoM-top-select-right select option{
 }
 /* --------- 하단 문의내역 박스 영역-------- */
 /* 제목 영역 */
@@ -100,7 +109,7 @@
 }
 .MtoM-answer-box-ul li:not(.MtoM-answer-box-title){
     height: 50px;
-    line-height: 50px;
+    line-height: 40px;
     text-align: center;
     float: left;
     border-bottom: 1px solid #dadada;
@@ -111,6 +120,10 @@
     text-align: center;
     width: 5%;
 }
+.MtoM-answer-box-ck input{
+    margin-top: 13px;
+    appearance: auto;
+}
 .MtoM-answer-box-num{
     width: 5%;
 }
@@ -119,7 +132,7 @@
 }
 .MtoM-answer-box-title{
     height: 50px;
-    line-height: 50px;
+    line-height: 40px;
     float: left;
     border-bottom: 1px solid #dadada;
     text-align: left;
@@ -135,7 +148,6 @@
     width: 10%;
 }
 .MtoM-answer-box-option{
-    border-right: 1px solid #dadada;
     width: 15%;
 }
 .MtoM-answer-box-option .MtoM-btn-go{
@@ -155,4 +167,27 @@
     font-size: 10px;
     width: 45px;
     height: 25px;
+}
+/* --------------------------- */
+.mtomListpage-num{
+    text-align: center;
+}
+.mtomListpage-num button{
+    
+}
+.mtomListpage-num > .mtom-btn{
+    font-size: 11px;
+    font-weight: 550;
+    width: 30px;
+    height: 25px;
+    line-height: 10px;
+    margin: 2px;
+}
+.mtom-btn-before, .mtom-btn-next{
+    font-size: 11px;
+    font-weight: 550;
+    width: 45px;
+    height: 25px;
+    line-height: 10px;
+    margin: 5px;
 }

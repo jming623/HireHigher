@@ -9,12 +9,13 @@
                 <!-- 왼쪽 영역-------------------------------- -->
                 <div class="update-left-box">
                     <ul class="update-ul-box">
-                        <li><a href="">FAQ고객센터</a></li>
-                        <li><a href="">1:1문의내역</a></li>
-                        <li><a href="">마이페이지</a></li>
+                        <li><a href="faqList">FAQ고객센터</a></li>
+                        <li><a href="mtomPage">1:1문의내역</a></li>
+                        <li><a href="../user/mypage">마이페이지</a></li>
                     </ul>
                 </div>
                 <!-- 오른쪽 영역------------------------------ -->
+                <form action="updateForm" method="post">
                 <div class="update-right-box">
                     <div class="update-question-sector"><!-- 문의 등록 영역 -->
                         <div class="update-question-title-box"> <!-- 문의 데이터 제목 -->
@@ -48,32 +49,32 @@
 
                         <div class="update-input-kinds"><!-- 문의 데이터 input 내용 -->
                             <div><!-- 작성일-->
-                                <p>2021.07.15 19:35</p>
+                                <p>${update.insertDate}</p>
                             </div>
 
                             <div><!-- 글 번호 -->
-                                <p>글 번호</p>
-                            </div>
+                               <input name="insertBno" value="${update.insertBno}">
+                            </div> 
 
                             <div> <!-- 문의 분류 -->
-                                <select name="" id="">
-                                    <option value="">계정 관련</option>
-                                    <option value="">결제/배송/환불</option>
-                                    <option value="">상품 문제관련</option>
-                                    <option value="">기타사항</option>
+                                <select name="insertKind">
+                                    <option value="계정 관련">계정 관련</option>
+                                    <option value="결제/배송/환불">결제/배송/환불</option>
+                                    <option value="상품 문제관련">상품 문제관련</option>
+                                    <option value="기타사항">기타사항</option>
                                 </select>
                             </div>
                          
                             <div class="update-input-id"> <!-- 아이디 -->
-                                 <p>아이디 자동 입력</p>
+                                 <input type="text" name="insertId" value="${update.insertId}">
                             </div>
                          
                             <div class="update-input-title"> <!-- 제목 -->
-                                <input type="text">
+                               <input type="text" name="insertTitle" value="${update.insertTitle}">
                             </div>
                          
                             <div class="update-input-content"> <!-- 내용 --> <!--ckeditor로 sts에서 사용할것임-->
-                                <textarea class="update-input-text" name="" rows="15" cols="100" wrap="hard"></textarea>
+                               <textarea class="insert-input-text" name="insertContent" name="" rows="15" cols="100" wrap="hard">${update.insertContent}</textarea>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,7 @@
                         <div class="update-file-funtion-box"> <!--파일 첨부 기능 영역-->
                             <div class="update-file-funtion"><!-- 파일 첨부하기-->
                                 <!--input box-->
-                                <input type="text" class="update-upload_text" readonly="readonly">
+                                 <input type="text" class="upload_text" readonly="readonly" name="insertImg" value="${update.insertImg}">
                                 <!--button-->
                                 <div class="update-upload-btn_wrap">
                                 <button type="button" title="파일선택">
@@ -103,11 +104,12 @@
 
                     <!-- 문의하기 취소하기 버튼-->
                     <div class="update-btn-qne">
-                        <button class="update-btn-right btn btn-default">취소하기</button>
-                        <button class="update-btn-left btn btn-primary">수정하기</button>
+                        <button type="button" class="update-btn-right btn btn-default" onclick="location.href='mtomPage'">취소하기</button>
+                        <button type="submit" class="update-btn-left btn btn-primary">수정하기</button>
                     </div>
 
                 </div>
+                </form>
             </div>
         </div>
     </div>
