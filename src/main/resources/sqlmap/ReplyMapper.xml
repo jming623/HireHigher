@@ -17,12 +17,12 @@
 		    select rownum rn,
 		           a.*
 		    from (
-		         select RNO,
-		                BNO,
-		                REPLY,
-		                REPLYID,
-		                REPLYDATE,
-		                REPLYUPDATEDATE
+		         select bno,
+		                rno,
+		                reply,
+		                replyId,
+		                replyDate,
+		                replyUpdate	        
 		         from WORKREPLY where bno = #{bno} order by rno desc
 		    ) a
 		) where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}

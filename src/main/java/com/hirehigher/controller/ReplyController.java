@@ -26,10 +26,10 @@ public class ReplyController {
 	@Qualifier("replyService")
 	private ReplyService replyService;
 	
-	@ResponseBody
+
 	@PostMapping(value = "/replyRegist", produces = "application/json" ) //컨패스/reply/replyRegist
-	public int replyRegist(WorkReplyVO vo) {
-		System.out.println(vo.toString());
+	public int replyRegist(@RequestBody WorkReplyVO vo) {
+		
 		int result = replyService.regist(vo);
 		System.out.println("성공실패:" + result);
 		
@@ -38,12 +38,19 @@ public class ReplyController {
 	}
 	
 	//조회메서드 get
+		@ResponseBody
 		@GetMapping("/getList/{bno}/{pageNum}")
 		public HashMap<String, Object> getList(@PathVariable("bno") int bno,
 											  @PathVariable("pageNum") int pageNum) {
-		
+			
+			System.out.println("bno값:"+ bno + "pageNum값:"+pageNum);
+			
 			ReplyCriteria cri = new ReplyCriteria(pageNum, 20); //20개씩 데이터조회
+			System.out.println(cri.toString());
+			
 			ArrayList<WorkReplyVO> list = replyService.getList(bno, cri);
+			
+			System.out.println(list.toString());
 			
 			int total = replyService.getTotal(bno);
 					

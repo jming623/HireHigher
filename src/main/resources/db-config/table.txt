@@ -97,7 +97,7 @@ create table CREATOR (
     creatorAwards1 varchar2(100), -- 수상경력 1
     creatorAwards2 varchar2(100), -- 수상경력 2
     creatorRegdate date default sysdate -- 제작자 등록일
-
+);
 
 ========================================= LOGINCOUNT TABLE ======================================== 
 create table LOGINCOUNT(

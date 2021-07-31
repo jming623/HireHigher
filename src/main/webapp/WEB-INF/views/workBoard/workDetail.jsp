@@ -144,20 +144,22 @@
 
                         <!--여기에접근 반복-->
                         <div id="replyList">                      	
+	                     <!-- 
 	                        <div class='reply-wrap'>
 	                            <div class='reply-image'>
-	                                <img src="${pageContext.request.contextPath }/resources/img/profile.png" alt="user" style="border-radius: 20px;">
+	                                <img src='../resources/img/profile.png'>
 	                            </div>
 	                            <div class='reply-content'>
 	                                <div class='reply-group'>
-	                                    <strong class='left'></strong> 
-	                                    <small class='left'></small>
+	                                    <strong class='left'>honggildong</strong> 
+	                                    <small class='left'>2019/12/10</small>
 	                                    <a href='#' class='right'><span class='glyphicon glyphicon-pencil'></span>수정</a>
 	                                    <a href='#' class='right'><span class='glyphicon glyphicon-remove'></span>삭제</a>
 	                                </div>
 	                                <p class='clearfix'>여기는 댓글영역</p>
 	                            </div>
 	                        </div>
+	                         -->
                         </div>
                         <button type="button" class="btn btn-default btn-block" id="moreList">더보기</button>
                         
@@ -199,7 +201,7 @@
     		//등록이벤트
     		$("#replyRegist").click(function() {
     			
-    			var bno = "${boardVO.bno }"; //글 번호
+    			var bno =  1/* "${boardVO.bno }" */; //글 번호 이건 나중에 detail에 list로 값을 받아오는 처리를해주면 다시 바꿔줘야함.넵
     			var reply = $("#reply").val();
     			var replyId = $("#replyId").val();
 
@@ -245,7 +247,9 @@
     		//데이터 조회
     		function getList(pageNum, reset) {
     			
-    			var bno = "${boardVO.bno}"; //게시글 번호
+    			var bno =1 /* "${boardVO.bno}" */; //게시글 번호
+    			console.log("확인1:"+pageNum);
+    			console.log("확인2:"+bno);
     			
     			$.getJSON("../reply/getList/"+ bno + "/" + pageNum, function(data) {
     				console.log(data);
@@ -271,13 +275,14 @@
     				
                     for(var i = 0; i < data.length; i++) {
                     	
-        				strAdd += "<div class='reply-wrap'>";
+                    	strAdd += "<div class='reply-wrap'>";
         				strAdd += "<div class='reply-image'>";
                         strAdd += "<img src='../resources/img/profile.png'>";
                         strAdd += "</div>";
                         strAdd += "<div class='reply-content'>";
                         strAdd += "<div class='reply-group'>";
                         strAdd += "<strong class='left'>"+ data[i].replyId +"</strong>"; 
+                       
                         strAdd += "<a href='"+ data[i].rno +"' class='right replyModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>";
                         strAdd += "<a href='"+ data[i].rno +"' class='right replyDelete'><span class='glyphicon glyphicon-remove'></span>삭제</a>";
                         strAdd += "</div>";
@@ -398,7 +403,7 @@
 	 
     <!--별찍기-->
     
-    <script src="${pageContext.request.contextPath }/resources/js/jquery-1.11.3.min.js"></script>
+   <%--  <script src="${pageContext.request.contextPath }/resources/js/jquery-1.11.3.min.js"></script> --%> 
     <script src="${pageContext.request.contextPath }/resources/js/star.js"></script> 
 
 </body>
