@@ -8,7 +8,6 @@ import com.hirehigher.util.ReplyCriteria;
 public interface ReplyService {
 
 	public int regist(WorkReplyVO vo); //등록
-//	public ArrayList<FreeReplyVO> getList(int bno);
 	public ArrayList<WorkReplyVO> getList(int bno, ReplyCriteria cri);
 	public int getTotal(int bno); //전체댓글 수
 	

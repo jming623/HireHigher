@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hirehigher.command.WorkReplyVO;
@@ -25,9 +26,10 @@ public class ReplyController {
 	@Qualifier("replyService")
 	private ReplyService replyService;
 	
+	@ResponseBody
 	@PostMapping(value = "/replyRegist", produces = "application/json" ) //컨패스/reply/replyRegist
-	public int replyRegist(@RequestBody WorkReplyVO vo) {
-		
+	public int replyRegist(WorkReplyVO vo) {
+		System.out.println(vo.toString());
 		int result = replyService.regist(vo);
 		System.out.println("성공실패:" + result);
 		

@@ -24,7 +24,7 @@
                 <div class="creation-list-wrap col-md-3 col-xs-4">
                     <div class="creation-list">
                         <div class="prod-img"> <!-- 이미지영역 -->
-                                <a href=""><img src="${pageContext.request.contextPath }/resources/img/car3.jpg" alt=""></a>
+                                <a href="workDetail"><img src="${pageContext.request.contextPath }/resources/img/car3.jpg" alt=""></a>
                             </div>
                         <div class="prod-profile"> <!-- 제작자프로필영역 -->
                             <div class="prod-profile-img"> <!-- 왼쪽 -->    

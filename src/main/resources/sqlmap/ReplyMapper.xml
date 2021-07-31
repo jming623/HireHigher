@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hirehigher.reply.mapper.ReplyMapper">
+  
+  	<insert id="regist">
+		insert into WORKREPLY(rno, bno, reply, replyId)
+		values (WORKREPLY_SEQ.nextval, #{bno}, #{reply}, #{replyId})
+  	</insert>
+  	
+  	<select id="getList" resultType="WorkReplyVO">
+  		<![CDATA[
+		select *
+		from (
+		    select rownum rn,
+		           a.*
+		    from (
+		         select RNO,
+		                BNO,
+		                REPLY,
+		                REPLYID,
+		                REPLYDATE,
+		                REPLYUPDATEDATE
+		         from WORKREPLY where bno = #{bno} order by rno desc
+		    ) a
+		) where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
+		]]>
+  	</select>
+  	
+  	<select id="getTotal" resultType="int">
+  		select count(*) as total from WORKREPLY where bno = #{bno}
+  	</select>
+  	
+  	
+  	
+  	<update id="update">
+  		update WORKREPLY 
+  		set reply = #{reply},
+  			updateDate = sysdate
+  		where rno = #{rno}
+  	</update>
+  	
+  	
+  	
+  </mapper>

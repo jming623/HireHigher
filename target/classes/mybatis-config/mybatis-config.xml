@@ -19,6 +19,6 @@
 			<typeAlias type="com.hirehigher.command.BackgroundImgVO" alias="BackgroundVO"/>
 			<typeAlias type="com.hirehigher.command.WorkBoardVO" alias="WorkBoardVO"/>	
 			<typeAlias type="com.hirehigher.command.LoginCountVO" alias="LoginCountVO"/>
-			<typeAlias type="com.hirehigher.command.WorkBoardVO" alias="WorkBoardVO"/>
+			<typeAlias type="com.hirehigher.command.WorkReplyVO" alias="WorkReplyVO"/>
 		</typeAliases>
 	</configuration>
