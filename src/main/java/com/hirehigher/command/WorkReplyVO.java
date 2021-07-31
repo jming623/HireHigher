@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class WorkReplyVO {
 
-	private int rno;
-	private int bno;
-	private String reply;
-	private String replyId;
-	private Timestamp replyDate;
-	private Timestamp updateDate;
+	private int rno;//댓글번호
+	private int bno;//글번호
+	private String reply;//댓글내용
+	private String replyId;//작성자
+	private Timestamp replyDate;//등록일
+	private Timestamp updateDate;//수정일
 	
-	private String timegap;
+//	private String timegap; 고려
 }

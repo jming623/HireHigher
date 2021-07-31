@@ -1,24 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+	<script>
+		console.log("${pageVO}");
+		console.log("${pageVO.cri}");
+		console.log("${pageVO.cri.pageNum}");
+		console.log("${pageVO.cri.category}");
+	</script>
+
 	<section class="createBoard">
         <div class="container createBoard-container">           
             
-            <div class="creation-list-btn" id="creation-list-btn">
-            <button type="button" class="creation-list-active">2D Art</button>
-                <button type="button" class="">3D Art</button>
-                <button type="button" class="">Video/Firm</button>
-                <button type="button" class="">Interior</button>
-                <button type="button" class="">Architecture</button>
-                
-               <%--  <button type="button" class="creation-list-active" ${pageVO.cri.Category eq '2D_ART' ? 'selected' : '' }>2D Art</button>
-                <button type="button" class=""  				   ${pageVO.cri.Category eq '3D_ART' ? 'selected' : '' }>3D Art</button>
-                <button type="button" class="" 					   ${pageVO.cri.Category eq 'Video/Firm' ? 'selected' : '' }>Video/Firm</button>
-                <button type="button" class="" 				       ${pageVO.cri.Category eq 'Interior' ? 'selected' : '' }>Interior</button>
-                <button type="button" class="" 					   ${pageVO.cri.Category eq 'Architecture' ? 'selected' : '' }>Architecture</button> 이거 버튼인데 selected머얌 ㅜㅜ --%>
+            <div class="creation-list-btn" id="creation-list-btn">                            
+                <button type="button" class= "${pageVO.cri.category eq '2D_ART' ? 'creation-list-active'  : '' }">2D Art</button>
+                <button type="button" class= "${pageVO.cri.category eq '3D_ART' ? 'creation-list-active'  : '' } ">3D Art</button>
+                <button type="button" class= "${pageVO.cri.category eq 'Video/Firm' ? 'creation-list-active'  : '' } ">Video/Firm</button>
+                <button type="button" class= "${pageVO.cri.category eq 'Interior' ? 'creation-list-active'  : '' } ">Interior</button>
+                <button type="button" class= "${pageVO.cri.category eq 'Architecture' ? 'creation-list-active'  : '' } ">Architecture</button>
             </div>
 
-            <div class="row">
+            <div class="row" id="workBoard-row">
                 <!-- 사진1 -->
                 <div class="creation-list-wrap col-md-3 col-xs-4">
                     <div class="creation-list">
@@ -410,25 +411,25 @@
 
 	<script>
     $(function () {
-        
+      
         masonry();
     });
 
     //핀터레스트 게시판 적용
     function masonry(){   
-             
-        $(".row").imagesLoaded().done(function (instance) {//imagesLoaded().done -> 이미지 로드가 끝난뒤에 실행 imagesLoaded().progress -> 이미지로드가 될때마다 실행
+    	
+        $("#workBoard-row").imagesLoaded().done(function (instance) {//imagesLoaded().done -> 이미지 로드가 끝난뒤에 실행 imagesLoaded().progress -> 이미지로드가 될때마다 실행
             console.log("로드");
             console.log(instance);//없어도 무관 이미지로드에대한 정보
 
-            $(".row").masonry({ //.row를 큰틀로잡고, .creation-list-wrap를 세부항목으로 잡음
+            $("#workBoard-row").masonry({ //.row를 큰틀로잡고, .creation-list-wrap를 세부항목으로 잡음
             columnWidth: 2, // 
             itemSelector: '.creation-list-wrap',
         
             });
 
-            $(".row").masonry('reloadItems'); //모든 항목 요소를 다시 수집
-            $(".row").masonry('layout'); //모든 항목 요소를 배치
+            $("#workBoard-row").masonry('reloadItems'); //모든 항목 요소를 다시 수집
+            $("#workBoard-row").masonry('layout'); //모든 항목 요소를 배치
             
     }); 
         
@@ -456,11 +457,12 @@
 
     //인피니트 스크롤
     window.onscroll = function(){
-        if((window.innerHeight + window.scrollY) >= document.body.offsetHeight ){ 
-            //  console.log(window.innerHeight);//보이는 화면높이
-            //  console.log(window.scrollY);//스크롤Y축(세로)이동
-            //  console.log((window.innerHeight + window.scrollY));
-            //  console.log(document.body.offsetHeight);//문서의 전체길이
+    	
+        if((window.innerHeight + window.scrollY)+1 >= document.body.offsetHeight ){ 
+              /* console.log(window.innerHeight);//보이는 화면높이
+              console.log(window.scrollY);//스크롤Y축(세로)이동
+              console.log((window.innerHeight + window.scrollY));
+              console.log(document.body.offsetHeight);//문서의 전체길이 */
             
             console.log("if문이실행됨");
             
@@ -501,7 +503,7 @@
                     
                 $(toAdd).html(strAdd);
     
-                $(".row").append(toAdd);
+                $("#workBoard-row").append(toAdd);
 
             }
             masonry();        

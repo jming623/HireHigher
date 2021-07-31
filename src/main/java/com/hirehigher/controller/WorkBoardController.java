@@ -24,7 +24,7 @@ public class WorkBoardController {
 	@Qualifier("workBoardService")
 	private WorkBoardService workBoardService;
 
-	@RequestMapping("/workBoard") //get방식으로 받겠다
+	@RequestMapping("/workBoard")
 	public String workBoard(WorkBoardCriteria cri , Model model) {
 			
 
