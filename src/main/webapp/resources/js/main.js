@@ -15,9 +15,9 @@ var controls = new OrbitControls(camera, renderer.domElement);
 //화면 크기 조정시 캔버스크기 리사이징
 window.addEventListener('resize', function()
 {
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-  renderer.setSize(width, height);
+  renderer.setViewport(0, 0, window.innerWidth, window.innerHeight);
+
+  renderer.setSize(window.innerWidth, 900);
 })
 
 //카메라 위치
@@ -30,6 +30,7 @@ document.body.appendChild(renderer.domElement);
 renderer.setSize(window.innerWidth, window.innerHeight-120); //출력 크기 설정
 renderer.setPixelRatio(window.devicePixelRatio); //출력 화질 설정
 renderer.render(scene,camera); //설정한 scene, camera 출력
+renderer.setViewport(0, 0, window.innerWidth, window.innerHeight); //뷰포트 크기 설정
 
 //sphere
 //모형 만들때 꼭짓점 데이터 가진 기하학 객체 geometry + 표면 속성 (색, 밝기)사진 material 객체를 mesh객체를 이용해서 합쳐서 만들어냄

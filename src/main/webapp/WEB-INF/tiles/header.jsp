@@ -67,8 +67,23 @@
 					</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a
-						href="${pageContext.request.contextPath }/user/mypage">MYPAGE
+					<c:choose>
+						<c:when test="${sessionScope.userVO.userType eq 0}">
+							<li><a
+								href="${pageContext.request.contextPath }/creator/creatorApply">CREATOR
+									<img
+									src="${ pageContext.request.contextPath }/resources/img/creator-menu-logo.png">
+							</a></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="${pageContext.request.contextPath }/creator/creatorDetail">STUDIO
+									<img
+									src="${ pageContext.request.contextPath }/resources/img/creator-menu-logo.png">
+							</a></li>
+						</c:otherwise>
+					</c:choose>
+					<li><a href="${pageContext.request.contextPath }/user/mypage">MYPAGE
 							<img
 							src="${ pageContext.request.contextPath }/resources/img/mypage-logo.png">
 					</a></li>
