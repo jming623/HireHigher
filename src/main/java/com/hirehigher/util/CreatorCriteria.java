@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreatorCriteria {
 
-	private String userName;
+	private String creatorName;
 	private int pageNum;
 	private int amount;
 	

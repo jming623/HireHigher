@@ -23,8 +23,8 @@ public interface CreatorMapper {
 	public CreatorVO creatorDetail(String creatorId); // creator 상세
 	public ProfileImgVO profileGet(String profileId); // 프로필 이미지 조회
 	public BackgroundImgVO backgroundGet(String backgroundId); // 백그라운드 이미지 조회
-	public int getTotal(String userName); // 총 게시글 수
-	public ArrayList<WorkBoardVO> getList(@Param("pageNum") int pageNum,@Param("amount") int amount, @Param("userName") String userName); // 게시글 리스트
+	public int getTotal(String creatorName); // 총 게시글 수
+	public ArrayList<WorkBoardVO> getList(@Param("pageNum") int pageNum,@Param("amount") int amount, @Param("creatorName") String creatorName); // 게시글 리스트
 	public int profileUpdate(CreatorPageVO pageVO); // 프로필 업데이트
 	public int infoUpdate(CreatorVO creatorVO); // 제작자 정보 업데이트
 	
