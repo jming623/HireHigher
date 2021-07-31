@@ -10,6 +10,9 @@
             <div class="creator-profile-header-modify">
                 <a href="" class="backgroundBtn"><i><input type="file" class="creator-profile-img-input" name="background-file" id="background-file"></i></a>
         	</div>
+        	<div class="creator-profile-header-modifyBtn" style="display: none;">
+                    <button class="background-img-btn" type="button">수정</button>
+                </div>
         </div>
         </div>
         <div class="profile-content">
@@ -23,6 +26,9 @@
                 </div>
                 <div class="creator-profile-img-modify">
                 	<a href="" class="profileBtn"><i><input type="file" class="creator-profile-img-input" name="profile-file" id="profile-file"></i></a>
+                </div>
+                <div class="creator-profile-img-modifyBtn" style="display: none;">
+                	<button class="profile-img-btn" type="button">수정</button>
                 </div>
 
                 <div class="creator-name">${pageVO.creatorNick}</div>
@@ -169,6 +175,22 @@
 
     })
     
+    // 백그라운드 이미지 수정
+        $(".creator-profile-header-modify").click(function() {
+
+            $(".creator-profile-header-modify").css("display","none");
+            $(".creator-profile-header-modifyBtn").css("display","block");
+
+        });
+
+    // 프로필 이미지 수정
+        $(".creator-profile-img-modify").click(function(){
+
+            $(".creator-profile-img-modify").css("display", "none");
+            $(".creator-profile-img-modifyBtn").css("display", "block");
+
+        });
+    
        
      //자바 스크립트 파일 미리보기 기능
      // background 이미지 미리보기
@@ -181,7 +203,7 @@
               reader.readAsDataURL(input.files[0]); 
                
                reader.onload = function(event) { //읽기 동작이 성공적으로 완료 되었을 때 실행되는 익명함수
-                   $('creator-background-img-target').attr("src", event.target.result); 
+                   $('#creator-background-img-target').attr("src", event.target.result); 
                    console.log(event.target)//event.target은 이벤트로 선택된 요소를 의미
               }
            }
@@ -202,7 +224,8 @@
               reader.readAsDataURL(input.files[0]); 
                
                reader.onload = function(event) { //읽기 동작이 성공적으로 완료 되었을 때 실행되는 익명함수
-                   $('#creator-profile-img-target').attr("src", event.target.result); 
+            	   console.log( $('.creator-profile-img') );
+                   $('.creator-profile-img').attr("src", event.target.result); 
                    console.log(event.target)//event.target은 이벤트로 선택된 요소를 의미
               }
            }

@@ -139,8 +139,6 @@
 				data : JSON.stringify({"creatorName":creatorName, "pageNum":pageNum, "amount":amount }),
 				success: function(data){
 					
-					console.log(1);
-					
 					var strAdd = ''; // list를 저장해줄 변수
 					var strAdd2 = ''; // pagingVO를 저장해줄 변수
 					

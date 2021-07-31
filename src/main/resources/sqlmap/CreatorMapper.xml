@@ -81,7 +81,7 @@
         		   select *
         		   from workboard
         		   where creatorName = #{creatorName}
-        		   order by listbno desc
+        		   order by bno desc
     		) a
 		)
 		<![CDATA[
