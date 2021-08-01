@@ -341,9 +341,9 @@
     			
     			var rno = $("#modalRno").val();
     			var reply = $("#modalReply").val();
-    			var replyPw = $("#modalPw").val();
+    	
     			
-    			if(rno == '' || reply == '' || replyPw == '') {
+    			if(rno == '' || reply == '') {
     				alert("내용, 비밀번호는 필수 입니다");
     				return;
     			}
@@ -352,19 +352,16 @@
     				type : "post",
     				url : "../reply/update",
     				contentType: "application/json; charset=UTF-8",
-    				data : JSON.stringify({"rno": rno, "reply": reply, "replyPw": replyPw}),
+    				data : JSON.stringify({"rno": rno, "reply": reply}),
     				success : function(data) {
     					
     					if(data == 1) { //업데이트 성공
     						$("#modalReply").val(""); //내용비우기
-    						$("#modalPw").val("");
     						$("#modalRno").val("");
-    						
     						$("#replyModal").modal("hide"); //모달창 내리기
     						getList(1, true); //조회 메서드 호출
     					} else { //업데이트 실패
-    						alert("비밀번호를 확인하세요");
-    						$("#modalPw").val("");
+    						alert("다시 확인하세요");
     					}
     					
     				},
@@ -378,7 +375,32 @@
     		
     		//삭제 함수
     		$("#modalDelBtn").click(function() {
+
+    			var rno = $("#modalRno").val();
+    			 var ans = confirm("선택하신 댓글을 삭제하시겠습니까?");
+    		     
+    			 if(ans == true) {
+    				 
+    			$.ajax({
+    				type : "post",
+    				url : "../reply/delete",
+    				contentType: "application/json; charset=UTF-8",
+    				data : JSON.stringify({"rno": rno}),
+    				success : function(data) {
+    					$("#modalRno").remove("");
+    					 alert("삭제했습니다.");
+    					 getList(1, true); //조회 메서드 호출
+    					
+    				},
+    				error : function(data) {
+    					alert("댓글이 삭제되지 않았습니다.");
+    				}
+    			});
     			
+    			
+    			 }
+    		  
+
     			/*
     			1. 모달창에서 rno값, replyPw값을 얻습니다.
     			2. ajax함수를 이용해서 POST방식으로 "reply/delete" 요청을 보냅니다.

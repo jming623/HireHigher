@@ -69,5 +69,13 @@ public class ReplyController {
 			
 		}
 		
+		//삭제요청
+				@PostMapping(value = "delete", produces = "application/json")
+				public int delete(@RequestBody WorkReplyVO vo) {
+				
+						return replyService.delete(vo);
+					
+				}
+		
 
 }
