@@ -129,7 +129,7 @@
 				event.preventDefault();
 			}   
 		
-			var creatorName = '${sessionScope.userVO.userId}'; // session에 저장되어 있는 아이디를 얻음
+			var creatorName = '${sessionScope.userVO.nickName}'; // session에 저장되어 있는 아이디를 얻음
 			
 			$.ajax({
 				type: "post",

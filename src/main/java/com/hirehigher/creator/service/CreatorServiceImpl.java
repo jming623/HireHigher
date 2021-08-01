@@ -98,4 +98,18 @@ public class CreatorServiceImpl implements CreatorService {
 		return creatorMapper.infoUpdate(creatorVO);
 	}
 
+	@Override
+	public int backgroundUpdate(BackgroundImgVO backgroundVO) {
+		
+		return creatorMapper.backgroundUpdate(backgroundVO);
+	}
+
+	@Override
+	public int profileImgUpdate(ProfileImgVO profileVO) {
+		
+		return creatorMapper.profileImgUpdate(profileVO);
+	}
+
+	
+
 }

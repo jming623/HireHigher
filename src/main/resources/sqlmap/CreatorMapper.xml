@@ -112,4 +112,26 @@
   		
   	</update>
   	
+  	<update id="backgroundUpdate">
+  	
+  		update backgroundimg
+  		set backgroundPath = #{backgroundPath},
+  			backgroundLoca = #{backgroundLoca},
+  			backgroundName = #{backgroundName},
+  			backgroundReal = #{backgroundReal}
+  		where backgroundId = #{backgroundId}
+  	
+  	</update>
+  	
+  	<update id="profileImgUpdate">
+  	
+  		update profileimg
+  		set profilePath = #{profilePath},
+  			profileLoca = #{profileLoca},
+  			profileName = #{profileName},
+  			profileReal = #{profileReal}
+  		where profileId = #{profileId}
+  	
+  	</update>
+  	
   </mapper>

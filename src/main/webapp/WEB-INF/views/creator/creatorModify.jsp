@@ -237,12 +237,109 @@
       // 이미지 업로드 및 불러오기
       $(document).ready(function() {
     	
-    	// 프로필 이미지 업로드
-		$(".profileBtn").click(function(){
+    	// 백그라운드 이미지 수정
+    	$(".background-img-btn").click(function() {
     		
-    		var profileId = '${sessionScope.userVO.userId}';
+    		$(".creator-profile-header-modify").css("display","block");
+            $(".creator-profile-header-modifyBtn").css("display","none");
     		
+    		var backgroundId = '${sessionScope.userVO.userId}'; // 아이디
+    		var file = $("#background-file").val();
     		
+    		file = file.slice(file.lastIndexOf(".", file.length) + 1, file.length); // 파일 확장자
+			
+			if(file != 'jpg' && file != 'png' && file != 'bmp' && file != 'jpeg') {
+				alert("이미지 파일형태만 등록이 가능합니다.(jpg, png, bmp, jpeg)");
+				return;
+			} else if (backgroundId == '') {
+				alert("로그인이 필요한 서비스입니다.");
+				return;
+			}
+    		
+			// 비동기 형식의 폼데이터 사용
+			var formData = new FormData();
+			formData.append("file", $("#background-file")[0].files[0]);
+			
+			$.ajax({
+				
+				type: "post",
+				url: "backgroundUpload",
+				processData: false, // 키 = 값으로 전성되는 것을 막는 옵션
+				contentType: false, // default multipart formdata 형식으로 지정
+				data: formData,
+				success: function(data) {
+					
+					console.log(data);
+					
+					if(data == "success") {
+						
+						alert("성공적으로 수정되었습니다.");
+						
+					} else if(data == "idFail") {
+						alert("로그인이 필요한 서비스입니다.");
+					} else {
+						alert("서버에 문제가 발생했습니다. 관리자에게 문의하세요.")
+					}
+					
+				},
+				error: function(status, error) {
+					alert("서버에 문제가 발생했습니다. 관리자에게 문의하세요.")
+				}
+				
+			});
+    		
+    	});
+    	  
+    	// 프로필 이미지 수정
+		$(".profile-img-btn").click(function(){
+    		
+			$(".creator-profile-img-modify").css("display","block");
+            $(".creator-profile-img-modifyBtn").css("display","none");
+			
+    		var profileId = '${sessionScope.userVO.userId}'; // 아이디
+    		var file = $("#profile-file").val();
+    		
+    		file = file.slice(file.lastIndexOf(".", file.length) + 1, file.length); // 파일 확장자
+    		
+    		if(file != 'jpg' && file != 'png' && file != 'bmp' && file != 'jpeg') {
+				alert("이미지 파일형태만 등록이 가능합니다.(jpg, png, bmp, jpeg)");
+				return;
+			} else if (profileId == '') {
+				alert("로그인이 필요한 서비스입니다.");
+				return;
+			}
+    		
+    		// 비동기 형식의 폼데이터 사용
+			var formData = new FormData();
+			formData.append("file", $("#profile-file")[0].files[0]);
+			
+			$.ajax({
+				
+				type: "post",
+				url: "profileUpload",
+				processData: false, // 키 = 값으로 전성되는 것을 막는 옵션
+				contentType: false, // default multipart formdata 형식으로 지정
+				data: formData,
+				success: function(data) {
+					
+					console.log(data);
+					
+					if(data == "success") {
+						
+						alert("성공적으로 수정되었습니다.");
+						
+					} else if(data == "idFail") {
+						alert("로그인이 필요한 서비스입니다.");
+					} else {
+						alert("서버에 문제가 발생했습니다. 관리자에게 문의하세요.")
+					}
+					
+				},
+				error: function(status, error) {
+					alert("서버에 문제가 발생했습니다. 관리자에게 문의하세요.")
+				}
+				
+			});
     		
     	});
   		

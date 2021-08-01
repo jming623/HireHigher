@@ -3,6 +3,7 @@ package com.hirehigher.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.BackgroundImgVO;
@@ -166,6 +169,107 @@ public class CreatorController {
 		model.addAttribute("pageVO", pageVO); // 제작자 자기소개 정보 전달
 		
 //		return "/creator/creatorDetail";
+	}
+	
+	// 백그라운드 이미지 수정
+	@ResponseBody
+	@RequestMapping(value="/backgroundUpload", method=RequestMethod.POST)
+	public String backgroundUpload(@RequestParam("file") MultipartFile file,
+								   HttpSession session) {
+		
+		try {
+			
+			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
+			
+			String backgroundLoca = "creatorBackground"; // 폴더 경로
+			
+			String backgroundReal = file.getOriginalFilename(); // 파일명
+			
+			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH;
+						
+			String fileExtention = backgroundReal.substring( backgroundReal.lastIndexOf("."), backgroundReal.length() ); // 확장자
+						
+			UUID uuid = UUID.randomUUID();
+						
+			String uuids = uuid.toString().replaceAll("-", ""); // 가짜 파일명
+
+			String backgroundName = uuids + fileExtention; // 업로드 파일명
+			
+			File saveFile = new File(backgroundPath + "\\" + backgroundLoca + "\\" + backgroundName);
+			
+			file.transferTo(saveFile); // 파일쓰기
+			
+			// DB 작업
+			
+			BackgroundImgVO backgroundVO = new BackgroundImgVO(backgroundId, backgroundPath, backgroundLoca, backgroundName, backgroundReal);
+			int result = creatorService.backgroundUpdate(backgroundVO);
+			
+			if(result == 1) {
+				return "success";
+			} else {
+				return "fail";
+			}
+		
+		} catch (NullPointerException e) {
+			return "idFail";
+		} catch (Exception e) {
+			return "fail";
+		}
+		
+		
+		
+		
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/profileUpload", method=RequestMethod.POST)
+	public String profileUpload(@RequestParam("file") MultipartFile file,
+								   HttpSession session) {
+		
+		try {
+			
+			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+			String profileId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
+			
+			String profileLoca = "creatorProfile"; // 폴더 경로
+			
+			String profileReal = file.getOriginalFilename(); // 파일명
+			
+			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH;
+						
+			String fileExtention = profileReal.substring( profileReal.lastIndexOf("."), profileReal.length() ); // 확장자
+						
+			UUID uuid = UUID.randomUUID();
+						
+			String uuids = uuid.toString().replaceAll("-", ""); // 가짜 파일명
+
+			String profileName = uuids + fileExtention; // 업로드 파일명
+			
+			File saveFile = new File(profilePath + "\\" + profileLoca + "\\" + profileName);
+			
+			file.transferTo(saveFile); // 파일쓰기
+			
+			// DB 작업
+			
+			ProfileImgVO profileVO = new ProfileImgVO(profileId, profilePath, profileLoca, profileName, profileReal);
+			int result = creatorService.profileImgUpdate(profileVO);
+			
+			if(result == 1) {
+				return "success";
+			} else {
+				return "fail";
+			}
+		
+		} catch (NullPointerException e) {
+			return "idFail";
+		} catch (Exception e) {
+			return "fail";
+		}
+		
+		
+		
+		
 	}
 	
 	// 제작자 페이지 프로필 이미지 조회 요청

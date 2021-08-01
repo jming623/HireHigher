@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WorkBoardVO {
 
-	private String bno;
+	private int bno;
 	private String title;
 	private String creatorName;
 	private String productPath;
@@ -20,7 +20,7 @@ public class WorkBoardVO {
 	private String productReal;
 	private String content;
 	private String price;
-	private int like;
+	private int likeCount;
 	private String category;
 	private Timestamp regDate;
 	private Timestamp updateDate;
