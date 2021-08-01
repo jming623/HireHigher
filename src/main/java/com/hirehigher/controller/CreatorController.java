@@ -186,7 +186,7 @@ public class CreatorController {
 			
 			String backgroundReal = file.getOriginalFilename(); // 파일명
 			
-			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH;
+			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH; // 전체 경로
 						
 			String fileExtention = backgroundReal.substring( backgroundReal.lastIndexOf("."), backgroundReal.length() ); // 확장자
 						
@@ -222,6 +222,7 @@ public class CreatorController {
 		
 	}
 	
+	// 프로필 이미지 수정
 	@ResponseBody
 	@RequestMapping(value="/profileUpload", method=RequestMethod.POST)
 	public String profileUpload(@RequestParam("file") MultipartFile file,
@@ -236,7 +237,7 @@ public class CreatorController {
 			
 			String profileReal = file.getOriginalFilename(); // 파일명
 			
-			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH;
+			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH; // 전체 경로
 						
 			String fileExtention = profileReal.substring( profileReal.lastIndexOf("."), profileReal.length() ); // 확장자
 						
