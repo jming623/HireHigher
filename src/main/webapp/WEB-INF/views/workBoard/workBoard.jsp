@@ -17,6 +17,7 @@
             </div>
 
             <div class="row" id="workBoard-row">
+
 			<!-- 9. forEach문으로 리스트를 찍어줌 -->
 			<c:forEach var="vo" items="${listVO}">
 				<div class="creation-list-wrap col-md-3 col-xs-4">

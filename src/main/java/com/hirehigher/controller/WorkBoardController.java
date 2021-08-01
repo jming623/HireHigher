@@ -5,8 +5,6 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -16,11 +14,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hirehigher.command.WorkBoardVO;
 import com.hirehigher.util.WorkBoardCriteria;
 import com.hirehigher.util.WorkPageVO;
 import com.hirehigher.workboard.service.WorkBoardService;
+
 
 @Controller
 @RequestMapping("/workBoard")
@@ -30,7 +30,7 @@ public class WorkBoardController {
 	@Qualifier("workBoardService")
 	private WorkBoardService workBoardService;
 
-	@RequestMapping("/workBoard")
+	@RequestMapping("/workBoard") //get방식으로 받겠다
 	public String workBoard(WorkBoardCriteria cri , Model model) {
 		
 		//1. workBoard요청이 처음 들어오면 cri값으로 매핑되어 들어오는 값이 없어서 기본생성자로 생성될 때 선언된 값들로 초기화됨 (기본값 1 , 20 , 2D_ART)(WorkBoardCriteria클래스 참고)
@@ -108,10 +108,19 @@ public class WorkBoardController {
 	
 	
 	
+//	@RequestMapping({"/workDetail", "/workModify"})
+//	public void getDetail(@RequestParam("bno") int bno, 
+//						  Model model) {
+//		
+//		WorkBoardVO boardVO = workBoardService.getDetail(bno);
+//		model.addAttribute("boardVO", boardVO);
+//		
+//	}
 	@RequestMapping("/workDetail")
 	public String workDetail() {
-		return "workBoard/workDetail";
+		return"workBoard/workDetail";
 	}
+	
 	
 	@RequestMapping("/workModify")
 	public String workModify() {
