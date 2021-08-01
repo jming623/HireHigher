@@ -288,4 +288,14 @@ public class CreatorController {
 		return "creator/findCreator";
 	}
 	
+	// 추가_JM
+	// 크리에이터가 아닌 회원이 접근할때 접근실패 처리
+	@RequestMapping("/access_fail")
+	public String access_fail(RedirectAttributes RA) {
+		RA.addFlashAttribute("msg", "비정상적인 접근입니다. 먼저 크리에이터 신청을 해주세요!");
+		
+		return "redirect:/creator/creatorApply";
+	}
+	
+	
 }// end controller

@@ -123,5 +123,10 @@
 	
 	
 }
+  //위에 기능이 작동을 안해서 추가했습니다 
+  var msg = "${msg}";
+	if (msg != '') {
+		alert(msg);
+	}	
   
   </script>
