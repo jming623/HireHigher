@@ -116,8 +116,18 @@ public class WorkBoardController {
 //		model.addAttribute("boardVO", boardVO);
 //		
 //	}
+	
 	@RequestMapping("/workDetail")
-	public String workDetail() {
+	public String workDetail(WorkBoardVO vo,Model model) {
+		
+		int boardBno = vo.getBno();
+		
+		WorkBoardVO boardVO = workBoardService.getDetail(boardBno);
+		
+//		System.out.println(boardVO.toString());
+		
+		model.addAttribute("boardVO", boardVO);
+		
 		return"workBoard/workDetail";
 	}
 	

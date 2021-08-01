@@ -21,6 +21,7 @@
 .star-input>.input>label[for="p4"]{width:120px;z-index:2;}
 .star-input>.input>label[for="p5"]{width:150px;z-index:1;}
 .star-input>output{display:inline-block;width:60px; font-size:18px;text-align:right; vertical-align:middle;}
+.category > a{color:white;}
 </style>
 
 <body>
@@ -47,32 +48,34 @@
     <section class="product_page">
         <div class="container">
             <!-- 제작자프로필 -->
-            <img src="${pageContext.request.contextPath }/resources/img/1.jpg" style="width: 50px;  border-radius: 70%; overflow: hidden;">
-            <span style="margin-top:20px;font-size:18px; color: white;">Creator</span>
+            <img src="${pageContext.request.contextPath }/resources/img/profile.png" style="width: 50px;  border-radius: 70%; overflow: hidden;">
+            <span style="margin-top:20px;font-size:18px; color: white;">${boardVO.creatorName} </span>
             <button type="button" onclick="modify();" class="btn btn-default detial-modify" style="float: right;">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true">
                 </span>
             </button>
             <!-- 카테고리 -->
-            <span class="category" style=" float: right; position: relative; top: 5px; font-size:18px; color: white; margin-right: 50px">Market >
-                list</span>
+            <span class="category" style=" float: right; position: relative; top: 5px; font-size:18px; color: white; margin-right: 50px"><a href="workBoard">Market</a> >
+                <a href="workBoard?pageNum=1&amount=20&Category=${boardVO.category }">${boardVO.category }</a></span>
+               
             <div class="row">
                 <div class="col-md-6" style="padding-top: 20px; height: 500px;">
                     <!-- 이미지 영역 -->
-                    <img src="${pageContext.request.contextPath }/resources/img/mountains-6277391_1920.jpg" alt="상품" style="width: 100%;height: 500px;">
+                    <img src="workBoardView/${boardVO.productLocation}/${boardVO.productReal}" alt="상품" style="width: 100%;height: 500px;">
                 </div>
                 <div class="col-md-6" style="height: 300px;">
                     <!-- 상세영역 -->
                     <div class="detail-item" style="height: 200px;">
                         <!-- 상품정보 -->
-                        <p class="title" style="color: white; margin-top: 10px;">Mountains Picture</p>
+                        <p class="title" style="color: white; margin-top: 10px;">${boardVO.title}</p>
                         <!-- 금액영역 -->
-                        <p class="price" style="color: white;">10.00$</p>
+                        <p class="price" style="color: white;">${boardVO.price} </p>
                         <p class="description"
                             style="color: white; font-size: medium; width: 557px; height: 200px; word-break:break-all; overflow-x: hidden; overflow-y: scroll;">
-                            <span style="height: 300px;">
+                            <!-- <span style="height: 300px;">
                                 Description
-                            </span>
+                            </span> -->
+                            ${boardVO.content} 
                         </p>
                     </div>
                     <div class="detail-btn" style="height: 200px;">
@@ -201,7 +204,7 @@
     		//등록이벤트
     		$("#replyRegist").click(function() {
     			
-    			var bno =  1/* "${boardVO.bno }" */; //글 번호 이건 나중에 detail에 list로 값을 받아오는 처리를해주면 다시 바꿔줘야함.넵
+    			var bno =  "${boardVO.bno }"
     			var reply = $("#reply").val();
     			var replyId = $("#replyId").val();
 
@@ -247,12 +250,11 @@
     		//데이터 조회
     		function getList(pageNum, reset) {
     			
-    			var bno =1 /* "${boardVO.bno}" */; //게시글 번호
-    			console.log("확인1:"+pageNum);
-    			console.log("확인2:"+bno);
+    			var bno ="${boardVO.bno}"; //게시글 번호
+
     			
     			$.getJSON("../reply/getList/"+ bno + "/" + pageNum, function(data) {
-    				console.log(data);
+    				
     				
     				var total = data.total; //전체게시글 수
     				var data = data.list; //목록
@@ -275,9 +277,9 @@
     				
                     for(var i = 0; i < data.length; i++) {
                     	
-                    	strAdd += "<div class='reply-wrap'>";
-        				strAdd += "<div class='reply-image'>";
-                        strAdd += "<img src='../resources/img/profile.png'>";
+                    	strAdd += "<div class='reply-wrap' style='overflow:hidden;'>";
+        				strAdd += "<div class='reply-image' style='float: left;'>";
+                        strAdd += "<img src='../resources/img/profile.png' style='border-radius: 20px;'>";
                         strAdd += "</div>";
                         strAdd += "<div class='reply-content'>";
                         strAdd += "<div class='reply-group'>";
@@ -361,6 +363,7 @@
     						$("#modalRno").val("");
     						
     						$("#replyModal").modal("hide"); //모달창 내리기
+    						alert("댓글 수정 성공!");
     						getList(1, true); //조회 메서드 호출
     					} else { //업데이트 실패
     						alert("비밀번호를 확인하세요");
@@ -386,9 +389,32 @@
     			3. 서버에서는 요청을 받아서 비밀번호 확인하고, 비밀번호가 일치하면 삭제를 진행합니다.
     			4. 비밀번호가 틀린경우는 0을 반환해서 경고창을 띄워주면 됩니다.
     			*/
+    			
+    			var rno = $("#modalRno").val();
+    			
+    			console.log(rno);
+    			
+    			$.ajax({
+    				type : "post",
+    				url : "../reply/delete",
+    				contentType: "application/json; charset=UTF-8",
+    				data : JSON.stringify({"rno": rno}),
+    				success : function(data) {
+    					
+    					if(data == 1){
+    						alert("삭제성공");
+    						location.reload();
+    					}else{
+    						alert("삭제실패 관리자에게 문의하세요");
+	    					}
+	    					
+    				},
+    				error: function(error,status){
+    					console.log(error,status)
+    				}
     		});
     		
-    		
+    		})
     		
     		
     	}); //end ready

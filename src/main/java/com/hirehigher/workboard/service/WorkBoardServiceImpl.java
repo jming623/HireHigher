@@ -29,7 +29,7 @@ public class WorkBoardServiceImpl implements WorkBoardService {
 
 	@Override
 	public WorkBoardVO getDetail(int bno) {
-		// TODO Auto-generated method stub
+		
 		return workBoardMapper.getDetail(bno);
 	}
 	

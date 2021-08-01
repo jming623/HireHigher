@@ -38,9 +38,13 @@
   	<update id="update">
   		update WORKREPLY 
   		set reply = #{reply},
-  			updateDate = sysdate
+  			replyupdate = sysdate
   		where rno = #{rno}
   	</update>
+  	
+  	<delete id="delete">
+  		delete from workreply where rno = #{rno}
+  	</delete>
   	
   	
   	

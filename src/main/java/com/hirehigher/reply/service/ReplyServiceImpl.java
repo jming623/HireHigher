@@ -35,4 +35,10 @@ public class ReplyServiceImpl implements ReplyService{
 	public int getTotal(int bno) {
 		return replyMapper.getTotal(bno);
 	}
+
+	@Override
+	public int delete(WorkReplyVO vo) {
+		
+		return replyMapper.delete(vo);
+	}
 }
