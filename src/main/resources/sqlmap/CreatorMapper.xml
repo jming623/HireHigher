@@ -67,7 +67,7 @@
   	
   	<select id="getTotal" resultType="int">
   	
-  		select count(*) as total from workboard where username = #{userName}
+  		select count(*) as total from workboard where creatorName = #{creatorName}
   	
   	</select>
   	
@@ -80,7 +80,7 @@
     		from (
         		   select *
         		   from workboard
-        		   where username = #{userName}
+        		   where creatorname = #{creatorName}
         		   order by bno desc
     		) a
 		)

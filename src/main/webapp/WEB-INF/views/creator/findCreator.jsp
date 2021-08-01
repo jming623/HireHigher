@@ -6,7 +6,7 @@
    <section class="creator-detail-section">
        
         <div class="profile-header">
-            <!-- <img src="../resources/img/creatorBackground/welcome.jpg"> -->
+           <img src="../resources/img/creatorBackground/welcome.jpg">
         </div>
 
         <div class="profile-content">
@@ -14,19 +14,19 @@
             <div class="creator-profile">
                 
                 <div class="creator-profile-wrap">
-                    <!-- <img class="creator-profile-img" src="../resources/img/creatorProfile/profile.png" style="width: 128px; height: 128px;"> -->
+                    <img class="creator-profile-img" src="../resources/img/profile.png" style="width: 128px; height: 128px;">
                 </div>
 
-                <div class="creator-name">${pageVO.creatorNick}</div>
+                <div class="creator-name">${creatorPageInfo.creatorNick}</div>
 
-                <div class="creator-email">${pageVO.creatorEmail}</div>
+                <div class="creator-email">${creatorPageInfo.creatorEmail}</div>
 
                 <div class="creator-description">
-                    <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly>${pageVO.aboutMe}</textarea>
+                    <textarea name="" id="" cols="36" rows="14" placeholder="프로필을 작성해주세요." readonly>${creatorPageInfo.aboutMe}</textarea>
                 </div>
 
                 <div class="creator-social">
-                    <a href="${pageVO.instaPath }" id="instalink"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
+                    <a href="${creatorPageInfo.instaPath }" id="instalink"><img src="${pageContext.request.contextPath }/resources/img/instaLogo.png" alt=""></a>
                 </div>
                 
                 <!-- <div class="profile-modifyBtn">
@@ -40,7 +40,7 @@
                                     
                         <ul class="creator-content-nav nav nav-tabs ">
                             <li class='active'><a data-toggle="tab" href="#menu1">제작자정보</a></li>
-                            <li id="creator-BoardList"><a data-toggle="tab" href="#menu2">작성글</a></li>
+                            <li id="creator-BoardList"><a data-toggle="tab" href="#menu2">제작자작품</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -49,19 +49,19 @@
                                 <div class="creator-content-info">
                                     <div class="creator-content-info-detail">
                                         <p>전공분야:</p>
-                                        <small style="min-height: 50px;">${creatorVO.creatorMajor }</small>
+                                        <small style="min-height: 50px;">${creatorInfo.creatorMajor }</small>
                                     </div>
                                     <div class="creator-content-info-detail">
                                         <p>경력사항:</p>
-                                        <small>${creatorVO.creatorCareer }</small>
-                                        <small>${creatorVO.creatorCareer1 }</small>
-                                        <small>${creatorVO.creatorCareer2 }</small>
+                                        <small>${creatorInfo.creatorCareer }</small>
+                                        <small>${creatorInfo.creatorCareer1 }</small>
+                                        <small>${creatorInfo.creatorCareer2 }</small>
                                     </div>
                                     <div class="creator-content-info-detail">
                                         <p>수상경력:</p>
-                                        <small>${creatorVO.creatorAwards }</small>
-                                        <small>${creatorVO.creatorAwards1 }</small>
-                                        <small>${creatorVO.creatorAwards2 }</small>
+                                        <small>${creatorInfo.creatorAwards }</small>
+                                        <small>${creatorInfo.creatorAwards1 }</small>
+                                        <small>${creatorInfo.creatorAwards2 }</small>
                                     </div>
                                 </div>
 
@@ -129,14 +129,14 @@
 				event.preventDefault();
 			}   
 		
-			var userName = '${sessionScope.userVO.userId}'; // session에 저장되어 있는 아이디를 얻음
+			var creatorName = '${creatorPageInfo.creatorNick}'; 
 			
 			$.ajax({
 				type: "post",
 				url: "creatorPageBoardList",
 				dataType: "json",
 				contentType : "application/json",
-				data : JSON.stringify({"userName":userName, "pageNum":pageNum, "amount":amount }),
+				data : JSON.stringify({"creatorName":creatorName, "pageNum":pageNum, "amount":amount }),
 				success: function(data){
 					
 					console.log(1);

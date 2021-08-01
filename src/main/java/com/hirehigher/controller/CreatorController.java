@@ -235,17 +235,17 @@ public class CreatorController {
 																							// startPage는 1, amount는 7로
 																							// 초기화
 
-		String userName = cri.getUserName(); // 제작자 페이지에서 넘어온 userName
+		String creatorName = cri.getCreatorName(); // 제작자 페이지에서 넘어온 userName
 		int pageNum = cri.getPageNum(); // 제작자 페이지에서 넘어온 pageNum
 		int amount = cri.getAmount(); // 제작자 페이지에서 넘어온 amount
 
 		HashMap<String, Object> map = new HashMap<>();
 
-		ArrayList<WorkBoardVO> list = creatorService.getList(pageNum, amount, userName); // DB 결과를 ArrayList 객체에 저장
+		ArrayList<WorkBoardVO> list = creatorService.getList(pageNum, amount, creatorName); // DB 결과를 ArrayList 객체에 저장
 
 		map.put("list", list); // 화면단에 workBoardVO를 답은 ArrayList를 반환
 
-		int total = creatorService.getTotal(userName); // DB 결과를 total 변수에 저장
+		int total = creatorService.getTotal(creatorName); // DB 결과를 total 변수에 저장
 
 		CreatorPagingVO pagingVO = new CreatorPagingVO(cri, total);
 
@@ -270,7 +270,20 @@ public class CreatorController {
 		
 		String creatorNick = creatorVO.getCreatorNick(); //유저닉네임
 		
+		CreatorVO creatorInfo = creatorService.creatorDetail(creatorNick);
+		ProfileImgVO profileImg = creatorService.profileGet(creatorNick);
+		BackgroundImgVO backgroundImg = creatorService.backgroundGet(creatorNick);		
+		CreatorPageVO creatorPageInfo = creatorService.pageDetail(creatorNick);
 		
+		System.out.println(creatorInfo.toString());
+		System.out.println(profileImg.toString());
+		System.out.println(backgroundImg.toString());
+		System.out.println(creatorPageInfo.toString());
+		
+		model.addAttribute("creatorInfo", creatorInfo);
+		model.addAttribute("profileImg", profileImg);
+		model.addAttribute("backgroundImg", backgroundImg);
+		model.addAttribute("creatorPageInfo", creatorPageInfo);
 		
 		return "creator/findCreator";
 	}

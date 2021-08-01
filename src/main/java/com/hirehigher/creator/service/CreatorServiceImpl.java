@@ -75,15 +75,15 @@ public class CreatorServiceImpl implements CreatorService {
 	}
 
 	@Override
-	public int getTotal(String userName) {
+	public int getTotal(String creatorName) {
 		
-		return creatorMapper.getTotal(userName);
+		return creatorMapper.getTotal(creatorName);
 	}
 
 	@Override
-	public ArrayList<WorkBoardVO> getList(int pageNum, int amount, String userName) {
+	public ArrayList<WorkBoardVO> getList(int pageNum, int amount, String creatorName) {
 		
-		return creatorMapper.getList(pageNum, amount, userName);
+		return creatorMapper.getList(pageNum, amount, creatorName);
 	}
 
 }
