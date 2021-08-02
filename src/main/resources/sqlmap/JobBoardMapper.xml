@@ -133,6 +133,7 @@
    <update id="viewCount" parameterType="int">
    		update JOBBOARD set VIEWCOUNT = VIEWCOUNT + 1 where BNO = #{bno}
    </update>
+
    
 
 </mapper>

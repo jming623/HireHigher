@@ -59,7 +59,11 @@ public class JobBoardController {
 
 		//System.out.println(bno);
 		//System.outprintln(jobBoardDetailVO.toString());
+		
+		
 		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
+		jobBoardService.viewCount(bno);
+				
 		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
 
 		//return 타입 없어서 각각 자동으로 상세 요청이면 상세화면으로, 변경 요청이면 변경화면으로 이동

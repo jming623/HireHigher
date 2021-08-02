@@ -55,5 +55,10 @@ public class JobBoardServiceImpl implements JobBoardService {
 		return jobBoardMapper.delete(bno);
 	}
 	
+	//조회수
+	public int viewCount(int bno) {
+		return jobBoardMapper.viewCount(bno);
+	}
+	
 
 }

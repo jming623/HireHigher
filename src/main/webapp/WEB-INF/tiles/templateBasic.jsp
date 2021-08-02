@@ -86,9 +86,7 @@
 	<tiles:insertAttribute name="body"/>
 	<!-- 푸터영역 -->
 	<tiles:insertAttribute name="footer"/>
-	<!-- 반응형 메뉴 -->
-	<script src="${ pageContext.request.contextPath }/resources/js/responsivemenu.js"/></script>
-	<!-- 사이드바 애니메이션 -->
-	<script src="${ pageContext.request.contextPath }/resources/js/sidebar.js"/></script>
+	<!-- 반응형 메뉴, 사이드바 애니메이션 -->
+	<script src="${ pageContext.request.contextPath }/resources/js/responsivemenu.js?22"/></script>
 </body>
 </html>
