@@ -17,7 +17,7 @@
                 </div>
                 
                 <!-- 오른쪽 영역------------------------------ -->
-                <form action="insertQ" method="post">
+                <form action="insertQ" method="post" style="float:left;1">
                 <div class="insert-right-box">
                     <div class="insert-question-sector"><!-- 문의 등록 영역 -->
                         <div class="insert-question-title-box"> <!-- 문의 데이터 제목 -->
@@ -67,7 +67,7 @@
                             </div>
                             <div>
                             	<input class="insert-input-answer" name="answerStatus" value="답변 대기">
-                            	<input class="insert-input-answer" name="insertImg" type="image" style="display: none;" value="${filePath}">
+                            	<input class="insert-input-answer" name="insertImg" id="insertImg" type="text" >
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
 						
 						<div class="reply-group">
 							<div class="filebox pull-left">
-								<label for="file">이미지업로드</label> 
-								<input type="file" name="file" id="file">
+								<label for="file">이미지업로드</label>
+								<input class="insertPage-file-name" type="file" name="file" id="file">
 							</div>
 							
 							<button type="button" class="right btn btn-info" id="uploadBtn">등록하기</button>
@@ -145,12 +145,12 @@
 				//var content = $("#content").val();
 				
 				file = file.slice( file.lastIndexOf(".", file.length) + 1, file.length); //파일확장자
-				/*
+				
 				if(file != 'jpg' && file != 'png' && file != 'bmp') {
 					alert("이미지 파일형태만 등록가능 합니다(jpg, png, bmp)");
 					return;
 					
-				} */  //이미지 안올릴시 무조건 뜸
+				}  //이미지 안올릴시 무조건 뜸
 				
 				if( /*writer == ''*/ false) {
 					alert("로그인이 필요한 서비스 입니다");
@@ -174,18 +174,13 @@
 					data : formData,
 					success : function(data) {
 						
-						if(data == "success") {
-							$("#file").val(""); //태그
-							//$("#content").val(""); //내용
-							$(".fileDiv").css("display", "none"); //안보이도록처리
-							alert("이미지 등록완료");
-							getList();
-						} else if(data == "idFail") {
-							alert("로그인이 필요한 서비스 입니다");
-						} else {
-							console.log(data);
-							alert("서버 문제가 발생했습니다. 관리자에게 문의하세요.");
-						}
+						alert(data);
+						console.log( $("#insertImg") );
+						console.log( $("#insertImg").attr("value") );
+						
+						$("#insertImg").attr("value",data);
+						
+						console.log( $("#insertImg").attr("value") ); 
 						
 					},
 					error : function(status, error) {
@@ -194,52 +189,7 @@
 				})
 			}); //등록이벤트 
 			
-			/*
-			function getList() {
-				
-				var strAdd = "";
-				
-				$.getJSON("getList", function(data) {
-					console.log(data);
-					
-					for(var i = 0; i < data.length; i++) {
-						strAdd += '<div class="title-inner">';
-						strAdd += '<div class="profile">';
-						strAdd += '<img src="../resources/img/profile.png">'
-						strAdd += '</div>';
-						strAdd += '<div class="title">';
-						strAdd += '<p>'+ data[i].writer +'</p>';
-						strAdd += '<small>'+ data[i].regdate +'</small>';
-						strAdd += '</div>';
-						strAdd += '</div>';
-						strAdd += '<div class="content-inner">';
-						strAdd += '<p>'+ data[i].content +'</p>';
-						strAdd += '</div>';
-						strAdd += '<div class="image-inner">';
-						strAdd += '<img src="' + "view/"+data[i].fileLoca+"/"+data[i].fileName + '">';
-						strAdd += '</div>';
-						strAdd += '<div class="like-inner">';
-						strAdd += '<img src="../resources/img/icon.jpg"><span>522</span>';
-						//파일다운로드
-						strAdd += '<a href="download/'+ data[i].fileLoca+"/"+data[i].fileName +'">파일다운로드</a>'
-						strAdd += '</div>';
-						strAdd += '<div class="link-inner">';
-						strAdd += '<a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>';
-						strAdd += '<a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>'; 
-						strAdd += '<a href="##"><i class="glyphicon glyphicon-remove"></i>삭제하기</a>';
-						strAdd += '</div>';
-					}
-					
-					$("#contentDiv").html(strAdd);
-
-				});
-				
-			}
 			
-			(function() {
-				getList();
-			})();
-			*/
 		});
 	
 	

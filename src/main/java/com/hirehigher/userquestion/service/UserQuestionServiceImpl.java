@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.jta.UserTransactionAdapter;
 
+import com.hirehigher.command.BackgroundImgVO;
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
@@ -73,5 +74,11 @@ public class UserQuestionServiceImpl implements UserQuestionService{
 	public ArrayList<InsertQuestionPageVO> mtomgetList(mtomCriteria cri) {
 		
 		return userQuestionMapper.mtomgetList(cri);
+	}
+
+	@Override
+	public InsertQuestionPageVO imgDown(int bno) {
+		
+		return userQuestionMapper.imgDown(bno);
 	}
 }

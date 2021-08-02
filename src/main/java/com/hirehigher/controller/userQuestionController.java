@@ -7,12 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +26,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hirehigher.command.BackgroundImgVO;
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
+import com.hirehigher.command.ProfileImgVO;
+import com.hirehigher.command.UserVO;
 import com.hirehigher.user.service.UserService;
 import com.hirehigher.userquestion.service.UserQuestionService;
 import com.hirehigher.util.JobCriteria;
@@ -34,7 +40,7 @@ import com.hirehigher.util.UserCriteria;
 import com.hirehigher.util.UserPageVO;
 import com.hirehigher.util.mtomCriteria;
 import com.hirehigher.util.mtomListCountVO;
-import com.hirehigher.controller.APP_CONSTANT;
+import com.hirehigher.controller.USERQUESTION_CONSTANT;
 
 
 @Controller
@@ -81,9 +87,12 @@ public class userQuestionController {
 		return "redirect:/userQuestion/mtomPage";
 	}
 	
-	@RequestMapping(value="/insertQImg",method=RequestMethod.POST)
 	@ResponseBody
+	@RequestMapping(value="/insertQImg",method=RequestMethod.POST)
 	public String insertQImg(@RequestParam("file") MultipartFile file) {
+		
+		String filePath ="";
+		String fileName="";
 		
 		try {
 
@@ -91,26 +100,27 @@ public class userQuestionController {
 			Long size = file.getSize(); // 파일 사이즈
 			String fileExtention = fileRealName.substring(fileRealName.lastIndexOf("."), fileRealName.length()); // 확장자
 
-			System.out.println("파일명:" + fileRealName);
-			System.out.println("파일크기:" + size);
-			System.out.println("파일확장자:" + fileExtention);
+//			System.out.println("파일명:" + fileRealName);
+//			System.out.println("파일크기:" + size);
+//			System.out.println("파일확장자:" + fileExtention);
 
-			File saveFile = new File(APP_CONSTANT.UPLOAD_PATH + "\\" + fileRealName); // 업로드 경로
+			File saveFile = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" + fileRealName); // 업로드 경로
 			file.transferTo(saveFile); // 실제 파일을 로컬환경으로 저장
 			System.out.println("파일경로:"+saveFile); //업로드 파일경로
 		
 			//파일경로 문자열로 추출
 			String Path = saveFile.getParentFile().toString();
-			String filename = saveFile.getName(); //파일이름
-			String filePath = Path+"\\"+ filename;
+			fileName = saveFile.getName(); //파일이름
+			//filePath = Path+"\\"+ filename;
 			System.out.println(filePath);
-			return filePath;
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 				
-		return "redirect:/userQuestion/mtomPage";
+		return fileName;
 	}
 	
 		
@@ -118,36 +128,22 @@ public class userQuestionController {
 	
 	
 	//문의 내역 수정 페이지 ---------------------------------
-//	@RequestMapping("/updatePage")
-//	public String updatePage() {
-//		return "userQuestion/updatePage";
-//	}
-		
-//	@RequestMapping("/updatePage")
-//	public String updatePage(Model model) {
-//		
-//		ArrayList<InsertQuestionPageVO> update = userQuestionService.getUpdateInfo();
-//		model.addAttribute("update",update);
-//		
-//		return "userQuestion/updatePage";
-//	}
-	
 	@RequestMapping("/updatePage")
 	public void updatePage(@RequestParam("insertBno") int bno,Model model) {
 		
 		InsertQuestionPageVO update = userQuestionService.getUpdateInfo(bno);
 		model.addAttribute("update",update);
 		
-		//return "userQuestion/updatePage";
 	}
+	
+	
 	
 	@RequestMapping(value="/updateForm",method=RequestMethod.POST)
 	public String updateData(InsertQuestionPageVO vo, 
 							RedirectAttributes RA) {
 		
-		System.out.println(vo.toString());
-		
 		int result = userQuestionService.updateData(vo); //성공시 1반환, 실패시 0
+		
 		
 		if(result == 1) {
 			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
@@ -170,9 +166,9 @@ public class userQuestionController {
 		int total = userQuestionService.mtomgetTotal(cri);
 		mtomListCountVO mtomPageVO = new mtomListCountVO(cri, total); //(기준 페이지, 총 페이지 수)
 		
-		System.out.println(total);
-		System.out.println(mtomList.toString());
-		System.out.println(mtomPageVO.toString());
+//		System.out.println(total);
+//		System.out.println(mtomList.toString());
+//		System.out.println(mtomPageVO.toString());
 		
 		//model에 담아서 화면으로
 		model.addAttribute("mtomPageVO", mtomPageVO); //페이지 네이션 전달
@@ -198,10 +194,34 @@ public class userQuestionController {
 		
 	}
 	
+	//이미지데이터 반환
+	   @ResponseBody
+	   @RequestMapping(value="/questionView/{insertImg:.+}")
+	   public byte[] questionView(@PathVariable("insertImg") String insertImg) {
+	      
+	      System.out.println(insertImg);
+	         
+	      byte[] result = null;
+	      
+	      try {
+	         //파일데이터를 바이트데이터로 변환해서 반환
+	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
+	               
+	         result = FileCopyUtils.copyToByteArray(file);
+	                     
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	      }
+	      
+	      return result;
+	   }
+	
+	
+
 	@RequestMapping("/answerForm")
 	public String answerForm(InsertQuestionPageVO vo, RedirectAttributes RA) {
 
-		System.out.println(vo.toString());
+//		System.out.println(vo.toString());
 		
 		int bno = vo.getInsertBno();
 		
@@ -233,5 +253,41 @@ public class userQuestionController {
 		return "redirect:/userQuestion/mtomPage";
 	}
 	
+	//이미지 받아오기---------------------------------------------------
+//	// 제작자 페이지 백그라운드 이미지 조회 요청
+//		@ResponseBody
+//		@RequestMapping(value="/imgDown", method = RequestMethod.GET)
+//		public InsertQuestionPageVO backgroundGet(HttpSession session) {
+//			
+//			UserVO userVO = (UserVO)session.getAttribute("userVO"); //session에 있는 userVO를 얻음
+//			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
+//			InsertQuestionPageVO backgroundVo = userQuestionService.imgDown(backgroundId); // DB 결과를 BackgroundImgVO 객체에 저장
+//			
+//			
+//			return backgroundVo;
+//		}
+//		
+//		// 제작자 페이지 백그라운드 이미지 반환
+//		@ResponseBody
+//		@RequestMapping(value="/view1/insertImg") // 경로에 특수문자를 허용
+//		public byte[] view1(@PathVariable("backgroundLoca") String backgroundLoca,
+//						    @PathVariable("backgoundName") String backgoundName) {
+//			
+//			byte[] result = null;
+//			
+//			try {
+//				
+//				// 파일 데이터를 바이트데이터로 변환해서 반환
+//				
+//				File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" + backgroundLoca + "\\" + backgoundName);
+//			
+//				result = FileCopyUtils.copyToByteArray(file);
+//				
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			
+//			return result;
+//		}
 	
 }

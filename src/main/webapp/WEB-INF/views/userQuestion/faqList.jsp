@@ -37,31 +37,32 @@
             <div class="FAQ-sub-question"> <!-- FAQ box -->
                 <div class="FAQ-sub-question-box"> <!-- FAQ button box-->
                     <div class="FAQ-sub-question-buy"> <!-- 결제 관련 FAQ-->
-                        <button class="FAQ-payment-id">결제 관련</button>
+                        <button  class="FAQ-payment-id FAQ-btn-test">결제 관련</button>
                     </div>
 
                     <div class="FAQ-sub-question-login"><!-- 로그인 관련 -->
-                        <button class="FAQ-login-id">로그인 관련</button>
+                        <button  class="FAQ-login-id FAQ-btn-test">로그인 관련</button>
                     </div>
 
                     <div class="FAQ-sub-question-homepage"> <!-- 홈페이지 사용법 관련 -->
-                        <button class="FAQ-homepage-id">홈페이지 사용법 관련</button>
+                        <button  class="FAQ-homepage-id FAQ-btn-test">홈페이지 사용법 관련</button>
                     </div>
 
                     <div class="FAQ-sub-question-item"> <!-- 제품 등록 관련 -->
-                        <button class="FAQ-item-insert-id">제품 등록 관련</button>
+                        <button  class="FAQ-item-insert-id FAQ-btn-test">제품 등록 관련</button>
                     </div>
                 </div>
             </div>
 
             <!-- --------------------검색 기능 box -->
+            <!-- 
             <div class="FAQ-such-box">
                 <div class="FAQ-such-div">
                     <input type="text" placeholder="검색어 입력">
                     <button>Q</button>
                 </div>
             </div>
-
+			 -->
             <!------------------전화 문의 안내 글 box----------------->
             <div class="FAQ-question-guide-box">
                 <div class="FAQ-question-guide-div">
@@ -80,7 +81,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>${payment.paymentFaqTitle}</button>
+                        <button id="test01">${payment.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -94,7 +95,7 @@
                         <button>A</button>
                     </div>
 
-                    <div class="FAQ-answer-content	"> <!-- FAQ 답변 -->
+                    <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
                        		${payment.paymentFaq}
                        		 <c:out value="${index.index}"></c:out>
@@ -191,7 +192,7 @@
                     </div>
 
                     <div class="FAQ-question-title"> <!-- FAQ 질문 제목 -->
-                        <button>${item.paymentFaqTitle}</button>
+                        <button id="FAQ-button">${item.paymentFaqTitle}</button>
                     </div>
                     
                     <div class="FAQ-question-look"> <!-- + - 접었다 폈다 기능-->
@@ -223,56 +224,74 @@
     </div>
 </section>
 
-   <!-- FAQ 질문 답변 script -->
 <script>
 
-        $(function(){
-            $('#FAQ-payment').click(function(){
-                if($('.FAQ-answer-box-payment').css("display") == "none"){
-                    $('.FAQ-answer-box-payment').show();
-                    $('.FAQ-answer-box-payment').attr('class','FAQ-hide-p');
-                }else{
-                    $('.FAQ-hide-p').attr('class','FAQ-answer-box-payment');
-                    $('.FAQ-answer-box-payment').hide();
-                }
-            });
 
-            $('#FAQ-login').click(function(){
-                if($('.FAQ-answer-box-login').css("display") == "none"){
-                    $('.FAQ-answer-box-login').show();
-                    $('.FAQ-answer-box-login').attr('class','FAQ-hide-l');
-                    
-                }else{
-                    $('.FAQ-hide-l').attr('class','FAQ-answer-box-login');
-                    $('.FAQ-answer-box-login').hide();
-                }
-            });
-            $('#FAQ-home').click(function(){
-                if($('.FAQ-answer-box-home').css("display") == "none"){
-                    $('.FAQ-answer-box-home').show();
-                    $('.FAQ-answer-box-home').attr('class','FAQ-hide-h');
-                    
-                }else{
-                    $('.FAQ-hide-h').attr('class','FAQ-answer-box-home');
-                    $('.FAQ-answer-box-home').hide();
-                }
-            });
+    $(document).ready(function(){
 
-            $('#FAQ-item').click(function(){
-                if($('.FAQ-answer-box-item').css("display") == "none"){
-                    $('.FAQ-answer-box-item').show();
-                    $('.FAQ-answer-box-item').attr('class','FAQ-hide-i');
-                    
-                }else{
-                    $('.FAQ-hide-i').attr('class','FAQ-answer-box-item');
-                    $('.FAQ-answer-box-item').hide();
-                }
-            });
+        $(".FAQ-payment-id").css({"color":"#494949","border-bottom":"6px solid #494949","transition":".2s"});
+
+        $(".FAQ-btn-test").click(function(){
+
+        if( $(this).hasClass("FAQ-payment-id") ){
+            $(".FAQ-payment-id").css({"color":"#494949","border-bottom":"6px solid #494949","transition":".2s"});
+            $(".FAQ-login-id,.FAQ-homepage-id,.FAQ-item-insert-id").removeAttr("style");
+
+		}else if( $(this).hasClass("FAQ-login-id")){
+			$(".FAQ-login-id").css({"color":"#494949","border-bottom":"6px solid #494949","transition":".2s"});
+            $(".FAQ-payment-id,.FAQ-homepage-id,.FAQ-item-insert-id").removeAttr("style");
+            
+        }
+        else if( $(this).hasClass("FAQ-homepage-id")){
+			$(".FAQ-homepage-id").css({"color":"#494949","border-bottom":"6px solid #494949","transition":".2s"});
+            $(".FAQ-payment-id,.FAQ-login-id,.FAQ-item-insert-id").removeAttr("style");
+        }
+        else{
+			$(".FAQ-item-insert-id").css({"color":"#494949","border-bottom":"6px solid #494949","transition":".2s"});
+            $(".FAQ-payment-id,.FAQ-login-id,.FAQ-homepage-id").removeAttr("style");
+        }
+
         });
+
+
+    });
+    
 </script>
 
+   <!-- FAQ 질문 답변 script -->
+
+<script>
+
+        $(".FAQ-question-title").click(function(event){
+		//console.log( $(this) );
+		
+		//console.dir( $(this)	 );
+		
+		//console.log( $(this).parent() );
+		
+		console.dir( $(this).parent().next().children().first().attr("class"));
+		
+        console.dir($(this).next().children().first().text());
+
+		if( $(this).parent().next().children().first().hasClass("FAQkkk") ){
+			
+			$(this).parent().next().children().first().removeClass("FAQkkk");
+			$(this).parent().next().children().first().hide();
+			$(this).next().children().first().text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+		}else{
+			$(this).parent().next().children().first().show();
+			$(this).parent().next().children().first().addClass("FAQkkk");	
+			$(this).next().children().first().text("-").css({"font-size": "38px","background-color": "white","color":"#bfbfbf","margin-bottom":"100px"});
+        }
+		/* $(this).addClass("FAQkkk");
+		console.log( $(this).attr("class") );
+		
+		$(".FAQkkk").show(); */
+	});
+</script>
 
  <!--div 내용 바꾸기-->
+
  <script>
         $(document).ready(function() {
                 // 처음 화면 로드시 기본 화면 보여주기
@@ -287,6 +306,25 @@
                 $('.FAQ-question-answer-home').hide();
                 $('.FAQ-question-answer-item').hide();
                 $ ('.FAQ-question-answer-login').hide();
+              
+                //답변 초기화 코드-----------------------------------
+                //FAQ-answer-box-payment
+                //FAQ-answer-box-login
+                //FAQ-answer-box-home
+                //FAQ-answer-box-item
+                
+                $(".FAQ-answer-box-login").removeClass("FAQkkk");
+                $(".FAQ-answer-box-login").hide();
+                $("#FAQ-answer-login-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-home").removeClass("FAQkkk");
+                $(".FAQ-answer-box-home").hide();
+                $("#FAQ-answer-home-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-item").removeClass("FAQkkk");
+                $(".FAQ-answer-box-item").hide();
+                $("#FAQ-answer-item-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
                 return false;
             });
                 // 로그인 관련 li 클릭시 결제 관련 QnA 보여주기
@@ -294,7 +332,20 @@
                 $ ('.FAQ-question-answer-payment').hide();
                 $('.FAQ-question-answer-home').hide();
                 $('.FAQ-question-answer-item').hide();
-                $ ('.FAQ-question-answer-login').show(); 
+                $ ('.FAQ-question-answer-login').show();
+                
+                
+                $(".FAQ-answer-box-payment").removeClass("FAQkkk");
+                $(".FAQ-answer-box-payment").hide();
+                $("#FAQ-answer-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-home").removeClass("FAQkkk");
+                $(".FAQ-answer-box-home").hide();
+                $("#FAQ-answer-home-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-item").removeClass("FAQkkk");
+                $(".FAQ-answer-box-item").hide();
+                $("#FAQ-answer-item-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
                 return false;
             });
                 // 홈페이지 관련 li 클릭시 결제 관련 QnA 보여주기
@@ -303,6 +354,18 @@
                 $('.FAQ-question-answer-home').show();
                 $('.FAQ-question-answer-item').hide();
                 $ ('.FAQ-question-answer-login').hide(); 
+                
+                $(".FAQ-answer-box-payment").removeClass("FAQkkk");
+                $(".FAQ-answer-box-payment").hide();
+                $("#FAQ-answer-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-login").removeClass("FAQkkk");
+                $(".FAQ-answer-box-login").hide();
+                $("#FAQ-answer-login-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-item").removeClass("FAQkkk");
+                $(".FAQ-answer-box-item").hide();
+                $("#FAQ-answer-item-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
                 return false;
             });
                 // 제품 등록 관련 li 클릭시 결제 관련 QnA 보여주기
@@ -311,6 +374,18 @@
                 $('.FAQ-question-answer-home').hide();
                 $('.FAQ-question-answer-item').show();
                 $ ('.FAQ-question-answer-login').hide(); 
+                
+                $(".FAQ-answer-box-payment").removeClass("FAQkkk");
+                $(".FAQ-answer-box-payment").hide();
+                $("#FAQ-answer-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-login").removeClass("FAQkkk");
+                $(".FAQ-answer-box-login").hide();
+                $("#FAQ-answer-login-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
+                
+                $(".FAQ-answer-box-home").removeClass("FAQkkk");
+                $(".FAQ-answer-box-home").hide();
+                $("#FAQ-answer-home-btn").text("+").css({"font-size": "30px","background-color": "white","color":"#bfbfbf"});
                 return false;
             });
         });

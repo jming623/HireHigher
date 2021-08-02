@@ -19,7 +19,7 @@
                <div class="MtoM-top-select-box">
                   <div class="MtoM-top-select-box-left">
                      <!-- 선택박스 왼쪽 영역-->
-                     <div>
+                     <div> 
                         <button class="btn btn-default"
                            onclick="selectAll()">전체선택</button>
                      </div>
