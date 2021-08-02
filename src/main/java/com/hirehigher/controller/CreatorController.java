@@ -3,6 +3,7 @@ package com.hirehigher.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hirehigher.command.BackgroundImgVO;
@@ -52,10 +55,10 @@ public class CreatorController {
 		if (userType == 0) {
 
 			/*------------------------제작자 신청--------------------------------*/
-			UserVO userVO = (UserVO) session.getAttribute("userVO"); // session에 있는 userVO를 얻음
-			creatorVO.setCreatorId(userVO.getUserId());
-			String creatorId = creatorVO.getCreatorId(); // creatorId 변수에 creatorVO의 creatorId를 저장
-
+			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+			creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
+			
+			
 			int result = creatorService.apply(creatorVO); // apply함수 결과를 result 변수에 저장
 
 			if (result == 1) { // 요청 성공
@@ -89,9 +92,9 @@ public class CreatorController {
 
 			String profileId = userVO.getUserId(); // profileId 변수에 userVO의 userId를 저장
 
-			// profilePath 변수에 업로드 경로 저장
-			String profilePath = "C:\\Users\\woohyun\\Desktop\\Programming\\course\\sts-bundle\\workspace\\HireHigher\\src\\main\\webapp\\resources\\img\\creatorProfile";
-
+			
+			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH; // profilePath 변수에 업로드 경로 저장
+			
 			String profileLoca = "creatorProfile"; // profileLoca 변수에 폴더 경로 저장
 
 			String profileName = "52822e5099fa4d9cb73a0636178393d2.png"; // profileName 변수에 변경된 파일명 저장
@@ -107,9 +110,9 @@ public class CreatorController {
 
 			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
 
-			// backgroundPath 변수에 업로드 경로 저장
-			String backgroundPath = "C:\\Users\\woohyun\\Desktop\\Programming\\course\\sts-bundle\\workspace\\HireHigher\\src\\main\\webapp\\resources\\img\\creatorBackground";
-
+			
+			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH; // backgroundPath 변수에 업로드 경로 저장
+			
 			String backgroundLoca = "creatorBackground"; // backgroundLoca 변수에 폴더 경로 저장
 
 			String backgroundName = "welcome.jpg"; // backgroundName 변수에 변경된 파일명 저장
@@ -154,6 +157,109 @@ public class CreatorController {
 
 //		return "/creator/creatorDetail";
 	}
+	
+	// 백그라운드 이미지 수정
+	@ResponseBody
+	@RequestMapping(value="/backgroundUpload", method=RequestMethod.POST)
+	public String backgroundUpload(@RequestParam("file") MultipartFile file,
+								   HttpSession session) {
+		
+		try {
+			
+			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
+			
+			String backgroundLoca = "creatorBackground"; // 폴더 경로
+			
+			String backgroundReal = file.getOriginalFilename(); // 파일명
+			
+			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH; // 전체 경로
+						
+			String fileExtention = backgroundReal.substring( backgroundReal.lastIndexOf("."), backgroundReal.length() ); // 확장자
+						
+			UUID uuid = UUID.randomUUID();
+						
+			String uuids = uuid.toString().replaceAll("-", ""); // 가짜 파일명
+
+			String backgroundName = uuids + fileExtention; // 업로드 파일명
+			
+			File saveFile = new File(backgroundPath + "\\" + backgroundLoca + "\\" + backgroundName);
+			
+			file.transferTo(saveFile); // 파일쓰기
+			
+			// DB 작업
+			
+			BackgroundImgVO backgroundVO = new BackgroundImgVO(backgroundId, backgroundPath, backgroundLoca, backgroundName, backgroundReal);
+			int result = creatorService.backgroundUpdate(backgroundVO);
+			
+			if(result == 1) {
+				return "success";
+			} else {
+				return "fail";
+			}
+		
+		} catch (NullPointerException e) {
+			return "idFail";
+		} catch (Exception e) {
+			return "fail";
+		}
+		
+		
+		
+		
+	}
+	
+	// 프로필 이미지 수정
+	@ResponseBody
+	@RequestMapping(value="/profileUpload", method=RequestMethod.POST)
+	public String profileUpload(@RequestParam("file") MultipartFile file,
+								   HttpSession session) {
+		
+		try {
+			
+			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+			String profileId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
+			
+			String profileLoca = "creatorProfile"; // 폴더 경로
+			
+			String profileReal = file.getOriginalFilename(); // 파일명
+			
+			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH; // 전체 경로
+						
+			String fileExtention = profileReal.substring( profileReal.lastIndexOf("."), profileReal.length() ); // 확장자
+						
+			UUID uuid = UUID.randomUUID();
+						
+			String uuids = uuid.toString().replaceAll("-", ""); // 가짜 파일명
+
+			String profileName = uuids + fileExtention; // 업로드 파일명
+			
+			File saveFile = new File(profilePath + "\\" + profileLoca + "\\" + profileName);
+			
+			file.transferTo(saveFile); // 파일쓰기
+			
+			// DB 작업
+			
+			ProfileImgVO profileVO = new ProfileImgVO(profileId, profilePath, profileLoca, profileName, profileReal);
+			int result = creatorService.profileImgUpdate(profileVO);
+			
+			if(result == 1) {
+				return "success";
+			} else {
+				return "fail";
+			}
+		
+		} catch (NullPointerException e) {
+			return "idFail";
+		} catch (Exception e) {
+			return "fail";
+		}
+		
+		
+		
+		
+	}
+	
 
 	// 제작자 페이지 프로필 이미지 조회 요청
 	@ResponseBody
@@ -230,23 +336,21 @@ public class CreatorController {
 
 	// 제작자 페이지 게시판 페이징
 	@ResponseBody
-	@RequestMapping(value = "creatorPageBoardList", produces = "application/json")
-	public HashMap<String, Object> creatorPageBoardList(@RequestBody CreatorCriteria cri) { // cri값이 들어오지 않으면 기본생성자로
-																							// startPage는 1, amount는 7로
-																							// 초기화
-
+	@RequestMapping(value="creatorPageBoardList", produces="application/json")
+	public HashMap<String, Object> creatorPageBoardList(@RequestBody CreatorCriteria cri) { // cri값이 들어오지 않으면 기본생성자로 startPage는 1, amount는 7로 초기화 
+		
 		String creatorName = cri.getCreatorName(); // 제작자 페이지에서 넘어온 userName
-		int pageNum = cri.getPageNum(); // 제작자 페이지에서 넘어온 pageNum
-		int amount = cri.getAmount(); // 제작자 페이지에서 넘어온 amount
-
+		int pageNum = cri.getPageNum(); //  제작자 페이지에서 넘어온 pageNum
+		int amount = cri.getAmount(); //  제작자 페이지에서 넘어온 amount
+		
 		HashMap<String, Object> map = new HashMap<>();
-
+		
 		ArrayList<WorkBoardVO> list = creatorService.getList(pageNum, amount, creatorName); // DB 결과를 ArrayList 객체에 저장
-
+		
 		map.put("list", list); // 화면단에 workBoardVO를 답은 ArrayList를 반환
-
+		
 		int total = creatorService.getTotal(creatorName); // DB 결과를 total 변수에 저장
-
+		
 		CreatorPagingVO pagingVO = new CreatorPagingVO(cri, total);
 
 		map.put("pagingVO", pagingVO); // 화면단에 pagingVO를 반환
@@ -254,15 +358,46 @@ public class CreatorController {
 		return map;
 	}
 
-//	// 제작자 페이지 수정 화면
-//	@RequestMapping("/creatorModify")
-//	public String creatorModify() {
-//		
-//		
-//		
-//		return "/creator/creatorModify";
-//	}
-
+	// 제작자 페이지 프로필 수정
+	@RequestMapping("/profileUpdate")
+	public String profileUpdate(CreatorPageVO pageVO,
+								HttpSession session,
+								RedirectAttributes RA) {
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+		pageVO.setPageId(userVO.getUserId()); // pageVO의 pageId에 userVO의 userId를 저장
+		
+		int result = creatorService.profileUpdate(pageVO);
+		
+		if(result == 1) {
+			RA.addFlashAttribute("msg", "정상적으로 수정되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다. 다시 시도해주세요");
+		}
+		
+		return "redirect:/creator/creatorDetail";
+	}
+	
+	// 제작자 정보 수정
+	@RequestMapping("/infoUpdate")
+	public String infoUpdate(CreatorVO creatorVO,
+							 HttpSession session,
+							 RedirectAttributes RA) {
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+		creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
+				
+		int result = creatorService.infoUpdate(creatorVO);
+		
+		if(result == 1) {
+			RA.addFlashAttribute("msg", "정상적으로 수정되었습니다.");
+		} else {
+			RA.addFlashAttribute("msg", "수정에 실패했습니다. 다시 시도해주세요");
+		}
+		
+		return "redirect:/creator/creatorDetail";
+	}
+	
 	// 추가_JM
 	// 마켓게시판에서 게시글의 제작자 페이지 검색	
 	@RequestMapping("/findCreator")

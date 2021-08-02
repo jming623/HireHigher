@@ -80,7 +80,7 @@
     		from (
         		   select *
         		   from workboard
-        		   where creatorname = #{creatorName}
+        		   where creatorName = #{creatorName}
         		   order by bno desc
     		) a
 		)
@@ -88,5 +88,50 @@
 		where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
   		]]>
   	</select>
+  	
+  	<update id="profileUpdate">
+  	
+  		update CREATORPAGE
+  		set instaPath = #{instaPath},
+  			aboutme = #{aboutMe}
+  		where pageid = #{pageId}
+  	
+  	</update>
+  	
+  	<update id="infoUpdate">
+  	
+  		update creator
+  		set creatormajor = #{creatorMajor},
+  			creatorcareer = #{creatorCareer},
+  			creatorcareer1 = #{creatorCareer1},
+  			creatorcareer2 = #{creatorCareer2},
+  			creatorawards = #{creatorAwards},
+  			creatorawards1 = #{creatorAwards1},
+  			creatorawards2 = #{creatorAwards2}
+  		where creatorId = #{creatorId}
+  		
+  	</update>
+  	
+  	<update id="backgroundUpdate">
+  	
+  		update backgroundimg
+  		set backgroundPath = #{backgroundPath},
+  			backgroundLoca = #{backgroundLoca},
+  			backgroundName = #{backgroundName},
+  			backgroundReal = #{backgroundReal}
+  		where backgroundId = #{backgroundId}
+  	
+  	</update>
+  	
+  	<update id="profileImgUpdate">
+  	
+  		update profileimg
+  		set profilePath = #{profilePath},
+  			profileLoca = #{profileLoca},
+  			profileName = #{profileName},
+  			profileReal = #{profileReal}
+  		where profileId = #{profileId}
+  	
+  	</update>
   	
   </mapper>
