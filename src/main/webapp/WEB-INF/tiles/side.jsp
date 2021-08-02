@@ -1,29 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
- <aside class="side-bar">
+    <aside id="sidebar">
+        <div id="sidebar-wrapper">
+            <div id="sidebar-toggle">
+                <div id="toggle-wrapper">
+                  <img class="sidebar-toggle-logo" src="${ pageContext.request.contextPath }/resources/img/sidebar-toggle-logo.png">
+                </div>
+            </div>
+            
+            <div id="sidebar-div-wrapper">
+            <div class="sidebar-div" id="sidebar-button1">
+                <a class="sidebar-link" href="${pageContext.request.contextPath}">
+                    <img class="sidebar-logo" src="${ pageContext.request.contextPath }/resources/img/sidebar-home-logo.png">
+                </a>
+            </div>
+            <div class="sidebar-div" id="sidebar-button2">
+                <a class="sidebar-link" href="#">
+                    <img class="sidebar-logo" src="${ pageContext.request.contextPath }/resources/img/sidebar-arrow-logo.png">
+                </a>
+            </div>
+            <div class="sidebar-div" id="sidebar-button3">
+                <a class="sidebar-link" href="#">
+                    <img class="sidebar-logo" src="${ pageContext.request.contextPath }/resources/img/sidebar-insta-logo.png">
+                </a>
+            </div>
+            </div>
 
-    <ul class="side-list">
-      <li>
-        <a href="#">
-          <p>HOME</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <p>위로가기</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <p>마켓게시판</p>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <p>공고게시판</p>
-        </a>
-      </li>
-    </ul>
-
-  </aside>
+        </div>
+    </aside>
