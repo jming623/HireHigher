@@ -53,7 +53,7 @@
     <!-- 우현이형 -->
     <link href="${pageContext.request.contextPath }/resources/css/userJoin.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/userLogin.css?2" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/creatorApply.css?2" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/creatorApply.css?1" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobBoard.css?22" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/jobDetail.css?22" rel="stylesheet">
     <!-- 우현이형 >> jobModify 지혁 추가 수정 본 -->
