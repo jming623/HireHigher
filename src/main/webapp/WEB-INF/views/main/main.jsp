@@ -28,7 +28,7 @@
 					</div>
 				</div>
 				<div class="main-stats-container">
-					<div class="main-stadts-container-inner1">
+					<div class="main-stats-container-inner1">
 						TOTAL POSTS
 						<!--data 동적처리-->
 						<div class="main-stats-container-inner2">
