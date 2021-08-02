@@ -136,6 +136,10 @@
    
    </delete>
    
+   <update id="viewCount">
+   		update JOBBOARD set viewCount = viewCount + 1 where bno = #{bno}
+   </update>
+   
    
 
 </mapper>

@@ -14,4 +14,5 @@ public interface JobBoardService {
 		public ArrayList<JobBoardVO> getList(JobCriteria cri); //조회	
 		public JobBoardDetailVO getDetail(int bno); //상세
 		public int delete(int bno); //삭제
+		public int viewCount(int bno); //조회수
 }
