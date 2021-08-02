@@ -103,8 +103,7 @@ public class CreatorController {
 			
 			String profileId = userVO.getUserId(); // profileId 변수에 userVO의 userId를 저장
 			
-			// profilePath 변수에 업로드 경로 저장
-			String profilePath = "C:\\Users\\woohyun\\Desktop\\Programming\\course\\sts-bundle\\workspace\\HireHigher\\src\\main\\webapp\\resources\\img\\creatorProfile";
+			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH; // profilePath 변수에 업로드 경로 저장
 			
 			String profileLoca = "creatorProfile"; // profileLoca 변수에 폴더 경로 저장
 				
@@ -122,8 +121,7 @@ public class CreatorController {
 			
 			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
 			
-			// backgroundPath 변수에 업로드 경로 저장
-			String backgroundPath = "C:\\Users\\woohyun\\Desktop\\Programming\\course\\sts-bundle\\workspace\\HireHigher\\src\\main\\webapp\\resources\\img\\creatorBackground";
+			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH; // backgroundPath 변수에 업로드 경로 저장
 			
 			String backgroundLoca = "creatorBackground"; // backgroundLoca 변수에 폴더 경로 저장
 			
