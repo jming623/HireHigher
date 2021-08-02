@@ -7,74 +7,72 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- FAQ 고객센터 list 가져오기 sql -->
 	<select id="getFaqList" resultType="FaqListPageVO">
-  		select * from FAQLISTPAGE order by FAQBNO desc
+  		select * from faqListPage order by faqBno desc
   	</select>
 	
 	<!-- 문의 등록 페이지 sql -->
 	<insert id="insertRegist">
-		insert into INSERTQUESTIONPAGE(INSERTKIND,INSERTID,INSERTTITLE,INSERTCONTENT,ANSWERSTATUS,INSERTIMG) 
-		values (#{insertKind},#{insertId},#{insertTitle},#{insertContent},#{answerStatus},#{insertImg})
+		insert into insertQuestionPage(insertBno,insertKind,insertId,insertTitle,insertContent,answerStatus,insertImg)
+		values (insertQuestionPage_SEQ.nextval,#{insertKind},#{insertId},#{insertTitle},#{insertContent},#{answerStatus},#{insertImg})
 	</insert>
 	
 	<!-- 문의 수정하기 페이지 sql -->
 	<select id="getUpdateInfo" resultType="InsertQuestionPageVO">
-		select * from INSERTQUESTIONPAGE where INSERTBNO = #{insertBno}
+		select * from insertQuestionPage where insertBno = #{insertBno}
 	</select>
 	
 	<update id="updateData">
-		update INSERTQUESTIONPAGE set 
-		INSERTKIND = #{insertKind},
-		INSERTID = #{insertId},
-		INSERTTITLE = #{insertTitle},
-		INSERTCONTENT = #{insertContent},
-		INSERTIMG = #{insertImg}
-		where INSERTBNO = #{insertBno}
-        
+		update insertQuestionPage set 
+		insertKind = #{insertKind},
+		insertId = #{insertId},
+		insertTitle = #{insertTitle},
+		insertContent = #{insertContent},
+		insertImg = #{insertImg}
+		where insertBno = #{insertBno}
 	</update>
 		
 	<!-- 문의 / 상세페이지 가져오기 sql -->
 	<select id="getMtomList" resultType="InsertQuestionPageVO">
-  			select * from INSERTQUESTIONPAGE order by INSERTBNO desc
+  		select * from insertQuestionPage order by insertBno desc
   	</select>
   	
   	<!-- 문의 리스트 페이지네이션 -->
 	<select id="mtomgetList" resultType="InsertQuestionPageVO">
   		<![CDATA[
-   	select *
-		from (select @rownum:= @rownum+1 as rn,
-			  a.* 
-			from (select * 
-				  from INSERTQUESTIONPAGE 
-				  order by INSERTBNO desc) a
-				     
-			  ) b, (select @rownum:=0) c
+   		select *
+		from (select rownum rn,
+		             a.*     
+		      from (select *
+		            from insertQuestionPage         
+		            order by insertBno desc) a
+		)
 		where rn > (#{currentPage}-1) * #{displayRow} and rn <= #{currentPage} * #{displayRow}
 		]]>
 	</select>
 
 	<select id="mtomgetTotal" resultType="int">
 		select count(*) as total
-		from INSERTQUESTIONPAGE
+		from insertQuestionPage
 	</select>
 
   	
   	<!-- 상세페이지 답변 등록 sql -->
   	<update id="answerData">
-		update INSERTQUESTIONPAGE set 
-		ANSWERTITLE = #{answerTitle},
-		ANSWERCONTENT = #{answerContent},
-		ANSWERSTATUS = #{answerStatus}
-		where INSERTBNO = #{insertBno}
+		update insertQuestionPage set 
+		answerTitle = #{answerTitle},
+		answerContent = #{answerContent},
+		answerStatus = #{answerStatus}
+		where insertBno = #{insertBno}
 	</update>
 	
 	<!-- 문의 삭제 sql -->
 	<delete id="updatedelete">
-		delete from INSERTQUESTIONPAGE where INSERTBNO = #{inserBno}
+		delete from insertQuestionPage where insertBno = #{inserBno}
 	</delete>
 	
 	<!-- 이미지 다운 -->
 	<select id="imgDown" resultType="InsertQuestionPageVO">
-		select INSERTIMG from INSERTQUESTIONPAGE where INSERTBNO = #{insertBno}
+		select insertImg from insertQuestionPage where insertBno = #{insertBno}
 	</select>
 	
 </mapper>

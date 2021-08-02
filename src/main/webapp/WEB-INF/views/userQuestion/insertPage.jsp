@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
- <section>
+<section>
     <div class="container">
         <div class="row">
             <div class="insert-all">
@@ -17,7 +17,7 @@
                 </div>
                 
                 <!-- 오른쪽 영역------------------------------ -->
-                <form action="insertQ" method="post" style="float:left;1">
+                <form action="insertQ" method="post" style="float:left;">
                 <div class="insert-right-box">
                     <div class="insert-question-sector"><!-- 문의 등록 영역 -->
                         <div class="insert-question-title-box"> <!-- 문의 데이터 제목 -->
@@ -55,7 +55,7 @@
                             </div>
                          
                             <div class="insert-input-id"> <!-- 아이디 -->
-                                <input type="text" name="insertId" value="아이디입력칸">
+                                <input type="text" name="insertId" value="${sessionScope.userVO.userId}">
                             </div>
                          
                             <div class="insert-input-title"> <!-- 제목 -->
@@ -81,52 +81,51 @@
 						<div class="reply-group">
 							<div class="filebox pull-left">
 								<label for="file">이미지업로드</label>
-								<input class="insertPage-file-name" type="file" name="file" id="file">
+								<input style="display: none;" type="file" name="file" id="file">
 							</div>
 							
 							<button type="button" class="right btn btn-info" id="uploadBtn">등록하기</button>
 							
 						</div>
 					</div>
+					<!-- 모달  -->
+					<div id="root">
+        
 					
-					<!-- 모달
-	<div class="modal fade" id="snsModal" role="dialog">
-			<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-body row">
-					<div class="modal-img col-sm-8 col-xs-6" >
-						<img src="../resources/img/img_ready.png" id="snsImg" width="100%">
+						
 					</div>
-					<div class="modal-con col-sm-4 col-xs-6">
-						<div class="modal-inner">
-						<div class="profile">
-							<img src="../resources/img/profile.png">
-						</div>
-						<div class="title">
-							<p id="snsWriter">테스트</p>
-							<small id="snsRegdate">21시간전</small>
-						</div>
-						<div class="content-inner">
-							<p id="snsContent">삶이 우리를 끝없이 시험하기에 고어텍스는 한계를 테스트합니다</p>
-						</div>
-						<div class="link-inner">
-							<a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
-							<a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a> 
-							<a href="##"><i class="glyphicon glyphicon-share-alt"></i>공유하기</a>
-						</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	 -->		
+			
+					<div id="question-modal">
 					
+						<div class="modal_content">
+							
+							
+						
+							<div class="question-input-madal-all">
+			
+							<div class="answer-modal-box">
+								<div class="fileDivSecond">
+									<img id="fileImgSecond" src="../resources/img/img_ready.png">
+								</div>	
+							</div>
+							</div>
+							<div class="question-modal-btn">
+								<button class="question-modal-btn-right btn btn-danger" type="button" id="modal-question_close_btn">취소 하기</button>
+								<button class="question-modal-btn-left btn btn-info" type="button" id="">답변 등록</button>
+							</div>    
+						
+						</div>
+					
+						<div class="modal_layer"></div>
+					</div>
+					<!-- 모달 끝 -->
                     <!-- 문의하기 취소하기 버튼-->
                     
                     <div class="insert-btn-qne">
                         <button type="button" class="insert-btn-right btn btn-default" onclick="location.href='mtomPage'">취소하기</button>
+                        <c:if test=${sessionScope.userVO != null}>
                         <button type="submit" class="insert-btn-left btn btn-primary" >문의하기</button>
+                    	</c:if>
                     </div>
 
                 </div>
@@ -135,6 +134,32 @@
         </div>
     </div>
     </section>
+
+	<!-- 모달 스크립트 -->
+	<script>
+        document.getElementById("fileImg").onclick = function() {
+            document.getElementById("question-modal").style.display="block";
+        }
+       
+        document.getElementById("modal-question_close_btn").onclick = function() {
+            document.getElementById("question-modal").style.display="none";
+        }   
+    </script>
+	<!-- 모달 스크립트 끝 -->
+
+<script>
+
+$(document).ready(function() {
+
+	var src = $("#fileImg").attr("src");
+	 console.log($("#fileImg").attr("src"));
+	 
+	 var srcscond = $("#fileImgSecond").attr("src",src);
+});
+
+ 
+ </script>
+
  
  <script>
 		$(document).ready(function() {
