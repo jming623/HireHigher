@@ -14,9 +14,9 @@
   	
   	<update id="apply1">
   	
-  		update users
-  		set usertype = #{userType}
-  		where userid = #{userId}
+  		update USERS
+  		set USERTYPE = #{userType}
+  		where USERID = #{userId}
   		
   	</update>
   	
@@ -43,31 +43,31 @@
   	
   	<select id="pageDetail" resultType="CreatorPageVO">
   	
-  		select * from CREATORPAGE where pageid = #{pageId}
+  		select * from CREATORPAGE where PAGEID = #{pageId}
   	
   	</select>
   	
    	<select id="creatorDetail" resultType="CreatorVO">
    	
-   		select * from CREATOR where creatorid = #{creatorId}
+   		select * from CREATOR where CREATORID = #{creatorId}
    	
    	</select>
    	
    	<select id="profileGet" resultType="ProfileVO">
    	
-   		select * from PROFILEIMG where profileid = #{profileId}
+   		select * from PROFILEIMG where PROFILEID = #{profileId}
    	
    	</select>
   	
   	<select id="backgroundGet" resultType="BackgroundVO">
   	
-  		select * from BACKGROUNDIMG where backgroundid = #{backgroundId}
+  		select * from BACKGROUNDIMG where BACKGROUNDID = #{backgroundId}
   	
   	</select>
   	
   	<select id="getTotal" resultType="int">
   	
-  		select count(*) as total from workboard where creatorName = #{creatorName}
+  		select count(*) as total from WORKBOARD where CREATORNAME = #{creatorName}
   	
   	</select>
   	
@@ -79,9 +79,9 @@
        			   a.*
     		from (
         		   select *
-        		   from workboard
-        		   where creatorName = #{creatorName}
-        		   order by bno desc
+        		   from WORKBOARD
+        		   where CREATORNAME = #{creatorName}
+        		   order by BNO desc
     		) a
 		)
 		<![CDATA[
@@ -92,51 +92,51 @@
   	<update id="profileUpdate">
   	
   		update CREATORPAGE
-  		set instaPath = #{instaPath},
-  			aboutme = #{aboutMe}
-  		where pageid = #{pageId}
+  		set INSTAPATH = #{instaPath},
+  			ABOUTME = #{aboutMe}
+  		where PAGEID = #{pageId}
   	
   	</update>
   	
   	<update id="infoUpdate">
   	
-  		update creator
-  		set creatormajor = #{creatorMajor},
-  			creatorcareer = #{creatorCareer},
-  			creatorcareer1 = #{creatorCareer1},
-  			creatorcareer2 = #{creatorCareer2},
-  			creatorawards = #{creatorAwards},
-  			creatorawards1 = #{creatorAwards1},
-  			creatorawards2 = #{creatorAwards2}
+  		update CREATOR
+  		set CREATORMAJOR = #{creatorMajor},
+  			CREATORCAREER = #{creatorCareer},
+  			CREATORCAREER1 = #{creatorCareer1},
+  			CREATORCAREER2 = #{creatorCareer2},
+  			CREATORAWARDS = #{creatorAwards},
+  			CREATORAWARDS1 = #{creatorAwards1},
+  			CREATORAWARDS2 = #{creatorAwards2}
   		where creatorId = #{creatorId}
   		
   	</update>
   	
   	<update id="backgroundUpdate">
   	
-  		update backgroundimg
-  		set backgroundPath = #{backgroundPath},
-  			backgroundLoca = #{backgroundLoca},
-  			backgroundName = #{backgroundName},
-  			backgroundReal = #{backgroundReal}
-  		where backgroundId = #{backgroundId}
+  		update BACKGROUNDIMG
+  		set BACKGROUNDPATH = #{backgroundPath},
+  			BACKGROUNDLOCA = #{backgroundLoca},
+  			BACKGROUNDNAME = #{backgroundName},
+  			BACKGROUNDREAL = #{backgroundReal}
+  		where BACKGROUNDID = #{backgroundId}
   	
   	</update>
   	
   	<update id="profileImgUpdate">
   	
-  		update profileimg
-  		set profilePath = #{profilePath},
-  			profileLoca = #{profileLoca},
-  			profileName = #{profileName},
-  			profileReal = #{profileReal}
-  		where profileId = #{profileId}
+  		update PROFILEIMG
+  		set PROFILEPATH = #{profilePath},
+  			PROFILELOCA = #{profileLoca},
+  			PROFILENAME = #{profileName},
+  			PROFILEREAL = #{profileReal}
+  		where PROFILEID = #{profileId}
   	
   	</update>
   	
   	<select id="getCreatorId" resultType="CreatorPageVO">
   	
-  		select pageId from creatorPage where creatorNick = #{creatorNick}
+  		select PAGEID from CREATORPAGE where CREATORNICK = #{creatorNick}
   	
   	</select>
   	

@@ -24,6 +24,8 @@
 			<ref bean="UserAuthHandler"/>
 		</mvc:interceptor>
 		
+		
+		
 		<!-- 크리에이터 권한이 있어야 접근할 수 있는 페이지를 관리하는 핸들러 -->		
 		<mvc:interceptor>			
 			<mvc:mapping path="/creator/creatorDetail"/>
