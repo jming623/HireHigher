@@ -44,7 +44,7 @@ public class CreatorController {
 	// 제작자 신청 화면
 	@RequestMapping("/creatorApply")
 	public String creatorApply() {
-
+			
 		return "/creator/creatorApply";
 	}
 
@@ -52,7 +52,7 @@ public class CreatorController {
 	@RequestMapping("applyForm")
 	public String applyForm(CreatorVO creatorVO, HttpSession session, RedirectAttributes RA) {
 
-		if (userType == 0) {
+//		if (userType == 0) {
 
 			/*------------------------제작자 신청--------------------------------*/
 			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
@@ -127,12 +127,12 @@ public class CreatorController {
 
 			return "redirect:/creator/creatorDetail";
 
-		} else {
+//		} else {
 
-			RA.addFlashAttribute("msg", "이미 판매자 신청이 완로된 계정입니다.");
+//			RA.addFlashAttribute("msg", "이미 판매자 신청이 완로된 계정입니다.");
 
-			return "redirect:/creator/creatorApply";
-		}
+//			return "redirect:/creator/creatorApply";
+//		}
 
 	}
 
@@ -396,6 +396,14 @@ public class CreatorController {
 		}
 		
 		return "redirect:/creator/creatorDetail";
+	}
+	
+	// 크리에이터인 경우 apply 페이지 접근 제한
+	@RequestMapping("/creator_access_fail")
+	public String creator_access_fail(RedirectAttributes RA) {
+		RA.addFlashAttribute("msg", "비정상적인 접근입니다.");
+		
+		return "redirect:/";
 	}
 	
 	// 추가_JM

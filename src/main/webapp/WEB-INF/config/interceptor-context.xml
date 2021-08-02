@@ -11,6 +11,7 @@
 	<bean id="loginSuccessHandler" class="com.hirehigher.interceptor.LoginSuccessHandler"/>
 	<bean id="UserAuthHandler" class="com.hirehigher.interceptor.UserAuthHandler"/>
 	<bean id="CreatorAuthHandler" class="com.hirehigher.interceptor.CreatorAuthHandler"/>
+	<bean id="CreatorPageAuthHandler" class="com.hirehigher.interceptor.CreatorPageAuthHandler"/>
 	
 	<mvc:interceptors>
 		
@@ -24,13 +25,17 @@
 			<ref bean="UserAuthHandler"/>
 		</mvc:interceptor>
 		
-		
+		<!-- 크리에이터인 유저라면 apply 페이지 접근 제한하는 핸들러 -->
+		<mvc:interceptor>			
+			<mvc:mapping path="/creator/creatorApply"/>
+			<ref bean="CreatorAuthHandler"/>
+		</mvc:interceptor>
 		
 		<!-- 크리에이터 권한이 있어야 접근할 수 있는 페이지를 관리하는 핸들러 -->		
 		<mvc:interceptor>			
 			<mvc:mapping path="/creator/creatorDetail"/>
 			<mvc:mapping path="/creator/creatorModify"/>
-			<ref bean="CreatorAuthHandler"/>
+			<ref bean="CreatorPageAuthHandler"/>
 		</mvc:interceptor>
 		
 		<!-- 로그인요청시 실행되는 핸들러 -->
