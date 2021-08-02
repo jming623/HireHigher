@@ -4,19 +4,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- mapper.xml설정코드 -->
 
 <mapper namespace="com.hirehigher.workboard.mapper.WorkBoardMapper">
-
-
-	<select id="getWorkBoardList" resultType="WorkBoardVO">    
-      <![CDATA[
-            select *
-            from(select @rownum := @rownum + 1 rn,
-               a.*
-                     from(select *
-                           from workboard
-                          where category = #{Category}
-                         order by BNO desc) a ) b, (select @rownum := 0) c
-            where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
-      ]]>
+	
+	
+	<select id="getWorkBoardList" resultType="WorkBoardVO"> 	
+		<![CDATA[
+				select *
+				from(select ROWNUM AS RN , a.*
+		    	 	from(select *
+		          	  	from WORKBOARD
+		         	  	where category = #{Category}
+		          	 	ORDER BY BNO DESC) a)
+				where RN > (#{pageNum}-1) * #{amount} and RN <= #{pageNum} * #{amount}
+		]]>
 	</select>
 
 
@@ -24,12 +23,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from WORKBOARD
 		where CATEGORY = #{Category}
 	</select>
-
+	
 	<select id="getDetail" resultType="WorkBoardVO">
 		select * from workboard where bno = #{bno}
 	</select>
-
-
-
 </mapper>
 

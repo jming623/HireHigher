@@ -83,7 +83,7 @@
     border-bottom: 2px solid #777;
 }
 .MtoM-question-ck{
-    width: 5%;
+    width: 10%;
 }
 .MtoM-question-num{
     width: 5%;
@@ -92,7 +92,7 @@
     width: 10%;
 }
 .MtoM-question-title{
-    width: 45%;
+    width: 40%;
 }
 .MtoM-question-show{
     width: 10%;
@@ -118,7 +118,7 @@
 }
 .MtoM-answer-box-ck{
     text-align: center;
-    width: 5%;
+    width: 10%;
 }
 .MtoM-answer-box-ck input{
     margin-top: 13px;
@@ -136,7 +136,7 @@
     float: left;
     border-bottom: 1px solid #dadada;
     text-align: left;
-    width: 45%;
+    width: 40%;
     padding-left: 30px;
     font-size: 12px;
     font-weight: 600;

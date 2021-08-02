@@ -113,7 +113,7 @@ public class userQuestionController {
 			fileName = saveFile.getName(); //파일이름
 			//filePath = Path+"\\"+ filename;
 			System.out.println(filePath);
-			
+			System.out.println(fileName);
 			
 			
 		} catch (Exception e) {

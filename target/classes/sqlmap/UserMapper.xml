@@ -6,166 +6,164 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.hirehigher.user.mapper.UserMapper">
 	
 	<!-- vo로 넘어온 값은 #{변수명}으로 사용가능하다, !주의 sql문 마지막에 ;는 찍지않는다. -->
-	
-	<select id="login" resultType="UserVO"> 
-	<!-- resultType에는 전체경로가 들어가지만 DB-context에서 sqlSessionFactory빈에 configLocation속성으로 mybatis-config.xml을 지정해 주었고,
-	  mybatis-config.xml에서는 UserVO를 엘리어스로 지정해주었기 때문에 그냥 쓰는게 가능해짐-->
-		select * from users where userId = #{userId} and userPw = #{userPw}
+
+
+	<select id="login" resultType="UserVO">
+		select * from USERS where USERID = #{userId} and USERPW = #{userPw}
 	</select>
-	
+
 	<select id="kakaoLogin" resultType="UserVO">
-		select * from users where userId = #{userId}
+		select * from USERS where USERID = #{userId}
 	</select>
-	
+
 	<select id="findIdA" resultMap="idList">
-		select userId from users where userName = #{userName} and birthDay = #{birthDay}	
+		select USERID from USERS where USERNAME = #{userName} and BIRTHDAY=
+		#{birthDay}
 	</select>
-	
+
 	<select id="findIdB" resultMap="idList">
-		select userId from users where USERNAME = #{userName} and USERCELLNUM = #{userCellNum}
+		select USERID from USERS where USERNAME = #{userName} and USERCELLNUM =
+		#{userCellNum}
+
 	</select>
-	
-	<select id="findPw" resultType="String">		
-		select userPw from users where USERID = #{userId} and USERNAME = #{userName} and USEREMAIL = #{userEmail}
+	<select id="findPw" resultType="String">
+		select USERPW from USERS where USERID = #{userId} and USERNAME = #{userName}
+		and USEREMAIL = #{userEmail}
 	</select>
-	
+
 	<resultMap type="UserVO" id="idList">
-		<result property="userId" column="USERID"/>
+		<result property="userId" column="USERID" />
 	</resultMap>
-		
-	
+
 	<select id="idCheck" resultType="int">
-		select count(*) from users where userId = #{userId}
+		select count(*) from USERS where USERID = #{userId}
 	</select>
-	
+
 	<select id="nickNameCheck" resultType="int">
-		select count(*) from users where nickName = #{nickName}
+		select count(*) from USERS where NICKNAME = #{nickName}
 	</select>
-	
+
 	<select id="emailCheck" resultType="int">
-		select count(*) from users where userEmail = #{userEmail}
+		select count(*) from USERS where USEREMAIL = #{userEmail}
 	</select>
-	
+
 	<insert id="join">
-		insert into users(userId,userPw,userName,nickName,birthDay,userEmail,userCellNum,addrZipNum,addrBasic,addrDetail)
-		values(#{userId}, #{userPw}, #{userName}, #{nickName}, #{birthDay}, #{userEmail}, #{userCellNum}, #{addrZipNum}, #{addrBasic}, #{addrDetail})
+		insert into
+		USERS(USERID,USERPW,USERNAME,NICKNAME,BIRTHDAY,USEREMAIL,USERCELLNUM,ADDRZIPNUM,ADDRBASIC,ADDRDETAIL)
+		values(#{userId}, #{userPw}, #{userName}, #{nickName}, #{birthDay},
+		#{userEmail}, #{userCellNum}, #{addrZipNum}, #{addrBasic},
+		#{addrDetail})
 	</insert>
-	
-	<select id="getUserInfo" resultType="UserVO"> <!-- 이후 jobBoard와 join해서 사용, resultType은 resultMap으로 변경 -->
-		select userId,
-       		   userName,
-       		   nickName,
-       		   birthDay,
-       		   userEmail,
-       		   userCellNum,
-       		   addrZipNum,
-       		   addrBasic,
-       		   addrDetail
-		from users u
-		where userId = #{userId}
+
+	<select id="getUserInfo" resultType="UserVO">
+		select USERID,
+		USERNAME,
+		NICKNAME,
+		BIRTHDAY,
+		USEREMAIL,
+		USERCELLNUM,
+		ADDRZIPNUM,
+		ADDRBASIC,
+		ADDRDETAIL
+		from USERS u
+		where USERID = #{userId}
 	</select>
-	
-	<!-- 
-	<resultMap type="UserVO" id="userInfo">type에는 결과를 반환받을 vo의 전체경로(현재는 mybatis-cinfig에서 엘이어스 지정을 해두어서 그냥 이름으로 사용가능), id는 위에서 지정한 resultMap의 이름
-		<result property="userId" column="USERID"/> property는 VO객체의 setter, column에는 DB에 컬럼명이 들어갑니다.
-		<collection property="userBoardList" resultMap="boardList"/>
-	</resultMap>
-	 
-	<resultMap type="FreeBoardVO" id="boardList">
-		<result property="bno" column="BNO"/>
-	</resultMap>
-	-->
-	
+
+
 	<update id="modify">
-		update users set userPw = #{userPw}, userEmail = #{userEmail}, userCellNum = #{userCellNum},
-		addrZipNum = #{addrZipNum}, addrBasic = #{addrBasic}, addrDetail = #{addrDetail} where userId = #{userId}
+		update USERS set USERPW = #{userPw}, USEREMAIL = #{userEmail}, USERCELLNUM =
+		#{userCellNum},
+		ADDRZIPNUM = #{addrZipNum}, ADDRBASIC = #{addrBasic}, ADDRDETAIL = #{addrDetail}
+		where USERID = #{userId}
 	</update>
-	
+
 	<select id="getJobBoardList" resultType="JobBoardVO">
-		<![CDATA[
-		select *
-		from(select rownum as rn,
-            		a.*
-     		 from(select *
-          		  from JOBBOARD 
-          		  where userId = #{userId}
-          		  order by bno desc) a )
-		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
-		]]>
+   <![CDATA[
+   select *
+   from(select @rownum := @rownum + 1 rn,
+                  a.*
+           from(select *
+                   from JOBBOARD 
+                   where USERID = #{userId}
+                   order by BNO desc) a ) b, (select @rownum := 0) c
+      where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+   ]]>
 	</select>
-	
+
 	<select id="getJobBoardTotal" resultType="int">
-		select count(*) from jobboard where userId = #{userId}
+		select count(*) from JOBBOARD where USERID = #{userId}
 	</select>
-	
+
 	<select id="getFaqBoardList" resultType="InsertQuestionPageVO">
-		<![CDATA[
-		select *
-		from(select rownum as rn,
-            		a.*
-     		 from(select *
-          		  from insertQuestionPage 
-          		  where INSERTID = #{userId}
-          		  order by INSERTBNO desc) a )
-		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
-		]]>
+   <![CDATA[
+   select *
+   from(select @rownum := @rownum +1 rn,
+                  a.*
+           from(select *
+                     from INSERTQUESTIONPAGE 
+                     where INSERTID = #{userId}
+                     order by INSERTBNO desc) a ) b, (select @rownum := 0) c
+      where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
+   ]]>
 	</select>
-	
+
 	<select id="getFaqBoardTotal" resultType="int">
-		select count(*) from insertQuestionPage where INSERTID = #{userId}
+		select count(*) from INSERTQUESTIONPAGE where INSERTID = #{userId}
 	</select>
-	
+
 	<insert id="kakaoJoin1">
-		insert into users (USERID,USERPW,USEREMAIL,NICKNAME) values(#{userId},#{userId},#{userEmail},#{nickName})
+		insert into USERS (USERID,USERPW,USEREMAIL,NICKNAME)
+		values(#{userId},#{userId},#{userEmail},#{nickName})
 	</insert>
-	
+
 	<insert id="kakaoJoin2">
-		insert into users (USERID,USERPW,NICKNAME) values(#{userId},#{userId},#{nickName})
+		insert into USERS (USERID,USERPW,NICKNAME)
+		values(#{userId},#{userId},#{nickName})
 	</insert>
-	
+
 	<insert id="registLoginCount">
-		insert into logincount (userId) values(#{userId})
+		insert into LOGINCOUNT (USERID) values(#{userId})
 	</insert>
-	
+
 	<select id="getloginLimitTime" resultType="LoginCountVO">
-		select loginLimitTime from logincount where userId = #{userId}
+		select LOGINLIMITTIME from LOGINCOUNT where USERID= #{userId}
 	</select>
-	
+
 	<update id="setLoginLimitN">
-		update logincount set loginlimitstatus = 'N' where userId = #{userId} 
+		update LOGINCOUNT set LOGINLIMITSTATUS = 'N' where USERID= = #{userId}
 	</update>
-	
+
 	<select id="getLoginLimitStatus" resultType="LoginCountVO">
-		select loginlimitstatus from logincount where userId = #{userId}
+		select LOGINLIMITSTATUS from LOGINCOUNT where USERID= = #{userId}
 	</select>
-	
+
 	<update id="resetLoginTryNum">
-		update logincount set LOGINTRYNUM = 0 where userId = #{userId}
+		update LOGINCOUNT set LOGINTRYNUM = 0 where USERID= = #{userId}
 	</update>
-	
+
 	<select id="getloginFailTime" resultType="LoginCountVO">
-		select LOGINFAILTIME from logincount where userId = #{userId}
+		select LOGINFAILTIME from LOGINCOUNT where USERID= = #{userId}
 	</select>
-	
+
 	<select id="getLoginTryNum" resultType="LoginCountVO">
-		select LOGINTRYNUM from logincount where userId = #{userId}
+		select LOGINTRYNUM from LOGINCOUNT where USERID= = #{userId}
 	</select>
-	
+
 	<update id="plusLoginTryNum">
-		update logincount set LOGINTRYNUM = #{addLoginTryNum} where userId = #{userId}
+		update LOGINCOUNT set LOGINTRYNUM = #{addLoginTryNum} where USERID= =
+		#{userId}
 	</update>
-	
+
 	<update id="resetLoginFailTime">
-		update logincount set LOGINFAILTIME = sysdate where userId = #{userId}
+		update LOGINCOUNT set LOGINFAILTIME = now() where USERID= = #{userId}
 	</update>
-	
+
 	<update id="setLoginLimitY">
-		update logincount set loginlimitstatus = 'Y' where userId = #{userId} 
+		update LOGINCOUNT set LOGINLIMITSTATUS = 'Y' where USERID= #{userId}
 	</update>
-	
+
 	<update id="resetLoginLimitTime">
-		update logincount set LOGINLIMITTIME = sysdate where userId = #{userId}
+		update LOGINCOUNT set LOGINLIMITTIME = now() where USERID = #{userId}
 	</update>
-	
 	
 </mapper>

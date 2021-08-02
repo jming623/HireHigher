@@ -25,15 +25,17 @@
 }
 
 /* ------오른쪽 영역------------- */
+/*
 .insert-question-sector{
 	overflow: hidden;
 }
+*/
 .insert-right-box{
     border: 2px solid #eee;
     padding: 20px;
     margin-left: 50px;
-   /* float: left;
-    */
+  	float: left;
+    overflow: hidden;
     margin-bottom: 20px;
 }
 /* *******문의 등록******* */
@@ -207,10 +209,12 @@ div.upload-btn_wrap button {/*버튼 div*/
 		height: 100px;
 		width: 200px;
 		display: none;
+		margin-left: 150px;
 		margin-bottom: 10px;
 	}
 	
 	.fileDiv img {
+		
 		width: 100%;
 		height: 100%;
 	}
