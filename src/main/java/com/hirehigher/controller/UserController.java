@@ -288,7 +288,9 @@ public class UserController {
 	@PostMapping(value="/sendEmail", produces="application/json")
 	public EmailAuthVO sendEmail(@RequestBody UserVO vo) {
 		
-		String userEmail = vo.getUserEmail();		
+		String userEmail = vo.getUserEmail();
+		
+		System.out.println(userEmail);
 		
 		//인증키 생성
 		UUID uuid = UUID.randomUUID(); //16진수 랜덤값	
