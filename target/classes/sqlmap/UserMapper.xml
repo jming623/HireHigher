@@ -122,44 +122,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<insert id="registLoginCount">
-		insert into LOGINCOUNT (USERID) values(#{userId})
+		insert into LOGINCOUNT (USERID) value(#{userId})
 	</insert>
 
 	<select id="getloginLimitTime" resultType="LoginCountVO">
-		select LOGINLIMITTIME from LOGINCOUNT where USERID= #{userId}
+		select LOGINLIMITTIME from LOGINCOUNT where USERID = #{userId}
 	</select>
 
 	<update id="setLoginLimitN">
-		update LOGINCOUNT set LOGINLIMITSTATUS = 'N' where USERID= = #{userId}
+		update LOGINCOUNT set LOGINLIMITSTATUS = 'N' where USERID = #{userId}
 	</update>
 
 	<select id="getLoginLimitStatus" resultType="LoginCountVO">
-		select LOGINLIMITSTATUS from LOGINCOUNT where USERID= = #{userId}
+		select LOGINLIMITSTATUS from LOGINCOUNT where USERID = #{userId}
 	</select>
 
 	<update id="resetLoginTryNum">
-		update LOGINCOUNT set LOGINTRYNUM = 0 where USERID= = #{userId}
+		update LOGINCOUNT set LOGINTRYNUM = 0 where USERID = #{userId}
 	</update>
 
 	<select id="getloginFailTime" resultType="LoginCountVO">
-		select LOGINFAILTIME from LOGINCOUNT where USERID= = #{userId}
+		select LOGINFAILTIME from LOGINCOUNT where USERID = #{userId}
 	</select>
 
 	<select id="getLoginTryNum" resultType="LoginCountVO">
-		select LOGINTRYNUM from LOGINCOUNT where USERID= = #{userId}
+		select LOGINTRYNUM from LOGINCOUNT where USERID = #{userId}
 	</select>
 
 	<update id="plusLoginTryNum">
-		update LOGINCOUNT set LOGINTRYNUM = #{addLoginTryNum} where USERID= =
+		update LOGINCOUNT set LOGINTRYNUM = #{addLoginTryNum} where USERID = 
 		#{userId}
 	</update>
 
 	<update id="resetLoginFailTime">
-		update LOGINCOUNT set LOGINFAILTIME = now() where USERID= = #{userId}
+		update LOGINCOUNT set LOGINFAILTIME = now() where USERID = #{userId}
 	</update>
 
 	<update id="setLoginLimitY">
-		update LOGINCOUNT set LOGINLIMITSTATUS = 'Y' where USERID= #{userId}
+		update LOGINCOUNT set LOGINLIMITSTATUS = 'Y' where USERID = #{userId}
 	</update>
 
 	<update id="resetLoginLimitTime">
