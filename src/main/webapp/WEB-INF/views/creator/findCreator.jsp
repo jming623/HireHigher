@@ -160,10 +160,22 @@
 							
 							var regDate = year + "/" + (month < 10 ? "0"+month : month) + "/" + (day < 10 ? "0"+day : day );
                             
+							if(list.title.length > 10) {
+								var title = list.title.substr(0,9)+"....";
+							} else {
+								var title = list.title;
+							}
+							
+							if (list.content.length > 40) {
+								var content = list.content.substr(0,29)+"...."
+							} else {
+								var content = list.content;
+							}
+							
                             strAdd += '<tr>';
                             strAdd += '<td>' + list.bno + '</td>';
-                            strAdd += '<td><a href="">' + list.title + '</a></td>';
-                            strAdd += '<td><a href="">' + list.content + '</a></td>';
+                            strAdd += '<td><a href="../workBoard/workDetail?bno='+ list.bno + '">' + title + '</a></td>';
+                            strAdd += '<td><a href="../workBoard/workDetail?bno='+ list.bno + '">' + content + '</a></td>';
                             strAdd += '<td>' + regDate + '</td>';
                             strAdd += '</tr>';
                          

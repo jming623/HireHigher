@@ -170,11 +170,11 @@
 								var content = list.content;
 							}
 							
-							
+							console.log(list.creatorName);
                             strAdd += '<tr>';
                             strAdd += '<td>' + list.bno + '</td>';
-                            strAdd += '<td><a href="workDetail?bno="'+ list.bno + '>' + title + '</a></td>';
-                            strAdd += '<td><a href="workDetail?bno=136">' + content + '</a></td>';
+                            strAdd += '<td><a href="../workBoard/workDetail?bno='+ list.bno + '">' + title + '</a></td>';
+                            strAdd += '<td><a href="../workBoard/workDetail?bno='+ list.bno + '">' + content + '</a></td>';
                             strAdd += '<td>' + regDate + '</td>';
                             strAdd += '</tr>';
                          

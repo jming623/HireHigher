@@ -16,7 +16,7 @@ public class WorkReplyVO {
 	private String reply;//댓글내용
 	private String replyId;//작성자
 	private Timestamp replyDate;//등록일
-	private Timestamp updateDate;//수정일
+	private Timestamp replyUpdate;//수정일
 	
 //	private String timegap; 고려
 }

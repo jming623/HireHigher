@@ -22,7 +22,7 @@
 		                reply,
 		                replyId,
 		                replyDate,
-		                replyUpdate	        
+		                replyUpdate
 		         from WORKREPLY where bno = #{bno} order by rno desc
 		    ) a
 		) where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
