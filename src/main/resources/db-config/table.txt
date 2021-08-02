@@ -97,7 +97,7 @@ create table CREATOR (
     creatorAwards1 varchar2(100), -- 수상경력 1
     creatorAwards2 varchar2(100), -- 수상경력 2
     creatorRegdate date default sysdate -- 제작자 등록일
-
+);
 
 ========================================= LOGINCOUNT TABLE ======================================== 
 create table LOGINCOUNT(
@@ -112,14 +112,22 @@ create table LOGINCOUNT(
 
 ========================================= WORKBOARD TABLE ======================================== 
 
-create table WORKBOARD (
-    listBno number(10) PRIMARY KEY,
-    creatorName VARCHAR2(50) NOT NULL,
-    productImg VARCHAR2(100) NOT NULL,
-    star number(1) NOT NULL,
-    category VARCHAR2(50) NOT NULL,
-    regDate date default sysdate
-    );
+CREATE TABLE WORKBOARD(
+    BNO NUMBER(10) PRIMARY KEY, --글번호
+    TITLE VARCHAR2(100) NOT NULL, -- 글제목
+    CREATORNAME VARCHAR2(50) NOT NULL, --작성자닉네임
+    PRODUCTPATH VARCHAR2(100), -- 업로드 경로
+    PRODUCTLOCATION VARCHAR2(100), -- 폴더위치
+    PRODUCTNAME VARCHAR2(100), -- 변경된 파일명
+    PRODUCTREAL VARCHAR2(100), -- 실제파일명
+    CONTENT VARCHAR2(2000) NOT NULL, -- 상품설명
+    PRICE VARCHAR2(50) NOT NULL, --상품가격
+    LIKECOUNT NUMBER(10) NOT NULL, --좋아요
+    CATEGORY VARCHAR2(50) NOT NULL, -- 카테고리
+    REGDATE DATE DEFAULT SYSDATE, -- 글 등록일
+    UPDATEDATE DATE DEFAULT SYSDATE -- 글 수정일
+);
+
     
 create SEQUENCE WORKBOARD_SEQ increment by 1 START WITH 1 NOCACHE;
     

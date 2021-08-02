@@ -35,7 +35,10 @@
   	<link href="${pageContext.request.contextPath }/resources/css/sideBar.css?2" rel="stylesheet">
   	<link href="${pageContext.request.contextPath }/resources/css/responsiveBasic.css" rel="stylesheet">
   	<!-- 헤더 검색창 분류 박스-->
+<<<<<<< HEAD
 	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+=======
+>>>>>>> master
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/headerjquery.js"></script>
   	<!-- 홈버튼 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +50,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <!-- 준명 -->
     <link href="${pageContext.request.contextPath }/resources/css/workBoard.css" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/creator.css?1" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/creator.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/mypage.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creator.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/mypage.css?5" rel="stylesheet">
@@ -89,5 +92,7 @@
 	<tiles:insertAttribute name="footer"/>
 	<!-- 반응형 메뉴 -->
 	<script src="${ pageContext.request.contextPath }/resources/js/responsivemenu.js"/></script>
+	<!-- 사이드바 애니메이션 -->
+	<script src="${ pageContext.request.contextPath }/resources/js/sidebar.js"/></script>
 </body>
 </html>
