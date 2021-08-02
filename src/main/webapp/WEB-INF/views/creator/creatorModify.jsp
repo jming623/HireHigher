@@ -247,9 +247,9 @@
     		var file = $("#background-file").val();
     		
     		file = file.slice(file.lastIndexOf(".", file.length) + 1, file.length); // 파일 확장자
-			
-			if(file != 'jpg' && file != 'png' && file != 'bmp' && file != 'jpeg') {
-				alert("이미지 파일형태만 등록이 가능합니다.(jpg, png, bmp, jpeg)");
+    		
+			if(file != 'jpg' && file != 'png' && file != 'bmp' && file != 'jpeg' && file != 'jfif') {
+				alert("이미지 파일형태만 등록이 가능합니다.(jpg, png, bmp, jpeg, jfif)");
 				return;
 			} else if (backgroundId == '') {
 				alert("로그인이 필요한 서비스입니다.");
@@ -301,8 +301,8 @@
     		
     		file = file.slice(file.lastIndexOf(".", file.length) + 1, file.length); // 파일 확장자
     		
-    		if(file != 'jpg' && file != 'png' && file != 'bmp' && file != 'jpeg') {
-				alert("이미지 파일형태만 등록이 가능합니다.(jpg, png, bmp, jpeg)");
+    		if(file != 'jpg' && file != 'png' && file != 'bmp' && file != 'jpeg' && file != 'jfif') {
+				alert("이미지 파일형태만 등록이 가능합니다.(jpg, png, bmp, jpeg, jfif)");
 				return;
 			} else if (profileId == '') {
 				alert("로그인이 필요한 서비스입니다.");

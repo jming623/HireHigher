@@ -405,10 +405,12 @@ public class CreatorController {
 		
 		String creatorNick = creatorVO.getCreatorNick(); //유저닉네임
 		
-		CreatorVO creatorInfo = creatorService.creatorDetail(creatorNick);
-		ProfileImgVO profileImg = creatorService.profileGet(creatorNick);
-		BackgroundImgVO backgroundImg = creatorService.backgroundGet(creatorNick);		
-		CreatorPageVO creatorPageInfo = creatorService.pageDetail(creatorNick);
+		CreatorPageVO pageVO = creatorService.getCreatorId(creatorNick);
+		String creatorId = pageVO.getPageId();
+		CreatorVO creatorInfo = creatorService.creatorDetail(creatorId);
+		ProfileImgVO profileImg = creatorService.profileGet(creatorId);
+		BackgroundImgVO backgroundImg = creatorService.backgroundGet(creatorId);		
+		CreatorPageVO creatorPageInfo = creatorService.pageDetail(creatorId);
 		
 		System.out.println(creatorInfo.toString());
 		System.out.println(profileImg.toString());

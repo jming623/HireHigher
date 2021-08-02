@@ -110,6 +110,12 @@ public class CreatorServiceImpl implements CreatorService {
 		return creatorMapper.profileImgUpdate(profileVO);
 	}
 
+	@Override
+	public CreatorPageVO getCreatorId(String creatorNick) {
+		
+		return creatorMapper.getCreatorId(creatorNick);
+	}
+
 	
 
 }

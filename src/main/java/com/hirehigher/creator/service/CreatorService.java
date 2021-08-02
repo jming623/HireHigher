@@ -27,6 +27,6 @@ public interface CreatorService {
 	public int infoUpdate(CreatorVO creatorVO); // 제작자 정보 업데이트
 	public int backgroundUpdate(BackgroundImgVO backgroundVO); // 백그라운드 이미지 수정
 	public int profileImgUpdate(ProfileImgVO profileVO); // 프로필 이미지 수정
-
+	public CreatorPageVO getCreatorId(String creatorNick); // 닉네임을 받아오는 함수
 	
 }

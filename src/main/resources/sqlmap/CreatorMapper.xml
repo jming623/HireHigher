@@ -134,4 +134,10 @@
   	
   	</update>
   	
+  	<select id="getCreatorId" resultType="CreatorPageVO">
+  	
+  		select pageId from creatorPage where creatorNick = #{creatorNick}
+  	
+  	</select>
+  	
   </mapper>
