@@ -70,4 +70,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete from insertQuestionPage where insertBno = #{inserBno}
 	</delete>
 	
+	<!-- 이미지 다운 -->
+	<select id="imgDown" resultType="InsertQuestionPageVO">
+		select insertImg from insertQuestionPage where insertBno = #{insertBno}
+	</select>
+	
 </mapper>

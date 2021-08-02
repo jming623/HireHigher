@@ -26,5 +26,11 @@ public class WorkBoardServiceImpl implements WorkBoardService {
 	
 		return workBoardMapper.getTotal(Category);
 	}
+
+	@Override
+	public WorkBoardVO getDetail(int bno) {
+		
+		return workBoardMapper.getDetail(bno);
+	}
 	
 }

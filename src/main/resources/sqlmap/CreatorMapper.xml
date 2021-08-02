@@ -67,7 +67,7 @@
   	
   	<select id="getTotal" resultType="int">
   	
-  		select count(*) as total from workboard where username = #{userName}
+  		select count(*) as total from workboard where creatorName = #{creatorName}
   	
   	</select>
   	
@@ -80,13 +80,64 @@
     		from (
         		   select *
         		   from workboard
-        		   where username = #{userName}
+        		   where creatorName = #{creatorName}
         		   order by bno desc
     		) a
 		)
 		<![CDATA[
 		where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
   		]]>
+  	</select>
+  	
+  	<update id="profileUpdate">
+  	
+  		update CREATORPAGE
+  		set instaPath = #{instaPath},
+  			aboutme = #{aboutMe}
+  		where pageid = #{pageId}
+  	
+  	</update>
+  	
+  	<update id="infoUpdate">
+  	
+  		update creator
+  		set creatormajor = #{creatorMajor},
+  			creatorcareer = #{creatorCareer},
+  			creatorcareer1 = #{creatorCareer1},
+  			creatorcareer2 = #{creatorCareer2},
+  			creatorawards = #{creatorAwards},
+  			creatorawards1 = #{creatorAwards1},
+  			creatorawards2 = #{creatorAwards2}
+  		where creatorId = #{creatorId}
+  		
+  	</update>
+  	
+  	<update id="backgroundUpdate">
+  	
+  		update backgroundimg
+  		set backgroundPath = #{backgroundPath},
+  			backgroundLoca = #{backgroundLoca},
+  			backgroundName = #{backgroundName},
+  			backgroundReal = #{backgroundReal}
+  		where backgroundId = #{backgroundId}
+  	
+  	</update>
+  	
+  	<update id="profileImgUpdate">
+  	
+  		update profileimg
+  		set profilePath = #{profilePath},
+  			profileLoca = #{profileLoca},
+  			profileName = #{profileName},
+  			profileReal = #{profileReal}
+  		where profileId = #{profileId}
+  	
+  	</update>
+  	
+  	<select id="getCreatorId" resultType="CreatorPageVO">
+  	
+  		select pageId from creatorPage where creatorNick = #{creatorNick}
+  	
   	</select>
   	
   </mapper>

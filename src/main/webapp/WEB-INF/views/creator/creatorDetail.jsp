@@ -129,17 +129,15 @@
 				event.preventDefault();
 			}   
 		
-			var userName = '${sessionScope.userVO.userId}'; // session에 저장되어 있는 아이디를 얻음
+			var creatorName = '${sessionScope.userVO.nickName}'; // session에 저장되어 있는 아이디를 얻음
 			
 			$.ajax({
 				type: "post",
 				url: "creatorPageBoardList",
 				dataType: "json",
 				contentType : "application/json",
-				data : JSON.stringify({"userName":userName, "pageNum":pageNum, "amount":amount }),
+				data : JSON.stringify({"creatorName":creatorName, "pageNum":pageNum, "amount":amount }),
 				success: function(data){
-					
-					console.log(1);
 					
 					var strAdd = ''; // list를 저장해줄 변수
 					var strAdd2 = ''; // pagingVO를 저장해줄 변수

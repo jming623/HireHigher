@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    	 	from(select *
 		          	  	from WORKBOARD
 		         	  	where category = #{Category}
-		          	 	ORDER BY LISTBNO DESC) a)
+		          	 	ORDER BY BNO DESC) a)
 				where RN > (#{pageNum}-1) * #{amount} and RN <= #{pageNum} * #{amount}
 		]]>
 	</select>
@@ -22,6 +22,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getTotal" resultType="int">
 		select count(*) from WORKBOARD
 		where CATEGORY = #{Category}
+	</select>
+	
+	<select id="getDetail" resultType="WorkBoardVO">
+		select * from workboard where bno = #{bno}
 	</select>
 </mapper>
 

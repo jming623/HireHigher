@@ -2,6 +2,7 @@ package com.hirehigher.userquestion.service;
 
 import java.util.ArrayList;
 
+import com.hirehigher.command.BackgroundImgVO;
 import com.hirehigher.command.FaqListPageVO;
 import com.hirehigher.command.InsertQuestionPageVO;
 import com.hirehigher.command.JobBoardVO;
@@ -24,4 +25,6 @@ public interface UserQuestionService {
 	
 	public int answerData(InsertQuestionPageVO vo); //답변 등록
 	public int updatedelete(int bno); //삭제
+	
+	public InsertQuestionPageVO imgDown(int bno); //이미지 불러오기
 }

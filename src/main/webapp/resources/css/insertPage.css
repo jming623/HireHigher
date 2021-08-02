@@ -25,12 +25,15 @@
 }
 
 /* ------오른쪽 영역------------- */
+.insert-question-sector{
+	overflow: hidden;
+}
 .insert-right-box{
     border: 2px solid #eee;
     padding: 20px;
     margin-left: 50px;
-    float: left;
-    overflow: hidden;
+   /* float: left;
+    */
     margin-bottom: 20px;
 }
 /* *******문의 등록******* */
@@ -99,6 +102,7 @@
     border: 2px solid #c7c6c6;
 }
 /* *******첨부 파일 등록******* */
+
 .insert-file-puls-sector{
     border-bottom: 2px solid #c7c6c6;
     display: inline-block;
@@ -116,7 +120,7 @@
 .insert-file-funtion-box{
     float: right;
 }
-input.upload_text {/*읽기전용 인풋텍스트*/
+input.upload_text { /*읽기전용 인풋텍스트*/
    float:left;
    width:230px;/* 버튼 포함 전체 가로 길이*/
    height:21px;
