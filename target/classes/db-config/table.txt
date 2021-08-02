@@ -6,112 +6,72 @@ grant resource, connect to teamproject04;
 --기존에 있는 테이블 스페이스를 지정
 alter user teamproject04 DEFAULT tablespace users QUOTA UNLIMITED on users;
 
+데이터 베이스 (최종)
 
-========================================= USER TABLE =============================================
-create table users(
-    userId varchar2(50) primary key,
-    userPw varchar2(50) not null,
-    userName varchar2(50),
-    nickName varchar2(50) unique,
-    birthDay varchar2(10),
-    userEmail varchar2(50),
-    userCellNum varchar2(15),
-    addrZipNum varchar2(50),
-    addrBasic varchar2(300),
-    addrDetail varchar2(300),
-    regdate date default sysdate,
-    userType number(1) default 0
+===================================================================
+준명
+CREATE TABLE USERS(
+    USERID VARCHAR2(50) PRIMARY KEY,
+    USERPW VARCHAR2(50) NOT NULL,
+    USERNAME VARCHAR2(50),
+    NICKNAME VARCHAR2(50) UNIQUE,
+    BIRTHDAY VARCHAR2(10),
+    USEREMAIL VARCHAR2(50),
+    USERCELLNUM VARCHAR2(15),
+    ADDRZIPNUM VARCHAR2(50),
+    ADDRBASIC VARCHAR2(300),
+    ADDRDETAIL VARCHAR2(300),
+    REGDATE DATE DEFAULT SYSDATE,
+    USERTYPE NUMBER(1) DEFAULT 0
 ); 
 
-========================================= JOBBOARD TABLE =============================================
-CREATE TABLE JOBBOARD(
-    bno NUMBER(10) PRIMARY KEY, --글 번호
-    viewCount NUMBER(10), --조회수
-    userId varchar2(50), --아이디
-    userName varchar2(50) NOT NULL, --작성자
-    companyName varchar2(50) NOT NULL, --회사 이름
-    title varchar2(200) NOT NULL, --제목
-    regDate date default sysdate, --작성일
-    updateDate date default sysdate --수정일
+CREATE TABLE LOGINCOUNT(
+    USERID VARCHAR2(50) PRIMARY KEY,
+    LOGINTRYNUM NUMBER(2) DEFAULT 0,
+    LOGINFAILTIME DATE DEFAULT SYSDATE - 365,
+    LOGINLIMITSTATUS VARCHAR2(1) DEFAULT 'N',
+    LOGINLIMITTIME DATE DEFAULT SYSDATE - 365  
 );
-create sequence jobboard_seq start with 1 increment by 1 nocache;
-
-========================================= JOBBOARDDETAIL TABLE ======================================== 
-
-
-create table JOBBOARDDETAIL(
-    gender varchar(50) not null, --성별
-    age varchar(50), --연령
-    edu varchar(50), --학력
-    empType varchar(200) not null, --고용형태
-    recNum varchar(100) not null, --모집인원
-    preference varchar(300), --우대사항
-    requiredDocs varchar(200), --제출서류
-    salary varchar(100), --급여
-    contract varchar(100), --근무기간
-    workDays varchar(100), --근무요일
-    workTime varchar(100), --근무시간
-    welfare varchar(300), --복리후생
-    companyAddr varchar(300) not null, --근무지주소
-    position varchar(300) not null, --담당업무
-    wayToApply varchar(300), --지원방법
-    recPlan varchar(300), --채용일정
-    deadline varchar(50), --모집마감일
-    HRManager varchar(20), --채용담당자명
-    HRContact varchar(200), --채용담당자연락처
-    bno number(10), --글번호 (fk, 조인용)
-    constraint fk_bno foreign key(bno) references JOBBOARD(bno)
-); 
-create sequence jobboarddetail_seq start with 1 increment by 1 nocache;
-
-
-
-============================================ FAQ 고객센터 테이블 ============================================
-create table FAQListPage(
-    faqBno number primary key, --FAQ번호
-    faqNum number(1) not null, --문의 종류 번호 (문의 종류 번호 1~4)
-    paymentFaqTitle varchar2(300), -- 결제 관련 질문 1
-    paymentFaq varchar2(1000), -- 결제 관련 답변 1 
-    
-        loginFaqTitle varchar2(300), -- 로그인 관련 질문 2
-    loginFaq varchar2(1000),  -- 로그인 관련 답변 2
-    
-    homPageFaqTitle varchar2(300), -- 홈페이지 관련 질문 3 
-    homePageFaq varchar2(1000), -- 홈페이지 관련 답변 3
-    
-    insertItemFaqTitle varchar2(300), -- 제품등록 질문 4 
-    insertItemFaq varchar2(1000) -- 제품등록 답변 4
+===================================================================
+우현이형
+CREATE TABLE CREATOR (
+    CREATORID VARCHAR2(50) PRIMARY KEY, -- 제작자 아이디
+    CREATORMAJOR VARCHAR2(100) NOT NULL, -- 전공분야
+    CREATORCAREER VARCHAR2(100), -- 경력사항
+    CREATORCAREER1 VARCHAR2(100), -- 경력사항 1
+    CREATORCAREER2 VARCHAR2(100), -- 경력사항 2
+    CREATORAWARDS VARCHAR2(100), -- 수상경력
+    CREATORAWARDS1 VARCHAR2(100), -- 수상경력 1
+    CREATORAWARDS2 VARCHAR2(100), -- 수상경력 2
+    CREATORREGDATE DATE DEFAULT SYSDATE -- 제작자 등록일
 );
 
-create SEQUENCE FAQListPage_SEQ INCREMENT by 1 start with 1 NOCACHE;
-
-========================================= CREATOR TABLE ========================================
-
-create table CREATOR (
-    creatorId varchar2(50) primary key, -- 제작자 아이디
-    creatorMajor varchar2(100) not null, -- 전공분야
-    creatorCareer varchar2(100), -- 경력사항
-    creatorCareer1 varchar2(100), -- 경력사항 1
-    creatorCareer2 varchar2(100), -- 경력사항 2
-    creatorAwards varchar2(100), -- 수상경력
-    creatorAwards1 varchar2(100), -- 수상경력 1
-    creatorAwards2 varchar2(100), -- 수상경력 2
-    creatorRegdate date default sysdate -- 제작자 등록일
+CREATE TABLE CREATORPAGE (
+    PAGEID VARCHAR2(50) PRIMARY KEY, -- 아이디
+    CREATOREMAIL VARCHAR2(50), -- 이메일
+    ABOUTME VARCHAR2(2000), -- 자기소개
+    CREATORNICK VARCHAR2(50), -- 닉네임
+    INSTAPATH VARCHAR2(100)
 );
 
-========================================= LOGINCOUNT TABLE ======================================== 
-create table LOGINCOUNT(
-    USERID varchar2(50) primary key,
-    LOGINTRYNUM number(2) default 0,
-    LOGINFAILTIME date default SYSDATE - 365,
-    LOGINLIMITSTATUS varchar2(1) default 'N',
-    LOGINLIMITTIME date default SYSDATE - 365  
-
+CREATE TABLE PROFILEIMG (
+    PROFILEID VARCHAR2(50) PRIMARY KEY, -- 아이디
+    PROFILEPATH VARCHAR2(200), -- 업로드 경로
+    PROFILELOCA VARCHAR2(100), -- 폴더 위치
+    PROFILENAME VARCHAR2(100), -- 변경된 파일명
+    PROFILEREAL VARCHAR2(100) -- 실제 파일명
 );
 
+CREATE TABLE BACKGROUNDIMG (
+    BACKGROUNDID VARCHAR2(50) PRIMARY KEY, -- 아이디
+    BACKGROUNDPATH VARCHAR2(200), -- 업로드 경로
+    BACKGROUNDLOCA VARCHAR2(100), -- 폴더 위치
+    BACKGROUNDNAME VARCHAR2(100), -- 변경된 파일명
+    BACKGROUNDREAL VARCHAR2(100) -- 실제 파일명
+);
 
-========================================= WORKBOARD TABLE ======================================== 
-
+===================================================================
+우진
 CREATE TABLE WORKBOARD(
     BNO NUMBER(10) PRIMARY KEY, --글번호
     TITLE VARCHAR2(100) NOT NULL, -- 글제목
@@ -128,27 +88,89 @@ CREATE TABLE WORKBOARD(
     UPDATEDATE DATE DEFAULT SYSDATE -- 글 수정일
 );
 
-    
-create SEQUENCE WORKBOARD_SEQ increment by 1 START WITH 1 NOCACHE;
-    
-
-);
-
-========================================= WORKREPLY TABLE ======================================== 
-
 CREATE TABLE WORKREPLY(
-    RNO NUMBER(10) PRIMARY KEY, -- 댓글번호
-    BNO NUMBER(10) NOT NULL, --글번호 
-    REPLY VARCHAR2(1000) NOT NULL, --댓글내용
-    REPLYID VARCHAR2(50) NOT NULL, --작성자
-    REPLYDATE DATE DEFAULT SYSDATE, -- 댓글 등록일
-    REPLYUPDATEDATE DATE DEFAULT SYSDATE --댓글 수정일
+RNO NUMBER(10) PRIMARY KEY, -- 댓글번호
+BNO NUMBER(10) NOT NULL, --글번호 
+REPLY VARCHAR2(1000) NOT NULL, --댓글내용
+REPLYID VARCHAR2(200) NOT NULL, --작성자
+REPLYDATE DATE DEFAULT SYSDATE, -- 댓글 등록일
+REPLYUPDATE DATE DEFAULT SYSDATE --댓글 수정일
 );
 
-create SEQUENCE WORKREPLY_SEQ increment by 1 START WITH 1 NOCACHE;
+-시퀀스
+CREATE SEQUENCE WORKREPLY_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
 
-========================================= VISITORCOUNTER TABLE ======================================== 
+===================================================================
+지혁이형
 CREATE TABLE VISITORCOUNTER(
-    visitDate date default sysdate
+    VISITDATE DATE DEFAULT SYSDATE
 );
 
+CREATE TABLE JOBBOARD(
+    BNO NUMBER(10) PRIMARY KEY, --글 번호
+    VIEWCOUNT NUMBER(10), --조회수
+    USERID VARCHAR2(50), --아이디
+    USERNAME VARCHAR2(50) NOT NULL, --작성자
+    COMPANYNAME VARCHAR2(50) NOT NULL, --회사 이름
+    TITLE VARCHAR2(200) NOT NULL, --제목
+    REGDATE DATE DEFAULT SYSDATE, --작성일
+    UPDATEDATE DATE DEFAULT SYSDATE --수정일
+);
+CREATE SEQUENCE JOBBOARD_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
+
+CREATE TABLE JOBBOARDDETAIL(
+    GENDER VARCHAR(50) NOT NULL, --성별
+    AGE VARCHAR(50), --연령
+    EDU VARCHAR(50), --학력
+    EMPTYPE VARCHAR(200) NOT NULL, --고용형태
+    RECNUM VARCHAR(100) NOT NULL, --모집인원
+    PREFERENCE VARCHAR(300), --우대사항
+    REQUIREDDOCS VARCHAR(200), --제출서류
+    SALARY VARCHAR(100), --급여
+    CONTRACT VARCHAR(100), --근무기간
+    WORKDAYS VARCHAR(100), --근무요일
+    WORKTIME VARCHAR(100), --근무시간
+    WELFARE VARCHAR(300), --복리후생
+    COMPANYADDR VARCHAR(300) NOT NULL, --근무지주소
+    POSITION VARCHAR(300) NOT NULL, --담당업무
+    WAYTOAPPLY VARCHAR(300), --지원방법
+    RECPLAN VARCHAR(300), --채용일정
+    DEADLINE VARCHAR(50), --모집마감일
+    HRMANAGER VARCHAR(20), --채용담당자명
+    HRCONTACT VARCHAR(200), --채용담당자연락처
+    BNO NUMBER(10) --글번호 (fk, 조인용)
+); 
+CREATE SEQUENCE JOBBOARDDETAIL_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
+
+===================================================================
+현우형
+CREATE TABLE FAQLISTPAGE(
+    FAQBNO NUMBER(10) PRIMARY KEY, --FAQ번호
+    FAQNUM NUMBER(1) NOT NULL, --문의 종류 번호 (문의 종류 번호 1~4)
+    PAYMENTFAQTITLE VARCHAR2(300), -- 결제 관련 질문 1
+    PAYMENTFAQ VARCHAR2(1000), -- 결제 관련 답변 1 
+    LOGINFAQTITLE VARCHAR2(300), -- 로그인 관련 질문 2
+    LOGINFAQ VARCHAR2(1000),  -- 로그인 관련 답변 2
+    HOMPAGEFAQTITLE VARCHAR2(300), -- 홈페이지 관련 질문 3 
+    HOMEPAGEFAQ VARCHAR2(1000), -- 홈페이지 관련 답변 3  
+    INSERTITEMFAQTITLE VARCHAR2(300), -- 제품등록 질문 4 
+    INSERTITEMFAQ VARCHAR2(1000) -- 제품등록 답변 4
+);
+
+CREATE SEQUENCE FAQLISTPAGE_SEQ INCREMENT BY 1 START WITH 1 NOCACHE;
+
+CREATE TABLE INSERTQUESTIONPAGE(
+    INSERTBNO NUMBER(10) PRIMARY KEY, --문의 번호
+    INSERTKIND VARCHAR2(50) NOT NULL, -- 분류
+    INSERTID VARCHAR2(50) NOT NULL, --아이디
+    INSERTTITLE VARCHAR2(100) NOT NULL, -- 제목
+    INSERTCONTENT VARCHAR2(1000) NOT NULL, -- 내용
+    INSERTDATE DATE DEFAULT SYSDATE, -- 작성일
+    ANSWERTITLE VARCHAR2(100), -- 문의답변 제목
+    ANSWERDATE DATE DEFAULT SYSDATE, -- 문의 답변 날짜
+    ANSWERCONTENT VARCHAR2(1000), -- 문의 답변 내용
+    ANSWERSTATUS VARCHAR2(100), -- 답변상태
+    INSERTIMG VARCHAR2(100) --이미지 경로
+);
+
+CREATE SEQUENCE INSERTQUESTIONPAGE_SEQ INCREMENT BY 1 START WITH 1 NOCACHE;

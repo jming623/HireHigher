@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-
- <section>
+<section>
     <div class="container">
         <div class="row">
             <div class="insert-all">
@@ -17,7 +17,7 @@
                 </div>
                 
                 <!-- 오른쪽 영역------------------------------ -->
-                <form action="insertQ" method="post">
+                <form action="insertQ" method="post" style="float:left;">
                 <div class="insert-right-box">
                     <div class="insert-question-sector"><!-- 문의 등록 영역 -->
                         <div class="insert-question-title-box"> <!-- 문의 데이터 제목 -->
@@ -55,7 +55,7 @@
                             </div>
                          
                             <div class="insert-input-id"> <!-- 아이디 -->
-                                <input type="text" name="insertId" value="아이디입력칸">
+                                <input type="text" name="insertId" value="${sessionScope.userVO.userId}">
                             </div>
                          
                             <div class="insert-input-title"> <!-- 제목 -->
@@ -67,7 +67,7 @@
                             </div>
                             <div>
                             	<input class="insert-input-answer" name="answerStatus" value="답변 대기">
-                            	<input class="insert-input-answer" name="insertImg" type="image" style="display: none;" value="${filePath}">
+                            	<input class="insert-input-answer" name="insertImg" id="insertImg" type="text" >
                             </div>
                         </div>
                     </div>
@@ -80,53 +80,52 @@
 						
 						<div class="reply-group">
 							<div class="filebox pull-left">
-								<label for="file">이미지업로드</label> 
-								<input type="file" name="file" id="file">
+								<label for="file">이미지업로드</label>
+								<input style="display: none;" type="file" name="file" id="file">
 							</div>
 							
 							<button type="button" class="right btn btn-info" id="uploadBtn">등록하기</button>
 							
 						</div>
 					</div>
+					<!-- 모달  -->
+					<div id="root">
+        
 					
-					<!-- 모달
-	<div class="modal fade" id="snsModal" role="dialog">
-			<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-body row">
-					<div class="modal-img col-sm-8 col-xs-6" >
-						<img src="../resources/img/img_ready.png" id="snsImg" width="100%">
+						
 					</div>
-					<div class="modal-con col-sm-4 col-xs-6">
-						<div class="modal-inner">
-						<div class="profile">
-							<img src="../resources/img/profile.png">
-						</div>
-						<div class="title">
-							<p id="snsWriter">테스트</p>
-							<small id="snsRegdate">21시간전</small>
-						</div>
-						<div class="content-inner">
-							<p id="snsContent">삶이 우리를 끝없이 시험하기에 고어텍스는 한계를 테스트합니다</p>
-						</div>
-						<div class="link-inner">
-							<a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>
-							<a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a> 
-							<a href="##"><i class="glyphicon glyphicon-share-alt"></i>공유하기</a>
-						</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	 -->		
+			
+					<div id="question-modal">
 					
+						<div class="modal_content">
+							
+							
+						
+							<div class="question-input-madal-all">
+			
+							<div class="answer-modal-box">
+								<div class="fileDivSecond">
+									<img id="fileImgSecond" src="../resources/img/img_ready.png">
+								</div>	
+							</div>
+							</div>
+							<div class="question-modal-btn">
+								<button class="question-modal-btn-right btn btn-danger" type="button" id="modal-question_close_btn">취소 하기</button>
+								<button class="question-modal-btn-left btn btn-info" type="button" id="">답변 등록</button>
+							</div>    
+						
+						</div>
+					
+						<div class="modal_layer"></div>
+					</div>
+					<!-- 모달 끝 -->
                     <!-- 문의하기 취소하기 버튼-->
                     
                     <div class="insert-btn-qne">
                         <button type="button" class="insert-btn-right btn btn-default" onclick="location.href='mtomPage'">취소하기</button>
+                        <c:if test=${sessionScope.userVO != null}>
                         <button type="submit" class="insert-btn-left btn btn-primary" >문의하기</button>
+                    	</c:if>
                     </div>
 
                 </div>
@@ -135,6 +134,32 @@
         </div>
     </div>
     </section>
+
+	<!-- 모달 스크립트 -->
+	<script>
+        document.getElementById("fileImg").onclick = function() {
+            document.getElementById("question-modal").style.display="block";
+        }
+       
+        document.getElementById("modal-question_close_btn").onclick = function() {
+            document.getElementById("question-modal").style.display="none";
+        }   
+    </script>
+	<!-- 모달 스크립트 끝 -->
+
+<script>
+
+$(document).ready(function() {
+
+	var src = $("#fileImg").attr("src");
+	 console.log($("#fileImg").attr("src"));
+	 
+	 var srcscond = $("#fileImgSecond").attr("src",src);
+});
+
+ 
+ </script>
+
  
  <script>
 		$(document).ready(function() {
@@ -145,12 +170,12 @@
 				//var content = $("#content").val();
 				
 				file = file.slice( file.lastIndexOf(".", file.length) + 1, file.length); //파일확장자
-				/*
+				
 				if(file != 'jpg' && file != 'png' && file != 'bmp') {
 					alert("이미지 파일형태만 등록가능 합니다(jpg, png, bmp)");
 					return;
 					
-				} */  //이미지 안올릴시 무조건 뜸
+				}  //이미지 안올릴시 무조건 뜸
 				
 				if( /*writer == ''*/ false) {
 					alert("로그인이 필요한 서비스 입니다");
@@ -174,18 +199,13 @@
 					data : formData,
 					success : function(data) {
 						
-						if(data == "success") {
-							$("#file").val(""); //태그
-							//$("#content").val(""); //내용
-							$(".fileDiv").css("display", "none"); //안보이도록처리
-							alert("이미지 등록완료");
-							getList();
-						} else if(data == "idFail") {
-							alert("로그인이 필요한 서비스 입니다");
-						} else {
-							console.log(data);
-							alert("서버 문제가 발생했습니다. 관리자에게 문의하세요.");
-						}
+						alert(data);
+						console.log( $("#insertImg") );
+						console.log( $("#insertImg").attr("value") );
+						
+						$("#insertImg").attr("value",data);
+						
+						console.log( $("#insertImg").attr("value") ); 
 						
 					},
 					error : function(status, error) {
@@ -194,52 +214,7 @@
 				})
 			}); //등록이벤트 
 			
-			/*
-			function getList() {
-				
-				var strAdd = "";
-				
-				$.getJSON("getList", function(data) {
-					console.log(data);
-					
-					for(var i = 0; i < data.length; i++) {
-						strAdd += '<div class="title-inner">';
-						strAdd += '<div class="profile">';
-						strAdd += '<img src="../resources/img/profile.png">'
-						strAdd += '</div>';
-						strAdd += '<div class="title">';
-						strAdd += '<p>'+ data[i].writer +'</p>';
-						strAdd += '<small>'+ data[i].regdate +'</small>';
-						strAdd += '</div>';
-						strAdd += '</div>';
-						strAdd += '<div class="content-inner">';
-						strAdd += '<p>'+ data[i].content +'</p>';
-						strAdd += '</div>';
-						strAdd += '<div class="image-inner">';
-						strAdd += '<img src="' + "view/"+data[i].fileLoca+"/"+data[i].fileName + '">';
-						strAdd += '</div>';
-						strAdd += '<div class="like-inner">';
-						strAdd += '<img src="../resources/img/icon.jpg"><span>522</span>';
-						//파일다운로드
-						strAdd += '<a href="download/'+ data[i].fileLoca+"/"+data[i].fileName +'">파일다운로드</a>'
-						strAdd += '</div>';
-						strAdd += '<div class="link-inner">';
-						strAdd += '<a href="##"><i class="glyphicon glyphicon-thumbs-up"></i>좋아요</a>';
-						strAdd += '<a href="##"><i class="glyphicon glyphicon-comment"></i>댓글달기</a>'; 
-						strAdd += '<a href="##"><i class="glyphicon glyphicon-remove"></i>삭제하기</a>';
-						strAdd += '</div>';
-					}
-					
-					$("#contentDiv").html(strAdd);
-
-				});
-				
-			}
 			
-			(function() {
-				getList();
-			})();
-			*/
 		});
 	
 	

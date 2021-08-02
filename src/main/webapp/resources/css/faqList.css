@@ -84,11 +84,7 @@
 .FAQ-sub-question-box div button:hover{
     color: #494949;
 }
-.FAQ-sub-question-box div button:focus{
-    color: #494949;
-    border-bottom: 6px solid #494949;
-    transition: .5s;
-}
+
 /* --------검색 기능 box----------- */
 .FAQ-such-box{
 margin-left: 28%;

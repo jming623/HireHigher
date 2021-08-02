@@ -48,7 +48,7 @@ public class JobBoardController {
 		//model에 담아서 화면으로
 		model.addAttribute("jobPageVO", jobPageVO); //페이지 네이션 전달
 		model.addAttribute("jobVOList", jobVOList); //게시글 리스트 전달
-
+		
 		return "jobBoard/jobList";
 		//return type void로 주고 return 없애면 자동으로 jobList로 가짐
 	}
@@ -59,8 +59,13 @@ public class JobBoardController {
 
 		//System.out.println(bno);
 		//System.outprintln(jobBoardDetailVO.toString());
+		
+		
 		JobBoardDetailVO jobBoardDetailVO = jobBoardService.getDetail(bno);
+				
 		model.addAttribute("jobBoardDetailVO", jobBoardDetailVO);
+		
+		model.addAttribute("viewCount", jobBoardService.viewCount(bno));
 
 		//return 타입 없어서 각각 자동으로 상세 요청이면 상세화면으로, 변경 요청이면 변경화면으로 이동
 	}

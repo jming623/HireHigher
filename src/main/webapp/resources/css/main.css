@@ -334,7 +334,7 @@ ul,li,dl,ol{
 .footer {
     position: absolute; /*body 기준으로 포지셔닝*/
     left: 0px;
-    bottom: 0vh;
+    bottom: 0;
     background-color: rgb(59, 57, 57);
     width: 100%;
     height: 70px;

@@ -4,140 +4,148 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.hirehigher.creator.mapper.CreatorMapper">
-  
-  	<insert id="apply">
-  	
-  		insert into CREATOR(CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1, CREATORCAREER2, CREATORAWARDS, CREATORAWARDS1, CREATORAWARDS2)
-  		values(#{creatorId}, #{creatorMajor}, #{creatorCareer}, #{creatorCareer1, jdbcType=VARCHAR}, #{creatorCareer2, jdbcType=VARCHAR}, #{creatorAwards}, #{creatorAwards1, jdbcType=VARCHAR}, #{creatorAwards2, jdbcType=VARCHAR})
-  		
-  	</insert>
-  	
-  	<update id="apply1">
-  	
-  		update USERS
-  		set USERTYPE = #{userType}
-  		where USERID = #{userId}
-  		
-  	</update>
-  	
-  	<insert id="pageRegist">
-  	
-  		insert into CREATORPAGE(PAGEID, CREATOREMAIL, CREATORNICK, ABOUTME, INSTAPATH)
-  		values(#{pageId}, #{creatorEmail}, #{creatorNick}, #{aboutMe}, #{instaPath})
-  	
-  	</insert>
-  	
-  	<insert id="profileRegist">
-  	
-  		insert into PROFILEIMG(PROFILEID, PROFILEPATH, PROFILELOCA, PROFILENAME, PROFILEREAL)
-  		values(#{profileId}, #{profilePath}, #{profileLoca}, #{profileName}, #{profileReal})
-  	
-  	</insert>
-  	
-  	<insert id="backgroundRegist">
-  	
-  		insert into BACKGROUNDIMG(BACKGROUNDID, BACKGROUNDPATH, BACKGROUNDLOCA, BACKGROUNDNAME, BACKGROUNDREAL)
-  		values(#{backgroundId}, #{backgroundPath}, #{backgroundLoca}, #{backgroundName}, #{backgroundReal})
-  	
-  	</insert>
-  	
-  	<select id="pageDetail" resultType="CreatorPageVO">
-  	
-  		select * from CREATORPAGE where PAGEID = #{pageId}
-  	
-  	</select>
-  	
-   	<select id="creatorDetail" resultType="CreatorVO">
-   	
-   		select * from CREATOR where CREATORID = #{creatorId}
-   	
-   	</select>
-   	
-   	<select id="profileGet" resultType="ProfileVO">
-   	
-   		select * from PROFILEIMG where PROFILEID = #{profileId}
-   	
-   	</select>
-  	
-  	<select id="backgroundGet" resultType="BackgroundVO">
-  	
-  		select * from BACKGROUNDIMG where BACKGROUNDID = #{backgroundId}
-  	
-  	</select>
-  	
-  	<select id="getTotal" resultType="int">
-  	
-  		select count(*) as total from WORKBOARD where CREATORNAME = #{creatorName}
-  	
-  	</select>
-  	
-   	<select id="getList" resultType="WorkBoardVO">
- 
-  		select *
+
+ <insert id="apply">
+
+	insert into CREATOR(CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1,
+	CREATORCAREER2, CREATORAWARDS, CREATORAWARDS1, CREATORAWARDS2)
+	values(#{creatorId}, #{creatorMajor}, #{creatorCareer},
+	#{creatorCareer1, jdbcType=VARCHAR}, #{creatorCareer2,
+	jdbcType=VARCHAR}, #{creatorAwards}, #{creatorAwards1,
+	jdbcType=VARCHAR}, #{creatorAwards2, jdbcType=VARCHAR})
+
+</insert>
+
+	<update id="apply1">
+
+		update USERS
+		set USERTYPE = #{userType}
+		where USERID = #{userId}
+
+	</update>
+
+	<insert id="pageRegist">
+
+		insert into CREATORPAGE(PAGEID, CREATOREMAIL, CREATORNICK, ABOUTME,
+		INSTAPATH)
+		values(#{pageId}, #{creatorEmail}, #{creatorNick}, #{aboutMe}, #{instaPath})
+
+	</insert>
+
+	<insert id="profileRegist">
+
+		insert into PROFILEIMG(PROFILEID, PROFILEPATH, PROFILELOCA, PROFILENAME,
+		PROFILEREAL)
+		values(#{profileId}, #{profilePath}, #{profileLoca}, #{profileName}, #{profileReal})
+
+	</insert>
+
+	<insert id="backgroundRegist">
+
+		insert into BACKGROUNDIMG(BACKGROUNDID, BACKGROUNDPATH, BACKGROUNDLOCA,
+		BACKGROUNDNAME, BACKGROUNDREAL)
+		values(#{backgroundId}, #{backgroundPath}, #{backgroundLoca}, #{backgroundName},
+		#{backgroundReal})
+
+	</insert>
+
+	<select id="pageDetail" resultType="CreatorPageVO">
+
+		select * from CREATORPAGE where PAGEID = #{pageId}
+
+	</select>
+
+	<select id="creatorDetail" resultType="CreatorVO">
+
+		select * from CREATOR where CREATORID = #{creatorId}
+
+	</select>
+
+	<select id="profileGet" resultType="ProfileVO">
+
+		select * from PROFILEIMG where PROFILEID = #{profileId}
+
+	</select>
+
+	<select id="backgroundGet" resultType="BackgroundVO">
+
+		select * from BACKGROUNDIMG where BACKGROUNDID = #{backgroundId}
+
+	</select>
+
+	<select id="getTotal" resultType="int">
+
+		select count(*) as total from WORKBOARD where CREATORNAME = #{creatorName}
+
+	</select>
+
+	<select id="getList" resultType="WorkBoardVO">
+		select *
 		from (
-    		select rownum rn,
-       			   a.*
-    		from (
-        		   select *
-        		   from WORKBOARD
-        		   where CREATORNAME = #{creatorName}
-        		   order by BNO desc
-    		) a
-		)
+		select @rownum := @rownum + 1 rn,
+		a.*
+		from (
+		select *
+		from WORKBOARD
+		where CREATORNAME = #{creatorName}
+		order by BNO desc
+		) a
+		) b, (select @rownum := 0) c
 		<![CDATA[
 		where rn > (#{pageNum} -1) * #{amount} and rn <= #{pageNum} * #{amount}
-  		]]>
-  	</select>
-  	
-  	<update id="profileUpdate">
-  	
-  		update CREATORPAGE
-  		set INSTAPATH = #{instaPath},
-  			ABOUTME = #{aboutMe}
-  		where PAGEID = #{pageId}
-  	
-  	</update>
-  	
-  	<update id="infoUpdate">
-  	
-  		update CREATOR
-  		set CREATORMAJOR = #{creatorMajor},
-  			CREATORCAREER = #{creatorCareer},
-  			CREATORCAREER1 = #{creatorCareer1},
-  			CREATORCAREER2 = #{creatorCareer2},
-  			CREATORAWARDS = #{creatorAwards},
-  			CREATORAWARDS1 = #{creatorAwards1},
-  			CREATORAWARDS2 = #{creatorAwards2}
-  		where creatorId = #{creatorId}
-  		
-  	</update>
-  	
-  	<update id="backgroundUpdate">
-  	
-  		update BACKGROUNDIMG
-  		set BACKGROUNDPATH = #{backgroundPath},
-  			BACKGROUNDLOCA = #{backgroundLoca},
-  			BACKGROUNDNAME = #{backgroundName},
-  			BACKGROUNDREAL = #{backgroundReal}
-  		where BACKGROUNDID = #{backgroundId}
-  	
-  	</update>
-  	
-  	<update id="profileImgUpdate">
-  	
-  		update PROFILEIMG
-  		set PROFILEPATH = #{profilePath},
-  			PROFILELOCA = #{profileLoca},
-  			PROFILENAME = #{profileName},
-  			PROFILEREAL = #{profileReal}
-  		where PROFILEID = #{profileId}
-  	
-  	</update>
-  	
-  	<select id="getCreatorId" resultType="CreatorPageVO">
-  	
-  		select PAGEID from CREATORPAGE where CREATORNICK = #{creatorNick}
-  	
-  	</select>
+		]]>
+	</select>
+
+	<update id="profileUpdate">
+
+		update CREATORPAGE
+		set INSTAPATH = #{instaPath},
+		ABOUTME = #{aboutMe}
+		where PAGEID = #{pageId}
+
+	</update>
+
+	<update id="infoUpdate">
+
+		update CREATOR
+		set CREATORMAJOR = #{creatorMajor},
+		CREATORCAREER = #{creatorCareer},
+		CREATORCAREER1 = #{creatorCareer1},
+		CREATORCAREER2 = #{creatorCareer2},
+		CREATORAWARDS = #{creatorAwards},
+		CREATORAWARDS1 = #{creatorAwards1},
+		CREATORAWARDS2 = #{creatorAwards2}
+		where creatorId = #{creatorId}
+
+	</update>
+
+	<update id="backgroundUpdate">
+
+		update BACKGROUNDIMG
+		set BACKGROUNDPATH = #{backgroundPath},
+		BACKGROUNDLOCA = #{backgroundLoca},
+		BACKGROUNDNAME = #{backgroundName},
+		BACKGROUNDREAL = #{backgroundReal}
+		where BACKGROUNDID = #{backgroundId}
+
+	</update>
+
+	<update id="profileImgUpdate">
+
+		update PROFILEIMG
+		set PROFILEPATH = #{profilePath},
+		PROFILELOCA = #{profileLoca},
+		PROFILENAME = #{profileName},
+		PROFILEREAL = #{profileReal}
+		where PROFILEID = #{profileId}
+
+	</update>
+
+	<select id="getCreatorId" resultType="CreatorPageVO">
+
+		select PAGEID from CREATORPAGE where CREATORNICK = #{creatorNick}
+
+	</select>
+
   	
   </mapper>

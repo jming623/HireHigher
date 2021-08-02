@@ -14,4 +14,5 @@ public interface JobBoardMapper {
 	public int update(JobBoardDetailVO jobBoardDetailVO); //업데이트
 	public int regist(JobBoardDetailVO jobBoardDetailVO); //등록
 	public int delete(int bno); //삭제
+	public int viewCount(int bno);//조회수
 }

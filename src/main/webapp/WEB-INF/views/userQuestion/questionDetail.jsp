@@ -79,6 +79,7 @@
 															문의 내용
 															<p>${qdetail.insertContent}</p>
 														</div>
+														
 														<div class="question-modal-box-status"><input name="answerStatus" value="답변 완료"></div>
 													</div>
 												</div>
@@ -114,6 +115,7 @@
 									<!-- 모달창 -->	
 
                             <div class="QD-question-content"><!-- 질문 내용 구역-->
+                                <img alt="" src="questionView/${qdetail.insertImg}">
                                 <p>
                                     ${qdetail.insertContent}
                                 </p>
@@ -152,6 +154,7 @@
             </div>
             </div>
     </section>
+    
    <!-- 모달창 스크립트 -->
      <script>
         document.getElementById("modal-question_opne_btn").onclick = function() {

@@ -20,7 +20,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/headerjquery.js"></script>
 	<!-- 메인페이지 스타일시트 -->
-	<link href="${pageContext.request.contextPath }/resources/css/main.css?23" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/main.css?22d2" rel="stylesheet">
 	<link href="${pageContext.request.contextPath }/resources/css/responsiveMain.css" rel="stylesheet">
 	<!-- 홈버튼 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
