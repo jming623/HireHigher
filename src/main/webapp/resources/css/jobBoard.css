@@ -45,6 +45,7 @@
 
 .table-board {
   width: 100%;
+  margin-bottom: 15px;
 }
 
 .table-board th {
@@ -80,3 +81,4 @@
 .write-btn {
   float: right;
 }
+

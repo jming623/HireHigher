@@ -32,7 +32,7 @@
     <!-- 스타일시트(개인 css)는 아래에 추가해주세요 (src/webapp/resources/css에 필요한 css파일 추가하고 이곳에 선언해줍니다.)-->
     <!-- 기본선언 css,사이드바 -->
   	<link href="${pageContext.request.contextPath }/resources/css/Basic.css?113" rel="stylesheet">
-  	<link href="${pageContext.request.contextPath }/resources/css/sideBar.css?2" rel="stylesheet">
+  	<link href="${pageContext.request.contextPath }/resources/css/sideBar.css?111" rel="stylesheet">
   	<link href="${pageContext.request.contextPath }/resources/css/responsiveBasic.css" rel="stylesheet">
   	<!-- 헤더 검색창 분류 박스-->
 	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/headerjquery.js"></script>
@@ -54,8 +54,8 @@
     <link href="${pageContext.request.contextPath }/resources/css/userJoin.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/userLogin.css?2" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/creatorApply.css?2" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/jobBoard.css?1" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/jobDetail.css?1" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/jobBoard.css?22" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/jobDetail.css?22" rel="stylesheet">
     <!-- 우현이형 >> jobModify 지혁 추가 수정 본 -->
     <link href="${pageContext.request.contextPath }/resources/css/jobModify.css?11" rel="stylesheet">
     <!-- 우진 -->

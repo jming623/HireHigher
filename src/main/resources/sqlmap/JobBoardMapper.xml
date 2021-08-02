@@ -136,7 +136,7 @@
    
    </delete>
    
-   <update id="viewCount">
+   <update id="viewCount" parameterType="int">
    		update JOBBOARD set viewCount = viewCount + 1 where bno = #{bno}
    </update>
    

@@ -23,7 +23,7 @@
 									<dl>
 										<dt>성별</dt>
 										<dd>
-											<select class="jobmodify-select-mini" name='gender'>
+											<select class="jobmodify-select-mini" name='gender' required>
 												<option value="none">선택</option>
 												<option value="남자">남자</option>
 												<option value="여자">여자</option>
@@ -53,14 +53,14 @@
 									<dl>
 										<dt>고용형태</dt>
 										<dd>
-											<input id="notnull1" class="jobmodify-input-mini" name='empType'>
+											<input id="notnull1" class="jobmodify-input-mini" name='empType' required>
 											<span id="emptype-check"></span>
 										</dd>
 									</dl>
 									<dl>
 										<dt>모집인원</dt>
 										<dd>
-											<input id="notnull2" class="jobmodify-input-mini" name='recNum'>
+											<input id="notnull2" class="jobmodify-input-mini" name='recNum' required>
 											<span id="recnum-check"></span>
 										</dd>
 									</dl>
@@ -142,14 +142,14 @@
 							<dl>
 								<dt>회사 이름</dt>
 								<dd>
-									<input class="jobmodify-input-xl" name="companyName">
+									<input class="jobmodify-input-xl" name="companyName" required>
 								</dd>
 							</dl>
 							<dl id="jobboard-addr-container">
 								<dt>근무지 주소</dt>
 								<dd>
 									<input id="jobboard-addr" class="jobmodify-input-xl"
-										name="companyAddr">
+										name="companyAddr" readonly>
 									<span id="companyaddr-check"></span>
 								</dd>
 							</dl>
@@ -163,7 +163,7 @@
 							<dl>
 								<dt>담당업무</dt>
 								<dd>
-									<input id="notnull2" class="jobmodify-input-regular" name="position">
+									<input id="notnull2" class="jobmodify-input-regular" name="position" required>
 									<span id="position-check"></span>
 								</dd>
 							</dl>

@@ -18,21 +18,22 @@
 
 			<div class="main-search-bar-container">
 				<div class="main-search-select">
-					<div class="main-search-default" name="searchType">SELECT</div>
+					<div class="main-search-default" name="searchType">Search</div>
+					<!-- 
 					<ul class="main-search-menu">
 						<li>WORKS</li>
-						<li>JOBS
-						<li>
-						<li>ALL
-						<li>
+						<li>JOBS<li>
+						<li>ALL<li>
 					</ul>
+					 -->
 				</div>
 				<form action="/HireHigher/jobBoard/jobList">
 					<input type="text" placeholder="" class="main-search-bar"
-						name="searchName"> <a href="#" class="main-search-button">
-						<img
-						src="${pageContext.request.contextPath }/resources/img/search-logo.png">
-					</a> <input type="hidden" name="searchType" value="title">
+						name="searchName" id="searchInput"> 
+						<a href="" class="main-search-button" id="getSearchValue">
+							<img src="${pageContext.request.contextPath }/resources/img/search-logo.png">
+						</a> 
+						<input type="hidden" name="searchType" value="title">
 				</form>
 			</div>
 
@@ -117,3 +118,12 @@
 
 	</nav>
 </header>
+
+<script>
+	$("#getSearchValue").click(function(){
+		var path = "${ pageContext.request.contextPath}";
+		event.preventDefault();
+		var inputValue = $("#searchInput").val();
+		location.href=path+"/jobBoard/jobList?searchName=" + inputValue + "&searchType=title"; 
+	})
+</script>
