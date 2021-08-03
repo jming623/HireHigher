@@ -221,7 +221,7 @@
 					data : formData,
 					success : function(data) {
 						
-						alert(data);
+						alert("이미지 업로드 완료");
 						console.log( $("#insertImg") );
 						console.log( $("#insertImg").attr("value") );
 						

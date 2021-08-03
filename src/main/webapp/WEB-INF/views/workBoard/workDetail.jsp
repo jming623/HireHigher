@@ -284,7 +284,7 @@
                         strAdd += "<img src='../resources/img/profile.png' style='border-radius: 20px;'>";
                         strAdd += "</div>";
                         strAdd += "<div class='reply-content'>";
-                        strAdd += "<div class='reply-group' style='height=22px'>";
+                        strAdd += "<div class='reply-group' style='height: 22px;'>";
                         strAdd += "<strong class='left'>"+ data[i].replyId +"</strong>"; 
                        
                         strAdd += "<a href='"+ data[i].rno +"' class='right replyModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>";
