@@ -104,7 +104,7 @@
 							<div class="question-input-madal-all">
 			
 							<div class="answer-modal-box">
-								<div class="fileDivSecond">
+								<div class="fileDivSecond" style="text-align:center;">
 									<img id="fileImgSecond" src="../resources/img/img_ready.png">
 								</div>	
 							</div>

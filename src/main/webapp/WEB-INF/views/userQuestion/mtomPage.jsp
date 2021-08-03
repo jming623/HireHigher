@@ -109,7 +109,7 @@
 									 
 				   <!-- 페이지 버튼 숫자 -->
 				   <c:forEach var="num" begin="${mtomPageVO.beginPage}" end="${mtomPageVO.endPage}">         
-					  <button type="button" class="${mtomPageVO.currentPage eq num ? 'active' : ''} mtom-btn btn btn-default"
+					  <button type="button" style="padding:0;" class="${mtomPageVO.currentPage eq num ? 'active' : ''} mtom-btn btn btn-default"
 					  onclick="location.href='mtomPage?currentPage=${num}&displayRow=${mtomPageVO.displayRow}'">${num}</button>
 				   </c:forEach>
 			 
