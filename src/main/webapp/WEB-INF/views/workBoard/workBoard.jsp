@@ -203,8 +203,8 @@
                         strAdd += '</div>';
                         strAdd += '<div class="prod-profile">';
                         strAdd += '<div class="prod-profile-img">'; 
-                        strAdd += '<a href="">';
-                        strAdd += '<img src="${pageContext.request.contextPath }/resources/img/profile.png" alt="">';
+                        strAdd += '<a href="../creator/findCreator?creatorNick='+ data[i].creatorName +'">';
+                        strAdd += '<img src="getProfileInfo?creatorNick='+ data[i].creatorName +'" alt="">';
                         strAdd += '<strong>'+ data[i].creatorName +'</strong>';
                         strAdd += '</a>';
                         strAdd += '</div>';
