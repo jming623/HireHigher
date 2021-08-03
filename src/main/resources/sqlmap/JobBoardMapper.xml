@@ -15,12 +15,12 @@
 		            where
 		]]>
 
-		<if test="searchType == 'title' ">TITLE like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'company' ">COMPANYNAME like '%'||#{searchName}||'%'</if>
-		<if test="searchType == null or searchType == '' ">1 = 1</if>
+		<if test="searchType == 'title' "> TITLE like concat('%',#{searchName},'%') </if>
+		<if test="searchType == 'company' "> COMPANYNAME like concat('%',#{searchName},'%') </if>
+		<if test="searchType == null or searchType == '' "> 1 = 1 </if>
 				
 		<![CDATA[            
-		            order by bno desc) a
+		order by bno desc) a
 		) b, (select @rownum := 0) c
 		where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
 		]]>
@@ -30,9 +30,9 @@
 		select count(*) as total
 		from JOBBOARD
 		where
-		<if test="searchType == 'title' ">TITLE like '%'||#{searchName}||'%'</if>
-		<if test="searchType == 'company' ">COMPANYNAME like '%'||#{searchName}||'%'</if>
-		<if test="searchType == null or searchType == '' ">1 = 1</if>
+		<if test="searchType == 'title' "> TITLE like CONCAT('%',#{searchName},'%') </if>
+		<if test="searchType == 'company' "> COMPANYNAME like CONCAT('%',#{searchName},'%') </if>
+		<if test="searchType == null or searchType == '' "> 1 = 1 </if>
 	</select>
 
 	<select id="getDetail" resultType="JobBoardDetailVO">
@@ -41,11 +41,8 @@
 		where b.BNO = #{bno}
 	</select>
 	
-	<update id="update">
-	{call
-		declare
-		begin
-   			update JOBBOARDDETAIL
+	<update id="update1">
+				update JOBBOARDDETAIL
    				set
    				GENDER = #{gender},
    				AGE = #{age},
@@ -66,69 +63,54 @@
 				POSITION = #{position},
 				WAYTOAPPLY =#{wayToApply},
 				RECPLAN = #{recPlan}
-				where BNO = #{bno};   			
-   			update JOBBOARD
+				where BNO = #{bno}   			
+   </update>
+   <update id="update2">
+   	   			update JOBBOARD
    				set
    				TITLE = #{title}
-   				where BNO = #{bno};   			
-		end
-	}
+   				where BNO = #{bno}   			
    </update>
    
-   <insert id="regist">
-	{call
-		declare
-		begin
-   			insert into JOBBOARD
-   			(BNO, USERID, USERNAME, COMPANYNAME, TITLE, REGDATE)
-   				values
-   				(
-   				#{userId},
-   				#{userName},
-   				#{companyName},
-   				#{title},
-   				now()
-   				);
-   			insert into JOBBOARDDETAIL 
-   			(GENDER, AGE, EDU, EMPTYPE, RECNUM, PREFERENCE, REQUIREDDOCS,
-   			SALARY, CONTRACT, WORKDAYS, WORKTIME, WELFARE, COMPANYADDR, POSITION,
-   			WAYTOAPPLY, RECPLAN, DEADLINE, HRMANAGER, HRCONTACT, BNO)
-   				values
-   				(
-   				#{gender},
-   				#{age},
-   				#{edu},
-   				#{empType},
-   				#{recNum},
-   				#{preference},
-   				#{requiredDocs},
-   				#{salary},
-   				#{contract},
-   				#{workDays},
-   				#{workTime},
-   				#{welfare},
-   				#{companyAddr},
-   				#{position},
-   				#{wayToApply},
-   				#{recPlan},
-   				#{deadline},
-   				#{HRManager},
-				#{HRContact}		
-   				);			
-		end
-	}
+   <insert id="regist1">
+   		insert into JOBBOARD(USERID, USERNAME, COMPANYNAME, TITLE, REGDATE)
+   		values(#{userId}, #{userName}, #{companyName}, #{title}, now())
+   </insert>
+   <insert id="regist2">
+      	insert into JOBBOARDDETAIL 
+   		(GENDER, AGE, EDU, EMPTYPE, RECNUM, PREFERENCE, REQUIREDDOCS,
+   		SALARY, CONTRACT, WORKDAYS, WORKTIME, WELFARE, COMPANYADDR, POSITION,
+   		WAYTOAPPLY, RECPLAN, DEADLINE, HRMANAGER, HRCONTACT)
+   		values
+   		(
+   		#{gender},
+   		#{age},
+   		#{edu},
+   		#{empType},
+   		#{recNum},
+  		#{preference},
+   		#{requiredDocs},
+  		#{salary},
+  		#{contract},
+ 		#{workDays},
+   		#{workTime},
+   		#{welfare},
+   		#{companyAddr},
+   		#{position},
+   		#{wayToApply},
+   		#{recPlan},
+   		#{deadline},
+   		#{HRManager},
+		#{HRContact}		
+   		)	
    </insert>
    
-   <delete id="delete">
-   	{call
-		declare
-		begin
-   			delete from JOBBOARD where BNO = #{bno};
-   			delete from JOBBOARDDETAIL where BNO = #{bno}; 
-		end
-	}
-   
+   <delete id="delete1">
+   		delete from JOBBOARD where BNO = #{bno}
    </delete>
+   <delete id="delete2">
+   		delete from JOBBOARDDETAIL where BNO = #{bno} 
+   </delete>   
    
    <update id="viewCount" parameterType="int">
    		update JOBBOARD set VIEWCOUNT = VIEWCOUNT + 1 where BNO = #{bno}
