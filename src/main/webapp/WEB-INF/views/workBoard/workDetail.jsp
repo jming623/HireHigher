@@ -185,7 +185,7 @@
 					<!-- 수정폼 id값을 확인하세요-->
 					<div class="reply-content">
 					<textarea class="form-control" rows="4" id="modalReply" placeholder="내용입력"></textarea>
-					<div class="reply-group">
+					<div class="reply-group" style="height:45px">
 						<div class="reply-input">
 						    <input type="hidden" id="modalRno">
 						</div>
@@ -284,7 +284,7 @@
                         strAdd += "<img src='../resources/img/profile.png' style='border-radius: 20px;'>";
                         strAdd += "</div>";
                         strAdd += "<div class='reply-content'>";
-                        strAdd += "<div class='reply-group'>";
+                        strAdd += "<div class='reply-group' style='height=22px'>";
                         strAdd += "<strong class='left'>"+ data[i].replyId +"</strong>"; 
                        
                         strAdd += "<a href='"+ data[i].rno +"' class='right replyModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>";
