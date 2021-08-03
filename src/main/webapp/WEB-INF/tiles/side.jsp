@@ -11,7 +11,7 @@
             
             <div id="sidebar-div-wrapper">
             <div class="sidebar-div" id="sidebar-button1">
-                <a class="sidebar-link" href="${pageContext.request.contextPath}">
+                <a class="sidebar-link" href="${pageContext.request.contextPath}/">
                     <img class="sidebar-logo" src="${ pageContext.request.contextPath }/resources/img/sidebar-home-logo.png">
                 </a>
             </div>
