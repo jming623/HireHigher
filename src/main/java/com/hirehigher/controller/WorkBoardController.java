@@ -90,7 +90,7 @@ public class WorkBoardController {
 			//File file = new File(WORK_CONSTANT.UPLOAD_PATH + "\\" + productLocation + "\\" + productName);
 			
 			//배포
-			File file = new File(WORK_CONSTANT.UPLOAD_PATH + productLocation + "/" + productName);
+			File file = new File(WORK_CONSTANT.UPLOAD_PATH + "/" + productLocation + "/" + productName);
 			
 			//29. 이미지파일을 byte배열 형식으로 변경해 result변수에담음
 			result = FileCopyUtils.copyToByteArray(file);
