@@ -44,97 +44,98 @@ public class CreatorController {
 	// 제작자 신청 화면
 	@RequestMapping("/creatorApply")
 	public String creatorApply() {
-
+			
 		return "/creator/creatorApply";
 	}
 
-	// 제작자 신청 요청
-	@RequestMapping("applyForm")
-	public String applyForm(CreatorVO creatorVO, HttpSession session, RedirectAttributes RA) {
+	 // 제작자 신청 요청
+	   @RequestMapping("applyForm")
+	   public String applyForm(CreatorVO creatorVO, HttpSession session, RedirectAttributes RA) {
 
-		if (userType == 0) {
+//	      if (userType == 0) {
 
-			/*------------------------제작자 신청--------------------------------*/
-			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
-			creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
-			
-			
-			int result = creatorService.apply(creatorVO); // apply함수 결과를 result 변수에 저장
+	         /*------------------------제작자 신청--------------------------------*/
+	         UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
+	         creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
+	         
+	         
+	         int result = creatorService.apply(creatorVO); // apply함수 결과를 result 변수에 저장
 
-			if (result == 1) { // 요청 성공
-				RA.addFlashAttribute("msg", "판매자 신청이 완료 되었습니다.");
-			} else { // 요청 실패
-				RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도해주세요");
-			}
+	         if (result == 1) { // 요청 성공
+	            RA.addFlashAttribute("msg", "판매자 신청이 완료 되었습니다.");
+	         } else { // 요청 실패
+	            RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도해주세요");
+	         }
 
-			/*------------------------userType 변경--------------------------------*/
-			userVO.setUserType(1); // userVO의 userType 값을 1로 저장 (1인 경우 제작자)
-			userType = userVO.getUserType(); // userType 변수에 userVO의 userType을 저장
-			creatorService.apply1(userVO); // apply1 함수 결과
+	         /*------------------------userType 변경--------------------------------*/
+	         userVO.setUserType(1); // userVO의 userType 값을 1로 저장 (1인 경우 제작자)
+	         userType = userVO.getUserType(); // userType 변수에 userVO의 userType을 저장
+	         creatorService.apply1(userVO); // apply1 함수 결과
 
-			/*------------------------creatorPage 기본 내용--------------------------------*/
-			String pageId = userVO.getUserId(); // pageId 변수에 userVO의 userId를 저장
+	         /*------------------------creatorPage 기본 내용--------------------------------*/
+	         String pageId = userVO.getUserId(); // pageId 변수에 userVO의 userId를 저장
 
-			String creatorEmail = userVO.getUserEmail(); // creatorEmail 변수에 userVO의 userEmail을 저장
+	         String creatorEmail = userVO.getUserEmail(); // creatorEmail 변수에 userVO의 userEmail을 저장
 
-			String creatorNick = userVO.getNickName(); // creatorNick 변수에 userVO의 nickname를 저장
+	         String creatorNick = userVO.getNickName(); // creatorNick 변수에 userVO의 nickname를 저장
 
-			String aboutMe = ""; // aboutMe 변수에 공백 저장
+	         String aboutMe = ""; // aboutMe 변수에 공백 저장
 
-			String instaPath = ""; // instaPath 변수에 공백저장
+	         String instaPath = ""; // instaPath 변수에 공백저장
 
-			// DB 작업
-			CreatorPageVO pageVO = new CreatorPageVO(pageId, creatorEmail, aboutMe, creatorNick, instaPath);
+	         // DB 작업
+	         CreatorPageVO pageVO = new CreatorPageVO(pageId, creatorEmail, aboutMe, creatorNick, instaPath);
 
-			creatorService.pageRegist(pageVO); // pageRegist 함수 결과
+	         creatorService.pageRegist(pageVO); // pageRegist 함수 결과
 
-			/*------------------------profile이미지 기본 내용--------------------------------*/
+	         /*------------------------profile이미지 기본 내용--------------------------------*/
 
-			String profileId = userVO.getUserId(); // profileId 변수에 userVO의 userId를 저장
+	         String profileId = userVO.getUserId(); // profileId 변수에 userVO의 userId를 저장
 
-			
-			String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH; // profilePath 변수에 업로드 경로 저장
-			
-			String profileLoca = "creatorProfile"; // profileLoca 변수에 폴더 경로 저장
+	         
+	         String profilePath = CREATOR_PROFILE_CONSTANT.UPLOAD_PATH; // profilePath 변수에 업로드 경로 저장
+	         
+	         String profileLoca = "creatorProfile"; // profileLoca 변수에 폴더 경로 저장
 
-			String profileName = "52822e5099fa4d9cb73a0636178393d2.png"; // profileName 변수에 변경된 파일명 저장
+	         String profileName = "52822e5099fa4d9cb73a0636178393d2.png"; // profileName 변수에 변경된 파일명 저장
 
-			String profileReal = "profile.png"; // profileReal 변수에 실제 파일명 저장
+	         String profileReal = "profile.png"; // profileReal 변수에 실제 파일명 저장
 
-			// DB 작업
-			ProfileImgVO profileVO = new ProfileImgVO(profileId, profilePath, profileLoca, profileName, profileReal);
+	         // DB 작업
+	         ProfileImgVO profileVO = new ProfileImgVO(profileId, profilePath, profileLoca, profileName, profileReal);
 
-			creatorService.profileRegist(profileVO);
+	         creatorService.profileRegist(profileVO);
 
-			/*------------------------background이미지 기본 내용--------------------------------*/
+	         /*------------------------background이미지 기본 내용--------------------------------*/
 
-			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
+	         String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
 
-			
-			String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH; // backgroundPath 변수에 업로드 경로 저장
-			
-			String backgroundLoca = "creatorBackground"; // backgroundLoca 변수에 폴더 경로 저장
+	         
+	         String backgroundPath = CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH; // backgroundPath 변수에 업로드 경로 저장
+	         
+	         String backgroundLoca = "creatorBackground"; // backgroundLoca 변수에 폴더 경로 저장
 
-			String backgroundName = "welcome.jpg"; // backgroundName 변수에 변경된 파일명 저장
+	         String backgroundName = "welcome.jpg"; // backgroundName 변수에 변경된 파일명 저장
 
-			String backgroundReal = "welcome.jpg"; // backgroundReal 변수에 실제 파일명 저장
+	         String backgroundReal = "welcome.jpg"; // backgroundReal 변수에 실제 파일명 저장
 
-			// DB 작업
-			BackgroundImgVO backgroundVO = new BackgroundImgVO(backgroundId, backgroundPath, backgroundLoca,
-					backgroundName, backgroundReal);
+	         // DB 작업
+	         BackgroundImgVO backgroundVO = new BackgroundImgVO(backgroundId, backgroundPath, backgroundLoca,
+	               backgroundName, backgroundReal);
 
-			creatorService.backgroundRegist(backgroundVO);
+	         creatorService.backgroundRegist(backgroundVO);
 
-			return "redirect:/creator/creatorDetail";
+	         return "redirect:/creator/creatorDetail";
 
-		} else {
+//	      } else {
 
-			RA.addFlashAttribute("msg", "이미 판매자 신청이 완로된 계정입니다.");
+//	         RA.addFlashAttribute("msg", "이미 판매자 신청이 완로된 계정입니다.");
 
-			return "redirect:/creator/creatorApply";
-		}
+//	         return "redirect:/creator/creatorApply";
+//	      }
 
-	}
+	   }
+
 
 	// 제작자 페이지 , 수정 페이지 화면
 	@RequestMapping({ "/creatorDetail", "/creatorModify" })
@@ -398,6 +399,14 @@ public class CreatorController {
 		return "redirect:/creator/creatorDetail";
 	}
 	
+	// 크리에이터인 경우 apply 페이지 접근 제한
+	@RequestMapping("/creator_access_fail")
+	public String creator_access_fail(RedirectAttributes RA) {
+		RA.addFlashAttribute("msg", "비정상적인 접근입니다.");
+		
+		return "redirect:/";
+	}
+	
 	// 추가_JM
 	// 마켓게시판에서 게시글의 제작자 페이지 검색	
 	@RequestMapping("/findCreator")
@@ -434,5 +443,55 @@ public class CreatorController {
 		return "redirect:/creator/creatorApply";
 	}
 	
+	// 추가_JM
+	// 크리에이터검색시 프로필이미지 호출
+	@ResponseBody
+	@RequestMapping("/findProfileView")
+	public byte[] findProfileView(ProfileImgVO vo) {
+		
+		System.out.println("화면으로 부터 넘어온 profileVO"+ vo.toString());
+		
+		String profileLoca = vo.getProfileLoca();
+		String profileName = vo.getProfileName();
+		
+		byte[] result = null;
+		
+		try {
+			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			
+			result = FileCopyUtils.copyToByteArray(file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// 추가_JM
+	// 크리에이터검색시백그라운드이미지 호출
+	@ResponseBody
+	@RequestMapping("/findBackView")
+	public byte[] findBackView(BackgroundImgVO vo) {
+		
+		System.out.println("화면으로 부터 넘어온 BackgroundVO"+ vo.toString());
+		
+		byte[] result = null;
+		
+		String backgroundLoca = vo.getBackgroundLoca();
+		String backgroundName = vo.getBackgroundName();
+		
+		try {
+			
+			File file = new File(CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH+"\\"+backgroundLoca+"\\"+backgroundName);
+			
+			result = FileCopyUtils.copyToByteArray(file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		return result;
+	}
 	
 }// end controller

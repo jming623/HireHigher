@@ -216,8 +216,8 @@
 														
 							strAdd += '<tr>';
 			                strAdd += '<td>'+list.bno+'</td>';
-			                strAdd += '<td><a href="">'+ companyName +'</a></td>';
-			                strAdd += '<td><a href="">'+ title +'</a></td>';
+			                strAdd += '<td><a href="../jobBoard/jobDetail?bno="'+ list.bno +'>'+ companyName +'</a></td>';
+			                strAdd += '<td><a href="../jobBoard/jobDetail?bno="'+ list.bno +'>'+ title +'</a></td>';
 			                strAdd += '<td>'+regDate+'</td>';
 			                strAdd += '<td>'+list.viewCount+'</td>';
 			                strAdd += '</tr>';
@@ -315,9 +315,9 @@
 													
 							strAdd3 += '<tr>';
 			                strAdd3 += '<td>'+list.insertBno+'</td>';
-			                strAdd3 += '<td><a href="">'+ title +'</a></td>';
-			                strAdd3 += '<td><a href="">'+ content +'</a></td>';
-			                strAdd3 += '<td>'+regDate+'</td>';			             
+			                strAdd3 += '<td><a href="../userQuestion/questionDetail?insertBno="'+list.insertBno+'>'+ title +'</a></td>';
+			                strAdd3 += '<td><a href="../userQuestion/questionDetail?insertBno="'+list.insertBno+'>'+ content +'</a></td>';
+			                strAdd3 += '<td>'+regDate+'</td>';		             
 			                strAdd3 += '</tr>';
 						})
 						

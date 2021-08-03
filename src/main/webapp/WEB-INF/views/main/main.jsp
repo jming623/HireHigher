@@ -163,5 +163,10 @@ var myChart = new Chart(ctx, {
         menuHolder.addEventListener('click', () => {
              menu.classList.toggle('active')
         });
+        
+        var msg = "${msg}";
+    	if (msg != '') {
+    		alert(msg);
+    	}
 </script>
 

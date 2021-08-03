@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hirehigher.command.CreatorPageVO;
+import com.hirehigher.command.ProfileImgVO;
 import com.hirehigher.command.WorkBoardVO;
+import com.hirehigher.creator.service.CreatorService;
 import com.hirehigher.util.WorkBoardCriteria;
 import com.hirehigher.util.WorkPageVO;
 import com.hirehigher.workboard.service.WorkBoardService;
@@ -29,6 +32,10 @@ public class WorkBoardController {
 	@Autowired
 	@Qualifier("workBoardService")
 	private WorkBoardService workBoardService;
+	
+	@Autowired
+	@Qualifier("creatorService")
+	private CreatorService creatorService; 
 
 	@RequestMapping("/workBoard") //get방식으로 받겠다
 	public String workBoard(WorkBoardCriteria cri , Model model) {
@@ -136,5 +143,41 @@ public class WorkBoardController {
 	public String workModify() {
 		return"workBoard/workModify";
 	}
+	
+	//마켓게시판에서 
+	
+	
+	//마켓게시판에서 제작자 프로필 사진 호출하기
+	@ResponseBody
+	@RequestMapping("/getProfileInfo")
+	public byte[] getProfileInfo(CreatorPageVO creatorVO) {
+		
+		String creatorNick = creatorVO.getCreatorNick();
+		
+		//받아온 닉네임으로 유저ID구하기
+		CreatorPageVO pageVO = creatorService.getCreatorId(creatorNick);
+		String CreatorId = pageVO.getPageId();
+		
+		ProfileImgVO vo = workBoardService.getProfileImg(CreatorId);
+			
+		String profileLoca = vo.getProfileLoca();
+		String profileName = vo.getProfileName();
+		
+		byte[] result = null;
+		
+		try {
+			
+			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			
+			result = FileCopyUtils.copyToByteArray(file);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return result;
+	}
+	
+	
 	
 }

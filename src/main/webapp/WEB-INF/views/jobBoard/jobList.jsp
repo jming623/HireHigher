@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
-<section>
+<section style="min-height:83vh">
 
 	<div class="container-fluid">
 		<div class="job-board row">
@@ -83,7 +83,6 @@
           		-->
 				<form action="jobList" name="pageForm">
 					<div class="text-center">
-						<hr>
 
 						<ul class="jobBoard-page pagination pagination-sm">
 
@@ -126,7 +125,8 @@
 
 <script>
 	var pagination = document.querySelector(".jobBoard-page");
-	jobBoard-page.onclick = function() {
+	
+	pagination.onclick = function() {
 		event.preventDefault(); //고유이벤트 속성 중지
 		if(event.target.tagName != 'A') return;
 	
