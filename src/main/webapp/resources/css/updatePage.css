@@ -159,7 +159,7 @@ div.update-upload-btn_wrap button {/*버튼 div*/
 }
 /* *******문의하기 취소하기 버튼영역******* */
 .update-btn-qne{
-    overflow: hidden;
+    /*overflow: hidden;*/
     margin-bottom: 30px;
 }
 .update-btn-left{
@@ -168,4 +168,43 @@ div.update-upload-btn_wrap button {/*버튼 div*/
 }
 .update-btn-right{
     float: right;
+}
+.reply-group{
+	overflow: inherit;
+}
+/*-------------------------------*/
+.fileDiv2 {
+		height: 100px;
+		width: 200px;
+		display: none;
+		margin-left: 150px;
+		margin-bottom: 10px;
+	}
+	
+	.fileDiv2 img {
+		
+		width: 100%;
+		height: 100%;
+	}
+#uploadBtn{
+	background-color: #4e4e4e;
+	border: 1px solid #000000;
+	height: 27px;
+    font-size: 10px;
+    line-height: 12px;
+	border-radius: inherit;
+	float:left;
+	margin-left: 10px
+	}
+	.filebox{
+	font-size: 10px;
+    height: 27px;
+	margin-left: 150px
+	}
+	.fileDiv2{
+	height: auto;
+    width: 100px;
+    }
+section{
+	min-height: 81.5vh;
 }

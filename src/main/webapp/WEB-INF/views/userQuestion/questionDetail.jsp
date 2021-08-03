@@ -21,10 +21,10 @@
                     <!-- 질문자 질문날짜 조회수  구역-->
                     <div class="QD-question-user-box">
                         <ul class="QD-question-user-box-ul">
-                            <li class="QD-question-user-li-id">${qdetail.insertId}</li><!-- 아이디 -->
-                            <li class="QD-question-user-li-date">${qdetail.insertDate}</li><!-- 작성 날짜 -->
+                            <li class="QD-question-user-li-id">아이디  : ${qdetail.insertId}</li><!-- 아이디 -->
+                            <li class="QD-question-user-li-date">작성일 :   ${qdetail.insertDate}</li><!-- 작성 날짜 -->
                             <li class="QD-question-user-li-look"><!-- 조회수 -->
-                                <img src="" alt="">35 (조회수)
+                                <img src="" alt="">${qdetail.answerStatus}
                             </li>
                         </ul>
                     </div>
@@ -39,12 +39,17 @@
                                 
                                 <!-- 모달창 -->
 								<div class="QD-question-btn-modal" id="root">
-									<button type="button" class="QD-question-btn-delete btn btn-default" onclick="location.href='updateDelete?insertBno=${qdetail.insertBno}'">삭제</button>
-									<button type="button" class="QD-question-btn-update btn btn-default" onclick="location.href='updatePage?insertBno=${qdetail.insertBno}'">수정</button>
+									
+									
+									<button type="button" id="QDqustiondel" class="QD-question-btn-delete btn btn-default" onclick="location.href='updateDelete?insertBno=${qdetail.insertBno}'">삭제</button>
+									<button type="button" id="QDqustionup" class="QD-question-btn-update btn btn-default" onclick="location.href='updatePage?insertBno=${qdetail.insertBno}'">수정</button>
+									
+									
 									<button
-										class="QD-question-btn btn btn-default modal-start-button btn btn-default"
-										type="button" id="modal-question_opne_btn">답변등록</button>
-
+										class="QDbuttonuser QD-question-btn btn btn-default modal-start-button btn btn-default"
+										type="button" id="modal-question_opne_btn">답변등록
+									</button>
+									
 								</div>
 
 
@@ -154,6 +159,50 @@
             </div>
             </div>
     </section>
+    
+    <script>
+    	var msg = "${msg}";
+    	
+    	if(msg != ''){
+    		alert(msg);
+    	}
+    
+    </script>
+    
+    <script>
+	$(document).ready(function(){
+	 	
+		 var userId = "${sessionScope.userVO.userId}";
+		 var wrId = "${qdetail.insertId}";
+		 var wrBno = "${qdetail.insertBno}";
+		
+		 console.log(userId);
+		 console.log(wrId);
+		 
+		if(userId == wrId){
+			$("#QDqustiondel").show();
+			$("#QDqustionup").show();
+		}else{
+			$("#QDqustiondel").hide();
+			$("#QDqustionup").hide();
+		}
+	});
+    </script>
+    
+    
+    <script>
+   
+    	$(document).ready(function(){
+    	 	
+    		 var userId = "${sessionScope.userVO.userId}";
+    		if(userId == "1832573148"){
+    			$(".QDbuttonuser").show();
+    		}else{
+    			$(".QDbuttonuser").hide();
+    		}
+    	});
+    	
+    </script>
     
    <!-- 모달창 스크립트 -->
      <script>

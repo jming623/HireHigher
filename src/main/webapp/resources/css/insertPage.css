@@ -165,7 +165,7 @@ div.upload-btn_wrap button {/*버튼 div*/
 }
 /* *******문의하기 취소하기 버튼영역******* */
 .insert-btn-qne{
-    overflow: hidden;
+   /* overflow: hidden; */
     margin-bottom: 30px;
 }
 .insert-btn-left{
@@ -188,9 +188,9 @@ div.upload-btn_wrap button {/*버튼 div*/
 		font-size: inherit;
 		line-height: normal;
 		vertical-align: middle;
-		background-color: #5cb85c;
+		background-color: #4e4e4e;
 		cursor: pointer;
-		border: 1px solid #4cae4c;
+		border: 1px solid #000000;
 		border-radius: none;
 		-webkit-transition: background-color 0.2s;
 		transition: background-color 0.2s;
@@ -252,3 +252,28 @@ div.upload-btn_wrap button {/*버튼 div*/
 	.modal-inner p {
 		margin: 0px;
 	}
+	.reply-group{
+		overflow: initial;
+	}
+	#uploadBtn{
+	background-color: #4e4e4e;
+	border: 1px solid #000000;
+	height: 27px;
+    font-size: 10px;
+    line-height: 12px;
+	border-radius: inherit;
+	float:left;
+	margin-left: 10px
+	}
+	.filebox{
+	font-size: 10px;
+    height: 27px;
+	margin-left: 150px
+	}
+	.fileDiv{
+	height: auto;
+    width: 100px;
+    }
+section{
+	min-height: 81.5vh;
+}

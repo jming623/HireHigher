@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    <section>
+    <section class="apply-section">
 
-    <div class="container">
+    <div class="apply-container container">
 
       <div class="creator-apply row">
 

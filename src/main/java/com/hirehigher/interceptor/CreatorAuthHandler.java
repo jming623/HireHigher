@@ -8,7 +8,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.hirehigher.command.UserVO;
 
 public class CreatorAuthHandler extends HandlerInterceptorAdapter {
-	
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -19,16 +19,17 @@ public class CreatorAuthHandler extends HandlerInterceptorAdapter {
 			response.sendRedirect(request.getContextPath()+"/user/access_fail");
 		}	
 		
-		if(userVO.getUserType() != 1) {//크리에이터가 아닌유저
+		if(userVO.getUserType() == 1) { // 크리에이터인 유저 
 			
-			response.sendRedirect(request.getContextPath()+"/creator/access_fail");	
+			response.sendRedirect(request.getContextPath()+"/creator/creator_access_fail");
 			
 			return false;
 		}else {
 			return true;
 		}
-	
+		
+		
 	}
-	
+
 	
 }

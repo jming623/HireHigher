@@ -4,6 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.hirehigher.creator.mapper.CreatorMapper">
+
  <insert id="apply">
 
 	insert into CREATOR(CREATORID, CREATORMAJOR, CREATORCAREER, CREATORCAREER1,
@@ -145,5 +146,6 @@
 		select PAGEID from CREATORPAGE where CREATORNICK = #{creatorNick}
 
 	</select>
+
   	
   </mapper>

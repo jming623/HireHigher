@@ -1,5 +1,18 @@
 /* section */
 
+.apply-section {
+	height: calc(100vh - 150px);
+}
+
+.apply-container {
+	height: 100%;
+}
+
+.creator-apply {
+    height: 100%;
+}
+
+
 .sellerTitle > h2 {
   text-align: center;
   margin: 20px auto;
@@ -10,7 +23,7 @@
 .seller-form {
   width: 485px;
   margin: 0 auto;
-  float: none;
+  margin-top: calc(10vh);
 }
 
 .plus-btn > button {
@@ -24,12 +37,6 @@
 
 .seller-btn {
   position: relative !important;
-}
-
-.creator-apply {
-    margin-bottom: 28px !important;
-    margin-top: 45px !important;
-    min-height: 498px !important;
 }
 
 #careerGroup {
