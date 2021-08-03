@@ -11,7 +11,7 @@
 		<div class="home-container">
 			<!--[3-1]-->
 			<div class="home">
-				<a href="${pageContext.request.contextPath}">HireHigher</a> <img
+				<a href="${pageContext.request.contextPath}/">HireHigher</a> <img
 					id="header-menuholder"
 					src="${pageContext.request.contextPath }/resources/img/menu-holder-logo.png">
 			</div>
