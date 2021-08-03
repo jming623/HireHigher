@@ -139,15 +139,15 @@
 
     //인피니트 스크롤
     window.onscroll = function(){
-    	//console.log("현재화면높이: " + window.innerHeight);//보이는 화면높이
-        //console.log("스크롤: " + window.scrollY);//스크롤Y축(세로)이동
-        //console.log("합:"+(window.innerHeight + window.scrollY));
-       	//console.log("문서의 전체길이: "+document.body.offsetHeight);//문서의 전체길이 
+    	/* console.log("현재화면높이: " + window.innerHeight);//보이는 화면높이
+        console.log("스크롤: " + window.scrollY);//스크롤Y축(세로)이동
+        console.log("합:"+(window.innerHeight + window.scrollY));
+       	console.log("문서의 전체길이: "+document.body.offsetHeight);//문서의 전체길이  */
 		       
         
         //17. 인피니트 스크롤 동작 원리 (사용자화면에 높이 + 스크롤된 높이가 문서전체높이보다 같거나 커지면 동작)
         // 우리는 이 동작이 일어나면 page가 1에서 2로 2에서 3으로 넘어간다고 생각하고 기능을 구현해야함.        
-        if((window.innerHeight + window.scrollY) >= document.body.offsetHeight+18 ){ 
+        if((window.innerHeight + window.scrollY) >= document.body.offsetHeight ){ 
               //console.log("현재화면높이: " + window.innerHeight);//보이는 화면높이
               //console.log("스크롤: " + window.scrollY);//스크롤Y축(세로)이동
               //console.log("합:"+(window.innerHeight + window.scrollY));

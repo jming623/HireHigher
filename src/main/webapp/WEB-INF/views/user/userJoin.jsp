@@ -116,4 +116,4 @@
 
   </section>
   
-	<script src="${pageContext.request.contextPath }/resources/js/userJoin.js?1"></script>
+	<script src="${pageContext.request.contextPath }/resources/js/userJoin.js?2"></script>

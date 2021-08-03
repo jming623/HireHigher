@@ -11,9 +11,7 @@
 	<bean id="loginSuccessHandler" class="com.hirehigher.interceptor.LoginSuccessHandler"/>
 	<bean id="UserAuthHandler" class="com.hirehigher.interceptor.UserAuthHandler"/>
 	<bean id="CreatorAuthHandler" class="com.hirehigher.interceptor.CreatorAuthHandler"/>
-
 	<bean id="UserQuestionHandler" class="com.hirehigher.interceptor.UserQuestionHandler"/>
-
 	<bean id="CreatorPageAuthHandler" class="com.hirehigher.interceptor.CreatorPageAuthHandler"/>
 
 	<mvc:interceptors>

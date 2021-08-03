@@ -90,7 +90,7 @@
     width:150px;
 }
 
-.reply-group {overflow: hidden;}
+.workboard-reply-group {overflow: hidden;}
 .reply-group > .left {
     float: left;
 }

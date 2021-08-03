@@ -136,7 +136,7 @@
                             <!--form-control은 부트스트랩의 클래스입니다 (name기술)-->
 	                    <div class="reply-content">
 	                        <textarea class="form-control" rows="3" name="reply" id="reply"></textarea>
-	                        <div class="reply-group">
+	                        <div class="reply-group workboard-reply-group">
 	                              <div class="reply-input">
 	                              <input type="text" class="form-control" placeholder="이름" name="replyId" id="replyId">
 	                              </div>

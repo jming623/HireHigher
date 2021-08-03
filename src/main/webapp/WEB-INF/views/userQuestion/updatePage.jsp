@@ -96,7 +96,7 @@
 					</div>
 					<div class="reply-content">
 						
-						<div class="reply-group">
+						<div class="reply-group update-reply-group">
 							<div class="filebox pull-left">
 								<label for="file">이미지업로드</label>
 								<input style="display: none;" type="file" name="file" id="file">

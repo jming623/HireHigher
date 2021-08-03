@@ -61,19 +61,19 @@
     <!-- 우진 -->
     <!-- 4d5cac4ade929922b4a884e5a7d924d0 = 카카오톡 js키 -->
     <link href="${pageContext.request.contextPath }/resources/css/kakao.css?1" rel="stylesheet">
-    <link href="${pageContext.request.contextPath }/resources/css/workDetail.css?2" rel="stylesheet">
+    <link href="${pageContext.request.contextPath }/resources/css/workDetail.css?3" rel="stylesheet">
     <link href="${pageContext.request.contextPath }/resources/css/workModify.css?1" rel="stylesheet">
      <!-- 현우 -->
     <!-- FAQ 고객센터 페이지 -->
     <link href="${pageContext.request.contextPath }/resources/css/faqList.css?1" rel="stylesheet">   
 	<!-- 문의 등록 페이지 -->
-	<link href="${pageContext.request.contextPath }/resources/css/insertPage.css?1" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/insertPage.css?2" rel="stylesheet">
 	<!--  1:1 문의 내역 페이지 -->
 	<link href="${pageContext.request.contextPath }/resources/css/mtomPage.css?1" rel="stylesheet">
 	<!-- 1:1 문의 내역 상세페이지 -->
 	<link href="${pageContext.request.contextPath }/resources/css/questionDetail.css?2" rel="stylesheet">
 	<!-- 1:1 문의 수정 페이지 -->
-	<link href="${pageContext.request.contextPath }/resources/css/updatePage.css?2" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/updatePage.css?3" rel="stylesheet">
 	<!-- 모달 -->
 	<link href="${pageContext.request.contextPath }/resources/css/questionModal.css?1" rel="stylesheet">
 </head>
