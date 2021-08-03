@@ -48,9 +48,11 @@
     <section class="product_page">
         <div class="container">
             <!-- 제작자프로필 -->
-            <img src="${pageContext.request.contextPath }/resources/img/profile.png" style="width: 50px;  border-radius: 70%; overflow: hidden;">
-            <span style="margin-top:20px;font-size:18px; color: white;">${boardVO.creatorName} </span>
-            <button type="button" onclick="modify();" class="btn btn-default detial-modify" style="float: right;">
+            <a href="../creator/findCreator?creatorNick=${boardVO.creatorName}" style="text-decoration:none;">
+            	<img src="getProfileInfo?creatorNick=${boardVO.creatorName}" style="width: 50px; height:50px; border-radius: 70%; overflow: hidden;">
+            	<span style="margin-top:20px; font-size:18px; color: white;">${boardVO.creatorName} </span>
+            </a>
+            <button type="button" class="btn btn-default detial-modify" style="float: right;">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true">
                 </span>
             </button>

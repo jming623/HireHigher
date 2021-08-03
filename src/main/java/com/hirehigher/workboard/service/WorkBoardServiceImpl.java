@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hirehigher.command.ProfileImgVO;
 import com.hirehigher.command.WorkBoardVO;
 import com.hirehigher.util.WorkBoardCriteria;
 import com.hirehigher.workboard.mapper.WorkBoardMapper;
@@ -31,6 +32,12 @@ public class WorkBoardServiceImpl implements WorkBoardService {
 	public WorkBoardVO getDetail(int bno) {
 		
 		return workBoardMapper.getDetail(bno);
+	}
+
+	@Override
+	public ProfileImgVO getProfileImg(String creatorNick) {
+		
+		return workBoardMapper.getProfileImg(creatorNick);
 	}
 	
 }

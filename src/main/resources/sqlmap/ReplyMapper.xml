@@ -7,43 +7,41 @@
 
 
 	<insert id="regist">
-		insert into WORKREPLY(rno, bno, reply, replyId)
+		insert into WORKREPLY(bno, reply, replyId)
 		values (#{bno}, #{reply}, #{replyId})
 	</insert>
 
 	<select id="getList" resultType="WorkReplyVO">
         <![CDATA[
-      select *
-      from (
-                    select  @rownum:=@rownum:+1 as rn,
-                       a.*
-                   from (
-              select bno,
+      	select *
+      	from(select @rownum := @rownum +1 rn,
+                     a.*
+              from (select bno,
                     rno,
-                        reply,
-                     replyId,
-                       replyDate,
-                      replyUpdate           
-            from WORKREPLY where bno = #{bno} order by BNO desc) a ) b, (select          @rownum := 0) c
-                ) where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
+                    reply,
+                    replyId,
+                    replyDate,
+                    replyUpdate           
+            		from WORKREPLY where BNO = #{bno} order by BNO desc) a ) b, (select @rownum :=0) c
+         where rn > (#{cri.pageNum} - 1) * #{cri.amount} and rn <= #{cri.pageNum} * #{cri.amount}
       ]]>
 	</select>
 
 	<select id="getTotal" resultType="int">
-		select count(*) as total from WORKREPLY where bno = #{bno}
+		select count(*) as total from WORKREPLY where BNO = #{bno}
 	</select>
 
 
 
 	<update id="update">
 		update WORKREPLY
-		set reply = #{reply},
-		replyupdate = now()
-		where rno = #{rno}
+		set REPLY = #{reply},
+		REPLYUPDATE = now()
+		where RNO = #{rno}
 	</update>
 
 	<delete id="delete">
-		delete from workreply where rno = #{rno}
+		delete from WORKREPLY where RNO = #{rno}
 	</delete>
 
   	
