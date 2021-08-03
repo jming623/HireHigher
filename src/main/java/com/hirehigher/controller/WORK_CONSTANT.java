@@ -8,5 +8,5 @@ public class WORK_CONSTANT {
 //	public static final  String UPLOAD_PATH = "C:\\Users\\woohyun\\Desktop\\Programming\\course\\sts-bundle\\workspace\\HireHigher\\src\\main\\webapp\\resources\\img";
 
 	//배포환경
-	public static final String UPLOAD_PATH = "/var/img";
+	public static final String UPLOAD_PATH = "/var/img/";
 }
