@@ -86,7 +86,11 @@ public class WorkBoardController {
 			//파일데이터를 바이트데이터로 변환해서 반환
 			
 			//28. WORK_CONSTANT.UPLOAD_PATH에 경로를 자신의 로컬환경에 다시 맞춰야 이미지가 정상적으로 나옴.(이후 배포시 업로드 경로는 변경될 예정)
-			File file = new File(WORK_CONSTANT.UPLOAD_PATH + "\\" + productLocation + "\\" + productName);
+			//로컬
+			//File file = new File(WORK_CONSTANT.UPLOAD_PATH + "\\" + productLocation + "\\" + productName);
+			
+			//배포
+			File file = new File(WORK_CONSTANT.UPLOAD_PATH + productLocation + "/" + productName);
 			
 			//29. 이미지파일을 byte배열 형식으로 변경해 result변수에담음
 			result = FileCopyUtils.copyToByteArray(file);
@@ -167,7 +171,11 @@ public class WorkBoardController {
 		
 		try {
 			
-			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			//로컬
+			//File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			
+			//배포
+			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH + profileLoca+ "/" +profileName);
 			
 			result = FileCopyUtils.copyToByteArray(file);
 			
