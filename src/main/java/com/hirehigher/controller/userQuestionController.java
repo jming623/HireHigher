@@ -78,9 +78,9 @@ public class userQuestionController {
 		System.out.println(result);
 		
 		if(result == 1) {
-			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
+			RA.addFlashAttribute("msg", "문의 등록 처리 되었습니다");
 		} else {
-			RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도하세요");
+			RA.addFlashAttribute("msg", "문의 등록에 실패했습니다. 다시 시도하세요");
 		}
 		
 		
@@ -135,7 +135,27 @@ public class userQuestionController {
 		model.addAttribute("update",update);
 		
 	}
-	
+	//이미지데이터 반환
+	   @ResponseBody
+	   @RequestMapping(value="/updateView/{insertImg:.+}")
+	   public byte[] updateView(@PathVariable("insertImg") String insertImg) {
+	      
+	      System.out.println(insertImg);
+	         
+	      byte[] result = null;
+	      
+	      try {
+	         //파일데이터를 바이트데이터로 변환해서 반환
+	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
+	               
+	         result = FileCopyUtils.copyToByteArray(file);
+	                     
+	         } catch (Exception e) {
+	            e.printStackTrace();
+	      }
+	      
+	      return result;
+	   }
 	
 	
 	@RequestMapping(value="/updateForm",method=RequestMethod.POST)
@@ -146,9 +166,9 @@ public class userQuestionController {
 		
 		
 		if(result == 1) {
-			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
+			RA.addFlashAttribute("msg", "수정 되었습니다");
 		} else {
-			RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도하세요");
+			RA.addFlashAttribute("msg", "수정 처리에 실패했습니다. 다시 시도하세요");
 		}
 		
 		return "redirect:/userQuestion/mtomPage";
@@ -208,8 +228,10 @@ public class userQuestionController {
 	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
 	               
 	         result = FileCopyUtils.copyToByteArray(file);
-	                     
-	         } catch (Exception e) {
+	        
+	         
+	         
+	      } catch (Exception e) {
 	            e.printStackTrace();
 	      }
 	      
@@ -228,9 +250,9 @@ public class userQuestionController {
 		int result = userQuestionService.answerData(vo); // 성공시 1반환, 실패시 0
 
 		if (result == 1) {
-			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
+			RA.addFlashAttribute("msg", "답변이 되었습니다");
 		} else {
-			RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도하세요");
+			RA.addFlashAttribute("msg", "답변 등록에 실패했습니다. 다시 시도하세요");
 		}
 
 		return "redirect:/userQuestion/questionDetail?insertBno="+bno;
@@ -240,6 +262,8 @@ public class userQuestionController {
 	//글 삭제
 	@RequestMapping("/updateDelete")
 	public String updateDelete(@RequestParam("insertBno") int bno,RedirectAttributes RA) {
+		
+		System.out.println(bno);
 		
 		int result = userQuestionService.updatedelete(bno); //성공시 1반환, 실패시 0
 		
@@ -253,41 +277,13 @@ public class userQuestionController {
 		return "redirect:/userQuestion/mtomPage";
 	}
 	
-	//이미지 받아오기---------------------------------------------------
-//	// 제작자 페이지 백그라운드 이미지 조회 요청
-//		@ResponseBody
-//		@RequestMapping(value="/imgDown", method = RequestMethod.GET)
-//		public InsertQuestionPageVO backgroundGet(HttpSession session) {
-//			
-//			UserVO userVO = (UserVO)session.getAttribute("userVO"); //session에 있는 userVO를 얻음
-//			String backgroundId = userVO.getUserId(); // backgroundId 변수에 userVO의 userId를 저장
-//			InsertQuestionPageVO backgroundVo = userQuestionService.imgDown(backgroundId); // DB 결과를 BackgroundImgVO 객체에 저장
-//			
-//			
-//			return backgroundVo;
-//		}
-//		
-//		// 제작자 페이지 백그라운드 이미지 반환
-//		@ResponseBody
-//		@RequestMapping(value="/view1/insertImg") // 경로에 특수문자를 허용
-//		public byte[] view1(@PathVariable("backgroundLoca") String backgroundLoca,
-//						    @PathVariable("backgoundName") String backgoundName) {
-//			
-//			byte[] result = null;
-//			
-//			try {
-//				
-//				// 파일 데이터를 바이트데이터로 변환해서 반환
-//				
-//				File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" + backgroundLoca + "\\" + backgoundName);
-//			
-//				result = FileCopyUtils.copyToByteArray(file);
-//				
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			
-//			return result;
-//		}
+	//접근실패 처리 (로그인을 하지않고 비정상적인 접근을 한 경우)
+		@RequestMapping("/userQuestion_fail")
+		public String userQuestionfail(RedirectAttributes RA) {
+			
+			RA.addFlashAttribute("msg", "로그인 이후 다시 시도해주세요");
+			
+			return "redirect:/userQuestion/mtomPage";
+		}
 	
 }

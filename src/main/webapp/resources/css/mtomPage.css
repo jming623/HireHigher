@@ -131,6 +131,7 @@
     width: 10%;
 }
 .MtoM-answer-box-title{
+	
     height: 50px;
     line-height: 40px;
     float: left;
@@ -140,6 +141,11 @@
     padding-left: 30px;
     font-size: 12px;
     font-weight: 600;
+}
+.MtoM-answer-box-title a{
+	color:#454545;
+	text-decoration: none;
+}
 }
 .MtoM-answer-box-show{
     width: 10%;
@@ -190,4 +196,7 @@
     height: 25px;
     line-height: 10px;
     margin: 5px;
+}
+section{
+	min-height: 81.5vh;
 }

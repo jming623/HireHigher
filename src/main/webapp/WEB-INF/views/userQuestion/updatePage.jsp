@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
      <section>
     <div class="container">
         <div class="row">
@@ -76,15 +76,23 @@
                             <div class="update-input-content"> <!-- 내용 --> <!--ckeditor로 sts에서 사용할것임-->
                                <textarea class="insert-input-text" required="required" name="insertContent" name="" rows="15" cols="100" wrap="hard">${update.insertContent}</textarea>
                             </div>
-                             <div>
+                            <div>
+                              	<%-- <img class="downImg" alt="" src="updateView/${update.insertImg}"> --%>
                             	<input class="insert-input-answer" name="insertImg" id="insertImg" type="text" >
                             </div>
                         </div>
                     </div>
 
                     <!-- 파일 업로드 폼입니다 -->
-					<div class="fileDiv">
-						<img id="fileImg" src="../resources/img/img_ready.png">
+					<div class="fileDiv" style="display:block;">
+						
+						<c:if test="${update.insertImg ne null}">
+							<img id="fileImg" src="updateView/${update.insertImg}">
+						</c:if>
+						<c:if test="${update.insertImg eq null}">
+							<img id="fileImg" src="../resources/img/img_ready.png">
+						</c:if>
+												
 					</div>
 					<div class="reply-content">
 						
@@ -98,6 +106,37 @@
 							
 						</div>
 					</div>
+					<!-- 모달  -->
+					<div id="root">
+        
+					
+						
+					</div>
+			
+					<div id="question-modal">
+					
+						<div class="modal_content">
+							
+							
+						
+							<div class="question-input-madal-all">
+			
+							<div class="answer-modal-box">
+								<div class="fileDivSecond">
+									<img id="fileImgSecond" src="../resources/img/img_ready.png">
+								</div>	
+							</div>
+							</div>
+							<div class="question-modal-btn">							
+								<button class="question-modal-btn-right btn btn-danger" type="button" id="modal-question_close_btn" style="margin-top:30px;">이미지 끄기</button>
+								
+							</div>    
+						
+						</div>
+					
+						<div class="modal_layer"></div>
+					</div>
+					<!-- 모달 끝 -->
 
                     <!-- 문의하기 취소하기 버튼-->
                     <div class="update-btn-qne">
@@ -111,8 +150,38 @@
         </div>
     </div>
     </section>
+    
+    
+<!-- 모달 스크립트 -->
+	<script>
+		$("#fileImg").click(function(){
+			
+			var imgsrc = $("#fileImg").attr("src");
+			
+			$("#fileImgSecond").attr("src",imgsrc);
+			
+		});
+	
+	
+        document.getElementById("fileImg").onclick = function() {
+            document.getElementById("question-modal").style.display="block";
+        }
+       
+        document.getElementById("modal-question_close_btn").onclick = function() {
+            document.getElementById("question-modal").style.display="none";
+        }   
+    </script>
+	<!-- 모달 스크립트 끝 -->
+<script>
+	$(document).ready(function() {
 
-    <!-- 파일추가 js -->
+		var src = $("#fileImg").attr("src");
+		console.log($("#fileImg").attr("src"));
+
+		var srcscond = $("#fileImgSecond").attr("src", src);
+	});
+</script>
+<!-- 파일추가 js -->
     
  <script>
 		$(document).ready(function() {

@@ -11,8 +11,10 @@
 				<div class="MtoM-question-mtom">
 				   <p>1:1 문의 내역</p>
 				   <div class="MtoM-question-mtom-go">
+				  
 					  <button type="button" class="btn btn-danger"
 						 onclick="location.href='insertPage'">문의하기</button>
+					
 				   </div>
 				</div>
  
@@ -74,7 +76,7 @@
 						 <!-- 분류-->
 						  <li class="MtoM-answer-box-ck">${mtom.insertId}</li><!-- 아이디 넣기 -->
 						  <!-- 아이디 -->
-						 <li class="MtoM-answer-box-title">${mtom.insertTitle}</li>
+						 <li class="MtoM-answer-box-title"><a href="questionDetail?insertBno=${mtom.insertBno}">${mtom.insertTitle}</a></li>
 						 <!-- 제목-->
 						 <li class="MtoM-answer-box-show">${mtom.answerStatus}</li>
 						 <!--답변 상태 -->
@@ -82,12 +84,15 @@
 						 <!-- 작성일-->
 						 <li class="MtoM-answer-box-option">
 							<!-- 관리-->
+							
 							<button type="button" class="MtoM-btn-go btn btn-default"
 							   onclick="location.href='questionDetail?insertBno=${mtom.insertBno}'">상세보기</button>
-							<button type="button" class="MtoM-btn-update btn btn-default"
-							   onclick="location.href='updatePage?insertBno=${mtom.insertBno}'">수정</button>
-							<button class="MtoM-btn-del btn btn-default"
-							   onclick="location.href='updateDelete?insertBno=${mtom.insertBno}'">삭제</button>
+							<button type="button" class="MtoM-btn-update btn btn-default">수정</button>
+							<button type="button" class="MtoM-btn-del btn btn-default">삭제</button>
+						 	
+						 	<!-- onclick="location.href='updateDelete?insertBno=${mtom.insertBno}'" -->
+					
+						 	
 						 </li>
 					  </ul>
 					  <!-- 글 종료 -->
@@ -119,33 +124,56 @@
 	   </div>
 	</div>
  </section>
- 
- <!-- 이미지 모달 -->
+
  <script>
  
- $(document).ready(function(){
- 
+ var userId = '${sessionScope.userVO.userId}'; 
+ console.log(userId);
+
+ $(".MtoM-btn-update").click(function(){
 	 
-	 var a = $(".MtoM-answer-box-show").val();
-	 console.log($(".MtoM-answer-box-show").text());
+	 var bno = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+	 console.log(bno);
 	 
-	 $(".MtoM-answer-box-show").each(function(){
-		 
-		 if($(".MtoM-answer-box-show").text() === "a"){
-			 $(".MtoM-answer-box-show").css("color","green");
+	 if($(this).parent().prev().prev().prev().prev().text() == userId){
+		 if(".MtoM-btn-update"){
+			location.href ="updatePage?insertBno="+bno; 
 		 }
-		 
-	 })
+	 }else{
+		 alert("권한이 없습니다.");
+		 return;
+	 }
+ });
+ 
+ $(".MtoM-btn-del").click(function(){
 	 
+	 var bno = $(this).parent().prev().prev().prev().prev().prev().prev().text();
+	 console.log(bno);
 	 
-	 
+	 if($(this).parent().prev().prev().prev().prev().text() == userId){
+		 if(".MtoM-btn-del"){
+			location.href="updateDelete?insertBno="+bno;
+		 }
+	 }else{
+		 alert("권한이 없습니다.");
+		 return;
+	 }
  });
  </script>
+
+ 
+<script>
+	var msg = "${msg}";
+	if (msg != '') {
+		alert(msg);
+	}
+</script>
+
  
  <script>
 	$("#mtomSelect").change(function(){
 	   var displayRow = event.target.value;      
 	   
 	   location.href="mtomPage?currentPage=1&displayRow="+displayRow;
-	})   
+	});   
  </script>

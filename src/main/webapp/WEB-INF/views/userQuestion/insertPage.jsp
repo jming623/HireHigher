@@ -55,15 +55,15 @@
                             </div>
                          
                             <div class="insert-input-id"> <!-- 아이디 -->
-                                <input type="text" name="insertId" value="${sessionScope.userVO.userId}">
+                                <input type="text" name="insertId" value="${sessionScope.userVO.userId}" readonly="readonly">
                             </div>
                          
                             <div class="insert-input-title"> <!-- 제목 -->
-                                <input type="text" name="insertTitle" placeholder="제목을 적어주세요">
+                                <input type="text" name="insertTitle" placeholder="제목을 적어주세요" required="required">
                             </div>
                          
                             <div class="insert-input-content"> <!-- 내용 --> <!--ckeditor로 sts에서 사용할것임-->
-                                <textarea class="insert-input-text" name="insertContent" placeholder="문의 내역을 자세하게 적어주세요 자세하게 적을수록 정확한 답변을 받을수있습니다." name="" rows="15" cols="100" wrap="hard"></textarea>
+                                <textarea class="insert-input-text" name="insertContent" required="required" placeholder="문의 내역을 자세하게 적어주세요 자세하게 적을수록 정확한 답변을 받을수있습니다." name="" rows="15" cols="100" wrap="hard"></textarea>
                             </div>
                             <div>
                             	<input class="insert-input-answer" name="answerStatus" value="답변 대기">
@@ -109,9 +109,9 @@
 								</div>	
 							</div>
 							</div>
-							<div class="question-modal-btn">
-								<button class="question-modal-btn-right btn btn-danger" type="button" id="modal-question_close_btn">취소 하기</button>
-								<button class="question-modal-btn-left btn btn-info" type="button" id="">답변 등록</button>
+							<div class="question-modal-btn">							
+								<button class="question-modal-btn-right btn btn-danger" type="button" id="modal-question_close_btn" style="margin-top:30px;">이미지 끄기</button>
+								
 							</div>    
 						
 						</div>
@@ -119,11 +119,13 @@
 						<div class="modal_layer"></div>
 					</div>
 					<!-- 모달 끝 -->
+					
+					
                     <!-- 문의하기 취소하기 버튼-->
                     
                     <div class="insert-btn-qne">
                         <button type="button" class="insert-btn-right btn btn-default" onclick="location.href='mtomPage'">취소하기</button>
-                        <c:if test=${sessionScope.userVO != null}>
+                        <c:if test="${sessionScope.userVO != null}">
                         <button type="submit" class="insert-btn-left btn btn-primary" >문의하기</button>
                     	</c:if>
                     </div>
@@ -135,8 +137,24 @@
     </div>
     </section>
 
+<script>
+var msg = "${msg}";
+if (msg != '') {
+	alert(msg);
+}
+</script>
+
 	<!-- 모달 스크립트 -->
 	<script>
+		$("#fileImg").click(function(){
+			
+			var imgsrc = $("#fileImg").attr("src");
+			
+			$("#fileImgSecond").attr("src",imgsrc);
+			
+		});
+	
+	
         document.getElementById("fileImg").onclick = function() {
             document.getElementById("question-modal").style.display="block";
         }

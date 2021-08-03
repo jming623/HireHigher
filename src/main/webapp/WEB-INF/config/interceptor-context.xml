@@ -11,6 +11,7 @@
 	<bean id="loginSuccessHandler" class="com.hirehigher.interceptor.LoginSuccessHandler"/>
 	<bean id="UserAuthHandler" class="com.hirehigher.interceptor.UserAuthHandler"/>
 	<bean id="CreatorAuthHandler" class="com.hirehigher.interceptor.CreatorAuthHandler"/>
+	<bean id="UserQuestionHandler" class="com.hirehigher.interceptor.UserQuestionHandler"/>
 	
 	<mvc:interceptors>
 		
@@ -22,6 +23,13 @@
 			<mvc:mapping path="/creator/creatorDetail"/>
 			<mvc:mapping path="/creator/creatorModify"/>
 			<ref bean="UserAuthHandler"/>
+		</mvc:interceptor>
+		
+		<!-- 문의내역 페이지 관리 핸들러 -->		
+		<mvc:interceptor>
+			<mvc:mapping path="/userQuestion/insertPage"/>
+			<mvc:mapping path="/userQuestion/updatePage"/>
+			<ref bean="UserQuestionHandler"/>
 		</mvc:interceptor>
 		
 		<!-- 크리에이터 권한이 있어야 접근할 수 있는 페이지를 관리하는 핸들러 -->		

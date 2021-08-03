@@ -253,3 +253,6 @@ margin-bottom: 50px;
     width: 70%;
     margin-bottom: 30px;
 }
+section{
+	min-height: 81.5vh;
+}
