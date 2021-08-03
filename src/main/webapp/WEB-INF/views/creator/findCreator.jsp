@@ -6,7 +6,7 @@
    <section class="creator-detail-section">
        
         <div class="profile-header">
-           <img src="../resources/img/creatorBackground/welcome.jpg">
+           <img src="findBackView?backgroundLoca=${backgroundImg.backgroundLoca}&backgroundName=${backgroundImg.backgroundName}">
         </div>
 
         <div class="profile-content">
@@ -14,7 +14,7 @@
             <div class="creator-profile">
                 
                 <div class="creator-profile-wrap">
-                    <img class="creator-profile-img" src="../resources/img/profile.png" style="width: 128px; height: 128px;">
+                    <img class="creator-profile-img" src="findProfileView?profileLoca=${profileImg.profileLoca}&profileName=${profileImg.profileName}" style="width: 128px; height: 128px;">
                 </div>
 
                 <div class="creator-name">${creatorPageInfo.creatorNick}</div>
@@ -212,8 +212,8 @@
         		alert("등록된 인스타그램 주소가 없습니다.");
         	}
     	})
-    /*
-    	// 이미지 불러오기
+
+    	/* // 이미지 불러오기
     	$(document).ready(function() {
     		
     		// 프로필 이미지 불러오기
@@ -255,8 +255,8 @@
 			})();
     		
     		
-    	}); // ready(function) 끝
-    	*/
+    	}); // ready(function) 끝 */
+   	
     	
        	window.onload = function() {
 

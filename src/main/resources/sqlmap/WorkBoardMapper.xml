@@ -12,8 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             from(select @rownum := @rownum + 1 rn,
                a.*
                      from(select *
-                           from workboard
-                          where category = #{Category}
+                           from WORKBOARD
+                          where CATEGORY = #{Category}
                          order by BNO desc) a ) b, (select @rownum := 0) c
             where rn > (#{pageNum}-1) * #{amount} and rn <= #{pageNum} * #{amount}
       ]]>
@@ -26,7 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="getDetail" resultType="WorkBoardVO">
-		select * from workboard where bno = #{bno}
+		select * from WORKBOARD where bno = #{bno}
+	</select>
+	
+	<select id="getProfileImg" resultType="ProfileVO"> 
+		select * from PROFILEIMG where PROFILEID = #{creatorNick}
 	</select>
 
 

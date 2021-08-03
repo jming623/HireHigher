@@ -52,12 +52,13 @@ public class CreatorController {
 	@RequestMapping("applyForm")
 	public String applyForm(CreatorVO creatorVO, HttpSession session, RedirectAttributes RA) {
 
-		if (userType == 0) {
+		
 
 			/*------------------------제작자 신청--------------------------------*/
 			UserVO userVO = (UserVO)session.getAttribute("userVO"); // session에 있는 userVO를 얻음
 			creatorVO.setCreatorId(userVO.getUserId()); // creatorVO의 creatorId에 userVO의 userId를 저장
-			
+			int userType = userVO.getUserType();
+			if (userType == 0) {
 			
 			int result = creatorService.apply(creatorVO); // apply함수 결과를 result 변수에 저장
 
@@ -434,5 +435,55 @@ public class CreatorController {
 		return "redirect:/creator/creatorApply";
 	}
 	
+	// 추가_JM
+	// 크리에이터검색시 프로필이미지 호출
+	@ResponseBody
+	@RequestMapping("/findProfileView")
+	public byte[] findProfileView(ProfileImgVO vo) {
+		
+		System.out.println("화면으로 부터 넘어온 profileVO"+ vo.toString());
+		
+		String profileLoca = vo.getProfileLoca();
+		String profileName = vo.getProfileName();
+		
+		byte[] result = null;
+		
+		try {
+			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			
+			result = FileCopyUtils.copyToByteArray(file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	// 추가_JM
+	// 크리에이터검색시백그라운드이미지 호출
+	@ResponseBody
+	@RequestMapping("/findBackView")
+	public byte[] findBackView(BackgroundImgVO vo) {
+		
+		System.out.println("화면으로 부터 넘어온 BackgroundVO"+ vo.toString());
+		
+		byte[] result = null;
+		
+		String backgroundLoca = vo.getBackgroundLoca();
+		String backgroundName = vo.getBackgroundName();
+		
+		try {
+			
+			File file = new File(CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH+"\\"+backgroundLoca+"\\"+backgroundName);
+			
+			result = FileCopyUtils.copyToByteArray(file);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+			
+		return result;
+	}
 	
 }// end controller
