@@ -103,8 +103,13 @@ public class userQuestionController {
 //			System.out.println("파일명:" + fileRealName);
 //			System.out.println("파일크기:" + size);
 //			System.out.println("파일확장자:" + fileExtention);
-
-			File saveFile = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" + fileRealName); // 업로드 경로
+			
+			//로컬
+			//File saveFile = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" + fileRealName); // 업로드 경로
+			
+			//배포
+			File saveFile = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + fileRealName); // 업로드 경로
+				
 			file.transferTo(saveFile); // 실제 파일을 로컬환경으로 저장
 			System.out.println("파일경로:"+saveFile); //업로드 파일경로
 		
@@ -146,7 +151,12 @@ public class userQuestionController {
 	      
 	      try {
 	         //파일데이터를 바이트데이터로 변환해서 반환
-	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
+	    	 
+	    	 //로컬
+	    	 //File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
+	    	 
+	    	 //배포
+	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + insertImg);
 	               
 	         result = FileCopyUtils.copyToByteArray(file);
 	                     
@@ -225,8 +235,13 @@ public class userQuestionController {
 	      
 	      try {
 	         //파일데이터를 바이트데이터로 변환해서 반환
-	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
+	    	  
+	    	 //로컬
+	    	 //File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + "\\" +insertImg);
 	               
+	    	 //배포
+	    	 File file = new File(USERQUESTION_CONSTANT.UPLOAD_PATH + insertImg);
+	    	 
 	         result = FileCopyUtils.copyToByteArray(file);
 	        
 	         
