@@ -10,7 +10,7 @@
         <div class="seller-form">
 
           <div class="sellerTitle">
-            <h2>판매자 신청하기</h2>
+            <h2>제작자 신청</h2>
           </div>
           <form action="applyForm" method="post">
 

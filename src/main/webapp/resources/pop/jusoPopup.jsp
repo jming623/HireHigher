@@ -56,7 +56,7 @@ function init(){
 		document.form.confmKey.value = confmKey;
 		document.form.returnUrl.value = url;
 		document.form.resultType.value = resultType;
-		document.form.action="https://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
+		document.form.action="http://www.juso.go.kr/addrlink/addrLinkUrl.do"; //인터넷망
 		//document.form.action="https://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
 		document.form.submit();
 	}else{
