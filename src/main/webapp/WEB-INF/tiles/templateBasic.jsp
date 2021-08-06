@@ -69,7 +69,7 @@
 	<!-- 문의 등록 페이지 -->
 	<link href="${pageContext.request.contextPath }/resources/css/insertPage.css?1" rel="stylesheet">
 	<!--  1:1 문의 내역 페이지 -->
-	<link href="${pageContext.request.contextPath }/resources/css/mtomPage.css?1" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/resources/css/mtomPage.css?2" rel="stylesheet">
 	<!-- 1:1 문의 내역 상세페이지 -->
 	<link href="${pageContext.request.contextPath }/resources/css/questionDetail.css?2" rel="stylesheet">
 	<!-- 1:1 문의 수정 페이지 -->

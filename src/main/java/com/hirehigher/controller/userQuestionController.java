@@ -250,7 +250,7 @@ public class userQuestionController {
 		int result = userQuestionService.answerData(vo); // 성공시 1반환, 실패시 0
 
 		if (result == 1) {
-			RA.addFlashAttribute("msg", "답변이 되었습니다");
+			RA.addFlashAttribute("msg", "답변이 등록되었습니다");
 		} else {
 			RA.addFlashAttribute("msg", "답변 등록에 실패했습니다. 다시 시도하세요");
 		}
