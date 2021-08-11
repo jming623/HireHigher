@@ -278,7 +278,11 @@ public class UserController {
 		
 		String userEmail = vo.getUserEmail();
 		
+		System.out.println(userEmail);
+		
 		int result = userService.emailCheck(userEmail);
+		
+		System.out.println(result);
 		
 		return result;
 	}

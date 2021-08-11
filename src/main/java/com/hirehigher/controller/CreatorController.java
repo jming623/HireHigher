@@ -184,7 +184,11 @@ public class CreatorController {
 
 			String backgroundName = uuids + fileExtention; // 업로드 파일명
 			
-			File saveFile = new File(backgroundPath + "\\" + backgroundLoca + "\\" + backgroundName);
+			//로컬
+			//File saveFile = new File(backgroundPath + "\\" + backgroundLoca + "\\" + backgroundName);
+			
+			//운영
+			File saveFile = new File(backgroundPath + backgroundLoca + "/" + backgroundName);
 			
 			file.transferTo(saveFile); // 파일쓰기
 			
@@ -235,7 +239,11 @@ public class CreatorController {
 
 			String profileName = uuids + fileExtention; // 업로드 파일명
 			
-			File saveFile = new File(profilePath + "\\" + profileLoca + "\\" + profileName);
+			//로컬
+			//File saveFile = new File(profilePath + "\\" + profileLoca + "\\" + profileName);
+			
+			//배포
+			File saveFile = new File(profilePath + profileLoca + "/" + profileName);
 			
 			file.transferTo(saveFile); // 파일쓰기
 			
@@ -286,9 +294,13 @@ public class CreatorController {
 		try {
 
 			// 파일 데이터를 바이트데이터로 변환해서 반환
-
-			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH + "\\" + profileLoca + "\\" + profileName);
-
+			
+			//로컬
+			//File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH + "\\" + profileLoca + "\\" + profileName);
+			
+			//배포
+			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH + profileLoca + "/" + profileName);	
+			
 			result = FileCopyUtils.copyToByteArray(file);
 
 		} catch (Exception e) {
@@ -322,10 +334,14 @@ public class CreatorController {
 		try {
 
 			// 파일 데이터를 바이트데이터로 변환해서 반환
-
-			File file = new File(
-					CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH + "\\" + backgroundLoca + "\\" + backgoundName);
-
+			
+			//로컬
+			//File file = new File(
+			//		CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH + "\\" + backgroundLoca + "\\" + backgoundName);
+			
+			//배포
+			File file = new File(CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH + backgroundLoca + "/" + backgoundName);
+			
 			result = FileCopyUtils.copyToByteArray(file);
 
 		} catch (Exception e) {
@@ -457,7 +473,12 @@ public class CreatorController {
 		byte[] result = null;
 		
 		try {
-			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			
+			//로컬
+			//File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH+"\\"+profileLoca+"\\"+profileName);
+			
+			//배포
+			File file = new File(CREATOR_PROFILE_CONSTANT.UPLOAD_PATH + profileLoca+ "/" +profileName);
 			
 			result = FileCopyUtils.copyToByteArray(file);
 			
@@ -483,7 +504,11 @@ public class CreatorController {
 		
 		try {
 			
-			File file = new File(CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH+"\\"+backgroundLoca+"\\"+backgroundName);
+			//로컬
+			//File file = new File(CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH+"\\"+backgroundLoca+"\\"+backgroundName);
+			
+			//배포
+			File file = new File(CREATOR_BACKGROUND_CONSTANT.UPLOAD_PATH + backgroundLoca + "/" + backgroundName);
 			
 			result = FileCopyUtils.copyToByteArray(file);
 			

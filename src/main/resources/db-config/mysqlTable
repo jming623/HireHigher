@@ -3,12 +3,12 @@
 CREATE TABLE CREATOR(
     CREATORID VARCHAR(50) PRIMARY KEY, ## 제작자 아이디
     CREATORMAJOR VARCHAR(100) NOT NULL, ## 전공분야
-    CREATORCAREER VARCHAR(100), ## 경력사항
-    CREATORCAREER1 VARCHAR(100), ## 경력사항 1
-    CREATORCAREER2 VARCHAR(100), ## 경력사항 2
-    CREATORAWARDS VARCHAR(100), ## 수상경력
-    CREATORAWARDS1 VARCHAR(100), ## 수상경력 1
-    CREATORAWARDS2 VARCHAR(100), ## 수상경력 2
+    CREATORCAREER VARCHAR(500), ## 경력사항
+    CREATORCAREER1 VARCHAR(500), ## 경력사항 1
+    CREATORCAREER2 VARCHAR(500), ## 경력사항 2
+    CREATORAWARDS VARCHAR(500), ## 수상경력
+    CREATORAWARDS1 VARCHAR(500), ## 수상경력 1
+    CREATORAWARDS2 VARCHAR(500), ## 수상경력 2
     CREATORREGDATE DATETIME DEFAULT CURRENT_TIMESTAMP ## 제작자 등록일
 );
 
@@ -16,24 +16,24 @@ CREATE TABLE CREATORPAGE (
     PAGEID VARCHAR(50) PRIMARY KEY, ## 아이디
     CREATOREMAIL VARCHAR(50), ## 이메일
     ABOUTME VARCHAR(2000), ## 자기소개
-    CREATORNICK VARCHAR(50), ## 닉네임
+    CREATORNICK VARCHAR(100), ## 닉네임
     INSTAPATH VARCHAR(100)
 );
 
 CREATE TABLE PROFILEIMG (
     PROFILEID VARCHAR(50) PRIMARY KEY, ## 아이디
-    PROFILEPATH VARCHAR(200), ## 업로드 경로
-    PROFILELOCA VARCHAR(100), ## 폴더 위치
-    PROFILENAME VARCHAR(100), ## 변경된 파일명
-    PROFILEREAL VARCHAR(100) ## 실제 파일명
+    PROFILEPATH VARCHAR(300), ## 업로드 경로
+    PROFILELOCA VARCHAR(300), ## 폴더 위치
+    PROFILENAME VARCHAR(300), ## 변경된 파일명
+    PROFILEREAL VARCHAR(300) ## 실제 파일명
 );
 
 CREATE TABLE BACKGROUNDIMG (
     BACKGROUNDID VARCHAR(50) PRIMARY KEY, ## 아이디
-    BACKGROUNDPATH VARCHAR(200), ## 업로드 경로
-    BACKGROUNDLOCA VARCHAR(100), ## 폴더 위치
-    BACKGROUNDNAME VARCHAR(100), ## 변경된 파일명
-    BACKGROUNDREAL VARCHAR(100) ## 실제 파일명
+    BACKGROUNDPATH VARCHAR(300), ## 업로드 경로
+    BACKGROUNDLOCA VARCHAR(300), ## 폴더 위치
+    BACKGROUNDNAME VARCHAR(300), ## 변경된 파일명
+    BACKGROUNDREAL VARCHAR(300) ## 실제 파일명
 );
 
 create table JOBBOARD(
@@ -41,7 +41,7 @@ create table JOBBOARD(
     VIEWCOUNT int(10) default 0, ##조회수
     USERID varchar(50), ##아이디
     USERNAME varchar(50) NOT NULL, ##작성자
-    COMPANYNAME varchar(50) NOT NULL, ##회사 이름
+    COMPANYNAME varchar(200) NOT NULL, ##회사 이름
     TITLE varchar(200) NOT NULL, ##제목
     REGDATE datetime default current_timestamp, ##작성일
     UPDATEDATE datetime default current_timestamp ##수정일
@@ -59,13 +59,13 @@ create table JOBBOARDDETAIL(
     CONTRACT varchar(100), ##근무기간
     WORKDAYS varchar(100), ##근무요일
     WORKTIME varchar(100), ##근무시간
-    WELFARE varchar(300), ##복리후생
+    WELFARE varchar(500), ##복리후생
     COMPANYADDR varchar(300) not null, ##근무지주소
-    POSITION varchar(300) not null, ##담당업무
+    POSITION varchar(500) not null, ##담당업무
     WAYTOAPPLY varchar(300), ##지원방법
     RECPLAN varchar(300), ##채용일정
     DEADLINE varchar(50), ##모집마감일
-    HRMANAGER varchar(20), ##채용담당자명
+    HRMANAGER varchar(50), ##채용담당자명
     HRCONTACT varchar(200), ##채용담당자연락처
     BNO int(10) primary key auto_increment ##글번호
 ); 
@@ -76,23 +76,20 @@ CREATE TABLE VISITORCOUNTER(
 );
 
 create table FAQLISTPAGE(
-    FAQBNO int primary key auto_increment, ##FAQ번호
+    FAQBNO int(10) primary key auto_increment, ##FAQ번호
     FAQNUM int(1) not null, ##문의 종류 번호 (문의 종류 번호 1~4)
     PAYMENTFAQTITLE varchar(300), ## 결제 관련 질문 1
-    PAYMENTFAQ varchar(1000), ## 결제 관련 답변 1 
-    
+    PAYMENTFAQ varchar(1000), ## 결제 관련 답변 1     
 	LOGINFAQTITLE varchar(300), ## 로그인 관련 질문 2
     LOGINFAQ varchar(1000),  ## 로그인 관련 답변 2
-    
     HOMPAGEFAQTITLE varchar(300), ## 홈페이지 관련 질문 3 
     HOMEPAGEFAQ varchar(1000), ## 홈페이지 관련 답변 3
-    
     INSERTITEMFAQTITLE varchar(300), ## 제품등록 질문 4 
     INSERTITEMFAQ varchar(1000) ## 제품등록 답변 4
 );
 
 create table INSERTQUESTIONPAGE(
-    INSERTBNO int primary key auto_increment, ##문의 번호
+    INSERTBNO int(10) primary key auto_increment, ##문의 번호
     INSERTKIND varchar(50) not null, ## 분류
     INSERTID varchar(50) not null, ##아이디
     INSERTTITLE varchar(100) not null, ## 제목
@@ -102,20 +99,20 @@ create table INSERTQUESTIONPAGE(
     ANSWERDATE  datetime default current_timestamp, ## 문의 답변 날짜
     ANSWERCONTENT varchar(1000), ## 문의 답변 내용
     ANSWERSTATUS varchar(100), ## 답변상태
-    INSERTIMG varchar(100) ##이미지 경로
+    INSERTIMG varchar(300) ##이미지 경로
 );
 
 CREATE TABLE USERS(
     USERID VARCHAR(50) PRIMARY KEY,
     USERPW VARCHAR(50) NOT NULL,
     USERNAME VARCHAR(50),
-    NICKNAME VARCHAR(50) UNIQUE,
+    NICKNAME VARCHAR(100) UNIQUE,
     BIRTHDAY VARCHAR(10),
     USEREMAIL VARCHAR(50),
     USERCELLNUM VARCHAR(15),
     ADDRZIPNUM VARCHAR(50),
-    ADDRBASIC VARCHAR(300),
-    ADDRDETAIL VARCHAR(300),
+    ADDRBASIC VARCHAR(500),
+    ADDRDETAIL VARCHAR(500),
     REGDATE DATETIME DEFAULT CURRENT_TIMESTAMP,
     USERTYPE INT(1) DEFAULT 0
 ); 
@@ -130,13 +127,13 @@ CREATE TABLE LOGINCOUNT(
 );
 
 CREATE TABLE WORKBOARD(
-    BNO INT PRIMARY KEY AUTO_INCREMENT, ## 글번호
+    BNO INT(10) PRIMARY KEY AUTO_INCREMENT, ## 글번호
     TITLE VARCHAR(100) NOT NULL, ## 글제목
-    CREATORNAME VARCHAR(50) NOT NULL, ##작성자닉네임
-    PRODUCTPATH VARCHAR(100), ## 업로드 경로
-    PRODUCTLOCATION VARCHAR(100), # 폴더위치
-    PRODUCTNAME VARCHAR(100), ## 변경된 파일명
-    PRODUCTREAL VARCHAR(100), ## 실제파일명
+    CREATORNAME VARCHAR(100) NOT NULL, ##작성자닉네임
+    PRODUCTPATH VARCHAR(300), ## 업로드 경로
+    PRODUCTLOCATION VARCHAR(300), # 폴더위치
+    PRODUCTNAME VARCHAR(300), ## 변경된 파일명
+    PRODUCTREAL VARCHAR(300), ## 실제파일명
     CONTENT VARCHAR(2000) NOT NULL, ## 상품설명
     PRICE VARCHAR(50) NOT NULL, ## 상품가격
     LIKECOUNT INT NOT NULL, ## 좋아요
@@ -147,10 +144,10 @@ CREATE TABLE WORKBOARD(
 
 
 CREATE TABLE WORKREPLY(
-RNO INT PRIMARY KEY AUTO_INCREMENT, ## 댓글번호
-BNO INT NOT NULL, ## 글번호 
-REPLY VARCHAR(1000) NOT NULL, ## 댓글내용
-REPLYID VARCHAR(200) NOT NULL, ## 작성자
-REPLYDATE DATETIME DEFAULT now(), ## 댓글 등록일
-REPLYUPDATE DATETIME DEFAULT now() ## 댓글 수정일
+	RNO INT(10) PRIMARY KEY AUTO_INCREMENT, ## 댓글번호
+	BNO INT(10) NOT NULL, ## 글번호 
+	REPLY VARCHAR(1000) NOT NULL, ## 댓글내용
+	REPLYID VARCHAR(200) NOT NULL, ## 작성자
+	REPLYDATE DATETIME DEFAULT now(), ## 댓글 등록일
+	REPLYUPDATE DATETIME DEFAULT now() ## 댓글 수정일
 );

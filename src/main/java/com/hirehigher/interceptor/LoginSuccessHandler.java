@@ -27,7 +27,10 @@ public class LoginSuccessHandler extends HandlerInterceptorAdapter{
 			HttpSession session = request.getSession();
 			session.setAttribute("userVO", userVO);
 			
-			response.sendRedirect(request.getContextPath()); //홈화면으로 이동
+			//로컬
+			//response.sendRedirect(request.getContextPath()); //홈화면으로 이동
+			//배포
+			response.sendRedirect(request.getContextPath()+"/"); //홈화면으로 이동
 		}
 		
 		//ModelAndView객체에 이동할 view정보를 저장, 이정보는 다시 컨트롤러로 이동

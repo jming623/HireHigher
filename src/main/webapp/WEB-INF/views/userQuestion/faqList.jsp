@@ -97,8 +97,7 @@
 
                     <div class="FAQ-answer-content"> <!-- FAQ 답변 -->
                         <p>
-                       		${payment.paymentFaq}
-                       		 <c:out value="${index.index}"></c:out>
+                       		${payment.paymentFaq}                      		 
                         </p>
                       
                     </div>

@@ -55,13 +55,13 @@
                             <div class="findPw-result" id="findPwResult_ok" style="display: none;">
                                 <strong style=>결과:</strong> <br>
                                 <strong style=>입력하신 이메일로 비밀번호가 발송되었습니다.</strong> <br>
-                                <a href="location.href='${pageContext.request.contextPath }/user/userLogin'">로그인화면으로 돌아가기</a>
+                                <a href="../../user/userLogin">로그인화면으로 돌아가기</a>
                             </div>
                             
                             <div class="findPw-result" id="findPwResult_fail" style="display: none;">
                                 <strong style=>결과:</strong> <br>
                                 <strong style=>입력하신 정보로 가입된 회원이없습니다.</strong> <br>
-                                <a href="location.href='${pageContext.request.contextPath }/user/userJoin'">회원가입 화면으로 이동</a>
+                                <a href="../../user/userJoin">회원가입 화면으로 이동</a>
                             </div>
                              
                         </div>

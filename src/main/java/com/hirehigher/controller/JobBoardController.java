@@ -76,12 +76,13 @@ public class JobBoardController {
 
 	//글 등록 처리
 	@RequestMapping("/registRequest")
-	public String registRequest(JobBoardDetailVO jobBoardDetailVO,
+	public String registRequest(JobBoardDetailVO jobBoardDetailVO, JobBoardVO jobBoardVO,
 			RedirectAttributes RA) {
 
-		int result = jobBoardService.regist(jobBoardDetailVO);
-
-		if(result == 1) {
+		int result1 = jobBoardService.regist1(jobBoardVO);
+		int result2 = jobBoardService.regist2(jobBoardDetailVO);
+		
+		if(result1 == 1 && result2 == 1) {
 			RA.addFlashAttribute("msg", "등록 처리 되었습니다");
 		} else {
 			RA.addFlashAttribute("msg", "등록에 실패했습니다. 다시 시도하세요");
@@ -94,12 +95,13 @@ public class JobBoardController {
 
 	//글 수정 처리
 	@RequestMapping("/jobUpdate")
-	public String jobUpdate(JobBoardDetailVO jobBoardDetailVO,
+	public String jobUpdate(JobBoardDetailVO jobBoardDetailVO, JobBoardVO jobBoardVO,
 			RedirectAttributes RA) {
 
-		int result = jobBoardService.update(jobBoardDetailVO);
+		int result1 = jobBoardService.update1(jobBoardDetailVO);
+		int result2 = jobBoardService.update2(jobBoardVO);
 
-		if(result == 1) {
+		if(result1 == 1 && result2 == 1) {
 			RA.addFlashAttribute("msg", "수정을 완료했습니다.");
 		} else {
 			RA.addFlashAttribute("msg", "수정에 실패했습니다.");
@@ -113,9 +115,10 @@ public class JobBoardController {
 	@RequestMapping("/jobDelete")
 	public String jobDelete(@RequestParam("bno") int bno, RedirectAttributes RA) {
 		
-		int result = jobBoardService.delete(bno);
+		int result1 = jobBoardService.delete1(bno);
+		int result2 = jobBoardService.delete2(bno);
 		
-		if(result == 1) {
+		if(result1 == 1 && result2 == 1) {
 			RA.addFlashAttribute("msg", "삭제 완료했습니다.");
 		} else {
 			RA.addFlashAttribute("msg", "삭제 실패했습니다.");

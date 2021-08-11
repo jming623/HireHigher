@@ -20,12 +20,35 @@ public class JobBoardServiceImpl implements JobBoardService {
 	
 	//----------------------------MAPPER 연결----------------------------
 	
-	
-	//업데이트
-	public int update(JobBoardDetailVO jobBoardDetailVO) {
-		return jobBoardMapper.update(jobBoardDetailVO);
+	//등록
+	@Override
+	public int regist1(JobBoardVO jobBoardVO) {
+		return jobBoardMapper.regist1(jobBoardVO);
 	}
 	
+	@Override
+	public int regist2(JobBoardDetailVO jobBoardDetailVO) {
+		return jobBoardMapper.regist2(jobBoardDetailVO);
+	}
+	
+	//수정
+	public int update1(JobBoardDetailVO jobBoardDetailVO) {
+		return jobBoardMapper.update1(jobBoardDetailVO);
+	}
+	
+	public int update2(JobBoardVO jobBoardVO) {
+		return jobBoardMapper.update2(jobBoardVO);
+	}
+	
+	//삭제
+	public int delete1(int bno) {
+		return jobBoardMapper.delete1(bno);
+	}
+	
+	public int delete2(int bno) {
+		return jobBoardMapper.delete2(bno);
+	}
+
 	//총 게시글 수
 	@Override
 	public int getTotal(JobCriteria cri) {
@@ -42,17 +65,6 @@ public class JobBoardServiceImpl implements JobBoardService {
 	@Override
 	public JobBoardDetailVO getDetail(int bno) {
 		return jobBoardMapper.getDetail(bno);
-	}
-	
-	//등록
-	@Override
-	public int regist(JobBoardDetailVO jobBoardDetailVO) {
-		return jobBoardMapper.regist(jobBoardDetailVO);
-	}
-	
-	//삭제
-	public int delete(int bno) {
-		return jobBoardMapper.delete(bno);
 	}
 	
 	//조회수

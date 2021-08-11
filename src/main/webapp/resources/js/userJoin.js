@@ -201,6 +201,8 @@
 		}
 		
 		var userEmail = $("#userEmail").val();
+		
+		console.log(userEmail);
 	
 		$.ajax({
 			type: "post",
@@ -209,7 +211,7 @@
 			contentType: "application/json; charset=UTF-8",
 			data: JSON.stringify({"userEmail":userEmail}),
 			success: function(data){
-				if(data == 1){//email중복
+				if(data != 0){//email중복
 					alert("이미 가입된 유저의 이메일입니다. ");
 					return;
 				}else{//Email중복이 아닐경우

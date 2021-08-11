@@ -279,7 +279,7 @@
         	var checkedId = $("input:checkbox[name=findedId]:checked").val(); //로그인화면으로 보내줄 ID
         	
         	opener.findedId(checkedId); //부모페이지에 findedId메서드에 checkedId값을 실어줌
-        	window.close();
+        		
         })
         
          //전화번호로 찾은 아이디를선택

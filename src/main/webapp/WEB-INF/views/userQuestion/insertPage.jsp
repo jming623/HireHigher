@@ -78,7 +78,7 @@
 					</div>
 					<div class="reply-content">
 						
-						<div class="reply-group">
+						<div class="reply-group insertpage-reply-group">
 							<div class="filebox pull-left">
 								<label for="file">이미지업로드</label>
 								<input style="display: none;" type="file" name="file" id="file">
@@ -104,7 +104,7 @@
 							<div class="question-input-madal-all">
 			
 							<div class="answer-modal-box">
-								<div class="fileDivSecond">
+								<div class="fileDivSecond" style="text-align:center;">
 									<img id="fileImgSecond" src="../resources/img/img_ready.png">
 								</div>	
 							</div>
@@ -217,7 +217,7 @@ $(document).ready(function() {
 					data : formData,
 					success : function(data) {
 						
-						alert(data);
+						alert("이미지 업로드 완료");
 						console.log( $("#insertImg") );
 						console.log( $("#insertImg").attr("value") );
 						
