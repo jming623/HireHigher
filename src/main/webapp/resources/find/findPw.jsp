@@ -55,13 +55,13 @@
                             <div class="findPw-result" id="findPwResult_ok" style="display: none;">
                                 <strong style=>결과:</strong> <br>
                                 <strong style=>입력하신 이메일로 비밀번호가 발송되었습니다.</strong> <br>
-                                <a href="../../user/userLogin">로그인화면으로 돌아가기</a>
+                                <a id="windowClose" href="#">로그인화면으로 돌아가기</a>
                             </div>
                             
                             <div class="findPw-result" id="findPwResult_fail" style="display: none;">
                                 <strong style=>결과:</strong> <br>
                                 <strong style=>입력하신 정보로 가입된 회원이없습니다.</strong> <br>
-                                <a href="../../user/userJoin">회원가입 화면으로 이동</a>
+                                <a id="goUserJoin" href="#">회원가입 화면으로 이동</a>
                             </div>
                              
                         </div>
@@ -158,6 +158,17 @@
             })
 
             
+        })
+        
+        $("#windowClose").click(function(){
+        	event.preventDefault();
+        	window.close();
+        })
+        
+        $("#goUserJoin").click(function(){
+        	event.preventDefault();
+        	opener.goUserJoin(true);
+        	window.close();
         })
 
     </script>

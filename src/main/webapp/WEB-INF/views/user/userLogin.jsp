@@ -64,6 +64,13 @@
 		} 
 	}
 	
+	function goUserJoin(aa){
+		
+		if( aa == true ){
+			location.href="userJoin";
+		}
+	}
+	
 	function findPw(){
 		event.preventDefault();
 		window.open("../resources/find/findPw.jsp","findId","width=750,height=500,left=550,top=180,location=no,scrollbars=no");
