@@ -23,6 +23,7 @@
 			<mvc:mapping path="/creator/creatorApply"/>
 			<mvc:mapping path="/creator/creatorDetail"/>
 			<mvc:mapping path="/creator/creatorModify"/>
+			<mvc:mapping path="/workBoard/workDetail"/>
 			<ref bean="UserAuthHandler"/>
 		</mvc:interceptor>
 		

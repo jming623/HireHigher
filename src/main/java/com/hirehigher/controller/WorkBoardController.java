@@ -3,6 +3,8 @@ package com.hirehigher.controller;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hirehigher.command.CreatorPageVO;
 import com.hirehigher.command.ProfileImgVO;
+import com.hirehigher.command.UserVO;
 import com.hirehigher.command.WorkBoardVO;
 import com.hirehigher.creator.service.CreatorService;
 import com.hirehigher.util.WorkBoardCriteria;
@@ -129,7 +132,12 @@ public class WorkBoardController {
 //	}
 	
 	@RequestMapping("/workDetail")
-	public String workDetail(WorkBoardVO vo,Model model) {
+	public String workDetail(HttpSession session,WorkBoardVO vo,Model model) {
+		
+		UserVO userVO = (UserVO)session.getAttribute("userVO");
+		String userId = userVO.getUserId();
+		
+		model.addAttribute("userId", userId);
 		
 		int boardBno = vo.getBno();
 		

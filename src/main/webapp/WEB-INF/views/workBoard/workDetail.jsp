@@ -138,7 +138,7 @@
 	                        <textarea class="form-control" rows="3" name="reply" id="reply"></textarea>
 	                        <div class="reply-group workboard-reply-group">
 	                              <div class="reply-input">
-	                              <input type="text" class="form-control" placeholder="이름" name="replyId" id="replyId">
+	                              <input type="text" class="form-control" placeholder="이름" name="replyId" id="replyId" value="${userId}" readonly>
 	                              </div>
 	                              
 	                              <button type="button" class="right btn btn-info" id="replyRegist">등록하기</button>
@@ -286,9 +286,10 @@
                         strAdd += "<div class='reply-content'>";
                         strAdd += "<div class='reply-group' style='height: 22px;'>";
                         strAdd += "<strong class='left'>"+ data[i].replyId +"</strong>"; 
-                       
+                        if(data[i].replyId == "${userId}"){
                         strAdd += "<a href='"+ data[i].rno +"' class='right replyModify'><span class='glyphicon glyphicon-pencil'></span>수정</a>";
                         strAdd += "<a href='"+ data[i].rno +"' class='right replyDelete'><span class='glyphicon glyphicon-remove'></span>삭제</a>";
+                        }
                         strAdd += "</div>";
                         strAdd += "<p class='clearfix'>"+data[i].reply +"</p>";
                         strAdd += "</div>";

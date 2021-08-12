@@ -67,7 +67,7 @@
 	function goUserJoin(aa){
 		
 		if( aa == true ){
-			location.href="userJoin";
+			location.href="../../user/userJoin";
 		}
 	}
 	
