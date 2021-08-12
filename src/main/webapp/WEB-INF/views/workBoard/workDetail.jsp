@@ -130,7 +130,7 @@
                 <div class="row">
                     <div class="col-xs-12  write-wrap">
                         <form class="reply-wrap">
-                            <div class="reply-image">
+                            <div class="reply-image" style="float:left;">
                                 <img src="${pageContext.request.contextPath }/resources/img/profile.png" alt="user" style="border-radius: 20px;">
                             </div>
                             <!--form-control은 부트스트랩의 클래스입니다 (name기술)-->
